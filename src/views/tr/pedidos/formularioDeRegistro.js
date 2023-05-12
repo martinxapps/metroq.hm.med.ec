@@ -1,234 +1,155 @@
 import m from "mithril";
-import terapiaRespiratoriaController from "./Models/obtenerDatos";
 import Pedido from "./pedido";
 import Encrypt from "../../../models/encrypt";
 
-//const obtenerDatos = terapiaRespiratoriaController;
-let isEsputoSelected = false;
-let isEsputoModifiedSelected = false;
-let isPanelViralSelected = false;
-let isRadioSelected = false;
 
-let isEsputoSelecteModified = "";
-let isPanelViralSelectedModified = "";
 
-/* let esputo = FormularioDeRegistro.datosPorSecuencial.data[0].ESPUTO === "true" ? true : false
-let esputoModified = esputo */
+const Button = {
+  estado: "",
+  obtenerEstado: function (number) {
+    m.request({
+      method: "GET",
+      url: `http://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/estados?CD_PRE_MED=${number}`,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        Accept: "application/json",
+        Authorization: localStorage.accessToken,
+      },
+    })
+      .then(function (result) {
+        if (result.data.length === 0) {
+          Button.estado = "";
+        }else{
+          Button.estado = result.data[0].ESTADO;
+          m.redraw();
+        }
+        
+        //console.log(resultado);
+        /* if (result.data[0].ESTADO === 1) {
+          return 1;
+        } else {
+          0
+        } */
+        /* console.log(result)
+        return result.data[0].ESTADO; */
+      })
+      .catch(function (error) {
+        alert(`Error al obtener el estado del pedido, el error es: ${error}`);
+      });
+  },
+  view: function () {
+    let buttonText = "Finalizar Documento";
+    let buttonClass = "btn";
 
-//let EsputoModified =
+    if (Button.estado === "" || Button.estado.length === 0 || Button.estado === "") {
+      buttonText = "Terminar Documento";
+        buttonClass += " btn-primary";
+    } else {
+      buttonText = "Documento Finalizado";
+        buttonClass += " btn-danger";
+    }
 
-const inputOxinoterapia = {
-  view: () => {
-    return [
-      m("input", {
-        class: "form-control",
-        type: "number",
-        id: "inputOxinoterapia2",
-        placeholder: "Oxigenoterapia",
-        //readonly: "readonly",
-        //disabled: obtenerDatos.habilitarCampos,
-        //maxlength: 10,
-        maxlength: 10,
-        oncreate: (el) => {
-          el.dom.value =
-            FormularioDeRegistro.datosPorSecuencial.data.length > 0
-              ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                  .CD_SECUENCIAL === Pedido.data.AT_MV
-                ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                    .CANTIDAD_OXIGENO_TERAPIA
-                : null
-              : null;
-        },
+    // Obtener el estado actual del pedido
+    
+    /* if (pedidoEstado !== "" && pedidoEstado !== 0) {
+      // Si el estado no está vacío ni es 0, actualizar el botón
+      buttonText = "Documento Finalizado";
+      buttonClass = "btn btn-danger";
+    } */
+    /* if (pedidoEstado === "1" || pedidoEstado.length === 0) {
+      buttonText = "Documento Finalizado";
+      buttonClass = "btn btn-danger";
+      e.target.disabled = true;
+    } */
 
-        /* value: FormularioDeRegistro.datosPorSecuencial.data.length > 0 ? FormularioDeRegistro.datosPorSecuencial.data[0].CD_SECUENCIAL === Pedido.data.AT_MV ? FormularioDeRegistro.datosPorSecuencial.data[0].CANTIDAD_OXIGENO_TERAPIA : null : null, */
-      }),
-    ];
+    const cancelClick = function (e) {
+      methodPutButton();
+      Button.estado = "1";
+      buttonText = "Documento Finalizado";
+      buttonClass = "btn btn-danger";
+      e.target.textContent = buttonText;
+      e.target.classList.remove("btn-primary");
+      e.target.classList.add("btn-danger");
+      e.target.disabled = true;
+      m.redraw();
+      
+    };
+
+    const button = m(
+      "button",
+      {
+        onclick: cancelClick,
+        class: buttonClass,
+        type: "button",
+        // disabled: false,
+        disabled: (Button.estado !== "" && Button.estado !== "0"),
+      },
+      buttonText
+    );
+
+    return m("main", [button]);
   },
 };
 
-const inputTerapiaExpansiva = {
-  view: () => {
-    return [
-      m("input", {
-        class: "form-control",
-        type: "number",
-        id: "inputTerapiaExpansiva2",
-        placeholder: "Terapia Expansiva",
-        readonly: "readonly",
-        maxlength: 10,
-        /* oninput: function (event) {
-          event.target.value = event.target.value.slice(0, 10);
-        }, */
-        /* value: FormularioDeRegistro.datosPorSecuencial.data.length > 0 ? FormularioDeRegistro.datosPorSecuencial.data[0].CD_SECUENCIAL === Pedido.data.AT_MV ? FormularioDeRegistro.datosPorSecuencial.data[0].TERAPIA_EXPANSIVA === 'Incentivo respiratorio' ? FormularioDeRegistro.datosPorSecuencial.data[0].CANTIDAD_TERAPIA_EXPANSIVA : null : null  : null, */
-        oncreate: (el) => {
-          el.dom.value =
-            FormularioDeRegistro.datosPorSecuencial.data.length > 0
-              ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                  .CD_SECUENCIAL === Pedido.data.AT_MV
-                ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                    .TERAPIA_EXPANSIVA === "Incentivo respiratorio"
-                  ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                      .CANTIDAD_TERAPIA_EXPANSIVA
-                  : null
-                : null
-              : null;
-        },
-      }),
-    ];
-  },
-};
+function date () {
+  const fechaActual = new Date();
+  const dia = fechaActual.getDate();
+  const mes = fechaActual.getMonth() + 1;
+  const anio = fechaActual.getFullYear();
 
-const inputMonitoreoPrevio = {
-  view: () => {
-    return [
-      m("input", {
-        class: "form-control",
-        type: "number",
-        id: "inputMonitoreoPrevio2",
-        placeholder: "Monitoreo Previo",
-        readonly: "readonly",
-        maxlength: 10,
-        /* oninput: function (event) {
-          event.target.value = event.target.value.slice(0, 10);
-        }, */
-        oncreate: (el) => {
-          el.dom.value =
-            FormularioDeRegistro.datosPorSecuencial.data.length > 0
-              ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                  .CD_SECUENCIAL === Pedido.data.AT_MV
-                ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                    .MONITOREO_TERAPIA === "Saturación O2(%)"
-                  ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                      .CANTIDAD_MONITOREO_TERAPIA
-                  : null
-                : null
-              : null;
-        },
-        /* value: FormularioDeRegistro.datosPorSecuencial.data.length > 0 ? FormularioDeRegistro.datosPorSecuencial.data[0].CD_SECUENCIAL === Pedido.data.AT_MV ? FormularioDeRegistro.datosPorSecuencial.data[0].MONITOREO_TERAPIA === 'Saturación O2(%)' ? FormularioDeRegistro.datosPorSecuencial.data[0].CANTIDAD_TERAPIA_EXPANSIVA : null : null  : null, */
-      }),
-    ];
-  },
-};
+  const fechaFormateada = `${dia}/${mes}/${anio}`;
+  return fechaFormateada;
+}
 
-const inputMonitoreoPosterior = {
-  view: () => {
-    return [
-      m("input", {
-        class: "form-control",
-        type: "number",
-        id: "inputMonitoreoPosterior2",
-        placeholder: "Monitoreo Posterior",
-        readonly: "readonly",
-        maxlength: 10,
-        /* oninput: function (event) {
-          event.target.value = event.target.value.slice(0, 10);
-        }, */
-        oncreate: (el) => {
-          el.dom.value =
-            FormularioDeRegistro.datosPorSecuencial.data.length > 0
-              ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                  .CD_SECUENCIAL === Pedido.data.AT_MV
-                ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                    .MONITOREO_TERAPIA_POSTERIOR === "Saturación O2(%)"
-                  ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                      .CANTIDAD_MONITOREO_TERAPIA_POS
-                  : null
-                : null
-              : null;
-        },
-        // value: FormularioDeRegistro.datosPorSecuencial.data.length > 0 ? FormularioDeRegistro.datosPorSecuencial.data[0].CD_SECUENCIAL === Pedido.data.AT_MV ? FormularioDeRegistro.datosPorSecuencial.data[0].MONITOREO_TERAPIA_POSTERIOR === "Saturación O2(%)" ? FormularioDeRegistro.datosPorSecuencial.data[0].CANTIDAD_MONITOREO_TERAPIA_POS : null : null  : null,
-      }),
-    ];
+function methodPutButton() {
+  m.request({
+    method: "POST",
+    url: "http://api.hospitalmetropolitano.org/t/v1/nuevo-status-pedido-tr",
+    body: {
+      "CD_PRE_MED": Pedido.numeroPedido,
+      "FECHA": date(),
+      "ESTADO": 1,
   },
-};
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      Accept: "application/json",
+      Authorization: localStorage.accessToken,
+    },
+  })
+    .then(function (result) {
+      console.log("Datos enviados con exito")
+    })
+    .catch(function (error) {
+      alert(`Error al enviar los datos, el error es: ${error}`);
+    });
+}
 
-const checkEsputo = {
-  view: () => {
-    return [
-      m("input", {
-        class: "custom-control-input",
-        type: "checkbox",
-        id: "checkboxEsputo",
-        //disabled: obtenerDatos.habilitarCampos,
-        oncreate: (el) => {
-          el.dom.checked =
-            FormularioDeRegistro.datosPorSecuencial.data.length > 0
-              ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                  .CD_SECUENCIAL === Pedido.data.AT_MV
-                ? FormularioDeRegistro.datosPorSecuencial.data[0].ESPUTO ===
-                  "true"
-                  ? "checked"
-                  : ""
-                : ""
-              : "";
-        },
-        /* checked:FormularioDeRegistro.datosPorSecuencial.data.length > 0 ? FormularioDeRegistro.datosPorSecuencial.data[0].CD_SECUENCIAL === Pedido.data.AT_MV ? FormularioDeRegistro.datosPorSecuencial.data[0].ESPUTO === "true" ? "checked": "" : "" : "", */
-        /* FormularioDeRegistro.datosPorSecuencial.data[0].ESPUTO === "true" ? true : false;
-          isEsputoModifiedSelected = FormularioDeRegistro.datosPorSecuencial.data[0].ESPUTO === "true" ? true : false;
-          isEsputoModifiedSelected = event.target.checked; */
-        onclick: function (event) {
-          /* isEsputoSelected = FormularioDeRegistro.datosPorSecuencial.data[0].ESPUTO === "true" ? true : false; */
+function getPedidoEstado(number) {
+  return m.request({
+    method: "GET",
+    url: `http://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/estados?CD_PRE_MED=${number}`,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      Accept: "application/json",
+      Authorization: localStorage.accessToken,
+    },
+  })
+    .then(function (result) {
+      return result.data;
+      //console.log(resultado);
+      /* if (result.data[0].ESTADO === 1) {
+        return 1;
+      } else {
+        0
+      } */
+      /* console.log(result)
+      return result.data[0].ESTADO; */
+    })
+    .catch(function (error) {
+      alert(`Error al obtener el estado del pedido, el error es: ${error}`);
+    });
+}
 
-          //isEsputoSelected = event.target.checked;
-          isEsputoSelecteModified = event.target.checked;
-          //alert(isEsputoSelecteModified);
-          //checkEsputo.esputoModified = event.target.checked;
-          //alert(isEsputoSelected);
-          //alert(checkEsputo.esputoModified);
-        },
-      }),
-    ];
-  },
-};
-
-const checkPanelViral = {
-  view: () => {
-    return [
-      m("input", {
-        class: "custom-control-input",
-        type: "checkbox",
-        id: "checkboxPanelViral",
-        //disabled: obtenerDatos.habilitarCampos,
-        onclick: function (event) {
-          isPanelViralSelectedModified = event.target.checked;
-        },
-        oncreate: (el) => {
-          el.dom.checked =
-            FormularioDeRegistro.datosPorSecuencial.data.length > 0
-              ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                  .CD_SECUENCIAL === Pedido.data.AT_MV
-                ? FormularioDeRegistro.datosPorSecuencial.data[0]
-                    .PANEL_VIRAL === "true"
-                  ? "checked"
-                  : ""
-                : ""
-              : "";
-        },
-        /* checked:FormularioDeRegistro.datosPorSecuencial.data.length > 0 ? FormularioDeRegistro.datosPorSecuencial.data[0].CD_SECUENCIAL === Pedido.data.AT_MV ? FormularioDeRegistro.datosPorSecuencial.data[0].PANEL_VIRAL === "true" ? "checked": "" : "" : "", */
-      }),
-    ];
-  },
-};
-
-const tesImout = {
-  view: () => {
-    return [
-      m("div", { class: "form-group col-md-4" }, [
-        m("label", { for: "inputUsuario" }, "Usuario"),
-        m("input", {
-          class: "form-control",
-          type: "text",
-          id: "inputUsuario",
-          placeholder: "Usuario",
-          readonly: "readonly",
-          oncreate: (el) => {
-            el.dom.value = FormularioDeRegistro.usuarioConectado.user.user;
-          },
-        }),
-      ]),
-    ];
-  },
-};
 const FormularioDeRegistro = {
   listaDeFrecuenciaCardiaca: [],
   errorCargandoFrecuenciaCardiaca: "",
@@ -514,65 +435,6 @@ const FormularioDeRegistro = {
       });
   },
 
-  actualizar: (formularioTerapiaRespiratoria) => {
-    m.request({
-      method: "PUT",
-      url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios",
-      body: formularioTerapiaRespiratoria, // cuerpo de los datos a enviar,
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        Accept: "application/json",
-        Authorization: localStorage.accessToken,
-      },
-    })
-      .then(function (result) {
-        if (result.status) {
-          FormularioDeRegistro.datosActualizados = result;
-          window.location.href = window.location.href;
-        } else {
-          FormularioDeRegistro.errorDatosActualizados = result.message;
-        }
-      })
-      .catch(function (error) {
-        //FormularioDeRegistro.errorDatosActualizados = error;
-        /* alert(FormularioDeRegistro.errorDatosActualizados);
-        alert(error); */
-        /* console.log(FormularioDeRegistro.errorDatosActualizados);
-        console.log(error); */
-        FormularioDeRegistro.errorDatosActualizados +=
-          "Error al actualizar los datos";
-      });
-  },
-
-  eliminar: (formularioTerapiaRespiratoria) => {
-    m.request({
-      method: "DELETE",
-      url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios",
-      body: formularioTerapiaRespiratoria, // cuerpo de los datos a enviar,
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        Accept: "application/json",
-        Authorization: localStorage.accessToken,
-      },
-    })
-      .then(function (result) {
-        if (result.status) {
-          FormularioDeRegistro.datosEliminados = result;
-          window.location.href = window.location.href;
-        } else {
-          FormularioDeRegistro.errorDatosEliminados = result.message;
-        }
-      })
-      .catch(function (error) {
-        //FormularioDeRegistro.errorDatosActualizados = error;
-        /* alert(FormularioDeRegistro.errorDatosActualizados);
-      alert(error); */
-        /* console.log(FormularioDeRegistro.errorDatosEliminados);
-      console.log(error); */
-        FormularioDeRegistro.errorDatosEliminados +=
-          "Error al eliminar los datos";
-      });
-  },
 
   oninit: (_data) => {
     //FormularioDeRegistro.cargarFrecuenciaCardiaca(_data.attrs.pedido.AT_MV); // 10090 // _data.attrs.pedido.AT_MV
@@ -582,9 +444,9 @@ const FormularioDeRegistro = {
     FormularioDeRegistro.cargarFechaActual();
     FormularioDeRegistro.cargarHoraActual();
     FormularioDeRegistro.cargarPrescripcion(_data.attrs.pedido.AT_MV); // 1918 // _data.attrs.pedido.AT_MV
-    FormularioDeRegistro.cargarFormularioPorCodigoSecuencial(
-      _data.attrs.pedido.AT_MV
-    ); // _data.attrs.pedido.AT_MV
+    // FormularioDeRegistro.cargarFormularioPorCodigoSecuencial(
+    //   _data.attrs.pedido.AT_MV
+    // ); // _data.attrs.pedido.AT_MV
     //console.log(_data.attrs.pedido.AT_MV);
     //console.log(FormularioDeRegistro.listaDeFrecuenciaCardiaca.data[0].VALUE);
     /* terapiaRespiratoriaController.cargarFrecuenciaRespiratoria(_data.attrs.pedido.AT_MV);
@@ -604,9 +466,7 @@ const FormularioDeRegistro = {
     // terapiaRespiratoriaController.cargarFormularioPorCodigoSecuencial(_data.attrs.pedido.AT_MV);
 
     FormularioDeRegistro.usuarioConectado = Encrypt.getDataUser(); // Obtener el nombre de usuario
-    console.log(Pedido.examenes);
-    console.log(Pedido.data.AT_MV);
-    console.log(Pedido.examenes[0].EXAMEN);
+    Button.obtenerEstado(Pedido.numeroPedido);
   },
   /* onbeforeupdate: function (vnode) {
     return false;
@@ -626,14 +486,24 @@ const FormularioDeRegistro = {
       const inputCodigo = document.getElementById("inputCod").value;
       const inputFecha = document.getElementById("inputFecha").value;
       const inputHora = document.getElementById("inputHora").value;
-      const inputNumeroPedido = document.getElementById("inputNumeroPedido").value;
-      const inputFechaPedido = document.getElementById("inputFechaPedido").value;
-      const inputOrigenPedido = document.getElementById("inputOrigenPedido").value;
-      const inputMedicoSolicitante = document.getElementById("inputMedicoSolicitante").value;
-      const inputEspecialidad = document.getElementById("inputEspecialidad").value;
-      const inputApellidosYNombres = document.getElementById("inputApellidosYNombres").value;
+      const inputNumeroPedido =
+        document.getElementById("inputNumeroPedido").value;
+      const inputFechaPedido =
+        document.getElementById("inputFechaPedido").value;
+      const inputOrigenPedido =
+        document.getElementById("inputOrigenPedido").value;
+      const inputMedicoSolicitante = document.getElementById(
+        "inputMedicoSolicitante"
+      ).value;
+      const inputEspecialidad =
+        document.getElementById("inputEspecialidad").value;
+      const inputApellidosYNombres = document.getElementById(
+        "inputApellidosYNombres"
+      ).value;
       const inputNHC = document.getElementById("inputNHC").value;
-      const inputNumeroAtencion = document.getElementById("inputNumeroAtencion").value;
+      const inputNumeroAtencion = document.getElementById(
+        "inputNumeroAtencion"
+      ).value;
       const inputUbicacion = document.getElementById("inputUbicacion").value;
       //const imgUrl = "./logo.jpg";
 
@@ -1537,6 +1407,23 @@ const FormularioDeRegistro = {
       //FormularioDeRegistro.datosPorSecuencial.length !== 0
     ) {
       return m("form", [
+        m("div", { class: "d-flex flex-row mb-3" }, [
+          m(
+            "button",
+            {
+              class: "btn btn-primary",
+              type: "button",
+              onclick: printFormData,
+            },
+            "Imprimir"
+          ),
+          " ",
+          m.trust("&nbsp;"),
+          m.trust("&nbsp;"),
+          " ",
+          m(Button, {pedido: Pedido.numeroPedido}),
+        ]),
+
         m("div", { class: "row" }, [
           m(
             "div",
@@ -1741,7 +1628,6 @@ const FormularioDeRegistro = {
             }),
           ]),
 
-      
           m("div", { class: "form-group col-md-5" }, [
             m("label", { for: "inputUsuario" }, "Usuario"),
             m("input", {
@@ -1754,9 +1640,7 @@ const FormularioDeRegistro = {
             }),
           ]),
         ]),
-        m("div", { class: "form-row" }, [
-          
-        ]),
+        m("div", { class: "form-row" }, []),
         m("div", { class: "form-group" }, [
           m("label", { for: "inputPrescripcion" }, "Prescripción"),
           m(
@@ -3451,11 +3335,6 @@ const FormularioDeRegistro = {
           ]),
         ]),
         m("br"),
-        m(
-          "button",
-          { class: "btn btn-primary", type: "button", onclick: printFormData },
-          "Imprimir"
-        ),
       ]);
     } else {
       return m(
