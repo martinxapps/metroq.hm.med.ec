@@ -24,14 +24,6 @@ const Button = {
           m.redraw();
         }
         
-        //console.log(resultado);
-        /* if (result.data[0].ESTADO === 1) {
-          return 1;
-        } else {
-          0
-        } */
-        /* console.log(result)
-        return result.data[0].ESTADO; */
       })
       .catch(function (error) {
         alert(`Error al obtener el estado del pedido, el error es: ${error}`);
@@ -49,18 +41,6 @@ const Button = {
         buttonClass += " btn-danger";
     }
 
-    // Obtener el estado actual del pedido
-    
-    /* if (pedidoEstado !== "" && pedidoEstado !== 0) {
-      // Si el estado no está vacío ni es 0, actualizar el botón
-      buttonText = "Documento Finalizado";
-      buttonClass = "btn btn-danger";
-    } */
-    /* if (pedidoEstado === "1" || pedidoEstado.length === 0) {
-      buttonText = "Documento Finalizado";
-      buttonClass = "btn btn-danger";
-      e.target.disabled = true;
-    } */
 
     const cancelClick = function (e) {
       methodPutButton();
@@ -124,31 +104,6 @@ function methodPutButton() {
     });
 }
 
-function getPedidoEstado(number) {
-  return m.request({
-    method: "GET",
-    url: `http://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/estados?CD_PRE_MED=${number}`,
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      Accept: "application/json",
-      Authorization: localStorage.accessToken,
-    },
-  })
-    .then(function (result) {
-      return result.data;
-      //console.log(resultado);
-      /* if (result.data[0].ESTADO === 1) {
-        return 1;
-      } else {
-        0
-      } */
-      /* console.log(result)
-      return result.data[0].ESTADO; */
-    })
-    .catch(function (error) {
-      alert(`Error al obtener el estado del pedido, el error es: ${error}`);
-    });
-}
 
 const FormularioDeRegistro = {
   listaDeFrecuenciaCardiaca: [],
@@ -172,79 +127,6 @@ const FormularioDeRegistro = {
   errorDatosActualizados: "",
   datosEliminados: [],
   errorDatosEliminados: "",
-  cargarFrecuenciaCardiaca: function (numeroDeAtendimiento) {
-    m.request({
-      method: "GET",
-      url: `https://api.hospitalmetropolitano.org/t/v1/tr/formularios/sv?PARAM=FRECUENCIA_CARDIACA&CD_ATENDIMENTO=${numeroDeAtendimiento}`,
-      body: {},
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        Accept: "application/json",
-        Authorization: localStorage.accessToken,
-      },
-    })
-      .then(function (resultado) {
-        if (
-          resultado.status &&
-          resultado.data.length > 0 &&
-          resultado.data[0].VALUE != null
-        ) {
-          FormularioDeRegistro.listaDeFrecuenciaCardiaca = resultado;
-          console.log(FormularioDeRegistro.listaDeFrecuenciaCardiaca);
-          //m.redraw();
-        } else {
-          FormularioDeRegistro.errorCargandoFrecuenciaCardiaca +=
-            "Frecuencia Cardiaca ";
-          /* terapiaRespiratoriaController.listaDeFrecuenciaCardiaca = {
-            data: [
-              {
-                VALUE: "No hay datos",
-              },
-            ],
-          }; */
-          /* FormularioDeRegistro.error = resultado.error;
-          alert(FormularioDeRegistro.errorCargandoFrecuenciaCardiaca); */
-        }
-      })
-      .catch(function (error) {
-        FormularioDeRegistro.error = error;
-        alert(FormularioDeRegistro.errorCargandoFrecuenciaCardiaca);
-      });
-  },
-
-  cargarFrecuenciaRespiratoria: function (numeroDeAtendimiento) {
-    m.request({
-      method: "GET",
-      url: `https://api.hospitalmetropolitano.org/t/v1/tr/formularios/sv?PARAM=FRECUENCIA_RESPIRATORIA&CD_ATENDIMENTO=${numeroDeAtendimiento}`,
-      body: {},
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        Accept: "application/json",
-        Authorization: localStorage.accessToken,
-      },
-    })
-      .then(function (resultado) {
-        if (
-          resultado.status &&
-          resultado.data.length > 0 &&
-          resultado.data[0].VALUE != null
-        ) {
-          FormularioDeRegistro.listaDeFrecuenciaRespiratoria = resultado;
-          console.log(FormularioDeRegistro.listaDeFrecuenciaRespiratoria);
-        } else {
-          FormularioDeRegistro.errorCargandoFrecuenciaRespiratoria +=
-            "Frecuencia Respiratoria ";
-        }
-        /* else {
-          FormularioDeRegistro.errorCargandoFrecuenciaRespiratoria = resultado.error;
-          alert(FormularioDeRegistro.error);
-        } */
-      })
-      .catch(function (error) {
-        FormularioDeRegistro.errorCargandoFrecuenciaRespiratoria = error;
-        alert(FormularioDeRegistro.errorCargandoFrecuenciaRespiratoria);
-      });
-  },
 
   cargarPeso: function (numeroDeAtendimiento) {
     m.request({
@@ -368,120 +250,24 @@ const FormularioDeRegistro = {
       });
   },
 
-  guardar: (formularioTerapiaRespiratoria) => {
-    m.request({
-      method: "POST",
-      url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios",
-      body: formularioTerapiaRespiratoria,
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        Accept: "application/json",
-        Authorization: localStorage.accessToken,
-      },
-    })
-      .then(function (result) {
-        //resultado = result;
-        /* if (result.status) {
-          terapiaRespiratoriaController.datosEnviadosDelFormulario = result;
-        }else{
-          terapiaRespiratoriaController.error = result.error;
-          alert(terapiaRespiratoriaController.error);
-        } */
-        /* if (result.status) {
-          FormularioDeRegistro.datosGuardados = result;
-          window.location.href = window.location.href;
-        } */
-        FormularioDeRegistro.datosGuardados = result;
-        //FormularioDeRegistro.bloquearCamposCuandoSeGuarda = true;
-        window.location.href = window.location.href;
-        //FormularioDeRegistro.bloquearCamposCuandoSeGuarda = true;
-      })
-      .catch(function (error) {
-        //terapiaRespiratoriaController.error = `No se pudo enviar los datos ${error}`;
-
-        FormularioDeRegistro.errorGuardar = error;
-        alert(FormularioDeRegistro.errorGuardar);
-      });
-  },
-
-  cargarFormularioPorCodigoSecuencial: function (codigoSecuencial) {
-    m.request({
-      method: "GET",
-      url: `https://api.hospitalmetropolitano.org/t/v1/tr/formularios?CD_SECUENCIAL=${codigoSecuencial}`,
-      body: {},
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        Accept: "application/json",
-        Authorization: localStorage.accessToken,
-      },
-    })
-      .then(function (resultado) {
-        if (resultado.status && resultado.data.length > 0) {
-          FormularioDeRegistro.datosPorSecuencial = resultado;
-          m.redraw();
-        } /* else {
-          terapiaRespiratoriaController.lista = resultado;
-          //terapiaRespiratoriaController.error = resultado.error;
-          terapiaRespiratoriaController.habilitarCampos = true;
-          //return m("div", {class: "modal"}, "La lista está vacía");
-          //alert(terapiaRespiratoriaController.error);
-        } */
-      })
-      .catch(function (error) {
-        FormularioDeRegistro.errorDatosPorSecuencial +=
-          "Error al cargar los datos";
-        //terapiaRespiratoriaController.habilitarCampos = true;
-        //alert(terapiaRespiratoriaController.error);
-      });
-  },
-
 
   oninit: (_data) => {
-    //FormularioDeRegistro.cargarFrecuenciaCardiaca(_data.attrs.pedido.AT_MV); // 10090 // _data.attrs.pedido.AT_MV
-    //FormularioDeRegistro.cargarFrecuenciaRespiratoria(_data.attrs.pedido.AT_MV); // 10090 // _data.attrs.pedido.AT_MV
     FormularioDeRegistro.cargarPeso(_data.attrs.pedido.AT_MV); // 10090 // _data.attrs.pedido.AT_MV
     FormularioDeRegistro.cargarEscalaDelDolor(_data.attrs.pedido.AT_MV); // 10090 // _data.attrs.pedido.AT_MV
     FormularioDeRegistro.cargarFechaActual();
     FormularioDeRegistro.cargarHoraActual();
-    FormularioDeRegistro.cargarPrescripcion(_data.attrs.pedido.AT_MV); // 1918 // _data.attrs.pedido.AT_MV
-    // FormularioDeRegistro.cargarFormularioPorCodigoSecuencial(
-    //   _data.attrs.pedido.AT_MV
-    // ); // _data.attrs.pedido.AT_MV
-    //console.log(_data.attrs.pedido.AT_MV);
-    //console.log(FormularioDeRegistro.listaDeFrecuenciaCardiaca.data[0].VALUE);
-    /* terapiaRespiratoriaController.cargarFrecuenciaRespiratoria(_data.attrs.pedido.AT_MV);
-    terapiaRespiratoriaController.cargarPeso(_data.attrs.pedido.AT_MV);
-    terapiaRespiratoriaController.cargarEscalaDelDolor(_data.attrs.pedido.AT_MV);
-
-    //terapiaRespiratoriaController.cargarPrescripcion(1); //Aqui poner el numero de atendimiento
-    terapiaRespiratoriaController.cargarPrescripcion(1918); //Aqui poner el numero de atendimiento 1918
-    terapiaRespiratoriaController.cargarFechaActual();
-    terapiaRespiratoriaController.cargarHoraActual();
-    console.log(`Emill 1  ${terapiaRespiratoriaController.habilitarCampos}`);
-    console.log(`Emill 2  ${!terapiaRespiratoriaController.habilitarCampos}`);
-    console.log(obtenerDatos.habilitarCampos); */
-    //console.log(`Número de pedido: ${Pedido.data.AT_MV}`);
-
-    //terapiaRespiratoriaController.cargarFormularioPorCodigoSecuencial(54563);
-    // terapiaRespiratoriaController.cargarFormularioPorCodigoSecuencial(_data.attrs.pedido.AT_MV);
+    FormularioDeRegistro.cargarPrescripcion(_data.attrs.pedido.AT_MV); // 1918 // 
 
     FormularioDeRegistro.usuarioConectado = Encrypt.getDataUser(); // Obtener el nombre de usuario
     Button.obtenerEstado(Pedido.numeroPedido);
   },
-  /* onbeforeupdate: function (vnode) {
-    return false;
-}, */
   usuarioConectado: [],
-  /* oncreate: (el) => {
-    console.log(el)
-  }, */
   view: (vnode) => {
     const printFormData = () => {
       const printWindow = window.open("", "PRINT", "height=800,width=800");
       const inputEscalaDelDolor =
         document.getElementById("inputEscalaDolor").value;
       const inputPeso = document.getElementById("inputPeso").value;
-      //const inputAtencion = document.getElementById("inputAtencion").value;
       const inputUsuario = document.getElementById("inputUsuario").value;
       const inputCodigo = document.getElementById("inputCod").value;
       const inputFecha = document.getElementById("inputFecha").value;
@@ -505,7 +291,6 @@ const FormularioDeRegistro = {
         "inputNumeroAtencion"
       ).value;
       const inputUbicacion = document.getElementById("inputUbicacion").value;
-      //const imgUrl = "./logo.jpg";
 
       const prescripcion = Pedido.examenes.map(
         ({ EXAMEN, FRECUENCIA }) => `
@@ -1398,13 +1183,8 @@ const FormularioDeRegistro = {
       printWindow.document.close();
     };
     if (
-      //-------------
-      //FormularioDeRegistro.listaDeFrecuenciaCardiaca.length !== 0 &&
-      //FormularioDeRegistro.listaDeFrecuenciaRespiratoria.length !== 0 &&
       FormularioDeRegistro.listaDePeso.length !== 0 &&
-      //FormularioDeRegistro.listaPrescripcion.length !== 0 &&//&&
       FormularioDeRegistro.listaEscalaDelDolor !== 0
-      //FormularioDeRegistro.datosPorSecuencial.length !== 0
     ) {
       return m("form", [
         m("div", { class: "d-flex flex-row mb-3" }, [
