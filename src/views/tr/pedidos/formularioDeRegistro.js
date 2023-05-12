@@ -635,13 +635,14 @@ const FormularioDeRegistro = {
       const inputNHC = document.getElementById("inputNHC").value;
       const inputNumeroAtencion = document.getElementById("inputNumeroAtencion").value;
       const inputUbicacion = document.getElementById("inputUbicacion").value;
+      //const imgUrl = "./logo.jpg";
 
       const prescripcion = Pedido.examenes.map(
-        ({ EXAMEN }) => `
+        ({ EXAMEN, FRECUENCIA }) => `
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
         <label class="form-check-label" for="inputPrescripcion">
-          ${EXAMEN}
+          ${EXAMEN} - ${FRECUENCIA}
         </label>
       </div>
     `
@@ -665,6 +666,9 @@ const FormularioDeRegistro = {
             <body>
               <fieldset>
               <form class="mx-auto">
+              <div>
+              <img src="data:image/png;base64,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" class="img-fluid w-200" alt="...">
+              </div>
               <!-- Primera Fila -->
         <div class="row">
           <div class="col">
@@ -787,27 +791,29 @@ const FormularioDeRegistro = {
         </div>
             <div class="row">
                 <div class="col">
-                    <div class="mb-12">
+                    <div class="mb-6">
                         <label for="inputEscalaDolor" class="form-label"><b>Escala del Dolor</b></label>
                         <input type="text" class="form-control" id="inputEscalaDolor" value="${inputEscalaDelDolor}">
                     </div>
                 </div>
-
-            </div>
-            <div class="row">
                 <div class="col">
-                    <div class="mb-6">
+                    <div class="mb-2">
                         <label for="inputPeso" class="form-label"><b>Peso</b></label>
                         <input type="text" class="form-control" id="inputPeso" value="${inputPeso}" />
                     </div>
                 </div>
-                
                 <div class="col">
                     <div class="mb-6">
                         <label for="inputUsuario" class="form-label"><b>Usuario</b></label>
                         <input type="text" class="form-control" id="inputUsuario" value="${inputUsuario}">
                     </div>
                 </div>
+
+            </div>
+            <div class="row">
+                
+                
+                
             </div>
 
             <!-- Prescripción -->
@@ -1700,7 +1706,7 @@ const FormularioDeRegistro = {
           ),
         ]),
         m("div", { class: "form-row" }, [
-          m("div", { class: "form-group col-md-12" }, [
+          m("div", { class: "form-group col-md-5" }, [
             m("label", { for: "inputEscalaDolor" }, "Escala Dolor"),
             m("input", {
               class: "form-control",
@@ -1717,9 +1723,7 @@ const FormularioDeRegistro = {
                   : "",
             }),
           ]),
-        ]),
-        m("div", { class: "form-row" }, [
-          m("div", { class: "form-group col-md-6" }, [
+          m("div", { class: "form-group col-md-2" }, [
             m("label", { for: "inputPeso" }, "Peso"),
             m("input", {
               class: "form-control",
@@ -1738,7 +1742,7 @@ const FormularioDeRegistro = {
           ]),
 
       
-          m("div", { class: "form-group col-md-6" }, [
+          m("div", { class: "form-group col-md-5" }, [
             m("label", { for: "inputUsuario" }, "Usuario"),
             m("input", {
               class: "form-control",
@@ -1750,26 +1754,29 @@ const FormularioDeRegistro = {
             }),
           ]),
         ]),
+        m("div", { class: "form-row" }, [
+          
+        ]),
         m("div", { class: "form-group" }, [
           m("label", { for: "inputPrescripcion" }, "Prescripción"),
           m(
             "div",
             {},
-            Pedido.examenes.map(function ({ EXAMEN }) {
+            Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
               return m("div", { class: "form-check" }, [
                 m("input", {
                   type: "checkbox",
                   class: "form-check-input",
                   id: `${EXAMEN}`,
-                  value: `${EXAMEN}`,
+                  value: `${EXAMEN} ${FRECUENCIA}`,
                 }),
                 m(
                   "label",
                   {
                     class: "form-check-label ml-2",
-                    for: `${EXAMEN}`,
+                    for: `${EXAMEN} ${FRECUENCIA}`,
                   },
-                  `${EXAMEN}`
+                  `${EXAMEN} - ${FRECUENCIA}`
                 ),
               ]);
             })
