@@ -151,36 +151,36 @@ const tableFlebotomista = {
                         m("h5.mg-b-0",
                             "LISA:",
                             m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15", {
-                                oncreate: (el) => {
-                                    if (Flebotomista.idFiltro == 1) {
-                                        el.dom.innerHTML = 'Pedidos de Hoy';
-                                    }
-                                    if (Flebotomista.idFiltro == 2) {
-                                        el.dom.innerHTML = 'Pedidos de Emergencia';
-                                    }
-                                    if (Flebotomista.idFiltro == 3) {
-                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
-                                    }
-                                    if (Flebotomista.idFiltro == 4) {
-                                        el.dom.innerHTML = 'Pedidos de C. Externa';
-                                    }
+                                    oncreate: (el) => {
+                                        if (Flebotomista.idFiltro == 1) {
+                                            el.dom.innerHTML = 'Pedidos de Hoy';
+                                        }
+                                        if (Flebotomista.idFiltro == 2) {
+                                            el.dom.innerHTML = 'Pedidos de Emergencia';
+                                        }
+                                        if (Flebotomista.idFiltro == 3) {
+                                            el.dom.innerHTML = 'Pedidos de Hospitalización';
+                                        }
+                                        if (Flebotomista.idFiltro == 4) {
+                                            el.dom.innerHTML = 'Pedidos de C. Externa';
+                                        }
 
-                                },
-                                onupdate: (el) => {
-                                    if (Flebotomista.idFiltro == 1) {
-                                        el.dom.innerHTML = 'Pedidos de Hoy';
-                                    }
-                                    if (Flebotomista.idFiltro == 2) {
-                                        el.dom.innerHTML = 'Pedidos de Emergencia';
-                                    }
-                                    if (Flebotomista.idFiltro == 3) {
-                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
-                                    }
-                                    if (Flebotomista.idFiltro == 4) {
-                                        el.dom.innerHTML = 'Pedidos de C. Externa';
+                                    },
+                                    onupdate: (el) => {
+                                        if (Flebotomista.idFiltro == 1) {
+                                            el.dom.innerHTML = 'Pedidos de Hoy';
+                                        }
+                                        if (Flebotomista.idFiltro == 2) {
+                                            el.dom.innerHTML = 'Pedidos de Emergencia';
+                                        }
+                                        if (Flebotomista.idFiltro == 3) {
+                                            el.dom.innerHTML = 'Pedidos de Hospitalización';
+                                        }
+                                        if (Flebotomista.idFiltro == 4) {
+                                            el.dom.innerHTML = 'Pedidos de C. Externa';
+                                        }
                                     }
                                 }
-                            }
 
                             )
 
@@ -190,16 +190,16 @@ const tableFlebotomista = {
                                 class: (Flebotomista.idFiltro == 1 ? 'd-none' : 'd-flex')
                             }, [
                                 m("div.link-03", {
-                                    title: "Desde"
-                                },
+                                        title: "Desde"
+                                    },
                                     m(".tx-10.pd-r-0", {
                                         style: { "padding-top": "10px" }
                                     }, 'Desde:')
                                 ),
                                 m("div.link-03", {
-                                    style: { "cursor": "pointer" },
-                                    title: "Desde"
-                                },
+                                        style: { "cursor": "pointer" },
+                                        title: "Desde"
+                                    },
                                     m("input.tx-light.pd-4[type='date'][id='desde']", {
                                         oncreate: (el) => {
                                             el.dom.value = (Flebotomista.idFiltro !== 1 ? moment(moment(Flebotomista.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
@@ -217,16 +217,16 @@ const tableFlebotomista = {
                                     })
                                 ),
                                 m("div.link-03", {
-                                    title: "Hasta"
-                                },
+                                        title: "Hasta"
+                                    },
                                     m(".tx-10.pd-r-0", {
                                         style: { "padding-top": "10px" }
                                     }, 'Hasta:')
                                 ),
                                 m("div.link-03", {
-                                    style: { "cursor": "pointer" },
-                                    title: "Hasta"
-                                },
+                                        style: { "cursor": "pointer" },
+                                        title: "Hasta"
+                                    },
                                     m("input.tx-light.pd-4[type='date'][id='hasta']", {
                                         oncreate: (el) => {
                                             el.dom.value = (Flebotomista.idFiltro !== 1 ? moment(moment(Flebotomista.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
@@ -246,9 +246,9 @@ const tableFlebotomista = {
                             ]),
                             m("div.dropdown.dropleft", [
                                 m("div.link-03.lh-0.mg-l-5[id='dropdownMenuButton'][data-toggle='dropdown'][aria-haspopup='true'][aria-expanded='false']", {
-                                    style: { "cursor": "pointer" },
-                                    title: "Filtrar"
-                                },
+                                        style: { "cursor": "pointer" },
+                                        title: "Filtrar"
+                                    },
                                     m("i.fas.fa-filter.tx-18.pd-5")
                                 ),
                                 m(".dropdown-menu.tx-13[aria-labelledby='dropdownMenuButton']", [
@@ -279,7 +279,7 @@ const tableFlebotomista = {
                         m("div.search-form",
                             m("input.form-control[type='search'][placeholder='Buscar'][id='searchField']", {
 
-                                oninput: function (e) { Flebotomista.searchField = e.target.value; },
+                                oninput: function(e) { Flebotomista.searchField = e.target.value; },
                                 value: Flebotomista.searchField,
                             })
                         ),
@@ -382,80 +382,80 @@ const Flebotomista = {
             ],
             destroy: true,
             columns: [{
-                title: "N°:",
-            },
-            {
-                title: "Fecha:",
-            },
-            {
-                title: "SC:",
-            },
-            {
-                title: "Paciente:",
-            },
-            {
-                title: "Médico:",
-            },
-            {
-                title: "Opciones:",
-            },
+                    title: "N°:",
+                },
+                {
+                    title: "Fecha:",
+                },
+                {
+                    title: "SC:",
+                },
+                {
+                    title: "Paciente:",
+                },
+                {
+                    title: "Médico:",
+                },
+                {
+                    title: "Opciones:",
+                },
 
 
             ],
             aoColumnDefs: [{
-                mRender: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
+                    mRender: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    },
+                    visible: true,
+                    aTargets: [0],
+                    orderable: true,
                 },
-                visible: true,
-                aTargets: [0],
-                orderable: true,
-            },
-            {
-                mRender: function (data, type, full) {
-                    return full.fechaPedido;
-                },
-                visible: true,
-                aTargets: [1],
-                orderable: false,
-
-            },
-            {
-                mRender: function (data, type, full) {
-                    return full.codigoPedido;
-                },
-                visible: true,
-                aTargets: [2],
-                orderable: false,
-            },
-            {
-                mRender: function (data, type, full) {
-                    return full.paciente;
-                },
-                visible: true,
-                aTargets: [3],
-                orderable: false,
-            }, {
-                mRender: function (data, type, full) {
-                    return full.descPrestadorSolicitante;
+                {
+                    mRender: function(data, type, full) {
+                        return full.fechaPedido;
+                    },
+                    visible: true,
+                    aTargets: [1],
+                    orderable: false,
 
                 },
-                visible: true,
-                aTargets: [4],
-                orderable: false,
-            },
-            {
-                mRender: function (data, type, full) {
-                    return 'OPCIONES';
-
+                {
+                    mRender: function(data, type, full) {
+                        return full.codigoPedido;
+                    },
+                    visible: true,
+                    aTargets: [2],
+                    orderable: false,
                 },
-                visible: true,
-                aTargets: [5],
-                orderable: false,
-            },
+                {
+                    mRender: function(data, type, full) {
+                        return full.paciente;
+                    },
+                    visible: true,
+                    aTargets: [3],
+                    orderable: false,
+                }, {
+                    mRender: function(data, type, full) {
+                        return full.descPrestadorSolicitante;
+
+                    },
+                    visible: true,
+                    aTargets: [4],
+                    orderable: false,
+                },
+                {
+                    mRender: function(data, type, full) {
+                        return 'OPCIONES';
+
+                    },
+                    visible: true,
+                    aTargets: [5],
+                    orderable: false,
+                },
 
 
             ],
-            fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 
                 m.mount(nRow, {
                     view: () => {
@@ -481,12 +481,12 @@ const Flebotomista = {
                                 ),
                             ),
                             m("td", { "style": {} }, [
-                                m('.d-inline.mg-r-5', {
-                                    class: (aData.sector == 'EMERGENCIA' ? "tx-danger" : "tx-primary")
-                                }, aData.sector),
-                                m('br'),
-                                aData.paciente,
-                            ]
+                                    m('.d-inline.mg-r-5', {
+                                        class: (aData.sector == 'EMERGENCIA' ? "tx-danger" : "tx-primary")
+                                    }, aData.sector),
+                                    m('br'),
+                                    aData.paciente,
+                                ]
 
                             ),
                             m("td", { "style": {} },
@@ -496,25 +496,25 @@ const Flebotomista = {
 
 
                             (aData.tipoOperacion == 'I' ? [m("td.tx-white.tx-semibold.tx-center", {
-                                title: 'Status Toma de Muestras',
-                                style: { "background-color": (aData.muestrasProcesadas == 0 ? "#ffc107" : "#0d9448") }
-                            },
+                                    title: 'Status Toma de Muestras',
+                                    style: { "background-color": (aData.muestrasProcesadas == 0 ? "#ffc107" : "#0d9448") }
+                                },
                                 (aData.muestrasProcesadas == 0 ? "Muestras Pendientes" : "Muestras Completo")
-                            ),] : [""]),
+                            ), ] : [""]),
 
 
                             m("td.tx-center", {
-                                onclick: () => {
-                                    m.route.set("/laboratorio/flebotomista/pedido/", {
-                                        numeroHistoriaClinica: aData.numeroHistoriaClinica,
-                                        numeroAtencion: aData.at_mv,
-                                        numeroPedido: aData.codigoPedido,
-                                        idTimeRecord: aData.idTimeRecord,
-                                        track: "view",
-                                    });
+                                    onclick: () => {
+                                        m.route.set("/laboratorio/flebotomista/pedido/", {
+                                            numeroHistoriaClinica: aData.numeroHistoriaClinica,
+                                            numeroAtencion: aData.at_mv,
+                                            numeroPedido: aData.codigoPedido,
+                                            idTimeRecord: aData.idTimeRecord,
+                                            track: "view",
+                                        });
+                                    },
+                                    "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" }
                                 },
-                                "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" }
-                            },
                                 " Ver Pedido "
 
                             )
@@ -527,7 +527,7 @@ const Flebotomista = {
                     },
                 });
             },
-            drawCallback: function (settings) {
+            drawCallback: function(settings) {
 
                 Flebotomista.loader = false;
 
@@ -539,7 +539,7 @@ const Flebotomista = {
             minimumResultsForSearch: Infinity
         });
 
-        $('#searchField').keyup(function (e) {
+        $('#searchField').keyup(function(e) {
 
             table.search($('#searchField').val()).draw();
         });
@@ -584,99 +584,96 @@ const Flebotomista = {
             ],
             destroy: true,
             columns: [{
-                title: "N°:",
-            },
-            {
-                title: "Fecha:",
-            },
-            {
-                title: "SC:",
-            },
-            {
-                title: "Paciente:",
-            },
-            {
-                title: "Médico:",
-            },
-            {
-                title: "Opciones:",
-            },
+                    title: "N°:",
+                },
+                {
+                    title: "Fecha:",
+                },
+                {
+                    title: "SC:",
+                },
+                {
+                    title: "Paciente:",
+                },
+                {
+                    title: "Timbrar:",
+                },
+                {
+                    title: "Ver Pedido:",
+                },
 
 
             ],
             aoColumnDefs: [{
-                mRender: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
+                    mRender: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    },
+                    visible: true,
+                    aTargets: [0],
+                    orderable: false,
                 },
-                visible: true,
-                aTargets: [0],
-                orderable: false,
-            },
-            {
-                mRender: function (data, type, full) {
-                    return full.fechaPedido;
-                },
-                visible: true,
-                aTargets: [1],
-                orderable: false,
-
-            },
-            {
-                mRender: function (data, type, full) {
-                    return full.codigoPedido;
-                },
-                visible: true,
-                aTargets: [2],
-                orderable: true,
-            },
-            {
-                mRender: function (data, type, full) {
-                    return full.paciente;
-                },
-                visible: true,
-                aTargets: [3],
-                orderable: false,
-                width: '60%'
-            }, {
-                mRender: function (data, type, full) {
-                    return full.descPrestadorSolicitante;
+                {
+                    mRender: function(data, type, full) {
+                        return full.fechaPedido;
+                    },
+                    visible: true,
+                    aTargets: [1],
+                    orderable: false,
 
                 },
-                visible: true,
-                aTargets: [4],
-                orderable: false,
-                width: '5%'
+                {
+                    mRender: function(data, type, full) {
+                        return full.codigoPedido;
+                    },
+                    visible: true,
+                    aTargets: [2],
+                    orderable: true,
+                },
+                {
+                    mRender: function(data, type, full) {
+                        return full.paciente;
+                    },
+                    visible: true,
+                    aTargets: [3],
+                    orderable: false,
+                    width: '60%'
+                }, {
+                    mRender: function(data, type, full) {
+                        return full.descPrestadorSolicitante;
 
-            },
-            {
-                mRender: function (data, type, full) {
-                    return 'OPCIONES';
+                    },
+                    visible: true,
+                    aTargets: [4],
+                    orderable: false,
+                    width: '5%'
 
                 },
-                visible: true,
-                aTargets: [5],
-                orderable: false,
-                width: '5%'
+                {
+                    mRender: function(data, type, full) {
+                        return 'OPCIONES';
 
-            },
+                    },
+                    visible: true,
+                    aTargets: [5],
+                    orderable: false,
+                    width: '5%'
+
+                },
 
 
             ],
-            fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 
                 m.mount(nRow, {
                     view: () => {
                         return [
                             m("td", {
-                                class: (aData.tipoPedido == 'R' ? 'bg-primary' : 'bg-danger')
+                                class: 'bg-primary'
                             }, [
 
-                                (aData.tipoPedido == 'R' ? m("span.badge.badge-pill.badge-primary.wd-100p.mg-b-1",
+                                m("span.badge.badge-pill.badge-primary.wd-100p.mg-b-1",
                                     'R'
-                                ) : m("span.badge.badge-pill.badge-danger.wd-100p.mg-b-1",
-                                    'U'
-                                ))
-
+                                )
 
                             ]),
                             m("td", { "style": {} },
@@ -688,54 +685,63 @@ const Flebotomista = {
                                 ),
                             ),
                             m("td", { "style": {} }, [
-                                m('.d-inline.mg-r-5', {
-                                    class: (aData.sector == 'EMERGENCIA' ? "tx-danger" : "tx-primary")
-                                }, aData.sector),
-                                m('br'),
-                                m('.d-inline.tx-18.tx-semibold', {}, 'PTE: ' + aData.paciente),
-                                m('br'),
-                                m('.d-inline', {}, 'MED: ' + aData.descPrestadorSolicitante),
+                                    m('.d-inline.mg-r-5', {
+                                        class: (aData.sector == 'EMERGENCIA' ? "tx-danger" : "tx-primary")
+                                    }, aData.sector),
+                                    m('br'),
+                                    m('.d-inline.tx-18.tx-semibold', {}, 'PTE: ' + aData.paciente),
 
 
 
-                            ]
+                                ]
 
                             ),
 
+                            m("td.tx-center.bg-warning", {
+                                    "style": { "cursor": "pointer" }
+                                }, [
 
-                            (aData.tipoOperacion == 'I' ? [
-                                m("td.tx-semibold.tx-center", {
-                                    title: 'Status Toma de Muestras',
-                                    style: {
-                                        "background-color": (aData.muestrasProcesadas == 0 ? "#ffc107" : "#0d9448")
-                                    }
-                                },
-                                    (aData.muestrasProcesadas == 0 ? "Muestras Pendientes" : "Muestras Completo")
-                                ),
-                            ] : [""]),
+                                    m(m.route.Link, {
+                                        class: 'tx-18',
+                                        href: "/laboratorio/flebotomista/pedido/",
+                                        target: '_blank',
+                                        params: {
+                                            numeroHistoriaClinica: aData.numeroHistoriaClinica,
+                                            numeroAtencion: aData.at_mv,
+                                            numeroPedido: aData.codigoPedido,
+                                            idTimeRecord: aData.idTimeRecord,
+                                            track: "view",
+                                        }
+                                    }, [
+                                        m(".btn.bg-warning[type='button']",
+                                            m('i.fas.fa-bell')
+                                        )
+                                    ])
+                                ]
 
+                            ),
 
                             m("td.tx-center.bg-primary", {
-                                "style": { "cursor": "pointer" }
-                            }, [
-
-                                m(m.route.Link, {
-                                    class: 'tx-18',
-                                    href: "/laboratorio/flebotomista/pedido/",
-                                    target: '_blank',
-                                    params: {
-                                        numeroHistoriaClinica: aData.numeroHistoriaClinica,
-                                        numeroAtencion: aData.at_mv,
-                                        numeroPedido: aData.codigoPedido,
-                                        idTimeRecord: aData.idTimeRecord,
-                                        track: "view",
-                                    }
+                                    "style": { "cursor": "pointer" }
                                 }, [
-                                    m("button.btn.btn-primary[type='button']",
-                                        " Ver "
-                                    )
-                                ])
-                            ]
+
+                                    m(m.route.Link, {
+                                        class: 'tx-18',
+                                        href: "/laboratorio/flebotomista/pedido/",
+                                        target: '_blank',
+                                        params: {
+                                            numeroHistoriaClinica: aData.numeroHistoriaClinica,
+                                            numeroAtencion: aData.at_mv,
+                                            numeroPedido: aData.codigoPedido,
+                                            idTimeRecord: aData.idTimeRecord,
+                                            track: "view",
+                                        }
+                                    }, [
+                                        m(".btn.bg-primary.tx-white[type='button']",
+                                            m('i.fas.fa-folder-open.tx-white')
+                                        )
+                                    ])
+                                ]
 
                             )
 
@@ -747,7 +753,7 @@ const Flebotomista = {
                     },
                 });
             },
-            drawCallback: function (settings) {
+            drawCallback: function(settings) {
 
                 Flebotomista.loader = false;
 
@@ -759,7 +765,7 @@ const Flebotomista = {
             minimumResultsForSearch: Infinity
         });
 
-        $('#searchField').keyup(function (e) {
+        $('#searchField').keyup(function(e) {
 
             table.search($('#searchField').val()).draw();
         });
@@ -777,18 +783,18 @@ const Flebotomista = {
         }
 
         m.request({
-            method: "GET",
-            url: "https://lisa.hospitalmetropolitano.org/v1/listar" + _queryString,
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
+                method: "GET",
+                url: "https://lisa.hospitalmetropolitano.org/v1/listar" + _queryString,
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
                 Flebotomista.loader = false;
                 Flebotomista.pedidos = result.data;
             })
-            .catch(function (e) {
-                setTimeout(function () { Flebotomista.fetchPedidos(); }, 2000);
+            .catch(function(e) {
+                setTimeout(function() { Flebotomista.fetchPedidos(); }, 2000);
             });
 
 
@@ -799,19 +805,19 @@ const Flebotomista = {
 
 
         m.request({
-            method: "GET",
-            url: "https://lisa.hospitalmetropolitano.org/v1/pedidos/send-pedido?sc=" + codigoPedido + "&idTimeRecord=" + idTimeRecord,
-            extract: function (xhr) { return { status: xhr.status, body: xhr.responseText } },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (response) {
+                method: "GET",
+                url: "https://lisa.hospitalmetropolitano.org/v1/pedidos/send-pedido?sc=" + codigoPedido + "&idTimeRecord=" + idTimeRecord,
+                extract: function(xhr) { return { status: xhr.status, body: xhr.responseText } },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(response) {
 
 
                 if (response.status == 200) {
                     alert('Preceso realizado con éxito.')
-                    setTimeout(function () { window.location.reload(); }, 300);
+                    setTimeout(function() { window.location.reload(); }, 300);
                 } else {
                     alert('Error en envío de este mensaje. Reintente nuevamente.');
 
@@ -819,7 +825,7 @@ const Flebotomista = {
 
 
             })
-            .catch(function (e) {
+            .catch(function(e) {
                 alert('Error en envío de este mensaje. Reintente nuevamente.');
             });
 
@@ -864,11 +870,11 @@ const Flebotomista = {
                         m("div.col-12", [
 
                             m("div.table-loader.wd-100p", [
-                                m("div.placeholder-paragraph", [
-                                    m("div.line"),
-                                    m("div.line")
-                                ])
-                            ]
+                                    m("div.placeholder-paragraph", [
+                                        m("div.line"),
+                                        m("div.line")
+                                    ])
+                                ]
 
 
                             ),
@@ -963,7 +969,7 @@ const Flebotomista = {
                 ),
                 m("div.mg-t-10.bg-white", {
 
-                },
+                    },
 
                     m("div.mg-t-10.bg-white",
                         m("div.card-header.pd-t-20.pd-b-0.bd-b-0", [
