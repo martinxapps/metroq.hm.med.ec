@@ -26,7 +26,7 @@ const Button = {
         
       })
       .catch(function (error) {
-        alert(`Error al obtener el estado del pedido, el error es: ${error}`);
+        alert(`Error al enviar los datos, intente de nuevo al recargar la página`);
       });
   },
   view: function () {
@@ -43,15 +43,25 @@ const Button = {
 
 
     const cancelClick = function (e) {
-      methodPutButton();
-      Button.estado = "1";
-      buttonText = "Documento Finalizado";
-      buttonClass = "btn btn-danger";
-      e.target.textContent = buttonText;
-      e.target.classList.remove("btn-primary");
-      e.target.classList.add("btn-danger");
-      e.target.disabled = true;
-      m.redraw();
+      
+      if(confirm("¿Estas seguro de finalizar el documento?")){
+        methodPutButton();
+        Button.estado = "1";
+        buttonText = "Documento Finalizado";
+        buttonClass = "btn btn-danger";
+        e.target.textContent = buttonText;
+        e.target.classList.remove("btn-primary");
+        e.target.classList.add("btn-danger");
+        e.target.disabled = true;
+        m.redraw();
+      }else{
+        e.target.textContent = buttonText;
+        e.target.classList.remove("btn-danger");
+        e.target.classList.add("btn-primary");
+        e.target.disabled = false;
+        m.redraw();
+      }
+      
       
     };
 
@@ -97,10 +107,11 @@ function methodPutButton() {
     },
   })
     .then(function (result) {
-      console.log("Datos enviados con exito")
+      window.location.reload()
+      //console.log("Datos enviados con exito")
     })
     .catch(function (error) {
-      alert(`Error al enviar los datos, el error es: ${error}`);
+      alert(`Error al enviar los datos, intente de nuevo al recargar la página`);
     });
 }
 
@@ -146,7 +157,7 @@ const FormularioDeRegistro = {
           resultado.data[0].VALUE != null
         ) {
           FormularioDeRegistro.listaDePeso = resultado;
-          console.log(FormularioDeRegistro.listaDePeso);
+          //console.log(FormularioDeRegistro.listaDePeso);
         } else {
           FormularioDeRegistro.errorCargaDePeso += "Peso ";
         } /* else {
@@ -178,7 +189,7 @@ const FormularioDeRegistro = {
           resultado.data[0].VALUE != null
         ) {
           FormularioDeRegistro.listaEscalaDelDolor = resultado;
-          console.log(FormularioDeRegistro.listaEscalaDelDolor);
+          //console.log(FormularioDeRegistro.listaEscalaDelDolor);
         } else {
           FormularioDeRegistro.errorCargaDeEscalaDelDolor +=
             "Escala del Dolor ";
@@ -201,7 +212,7 @@ const FormularioDeRegistro = {
 
     const fechaFormateada = `${dia}/${mes}/${anio}`;
     FormularioDeRegistro.fechaActual = fechaFormateada;
-    console.log(FormularioDeRegistro.fechaActual);
+    //console.log(FormularioDeRegistro.fechaActual);
   },
 
   cargarHoraActual: function () {
@@ -212,7 +223,7 @@ const FormularioDeRegistro = {
 
     const horaFormateada = `${hora}:${minutos}:${segundos}`;
     FormularioDeRegistro.horaActual = horaFormateada;
-    console.log(FormularioDeRegistro.horaActual);
+    //console.log(FormularioDeRegistro.horaActual);
   },
 
   cargarPrescripcion: function (numeroDeAtendimiento) {
@@ -229,7 +240,7 @@ const FormularioDeRegistro = {
       .then(function (resultado) {
         if (resultado.status && resultado.data.length > 0) {
           FormularioDeRegistro.listaPrescripcion = resultado;
-          console.log(FormularioDeRegistro.listaPrescripcion);
+          //console.log(FormularioDeRegistro.listaPrescripcion);
           //terapiaRespiratoriaController.habilitarCampos = true;
         } else {
           //FormularioDeRegistro.listaPrescripcion = [];
@@ -1194,6 +1205,7 @@ const FormularioDeRegistro = {
               class: "btn btn-primary",
               type: "button",
               onclick: printFormData,
+              disabled: (Button.estado !== "" && Button.estado !== "0")
             },
             "Imprimir"
           ),
