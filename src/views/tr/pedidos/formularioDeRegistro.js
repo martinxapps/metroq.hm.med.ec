@@ -1654,6 +1654,75 @@ const FormularioDeRegistro = {
             ]
           )
         ],
+        [
+          m("h1", 
+            "Higiene Bronco Pulmonar"
+          ), 
+          m("div", {"class":"row d-flex justify-content-center"},
+            [
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-4"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputDrenajePostural}","id":"inputDrenajePostural"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Drenaje Postural"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-4"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputPercursiones}","id":"inputPercursiones"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Percursiones"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-4"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputVibraciones}","id":"inputVibraciones"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Vibraciones"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-4"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputTosEfectiva}","id":"inputTosEfectiva"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Tos Efectiva"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-4"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputAsistenteTos}","id":"inputAsistenteTos"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Asistente de Tos"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-4"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputChalecoVibroprecutor}","id":"inputChalecoVibroprecutor"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Chaleco Vibroprecutor"
+                    )
+                  ]
+                )
+              )
+            ]
+          )
+        ],
         m("br"),
       ]);
     } else {
