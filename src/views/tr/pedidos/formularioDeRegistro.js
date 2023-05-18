@@ -2234,6 +2234,45 @@ const FormularioDeRegistro = {
             ]
           )
         ],
+        [
+          m("h1", 
+            "Muestra"
+          ), 
+          m("div", {"class":"row justify-content-center"},
+            [
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputEsputo"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Esputo"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputHisopado"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Hisopado"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputSecrecionTraqueal"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Secreción Traqueal"
+                    )
+                  ]
+                )
+              )
+            ]
+          )
+        ],
         m("br"),
       ]);
     } else {
