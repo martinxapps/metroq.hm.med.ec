@@ -1685,6 +1685,69 @@ const FormularioDeRegistro = {
             ]
           )
         ],
+        m("br"),
+        m("br"),
+        [
+          m("div", {"class":"d-flex justify-content-center"}, 
+            m("h6", 
+              "Succión"
+            )
+          ), 
+          m("div", {"class":"row justify-content-center"},
+            [
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputNasotraqueal"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Nasotraqueal"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputTraqueal"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Traqueal"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputOrotraqueal"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Orotraqueal"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputLavadoNasal"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Lavado Nasal"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-3"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputSubglotica"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Subglótica"
+                    )
+                  ]
+                )
+              )
+            ]
+          )
+        ],
       ]);
     } else {
       return m(
