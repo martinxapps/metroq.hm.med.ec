@@ -2023,7 +2023,6 @@ const FormularioDeRegistro = {
                   ]
                 )
               ),
-              "m(\"br\") ",
               m("div", {"class":"col"}, 
                 m("div", {"class":"mb-4"},
                   [
