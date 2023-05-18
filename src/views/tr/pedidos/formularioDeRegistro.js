@@ -1723,6 +1723,39 @@ const FormularioDeRegistro = {
             ]
           )
         ],
+        [
+          m("h1", 
+            "Incentivo Respiratorio"
+          ), 
+          m("div", {"class":"row"},
+            [
+              m("div", {"class":"col"}, 
+                m("div", {"class":"mb-6"},
+                  [
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      m("b", 
+                        "Mililitros por segundo"
+                      )
+                    ),
+                    m("input", {"class":"form-control","type":"text","id":"inputMililitrosPorSegundo","value":"${inputMililitrosPorSegundo}"})
+                  ]
+                )
+              ),
+              m("div", {"class":"col"}, 
+                m("div", {"class":"mb-6"},
+                  [
+                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
+                      m("b", 
+                        "Centimetros cúbicos por segundo"
+                      )
+                    ),
+                    m("input", {"class":"form-control","type":"text","id":"inputCentimetrosCubicosPorSegundo","value":"${inputCentimetrosCubicosPorSegundo}"})
+                  ]
+                )
+              )
+            ]
+          )
+        ],
         m("br"),
       ]);
     } else {
