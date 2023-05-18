@@ -2056,6 +2056,122 @@ const FormularioDeRegistro = {
             )
           )
         ],
+        [
+          m("h1", 
+            "Monitoreo"
+          ), 
+          m("div", {"class":"row"},
+            [
+              m("div", {"class":"col"}, 
+                m("div", {"class":"mb-6"},
+                  [
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      m("b", 
+                        "Saturación O2(%) Previa Porcentaje"
+                      )
+                    ),
+                    m("input", {"class":"form-control","type":"text","id":"inputSaturacionPreviaPorcentaje","value":"${inputSaturacionPreviaPorcentaje}"})
+                  ]
+                )
+              ),
+              m("div", {"class":"col"}, 
+                m("div", {"class":"mb-6"},
+                  [
+                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
+                      m("b", 
+                        "Saturación O2(%) Posterior Porcentaje"
+                      )
+                    ),
+                    m("input", {"class":"form-control","type":"text","id":"inputSaturacionPosteriorPorcentaje","value":"${inputSaturacionPosteriorPorcentaje}"})
+                  ]
+                )
+              )
+            ]
+          ), 
+          m("br"), 
+          m("br"), 
+          m("div", {"class":"row d-flex justify-content-center"},
+            [
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-1"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputVentilacionMecanica"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Ventilación Mecánica"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-4"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputVentilacionNoInvasiva"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Ventilación no invasiva"
+                    )
+                  ]
+                )
+              )
+            ]
+          ), 
+          m("div", {"class":"row"},
+            [
+              m("div", {"class":"col"}, 
+                m("div", {"class":"mb-6"},
+                  [
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      m("b", 
+                        "Frecuencia Cardiaca Previa por Minuto"
+                      )
+                    ),
+                    m("input", {"class":"form-control","type":"text","id":"inputFrecuenciaCardiacaPreviaPorMinuto","value":"${inputFrecuenciaCardiacaPreviaPorMinuto}"})
+                  ]
+                )
+              ),
+              m("div", {"class":"col"}, 
+                m("div", {"class":"mb-6"},
+                  [
+                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
+                      m("b", 
+                        "Frecuencia Cardiaca Porterior por Minuto"
+                      )
+                    ),
+                    m("input", {"class":"form-control","type":"text","id":"inputFrecuenciaCardiacaPosteriorPorMinuto","value":"${inputFrecuenciaCardiacaPosteriorPorMinuto}"})
+                  ]
+                )
+              )
+            ]
+          ), 
+          m("br"), 
+          m("div", {"class":"row"},
+            [
+              m("div", {"class":"col"}, 
+                m("div", {"class":"mb-6"},
+                  [
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      m("b", 
+                        "Frecuencia Respiratoria Previa por Minuto"
+                      )
+                    ),
+                    m("input", {"class":"form-control","type":"text","id":"inputFrecuenciaRespiratoriaPreviaPorMinuto","value":"${inputFrecuenciaRespiratoriaPreviaPorMinuto}"})
+                  ]
+                )
+              ),
+              m("div", {"class":"col"}, 
+                m("div", {"class":"mb-6"},
+                  [
+                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
+                      m("b", 
+                        "Frecuencia Respiratoria Porterior por Minuto"
+                      )
+                    ),
+                    m("input", {"class":"form-control","type":"text","id":"inputFrecuenciaRespiratoriaPosteriorPorMinuto","value":"${inputFrecuenciaRespiratoriaPosteriorPorMinuto}"})
+                  ]
+                )
+              )
+            ]
+          )
+        ],
         m("br"),
       ]);
     } else {
