@@ -302,6 +302,16 @@ const FormularioDeRegistro = {
         "inputNumeroAtencion"
       ).value;
       const inputUbicacion = document.getElementById("inputUbicacion").value;
+      const inputSalbumatol = document.getElementById("inputSalbumatol").value;
+      const inputHipersal = document.getElementById("inputHipersal").value;
+      const inputBromuroIpatropio = document.getElementById("inputBromuroIpatropio").value;
+      const inputDexametasona = document.getElementById("inputDexametasona").value;
+      const inputClorhidratoAmbroxol = document.getElementById("inputClorhidratoAmbroxol").value;
+      const inputSolucionSalina = document.getElementById("inputSolucionSalina").value;
+      const inputHipersal3 = document.getElementById("inputHipersal3").value;
+      const inputAdrenalinaRacénica = document.getElementById("inputAdrenalinaRacénica").value;
+      const inputOtros = document.getElementById("inputOtros").value;
+      const inputNebulizacion = document.getElementById("inputNebulizacion").checked;
 
       const prescripcion = Pedido.examenes.map(
         ({ EXAMEN, FRECUENCIA }) => `
@@ -507,682 +517,171 @@ const FormularioDeRegistro = {
                     </div>
                 </div>
             </div>
-            <!-- Terapia Aerosol Medicina -->
-            <div><label for="inputTerapiaAerosolMedicina" class="form-label"><b> Terapia Aerosol Medicina</b></div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-4">
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Salbutamol</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Dosis</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label for="inputPeso" class="form-label"><b>Hipersal (7%)</b></label>
-                    </div>
-                    <div class="mb-4">
-                        <label for="inputEscalaDolor" class="form-label"><b>Dosis</b></label>
-                        <input type="text" class="form-control" id="inputEscalaDolor">
-                    </div>
-                </div>
-                <div class="col">
-                    <label for="inputPeso" class="form-label"><b>Terapia Aerosol Medicina</b></label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label for="inputPeso" class="form-label"><b>Nebulización</b></label>
-                    </div>
-                </div>
+            <!-- Primera Fila -->
+        <h1>Medicinas</h1>
+        <div class="row">
+          <div class="col">
+            <div class="mb-4">
+              <label for="inputPeso" class="form-label"
+                ><b>Salbutamol</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputSalbumatol"
+                value="${inputSalbumatol}"
+              />
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-4">
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Bromuro de Ipatropio</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Dosis</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label for="inputPeso" class="form-label"><b>Dexametasona</b></label>
-                    </div>
-                    <div class="mb-4">
-                        <label for="inputEscalaDolor" class="form-label"><b>Dosis</b></label>
-                        <input type="text" class="form-control" id="inputEscalaDolor">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label for="inputPeso" class="form-label"><b>Ultrasonido</b></label>
-                    </div>
-                </div>
+          </div>
+          <div class="col">
+            <div class="mb-4">
+              <label for="inputEscalaDolor" class="form-label"
+                ><b>Hipersal (7%)</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputHipersal"
+                value="${inputHipersal}"
+              />
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-4">
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Clorhidrato de Ambroxol</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Dosis</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label for="inputPeso" class="form-label"><b>Solución Salina (0,9%)</b></label>
-                    </div>
-                    <div class="mb-4">
-                        <label for="inputEscalaDolor" class="form-label"><b>Dosis</b></label>
-                        <input type="text" class="form-control" id="inputEscalaDolor">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label for="inputPeso" class="form-label"><b>Inhaladores Dosis Medida</b></label>
-                    </div>
-                </div>
+          </div>
+          <div class="col">
+            <div class="mb-4">
+              <label for="inputUsuario" class="form-label"
+                ><b>Bromuro de Ipatropio</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputBromuroIpatropio"
+                value="${inputBromuroIpatropio}"
+              />
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-4">
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Hipersal (3,5%)</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Dosis</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label for="inputPeso" class="form-label"><b>Adrenalina Racénica</b></label>
-                    </div>
-                    <div class="mb-4">
-                        <label for="inputEscalaDolor" class="form-label"><b>Dosis</b></label>
-                        <input type="text" class="form-control" id="inputEscalaDolor">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-4">
-
-                    </div>
-                </div>
+          </div>
+        </div>
+        <!-- Segunda Fila -->
+        <div class="row">
+          <div class="col">
+            <div class="mb-4">
+              <label for="inputPeso" class="form-label"
+                ><b>Dexametasona</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputDexametasona"
+                value="${inputDexametasona}"
+              />
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-4">
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Otros</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Dosis</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="col">
-                    <div class="mb-4">
-                        
-                    </div>
-                </div>
-
+          </div>
+          <div class="col">
+            <div class="mb-4">
+              <label for="inputEscalaDolor" class="form-label"
+                ><b>Clorhidrato de Ambroxol</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputClorhidratoAmbroxol"
+                value="${inputClorhidratoAmbroxol}"
+              />
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-2">
-                        <label for="inputPrescripcion" class="form-label"><b>Higiene Bronco Pulmonar</b></label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Drenaje postural
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Percusiones
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Vibraciones
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Tos efectiva
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Asistente de tos
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Chaleco Vibroprecutor
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-2">
-                        <!-- Succión -->
-                        <label for="inputPrescripcion" class="form-label"><b>Succión</b></label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Nasotraqueal
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Traqueal
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Orotraqueal
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Lavado Nasal
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Subglótica
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-2">
-                        <!-- Muestra -->
-                        <label for="inputPrescripcion" class="form-label"><b>Muestra</b></label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Esputo
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Isopado
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Secreción Traqueal
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-2">
-                        <!-- Observación clinica -->
-                        <label for="inputPrescripcion" class="form-label"><b>Observación Clinica</b></label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Consciencia
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Intubado
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Estridor
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Sibilancias
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Roncus
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Crepitantes
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Localización
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Cianosis
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Ruido Respiratorio
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Disminuido
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Abolido
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Sonido de la voz
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Edema
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-2">
-                        <label for="inputPrescripcion" class="form-label"><b>Observación Clinica</b></label>
-                        <br>
-                        <label for="inputPrescripcion" class="form-label"><b>&nbsp;&nbsp;&nbsp;Sintomas</b></label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Disnea
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Tos
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Expectoración
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Dolor Torácico
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Hemoptisis
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Fiebre
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-2">
-                        <label for="inputPrescripcion" class="form-label"><b>Observación Clinica</b></label>
-                        <br>
-                        <label for="inputPrescripcion" class="form-label"><b>&nbsp;&nbsp;&nbsp;Signos</b></label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Consciencia
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Intubado
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Estridor
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Sibilancias
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Roncus
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Crepitantes
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Localización
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Cianosis
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Ruido Respiratorio
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Disminuido
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Abolido
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Sonido de la voz
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Edema
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="col">
+            <div class="mb-4">
+              <label for="inputUsuario" class="form-label"
+                ><b>Solución Salina (0,9%)</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputSolucionSalina"
+                value="${inputSolucionSalina}"
+              />
             </div>
-            <!-- Higiene Bronco Pulmonar -->
-
-            <br>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-6">
-                        <label for="inputTerapiaAerosolMedicina" class="form-label"><b> Terapia Expansiva</b>
-                        </label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="inputDosisTerapiaAerosol">
-                            <label class="form-check-label" for="inputDosisTerapiaAerosol">
-                                Incentivo Respiratorio
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputDosisTerapiaAerosol">
-                                Presión positiva continua en la vía aérea
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputDosisTerapiaAerosol">
-                                Presión positiva al final de la expiración
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="inputDosisTerapiaAerosol">
-                            <label class="form-check-label" for="inputDosisTerapiaAerosol">
-                                Kinesioterapia del torax
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="inputDosisTerapiaAerosol">
-                            <label class="form-check-label" for="inputDosisTerapiaAerosol">
-                                Ejercicios respiratorios
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-6">
-                        <label for="inputTerapiaAerosolMedicina" class="form-label"><b>Incentivo
-                                respiratorio</b></label>
-                        <div class="mb-6">
-                            <label for="inputPeso" class="form-label"><b>Mililitros por segundo</b></label>
-                            <input type="text" class="form-control" id="inputPeso" />
-                        </div>
-                        <div class="mb-6">
-                            <label for="inputPeso" class="form-label"><b>Centimetros cúbicos por segundo</b></label>
-                            <input type="text" class="form-control" id="inputPeso" />
-                        </div>
-
-                    </div>
-                </div>
-
+          </div>
+        </div>
+        <!-- Tercera Fila -->
+        <div class="row">
+          <div class="col">
+            <div class="mb-4">
+              <label for="inputPeso" class="form-label"
+                ><b>Hipersal (3,5%)</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputHipersal"
+                value="${inputHipersal3}"
+              />
             </div>
-            <br><br>
-            <!-- Oxigenoterapia -->
-
-            <div><label for="inputTerapiaAerosolMedicina" class="form-label"><b>Oxigenoterapia</b></div>
-                <div class="row">
-                    <div class="col">
-                        <div class="mb-4">
-    
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label for="inputPeso" class="form-label"><b>Fracción inspirada de oxígeno (FiO2)%</b></label>
-                            </div>
-                            <div class="mb-4">
-                                <label for="inputEscalaDolor" class="form-label"><b>Porcentaje</b></label>
-                                <input type="text" class="form-control" id="inputEscalaDolor">
-                            </div>
-                            <div class="mb-4">
-                                <label for="inputEscalaDolor" class="form-label"><b>Litros por minuto</b></label>
-                                <input type="text" class="form-control" id="inputEscalaDolor">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Alto flujo (litro por minuto)</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Porcentaje</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Litros por minuto</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Tienda facial</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Porcentaje</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Litros por minuto</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="mb-4">
-    
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label for="inputPeso" class="form-label"><b>Tubo en T</b></label>
-                            </div>
-                            <div class="mb-4">
-                                <label for="inputEscalaDolor" class="form-label"><b>Porcentaje</b></label>
-                                <input type="text" class="form-control" id="inputEscalaDolor">
-                            </div>
-                            <div class="mb-4">
-                                <label for="inputEscalaDolor" class="form-label"><b>Litros por minuto</b></label>
-                                <input type="text" class="form-control" id="inputEscalaDolor">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Cánula nasal</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Porcentaje</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Litros por minuto</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Mascarrilla</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Porcentaje</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Litros por minuto</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Heliox</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Porcentaje</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Litros por minuto</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label for="inputPeso" class="form-label"><b>Aire Ambiente</b></label>
-                        </div>
-                        <div class="mb-4">
-                            <label for="inputEscalaDolor" class="form-label"><b>Porcentaje</b></label>
-                            <input type="text" class="form-control" id="inputEscalaDolor">
-                        </div>
-                    </div>
-                    
-                </div>
-            <br>
-            <br>
-
-            <!-- Monitoreo Saturación -->
-            <div class="row">
-                <div class="col">
-                    <div class="mb-6">
-                        <label for="inputPrescripcion" class="form-label"><b>Monitoreo</b></label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Saturación O2(%)
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Ventilación mecánica
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="inputPrescripcion">
-                                Ventilación no invasiva
-                        </div>
-                        <div>
-                            <!-- Criterio -->
-            <label for="inputPrescripcion" class="form-label"><b>Criterio</b></label>
-            <div class="form-floating">
-                <textarea class="form-control" id="floatingTextarea2"
-                    style="height: 100px"></textarea>
+          </div>
+          <div class="col">
+            <div class="mb-4">
+              <label for="inputEscalaDolor" class="form-label"
+                ><b>Adrenalina Racénica</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputAdrenalinaRacénica"
+                value="${inputAdrenalinaRacénica}"
+              />
             </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-6">
-                        <div class="mb-6">
-                            <label for="inputPeso" class="form-label"><b>Saturación Previa Porcentaje</b></label>
-                            <input type="text" class="form-control" id="inputPeso" />
-                        </div>
-                        <div class="mb-6">
-                            <label for="inputPeso" class="form-label"><b>Saturación Posterior Porcentaje</b></label>
-                            <input type="text" class="form-control" id="inputPeso" />
-                        </div>
-
-                    </div>
-                    <div class="mb-6">
-                        <div class="mb-6">
-                            <label for="inputPeso" class="form-label"><b>Frecuencia Cardiaca Previa Por
-                                    Minuto</b></label>
-                            <input type="text" class="form-control" id="inputPeso" />
-                        </div>
-                        <div class="mb-6">
-                            <label for="inputPeso" class="form-label"><b>Frecuencia Cardiaca Posterior Por
-                                    Minuto</b></label>
-                            <input type="text" class="form-control" id="inputPeso" />
-                        </div>
-
-                    </div>
-                    <div class="mb-6">
-                        <div class="mb-6">
-                            <label for="inputPeso" class="form-label"><b>Frecuencia Respiratoria Posterior Por
-                                    Minuto</b></label>
-                            <input type="text" class="form-control" id="inputPeso" />
-                        </div>
-                        <div class="mb-6">
-                            <label for="inputPeso" class="form-label"><b>Frecuencia Respiratoria Posterior Por
-                                    Minuto</b></label>
-                            <input type="text" class="form-control" id="inputPeso" />
-                        </div>
-
-                    </div>
-                </div>
-
+          </div>
+          <div class="col">
+            <div class="mb-4">
+              <label for="inputUsuario" class="form-label"><b>Otros</b></label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputOtros"
+                value="${inputOtros}"
+              />
             </div>
+          </div>
+        </div>
 
-            <br>
-
-            
-            
-                <br>
+        <!-- Medicinas -->
+        <h1>Terapia Aerosol</h1>
+        <div class="row d-flex justify-content-center">
+          <div class="col text-center">
+            <div class="mb-4">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=${inputNebulizacion}
+                id="inputNebulizacion"
+              />
+              <label for="inputPeso" class="form-label">Nebulización</label>
+            </div>
+          </div>
+          <div class="col text-center">
+            <div class="mb-4">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="inputUltrasonido"
+              />
+              <label for="inputPeso" class="form-label">Ultrasonido</label>
+            </div>
+          </div>
+          <div class="col text-center">
+            <div class="mb-4">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="inputInahaladorDosis"
+              />
+              <label for="inputPeso" class="form-label"
+                >Inhaladores Dosis Medida</label
+              >
+            </div>
+          </div>
+        </div>
         </form>
               </fieldset>
               <script>window.print();</script>
@@ -1506,7 +1005,7 @@ const FormularioDeRegistro = {
                         "Salbutamol"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputSalbumatol","value":"${inputSalbumatol}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputSalbumatol",})
                   ]
                 )
               ),
@@ -1518,7 +1017,7 @@ const FormularioDeRegistro = {
                         "Hipersal (7%)"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputHipersal","value":"${inputHipersal}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputHipersal"})
                   ]
                 )
               ),
@@ -1530,7 +1029,7 @@ const FormularioDeRegistro = {
                         "Bromuro de Ipatropio"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputBromuroIpatropio","value":"${inputBromuroIpatropio}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputBromuroIpatropio"})
                   ]
                 )
               )
@@ -1546,7 +1045,7 @@ const FormularioDeRegistro = {
                         "Dexametasona"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputDexametasona","value":"${inputDexametasona}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputDexametasona"})
                   ]
                 )
               ),
@@ -1558,7 +1057,7 @@ const FormularioDeRegistro = {
                         "Clorhidrato de Ambroxol"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputClorhidratoAmbroxol","value":"${inputClorhidratoAmbroxol}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputClorhidratoAmbroxol"})
                   ]
                 )
               ),
@@ -1570,7 +1069,7 @@ const FormularioDeRegistro = {
                         "Solución Salina (0,9%)"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputSolucionSalina","value":"${inputSolucionSalina}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputSolucionSalina"})
                   ]
                 )
               )
@@ -1586,7 +1085,7 @@ const FormularioDeRegistro = {
                         "Hipersal (3,5%)"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputHipersal","value":"${inputHipersal}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputHipersal3"})
                   ]
                 )
               ),
@@ -1598,7 +1097,7 @@ const FormularioDeRegistro = {
                         "Adrenalina Racénica"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputAdrenalinaRacénica","value":"${inputAdrenalinaRacénica}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputAdrenalinaRacénica",})
                   ]
                 )
               ),
@@ -1610,7 +1109,7 @@ const FormularioDeRegistro = {
                         "Otros"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputOtros","value":"${inputOtros}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputOtros"})
                   ]
                 )
               )
