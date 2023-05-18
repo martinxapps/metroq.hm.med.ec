@@ -1757,6 +1757,66 @@ const FormularioDeRegistro = {
           )
         ],
         m("br"),
+        [
+          m("h1", 
+            "Terapia Expansiva"
+          ), 
+          m("div", {"class":"row"},
+            [
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-1"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputIncentivoRespiratorio"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Incentivo Respiratorio"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-4"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputPresionPositivaContinuaEnLaViaAeria"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Presión Positiva continua en la vía aérea"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-4"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputPresionPositivaAlFinalDeLaExpiracion"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Presión Positiva al final de la expiración"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-1"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputKinesioterapiaDelTorax"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Kinesioterapia del tórax"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-1"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputEjerciciosRespiratorios"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Ejercicios respiratorios"
+                    )
+                  ]
+                )
+              )
+            ]
+          )
+        ],
+        m("br"),
       ]);
     } else {
       return m(
