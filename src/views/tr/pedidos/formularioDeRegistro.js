@@ -2418,7 +2418,11 @@ const FormularioDeRegistro = {
                     )
                   ]
                 )
-              ),
+              )
+            ]
+          ), 
+          m("div", {"class":"row justify-content-center"},
+            [
               m("div", {"class":"col text-center"}, 
                 m("div", {"class":"mb-2"},
                   [
@@ -2480,6 +2484,15 @@ const FormularioDeRegistro = {
                 )
               )
             ]
+          )
+        ],
+        m("br"),
+        [
+          m("h1", 
+            "Criterio"
+          ), 
+          m("div", {"class":"form-floating"}, 
+            m("textarea", {"class":"form-control","id":"floatingTextarea2","style":{"height":"100px"}})
           )
         ],
         m("br"),
