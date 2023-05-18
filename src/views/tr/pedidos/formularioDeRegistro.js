@@ -1748,6 +1748,274 @@ const FormularioDeRegistro = {
             ]
           )
         ],
+        m("br"),
+        m("br"),
+        [
+          m("div", {"class":"d-flex justify-content-center"}, 
+            m("h6", 
+              "Muestras"
+            )
+          ), 
+          m("div", {"class":"row justify-content-center"},
+            [
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputEsputo"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Esputo"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputHisopado"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Hisopado"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputSecrecionTraqueal"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Secreción Traqueal"
+                    )
+                  ]
+                )
+              )
+            ]
+          )
+        ],
+        [
+          m("div", {"class":"d-flex justify-content-center"}, 
+            m("h6", 
+              "Observación Clínica"
+            )
+          ), 
+          m("h6", 
+            "Síntomas"
+          ), 
+          m("div", {"class":"row justify-content-center"},
+            [
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputDisnea"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Disnea"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputTos"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Tos"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputExpectoacion"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Expectoración"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputDolorToracico"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Dolor Torácico"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputHemoptisis"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Hemoptisis"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputFiebre"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Fiebre"
+                    )
+                  ]
+                )
+              )
+            ]
+          ), 
+          m("h6", 
+            "Signos"
+          ), 
+          m("div", {"class":"row justify-content-center"},
+            [
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputConsciencia"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Consciencia"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputIntubado"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Intubado"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputEstridor"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Estridor"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputSibilancias"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Sibilancias"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputRoncus"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Roncus"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputCrepitantes"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Crepitantes"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputLocalizacion"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Localización"
+                    )
+                  ]
+                )
+              )
+            ]
+          ), 
+          m("div", {"class":"row justify-content-center"},
+            [
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputCianosis"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Cianosis"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputRuidoRespiratorio"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Ruido Respiratorio"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputDisminuido"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Disminuido"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputAbolido"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Abolido"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputSonidoDeLaVoz"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Sonido de la voz"
+                    )
+                  ]
+                )
+              ),
+              m("div", {"class":"col text-center"}, 
+                m("div", {"class":"mb-2"},
+                  [
+                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputEdema"}),
+                    m("label", {"class":"form-label","for":"inputPeso"}, 
+                      "Edema"
+                    )
+                  ]
+                )
+              )
+            ]
+          )
+        ],
+        [
+          m("div", {"class":"d-flex justify-content-center"}, 
+            m("h6", 
+              "Criterio"
+            )
+          ), 
+          m("div", {"class":"form-floating"}, 
+            m("textarea", {"class":"form-control","id":"floatingTextarea2","style":{"height":"100px"}})
+          )
+        ],
       ]);
     } else {
       return m(
