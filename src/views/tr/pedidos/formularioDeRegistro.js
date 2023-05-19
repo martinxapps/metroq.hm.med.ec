@@ -1,6 +1,7 @@
 import m from "mithril";
 import Pedido from "./pedido";
 import Encrypt from "../../../models/encrypt";
+import {urlTerapiaRespiratoria} from "./constants";
 
 
 
@@ -258,6 +259,43 @@ const FormularioDeRegistro = {
         //terapiaRespiratoriaController.habilitarCampos = true;
         //alert(terapiaRespiratoriaController.error);
         //alert(terapiaRespiratoriaController.error);
+      });
+  },
+  guardar: (formularioTerapiaRespiratoria) => {
+
+    //throw new Error("No se ha implementado el método guardar");
+    m.request({
+      method: "POST",
+      url: urlTerapiaRespiratoria,
+      body: formularioTerapiaRespiratoria,
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+      },
+    })
+      .then(function (result) {
+        //resultado = result;
+        /* if (result.status) {
+          terapiaRespiratoriaController.datosEnviadosDelFormulario = result;
+        }else{
+          terapiaRespiratoriaController.error = result.error;
+          alert(terapiaRespiratoriaController.error);
+        } */
+        /* if (result.status) {
+          FormularioDeRegistro.datosGuardados = result;
+          window.location.href = window.location.href;
+        } */
+        FormularioDeRegistro.datosGuardados = result;
+        //FormularioDeRegistro.bloquearCamposCuandoSeGuarda = true;
+        window.location.href = window.location.href;
+        //FormularioDeRegistro.bloquearCamposCuandoSeGuarda = true;
+        
+      })
+      .catch(function (error) {
+        //terapiaRespiratoriaController.error = `No se pudo enviar los datos ${error}`;
+        
+        FormularioDeRegistro.errorGuardar = error;
+        alert(FormularioDeRegistro.errorGuardar);
+        console.log(error);
       });
   },
 
@@ -612,7 +650,7 @@ const FormularioDeRegistro = {
               <input
                 type="text"
                 class="form-control"
-                id="inputHipersal"
+                id="inputHipersal3"
                 value="${inputHipersal3}"
               />
             </div>
@@ -1046,7 +1084,7 @@ const FormularioDeRegistro = {
                         "Salbutamol"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputSalbumatol","value":"${inputSalbumatol}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputSalbumatol"})
                   ]
                 )
               ),
@@ -1058,7 +1096,7 @@ const FormularioDeRegistro = {
                         "Hipersal (7%)"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputHipersal","value":"${inputHipersal}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputHipersal"})
                   ]
                 )
               ),
@@ -1070,7 +1108,7 @@ const FormularioDeRegistro = {
                         "Hipersal (3,5%)"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputHipersal","value":"${inputHipersal3}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputHipersal3"})
                   ]
                 )
               )
@@ -1086,7 +1124,7 @@ const FormularioDeRegistro = {
                         "Dexametasona"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputDexametasona","value":"${inputDexametasona}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputDexametasona"})
                   ]
                 )
               ),
@@ -1098,7 +1136,7 @@ const FormularioDeRegistro = {
                         "Clorhidrato de Ambroxol"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputClorhidratoAmbroxol","value":"${inputClorhidratoAmbroxol}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputClorhidratoAmbroxol"})
                   ]
                 )
               ),
@@ -1110,7 +1148,7 @@ const FormularioDeRegistro = {
                         "Solución Salina (0,9%)"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputSolucionSalina","value":"${inputSolucionSalina}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputSolucionSalina"})
                   ]
                 )
               )
@@ -1126,7 +1164,7 @@ const FormularioDeRegistro = {
                         "Bromuro de Ipatropio"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputBromuroIpatropio","value":"${inputBromuroIpatropio}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputBromuroIpatropio"})
                   ]
                 )
               ),
@@ -1138,7 +1176,7 @@ const FormularioDeRegistro = {
                         "Adrenalina Racénica"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputAdrenalinaRacénica","value":"${inputAdrenalinaRacénica}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputAdrenalinaRacénica"})
                   ]
                 )
               ),
@@ -1150,7 +1188,7 @@ const FormularioDeRegistro = {
                         "Otros"
                       )
                     ),
-                    m("input", {"class":"form-control","type":"text","id":"inputOtros","value":"${inputOtros}"})
+                    m("input", {"class":"form-control","type":"text","id":"inputOtros"})
                   ]
                 )
               )
@@ -2016,7 +2054,140 @@ const FormularioDeRegistro = {
             m("textarea", {"class":"form-control","id":"floatingTextarea2","style":{"height":"100px"}})
           )
         ],
+        m(
+          "button",
+          {
+            class: "btn btn-primary",
+            type: "button",
+            //disabled: obtenerDatos.habilitarCampos,
+            onclick: function () {
+              const valorPrescripcion = () => {
+                const valor = `${
+                  vnode.dom["inputPrescripcion"].options[
+                    vnode.dom["inputPrescripcion"].selectedIndex
+                  ].text
+                }`;
+                let palabraAEnviar = "";
+                for (const key in valor) {
+                  if (valor[key] === " ") {
+                    break;
+                  }
+                  palabraAEnviar += valor[key];
+                }
+                return parseInt(palabraAEnviar);
+              };
+              const formulario = {
+                "NUMERODEPEDIDO": vnode.dom["inputNumeroPedido"].value,
+                /* "FECHAMV": `'${vnode.dom["inputFechaPedido"].value}'`,
+                "ORIGEN": `'${vnode.dom["inputOrigenPedido"].value}'`,
+                "MEDICOSOLICITANTE": `'${vnode.dom["inputMedicoSolicitante"].value}'`,
+                "ESPECIALIDAD": `'${vnode.dom["inputEspecialidad"].value}'`,
+                "APELLIDOSNOMBREPACIENTE": `'${vnode.dom["inputApellidosYNombres"].value}'`,
+                "NHC": vnode.dom["inputNHC"].value,
+                "NUMEROATENCION": vnode.dom["inputNumeroAtencion"].value,
+                "UBICACION": `'${vnode.dom["inputUbicacion"].value}'`,
+                "ESCALADELDOLOR": `'${vnode.dom["inputEscalaDolor"].value}'`,
+                "PESO": vnode.dom["inputPeso"].value,
+                "Usuario": `'${vnode.dom["inputUsuario"].value}'`, */
+                // "PRESCRIPCION": null,
+                "FECHAHOY": `'${vnode.dom["inputFecha"].value}'`,
+                "HORAANTES": `'${vnode.dom["inputHora"].value}'`,
+                // "HORADESPUES": null,
+                "SALBUTAMOLDOSIS": vnode.dom["inputSalbumatol"].value,
+                "HIPERSAL(7%)DOSIS": vnode.dom["inputHipersal"].value,
+                // "BROMURODELPATROPIODOSIS": null,
+                // "DEXAMETASONADOSIS": null,
+                // "CLORHIDRATODEAMBROXOLDOSIS": null,
+                // "SOLUCIONSALINADOSIS": null,
+                "HIPERSAL(3.5%)DOSIS": vnode.dom["inputHipersal3"].value,
+                // "ADRENALINARACENICADOSIS": null,
+                // "OTROSDOSIS": null,
+                // "NEBULIZACION": null,
+                // "ULTRASONIDO": null,
+                // "INHALADORESDOSISMEDIDA": null,
+                // "DRENAJEPOSTURAL": null,
+                // "PERCUSIONES": null,
+                // "VIBRACIONES": null,
+                // "TOSEFECTIVA": null,
+                // "ASISTENCIADETOS": null,
+                // "CHALECOVIBROPRECUTOR": null,
+                // "NASOTRAQUEAL": null,
+                // "TRAQUEAL": null,
+                // "OROTRAQUEAL": null,
+                // "LAVADONASAL": null,
+                // "SUBGLOTICA": null,
+                // "ESPUTO": null,
+                // "ISOPADO": null,
+                // "SECRECIONTRAQUEAL": null,
+                // "CONSCIENCIA": null,
+                // "INTUBADO": null,
+                // "ESTRIDOR": null,
+                // "SIBILANCIAS": null,
+                // "RONCUS": null,
+                // "CREPITANTES": null,
+                // "LOCALIZACION": null,
+                // "CIANOSIS": null,
+                // "RUIDORESPIRATORIO": null,
+                // "DISMINUIDO": null,
+                // "ABOLIDO": null,
+                // "SONIDODELAVOZ": null,
+                // "EDEMA": null,
+                // "TOS": null,
+                // "EXPECTORACION": null,
+                // "DOLORTORACICO": null,
+                // "HEMOPTISIS": null,
+                // "FIEBRE": null,
+                // "INCENTIVORESPIRATORIO": null,
+                // "PRESIONPOSITIVAVIAAREA": null,
+                // "PRESIONPOSITIVAEXPIRACION": null,
+                // "KINISIOTERAPIADELTORAX": null,
+                // "EJERCICIOSRESPIRATORIOS": null,
+                // "MILILITROSPORSEGUNDOINCENTIVO": null,
+                // "CENTIMETROSSEGUNDOINCENTIVO": null,
+                // "FRACCIONOXIGENOPORCENTAJE": null,
+                // "FRACCIONIOXIGENOLITROS": null,
+                // "ALTOFLUJOPORCENTAJE": null,
+                // "ALTOFLUJOLITROSPORMINUTO": null,
+                // "TIENDAFACIALPORCENTAJE": null,
+                // "TIENDAFACIALLITROSPORMINUTO": null,
+                // "TUBOENTPORCENTAJE": null,
+                // "TUBOENTLITROSPORMINUTO": null,
+                // "CANULANASALPORCENTAJE": null,
+                // "CANULANASALLITROSPORMINUTO": null,
+                // "MASCARILLAPORCENTAJE": null,
+                // "MASCARILLALITROSPORMINUTO": null,
+                // "HELIOXPORCENTAJE": null,
+                // "HELIOXLITROSPORMINUTO": null,
+                // "AIREAMBIENTEPORCENTAJE": null,
+                // "SATURACION(O2%)": null,
+                // "VENTILACIONMECANICA": null,
+                // "VENTILACIONNOINVASIVA": null,
+                // "SATURACIONPREVIA": null,
+                // "SATURACIONPOSTERIOR": null,
+                // "FRECUENCIACARDIACAPREVIA": null,
+                // "FRECUENCIACARDIACAPOSTERIOR": null,
+                // "FRECUENCIARESPIRATORIAPREVIA": null,
+                // "FRECUENCIARESPIRATORIAPOS": null,
+                // "CRITERIO": null,
+                "ESTADO": 0,//"1",
+                "ID":'sec_TerapiaRespiratoria.nextval',
+              };
+              if (confirm('¿Estás seguro quieres guardar este formulario?')) {
+                // Lógica de eliminación del elemento aquí
+                  console.log(formulario);
+                  console.log(Pedido.data.AT_MV);
+                  FormularioDeRegistro.guardar(formulario);
+              }
+              
+              //alert("Guardar");
+              //alert("Guardar");
+              //terapiaRespiratoriaController.guardar(formulario);
+            },
+          },
+          "Guardar"
+        ),
       ]);
+      
     } else {
       return m(
         "div.pd-10.wd-100p",
