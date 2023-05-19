@@ -1,9 +1,7 @@
 import m from "mithril";
 import Pedido from "./pedido";
 import Encrypt from "../../../models/encrypt";
-import {urlTerapiaRespiratoria} from "./constants";
-
-
+import { urlTerapiaRespiratoria } from "./constants";
 
 const Button = {
   estado: "",
@@ -20,32 +18,35 @@ const Button = {
       .then(function (result) {
         if (result.data.length === 0) {
           Button.estado = "";
-        }else{
+        } else {
           Button.estado = result.data[0].ESTADO;
           m.redraw();
         }
-        
       })
       .catch(function (error) {
-        alert(`Error al enviar los datos, intente de nuevo al recargar la página`);
+        alert(
+          `Error al enviar los datos, intente de nuevo al recargar la página`
+        );
       });
   },
   view: function () {
     let buttonText = "Finalizar Documento";
     let buttonClass = "btn";
 
-    if (Button.estado === "" || Button.estado.length === 0 || Button.estado === "") {
+    if (
+      Button.estado === "" ||
+      Button.estado.length === 0 ||
+      Button.estado === ""
+    ) {
       buttonText = "Terminar Documento";
-        buttonClass += " btn-primary";
+      buttonClass += " btn-primary";
     } else {
       buttonText = "Documento Finalizado";
-        buttonClass += " btn-danger";
+      buttonClass += " btn-danger";
     }
 
-
     const cancelClick = function (e) {
-      
-      if(confirm("¿Estas seguro de finalizar el documento?")){
+      if (confirm("¿Estas seguro de finalizar el documento?")) {
         methodPutButton();
         Button.estado = "1";
         buttonText = "Documento Finalizado";
@@ -55,15 +56,13 @@ const Button = {
         e.target.classList.add("btn-danger");
         e.target.disabled = true;
         m.redraw();
-      }else{
+      } else {
         e.target.textContent = buttonText;
         e.target.classList.remove("btn-danger");
         e.target.classList.add("btn-primary");
         e.target.disabled = false;
         m.redraw();
       }
-      
-      
     };
 
     const button = m(
@@ -73,7 +72,7 @@ const Button = {
         class: buttonClass,
         type: "button",
         // disabled: false,
-        disabled: (Button.estado !== "" && Button.estado !== "0"),
+        disabled: Button.estado !== "" && Button.estado !== "0",
       },
       buttonText
     );
@@ -82,7 +81,7 @@ const Button = {
   },
 };
 
-function date () {
+function date() {
   const fechaActual = new Date();
   const dia = fechaActual.getDate();
   const mes = fechaActual.getMonth() + 1;
@@ -97,10 +96,10 @@ function methodPutButton() {
     method: "POST",
     url: "http://api.hospitalmetropolitano.org/t/v1/nuevo-status-pedido-tr",
     body: {
-      "CD_PRE_MED": Pedido.numeroPedido,
-      "FECHA": date(),
-      "ESTADO": 1,
-  },
+      CD_PRE_MED: Pedido.numeroPedido,
+      FECHA: date(),
+      ESTADO: 1,
+    },
     headers: {
       "Content-Type": "application/json; charset=utf-8",
       Accept: "application/json",
@@ -108,14 +107,15 @@ function methodPutButton() {
     },
   })
     .then(function (result) {
-      window.location.reload()
+      window.location.reload();
       //console.log("Datos enviados con exito")
     })
     .catch(function (error) {
-      alert(`Error al enviar los datos, intente de nuevo al recargar la página`);
+      alert(
+        `Error al enviar los datos, intente de nuevo al recargar la página`
+      );
     });
 }
-
 
 const FormularioDeRegistro = {
   listaDeFrecuenciaCardiaca: [],
@@ -262,14 +262,13 @@ const FormularioDeRegistro = {
       });
   },
   guardar: (formularioTerapiaRespiratoria) => {
-
     //throw new Error("No se ha implementado el método guardar");
     m.request({
       method: "POST",
       url: urlTerapiaRespiratoria,
       body: formularioTerapiaRespiratoria,
       headers: {
-          "Content-Type": "application/json; charset=utf-8",
+        "Content-Type": "application/json; charset=utf-8",
       },
     })
       .then(function (result) {
@@ -288,24 +287,22 @@ const FormularioDeRegistro = {
         //FormularioDeRegistro.bloquearCamposCuandoSeGuarda = true;
         window.location.href = window.location.href;
         //FormularioDeRegistro.bloquearCamposCuandoSeGuarda = true;
-        
       })
       .catch(function (error) {
         //terapiaRespiratoriaController.error = `No se pudo enviar los datos ${error}`;
-        
+
         FormularioDeRegistro.errorGuardar = error;
         alert(FormularioDeRegistro.errorGuardar);
         console.log(error);
       });
   },
 
-
   oninit: (_data) => {
     FormularioDeRegistro.cargarPeso(_data.attrs.pedido.AT_MV); // 10090 // _data.attrs.pedido.AT_MV
     FormularioDeRegistro.cargarEscalaDelDolor(_data.attrs.pedido.AT_MV); // 10090 // _data.attrs.pedido.AT_MV
     FormularioDeRegistro.cargarFechaActual();
     FormularioDeRegistro.cargarHoraActual();
-    FormularioDeRegistro.cargarPrescripcion(_data.attrs.pedido.AT_MV); // 1918 // 
+    FormularioDeRegistro.cargarPrescripcion(_data.attrs.pedido.AT_MV); // 1918 //
 
     FormularioDeRegistro.usuarioConectado = Encrypt.getDataUser(); // Obtener el nombre de usuario
     Button.obtenerEstado(Pedido.numeroPedido);
@@ -342,14 +339,24 @@ const FormularioDeRegistro = {
       const inputUbicacion = document.getElementById("inputUbicacion").value;
       const inputSalbumatol = document.getElementById("inputSalbumatol").value;
       const inputHipersal = document.getElementById("inputHipersal").value;
-      const inputBromuroIpatropio = document.getElementById("inputBromuroIpatropio").value;
-      const inputDexametasona = document.getElementById("inputDexametasona").value;
-      const inputClorhidratoAmbroxol = document.getElementById("inputClorhidratoAmbroxol").value;
-      const inputSolucionSalina = document.getElementById("inputSolucionSalina").value;
+      const inputBromuroIpatropio = document.getElementById(
+        "inputBromuroIpatropio"
+      ).value;
+      const inputDexametasona =
+        document.getElementById("inputDexametasona").value;
+      const inputClorhidratoAmbroxol = document.getElementById(
+        "inputClorhidratoAmbroxol"
+      ).value;
+      const inputSolucionSalina = document.getElementById(
+        "inputSolucionSalina"
+      ).value;
       const inputHipersal3 = document.getElementById("inputHipersal3").value;
-      const inputAdrenalinaRacénica = document.getElementById("inputAdrenalinaRacénica").value;
+      const inputAdrenalinaRacénica = document.getElementById(
+        "inputAdrenalinaRacénica"
+      ).value;
       const inputOtros = document.getElementById("inputOtros").value;
-      const inputNebulizacion = document.getElementById("inputNebulizacion").checked;
+      const inputNebulizacion =
+        document.getElementById("inputNebulizacion").checked;
 
       const prescripcion = Pedido.examenes.map(
         ({ EXAMEN, FRECUENCIA }) => `
@@ -742,7 +749,7 @@ const FormularioDeRegistro = {
               class: "btn btn-primary",
               type: "button",
               onclick: printFormData,
-              disabled: (Button.estado !== "" && Button.estado !== "0")
+              disabled: Button.estado !== "" && Button.estado !== "0",
             },
             "Imprimir"
           ),
@@ -750,7 +757,7 @@ const FormularioDeRegistro = {
           m.trust("&nbsp;"),
           m.trust("&nbsp;"),
           " ",
-          m(Button, {pedido: Pedido.numeroPedido}),
+          m(Button, { pedido: Pedido.numeroPedido }),
         ]),
 
         m("div", { class: "row" }, [
@@ -1030,1029 +1037,1399 @@ const FormularioDeRegistro = {
           }),
         ]),
         [
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Terapia Aerosol"
-            )
-          ), 
-          m("div", {"class":"row d-flex justify-content-center"},
-            [
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputNebulizacion"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Nebulización"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputUltrasonido"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Ultrasonido"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputInahaladorDosis"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Inhaladores Dosis Medida"
-                    )
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Medicinas"
-            )
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Salbutamol"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputSalbumatol"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Hipersal (7%)"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputHipersal"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Hipersal (3,5%)"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputHipersal3"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Dexametasona"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputDexametasona"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Clorhidrato de Ambroxol"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputClorhidratoAmbroxol"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputUsuario"}, 
-                      m("b", 
-                        "Solución Salina (0,9%)"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputSolucionSalina"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputUsuario"}, 
-                      m("b", 
-                        "Bromuro de Ipatropio"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputBromuroIpatropio"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Adrenalina Racénica"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputAdrenalinaRacénica"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputUsuario"}, 
-                      m("b", 
-                        "Otros"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputOtros"})
-                  ]
-                )
-              )
-            ]
-          )
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Terapia Aerosol")
+          ),
+          m("div", { class: "row d-flex justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputNebulizacion",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Nebulización"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputUltrasonido",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Ultrasonido"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputInahaladorDosis",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Inhaladores Dosis Medida"
+                ),
+              ])
+            ),
+          ]),
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Medicinas")
+          ),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Salbutamol")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputSalbumatol",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Hipersal (7%)")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputHipersal",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Hipersal (3,5%)")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputHipersal3",
+                }),
+              ])
+            ),
+          ]),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Dexametasona")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputDexametasona",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Clorhidrato de Ambroxol")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputClorhidratoAmbroxol",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputUsuario" },
+                  m("b", "Solución Salina (0,9%)")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputSolucionSalina",
+                }),
+              ])
+            ),
+          ]),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputUsuario" },
+                  m("b", "Bromuro de Ipatropio")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputBromuroIpatropio",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Adrenalina Racénica")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputAdrenalinaRacénica",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputUsuario" },
+                  m("b", "Otros")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputOtros",
+                }),
+              ])
+            ),
+          ]),
         ],
         [
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Higiene Bronco Pulmonar"
-            )
-          ), 
-          m("div", {"class":"row d-flex justify-content-center"},
-            [
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputDrenajePostural}","id":"inputDrenajePostural"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Drenaje Postural"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputPercursiones}","id":"inputPercursiones"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Percursiones"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputVibraciones}","id":"inputVibraciones"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Vibraciones"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputTosEfectiva}","id":"inputTosEfectiva"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Tos Efectiva"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputAsistenteTos}","id":"inputAsistenteTos"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Asistente de Tos"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"${inputChalecoVibroprecutor}","id":"inputChalecoVibroprecutor"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Chaleco Vibroprecutor"
-                    )
-                  ]
-                )
-              )
-            ]
-          )
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Higiene Bronco Pulmonar")
+          ),
+          m("div", { class: "row d-flex justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputDrenajePostural}",
+                  id: "inputDrenajePostural",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Drenaje Postural"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputPercursiones}",
+                  id: "inputPercursiones",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Percursiones"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputVibraciones}",
+                  id: "inputVibraciones",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Vibraciones"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputTosEfectiva}",
+                  id: "inputTosEfectiva",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Tos Efectiva"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputAsistenteTos}",
+                  id: "inputAsistenteTos",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Asistente de Tos"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputChalecoVibroprecutor}",
+                  id: "inputChalecoVibroprecutor",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Chaleco Vibroprecutor"
+                ),
+              ])
+            ),
+          ]),
         ],
         [
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Terapia Expansiva"
-            )
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-1"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputIncentivoRespiratorio"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Incentivo Respiratorio"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputPresionPositivaContinuaEnLaViaAeria"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Presión Positiva continua en la vía aérea"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputPresionPositivaAlFinalDeLaExpiracion"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Presión Positiva al final de la expiración"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-1"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputKinesioterapiaDelTorax"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Kinesioterapia del tórax"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-1"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputEjerciciosRespiratorios"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Ejercicios respiratorios"
-                    )
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Incentivo Respiratorio"
-            )
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Mililitros por segundo"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputMililitrosPorSegundo","value":"${inputMililitrosPorSegundo}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Centimetros cúbicos por segundo"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputCentimetrosCubicosPorSegundo","value":"${inputCentimetrosCubicosPorSegundo}"})
-                  ]
-                )
-              )
-            ]
-          )
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Terapia Expansiva")
+          ),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-1" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputIncentivoRespiratorio",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Incentivo Respiratorio"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputPresionPositivaContinuaEnLaViaAeria",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Presión Positiva continua en la vía aérea"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputPresionPositivaAlFinalDeLaExpiracion",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Presión Positiva al final de la expiración"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-1" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputKinesioterapiaDelTorax",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Kinesioterapia del tórax"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-1" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputEjerciciosRespiratorios",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Ejercicios respiratorios"
+                ),
+              ])
+            ),
+          ]),
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Incentivo Respiratorio")
+          ),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Mililitros por segundo")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputMililitrosPorSegundo",
+                  value: "${inputMililitrosPorSegundo}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Centimetros cúbicos por segundo")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputCentimetrosCubicosPorSegundo",
+                  value: "${inputCentimetrosCubicosPorSegundo}",
+                }),
+              ])
+            ),
+          ]),
         ],
         [
-          m("br"), 
-          m("br"), 
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Oxigenoterapia"
+          m("br"),
+          m("br"),
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Oxigenoterapia")
+          ),
+          m("h6", "Fracción inspirada de oxigeno (FiO2 %)"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputPorcentajeFraccion",
+                  value: "${inputPorcentajeFraccion}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litros por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputLitrosPorMinutoFraccion",
+                  value: "${inputLitrosPorMinutoFraccion}",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Alto Flujo (litro por minuto)"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputPorcentajeAltoFlujo",
+                  value: "${inputPorcentajeAltoFlujo}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litro por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputLitroAltoFlujo",
+                  value: "${inputLitroPorMinutoAltoFlujo}",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Tienda Facial"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputPorcentajeTiendaFacial",
+                  value: "${inputPorcentajeTiendaFacial}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litros por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputLitroPorMinutoTiendaFacial",
+                  value: "${inputLitroPorMinutoTiendaFacial}",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Tubo en T"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputPorcentajeTuboEnT",
+                  value: "${inputPorcentajeTuboEnT}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litro por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputLitroTuboEnT",
+                  value: "${inputLitroTuboEnT}",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Canula Nasal"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputPorcentajeCanulaNasal",
+                  value: "${inputPorcentajeCanulaNasal}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litros por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputLitroPorMinutoCanulaNasal",
+                  value: "${inputLitroPorMinutoCanulaNasal}",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Mascarilla"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputPorcentajeMascarilla",
+                  value: "${inputPorcentajeMascarilla}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litro por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputLitroMascarilla",
+                  value: "${inputLitroMascarilla}",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Heliox"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputPorcentajeHeliox",
+                  value: "${inputPorcentajeHeliox}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litros por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputLitroPorMinutoHeliox",
+                  value: "${inputLitroPorMinutoHeliox}",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Aire Ambiente"),
+          m(
+            "div",
+            { class: "row" },
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputPorcentajeAireAmbiente",
+                  value: "${inputPorcentajeAireAmbiente}",
+                }),
+              ])
             )
-          ), 
-          m("h6", 
-            "Fracción inspirada de oxigeno (FiO2 %)"
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Porcentaje"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputPorcentajeFraccion","value":"${inputPorcentajeFraccion}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Litros por minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputLitrosPorMinutoFraccion","value":"${inputLitrosPorMinutoFraccion}"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("h6", 
-            "Alto Flujo (litro por minuto)"
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Porcentaje"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputPorcentajeAltoFlujo","value":"${inputPorcentajeAltoFlujo}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Litro por minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputLitroAltoFlujo","value":"${inputLitroPorMinutoAltoFlujo}"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("h6", 
-            "Tienda Facial"
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Porcentaje"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputPorcentajeTiendaFacial","value":"${inputPorcentajeTiendaFacial}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Litros por minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputLitroPorMinutoTiendaFacial","value":"${inputLitroPorMinutoTiendaFacial}"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("h6", 
-            "Tubo en T"
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Porcentaje"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputPorcentajeTuboEnT","value":"${inputPorcentajeTuboEnT}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Litro por minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputLitroTuboEnT","value":"${inputLitroTuboEnT}"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("h6", 
-            "Canula Nasal"
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Porcentaje"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputPorcentajeCanulaNasal","value":"${inputPorcentajeCanulaNasal}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Litros por minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputLitroPorMinutoCanulaNasal","value":"${inputLitroPorMinutoCanulaNasal}"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("h6", 
-            "Mascarilla"
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Porcentaje"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputPorcentajeMascarilla","value":"${inputPorcentajeMascarilla}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Litro por minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputLitroMascarilla","value":"${inputLitroMascarilla}"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("h6", 
-            "Heliox"
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Porcentaje"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputPorcentajeHeliox","value":"${inputPorcentajeHeliox}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Litros por minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputLitroPorMinutoHeliox","value":"${inputLitroPorMinutoHeliox}"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("h6", 
-            "Aire Ambiente"
-          ), 
-          m("div", {"class":"row"}, 
-            m("div", {"class":"col"}, 
-              m("div", {"class":"mb-6"},
-                [
-                  m("label", {"class":"form-label","for":"inputPeso"}, 
-                    m("b", 
-                      "Porcentaje"
-                    )
-                  ),
-                  m("input", {"class":"form-control","type":"text","id":"inputPorcentajeAireAmbiente","value":"${inputPorcentajeAireAmbiente}"})
-                ]
-              )
-            )
-          )
-        ],
-        m("br"),
-        m("br"),
-        [
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Monitoreo"
-            )
-          ), 
-          m("div", {"class":"row d-flex justify-content-center"},
-            [
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-1"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputVentilacionMecanica"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Ventilación Mecánica"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-4"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputVentilacionNoInvasiva"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Ventilación no invasiva"
-                    )
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Previa Saturación O2(%) Porcentaje"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputSaturacionPreviaPorcentaje","value":"${inputSaturacionPreviaPorcentaje}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Posterior Saturación O2(%) Porcentaje"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputSaturacionPosteriorPorcentaje","value":"${inputSaturacionPosteriorPorcentaje}"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("br"), 
-          m("br"), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Previa Frecuencia Cardiaca por Minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputFrecuenciaCardiacaPreviaPorMinuto","value":"${inputFrecuenciaCardiacaPreviaPorMinuto}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Posterior Frecuencia Cardiaca por Minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputFrecuenciaCardiacaPosteriorPorMinuto","value":"${inputFrecuenciaCardiacaPosteriorPorMinuto}"})
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("br"), 
-          m("div", {"class":"row"},
-            [
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      m("b", 
-                        "Previa Frecuencia Respiratoria por Minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputFrecuenciaRespiratoriaPreviaPorMinuto","value":"${inputFrecuenciaRespiratoriaPreviaPorMinuto}"})
-                  ]
-                )
-              ),
-              m("div", {"class":"col"}, 
-                m("div", {"class":"mb-6"},
-                  [
-                    m("label", {"class":"form-label","for":"inputEscalaDolor"}, 
-                      m("b", 
-                        "Posterior Frecuencia Respiratoria por Minuto"
-                      )
-                    ),
-                    m("input", {"class":"form-control","type":"text","id":"inputFrecuenciaRespiratoriaPosteriorPorMinuto","value":"${inputFrecuenciaRespiratoriaPosteriorPorMinuto}"})
-                  ]
-                )
-              )
-            ]
-          )
-        ],
-        m("br"),
-        m("br"),
-        [
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Succión"
-            )
-          ), 
-          m("div", {"class":"row justify-content-center"},
-            [
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputNasotraqueal"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Nasotraqueal"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputTraqueal"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Traqueal"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputOrotraqueal"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Orotraqueal"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputLavadoNasal"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Lavado Nasal"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-3"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputSubglotica"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Subglótica"
-                    )
-                  ]
-                )
-              )
-            ]
-          )
+          ),
         ],
         m("br"),
         m("br"),
         [
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Muestras"
-            )
-          ), 
-          m("div", {"class":"row justify-content-center"},
-            [
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputEsputo"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Esputo"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputHisopado"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Hisopado"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputSecrecionTraqueal"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Secreción Traqueal"
-                    )
-                  ]
-                )
-              )
-            ]
-          )
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Monitoreo")
+          ),
+          m("div", { class: "row d-flex justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-1" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputVentilacionMecanica",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Ventilación Mecánica"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputVentilacionNoInvasiva",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Ventilación no invasiva"
+                ),
+              ])
+            ),
+          ]),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Previa Saturación O2(%) Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputSaturacionPreviaPorcentaje",
+                  value: "${inputSaturacionPreviaPorcentaje}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Posterior Saturación O2(%) Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputSaturacionPosteriorPorcentaje",
+                  value: "${inputSaturacionPosteriorPorcentaje}",
+                }),
+              ])
+            ),
+          ]),
+          m("br"),
+          m("br"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Previa Frecuencia Cardiaca por Minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputFrecuenciaCardiacaPreviaPorMinuto",
+                  value: "${inputFrecuenciaCardiacaPreviaPorMinuto}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Posterior Frecuencia Cardiaca por Minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
+                  value: "${inputFrecuenciaCardiacaPosteriorPorMinuto}",
+                }),
+              ])
+            ),
+          ]),
+          m("br"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Previa Frecuencia Respiratoria por Minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
+                  value: "${inputFrecuenciaRespiratoriaPreviaPorMinuto}",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Posterior Frecuencia Respiratoria por Minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "text",
+                  id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
+                  value: "${inputFrecuenciaRespiratoriaPosteriorPorMinuto}",
+                }),
+              ])
+            ),
+          ]),
+        ],
+        m("br"),
+        m("br"),
+        [
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Succión")
+          ),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputNasotraqueal",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Nasotraqueal"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputTraqueal",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Traqueal"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputOrotraqueal",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Orotraqueal"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputLavadoNasal",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Lavado Nasal"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-3" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputSubglotica",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Subglótica"
+                ),
+              ])
+            ),
+          ]),
+        ],
+        m("br"),
+        m("br"),
+        [
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Muestras")
+          ),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputEsputo",
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Esputo"),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputHisopado",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Hisopado"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputSecrecionTraqueal",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Secreción Traqueal"
+                ),
+              ])
+            ),
+          ]),
         ],
         [
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Observación Clínica"
-            )
-          ), 
-          m("h6", 
-            "Síntomas"
-          ), 
-          m("div", {"class":"row justify-content-center"},
-            [
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputDisnea"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Disnea"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputTos"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Tos"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputExpectoacion"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Expectoración"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputDolorToracico"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Dolor Torácico"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputHemoptisis"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Hemoptisis"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputFiebre"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Fiebre"
-                    )
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("h6", 
-            "Signos"
-          ), 
-          m("div", {"class":"row justify-content-center"},
-            [
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputConsciencia"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Consciencia"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputIntubado"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Intubado"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputEstridor"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Estridor"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputSibilancias"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Sibilancias"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputRoncus"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Roncus"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputCrepitantes"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Crepitantes"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputLocalizacion"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Localización"
-                    )
-                  ]
-                )
-              )
-            ]
-          ), 
-          m("div", {"class":"row justify-content-center"},
-            [
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputCianosis"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Cianosis"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputRuidoRespiratorio"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Ruido Respiratorio"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputDisminuido"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Disminuido"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputAbolido"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Abolido"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputSonidoDeLaVoz"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Sonido de la voz"
-                    )
-                  ]
-                )
-              ),
-              m("div", {"class":"col text-center"}, 
-                m("div", {"class":"mb-2"},
-                  [
-                    m("input", {"class":"form-check-input","type":"checkbox","value":"","id":"inputEdema"}),
-                    m("label", {"class":"form-label","for":"inputPeso"}, 
-                      "Edema"
-                    )
-                  ]
-                )
-              )
-            ]
-          )
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Observación Clínica")
+          ),
+          m("h6", "Síntomas"),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputDisnea",
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Disnea"),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputTos",
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Tos"),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputExpectoacion",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Expectoración"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputDolorToracico",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Dolor Torácico"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputHemoptisis",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Hemoptisis"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputFiebre",
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Fiebre"),
+              ])
+            ),
+          ]),
+          m("h6", "Signos"),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputConsciencia",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Consciencia"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputIntubado",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Intubado"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputEstridor",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Estridor"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputSibilancias",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Sibilancias"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputRoncus",
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Roncus"),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputCrepitantes",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Crepitantes"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputLocalizacion",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Localización"
+                ),
+              ])
+            ),
+          ]),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputCianosis",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Cianosis"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputRuidoRespiratorio",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Ruido Respiratorio"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputDisminuido",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Disminuido"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputAbolido",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Abolido"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputSonidoDeLaVoz",
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Sonido de la voz"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputEdema",
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Edema"),
+              ])
+            ),
+          ]),
         ],
         [
-          m("div", {"class":"d-flex justify-content-center"}, 
-            m("h6", 
-              "Criterio"
-            )
-          ), 
-          m("div", {"class":"form-floating"}, 
-            m("textarea", {"class":"form-control","id":"floatingTextarea2","style":{"height":"100px"}})
-          )
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Criterio")
+          ),
+          m(
+            "div",
+            { class: "form-floating" },
+            m("textarea", {
+              class: "form-control",
+              id: "floatingTextarea2",
+              style: { height: "100px" },
+            })
+          ),
         ],
         m(
           "button",
@@ -2077,7 +2454,7 @@ const FormularioDeRegistro = {
                 return parseInt(palabraAEnviar);
               };
               const formulario = {
-                "NUMERODEPEDIDO": vnode.dom["inputNumeroPedido"].value,
+                NUMERODEPEDIDO: vnode.dom["inputNumeroPedido"].value,
                 /* "FECHAMV": `'${vnode.dom["inputFechaPedido"].value}'`,
                 "ORIGEN": `'${vnode.dom["inputOrigenPedido"].value}'`,
                 "MEDICOSOLICITANTE": `'${vnode.dom["inputMedicoSolicitante"].value}'`,
@@ -2090,10 +2467,10 @@ const FormularioDeRegistro = {
                 "PESO": vnode.dom["inputPeso"].value,
                 "Usuario": `'${vnode.dom["inputUsuario"].value}'`, */
                 // "PRESCRIPCION": null,
-                "FECHAHOY": `'${vnode.dom["inputFecha"].value}'`,
-                "HORAANTES": `'${vnode.dom["inputHora"].value}'`,
+                FECHAHOY: `'${vnode.dom["inputFecha"].value}'`,
+                HORAANTES: `'${vnode.dom["inputHora"].value}'`,
                 // "HORADESPUES": null,
-                "SALBUTAMOLDOSIS": vnode.dom["inputSalbumatol"].value,
+                SALBUTAMOLDOSIS: vnode.dom["inputSalbumatol"].value,
                 "HIPERSAL(7%)DOSIS": vnode.dom["inputHipersal"].value,
                 // "BROMURODELPATROPIODOSIS": null,
                 // "DEXAMETASONADOSIS": null,
@@ -2169,16 +2546,16 @@ const FormularioDeRegistro = {
                 // "FRECUENCIARESPIRATORIAPREVIA": null,
                 // "FRECUENCIARESPIRATORIAPOS": null,
                 // "CRITERIO": null,
-                "ESTADO": 0,//"1",
-                "ID":'sec_TerapiaRespiratoria.nextval',
+                ESTADO: 0, //"1",
+                ID: "sec_TerapiaRespiratoria.nextval",
               };
-              if (confirm('¿Estás seguro quieres guardar este formulario?')) {
+              if (confirm("¿Estás seguro quieres guardar este formulario?")) {
                 // Lógica de eliminación del elemento aquí
-                  console.log(formulario);
-                  console.log(Pedido.data.AT_MV);
-                  FormularioDeRegistro.guardar(formulario);
+                console.log(formulario);
+                console.log(Pedido.data.AT_MV);
+                FormularioDeRegistro.guardar(formulario);
               }
-              
+
               //alert("Guardar");
               //alert("Guardar");
               //terapiaRespiratoriaController.guardar(formulario);
@@ -2187,7 +2564,6 @@ const FormularioDeRegistro = {
           "Guardar"
         ),
       ]);
-      
     } else {
       return m(
         "div.pd-10.wd-100p",
