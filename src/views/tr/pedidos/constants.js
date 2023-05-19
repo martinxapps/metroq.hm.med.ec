@@ -1,0 +1,1 @@
+export const urlTerapiaRespiratoria = 'https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia';
