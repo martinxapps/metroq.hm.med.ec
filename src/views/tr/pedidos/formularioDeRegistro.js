@@ -1518,9 +1518,8 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputPorcentajeFraccion",
-                  value: "${inputPorcentajeFraccion}",
                 }),
               ])
             ),
@@ -1535,9 +1534,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputLitrosPorMinutoFraccion",
-                  value: "${inputLitrosPorMinutoFraccion}",
+                  
                 }),
               ])
             ),
@@ -1555,9 +1554,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputPorcentajeAltoFlujo",
-                  value: "${inputPorcentajeAltoFlujo}",
+                  
                 }),
               ])
             ),
@@ -1572,9 +1571,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputLitroAltoFlujo",
-                  value: "${inputLitroPorMinutoAltoFlujo}",
+                  
                 }),
               ])
             ),
@@ -1592,9 +1591,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputPorcentajeTiendaFacial",
-                  value: "${inputPorcentajeTiendaFacial}",
+                  
                 }),
               ])
             ),
@@ -1609,9 +1608,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputLitroPorMinutoTiendaFacial",
-                  value: "${inputLitroPorMinutoTiendaFacial}",
+                  
                 }),
               ])
             ),
@@ -1629,9 +1628,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputPorcentajeTuboEnT",
-                  value: "${inputPorcentajeTuboEnT}",
+                  
                 }),
               ])
             ),
@@ -1646,9 +1645,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputLitroTuboEnT",
-                  value: "${inputLitroTuboEnT}",
+                  
                 }),
               ])
             ),
@@ -1666,9 +1665,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputPorcentajeCanulaNasal",
-                  value: "${inputPorcentajeCanulaNasal}",
+                  
                 }),
               ])
             ),
@@ -1683,9 +1682,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputLitroPorMinutoCanulaNasal",
-                  value: "${inputLitroPorMinutoCanulaNasal}",
+                  
                 }),
               ])
             ),
@@ -1703,9 +1702,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputPorcentajeMascarilla",
-                  value: "${inputPorcentajeMascarilla}",
+                  
                 }),
               ])
             ),
@@ -1720,9 +1719,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputLitroMascarilla",
-                  value: "${inputLitroMascarilla}",
+                  
                 }),
               ])
             ),
@@ -1740,9 +1739,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputPorcentajeHeliox",
-                  value: "${inputPorcentajeHeliox}",
+                  
                 }),
               ])
             ),
@@ -1757,9 +1756,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputLitroPorMinutoHeliox",
-                  value: "${inputLitroPorMinutoHeliox}",
+                  
                 }),
               ])
             ),
@@ -1779,9 +1778,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputPorcentajeAireAmbiente",
-                  value: "${inputPorcentajeAireAmbiente}",
+                  
                 }),
               ])
             )
@@ -2552,16 +2551,56 @@ const FormularioDeRegistro = {
                 // "EJERCICIOSRESPIRATORIOS": null,
                 // "MILILITROSPORSEGUNDOINCENTIVO": null,
                 // "CENTIMETROSSEGUNDOINCENTIVO": null,
-                // "FRACCIONOXIGENOPORCENTAJE": null,
-                // "FRACCIONIOXIGENOLITROS": null,
-                // "ALTOFLUJOPORCENTAJE": null,
-                // "ALTOFLUJOLITROSPORMINUTO": null,
-                // "TIENDAFACIALPORCENTAJE": null,
-                // "TIENDAFACIALLITROSPORMINUTO": null,
-                // "TUBOENTPORCENTAJE": null,
-                // "TUBOENTLITROSPORMINUTO": null,
-                // "CANULANASALPORCENTAJE": null,
-                // "CANULANASALLITROSPORMINUTO": null,
+                "FRACCIONOXIGENOPORCENTAJE": `${
+                  isNaN(parseInt(vnode.dom["inputPorcentajeFraccion"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputPorcentajeFraccion"].value)
+                }`,
+                "FRACCIONIOXIGENOLITROS": `${
+                  isNaN(parseInt(vnode.dom["inputLitrosPorMinutoFraccion"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputLitrosPorMinutoFraccion"].value)
+                }`,
+                "ALTOFLUJOPORCENTAJE": `${
+                  isNaN(parseInt(vnode.dom["inputPorcentajeAltoFlujo"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputPorcentajeAltoFlujo"].value)
+                }`,
+                "ALTOFLUJOLITROSPORMINUTO": `${
+                  isNaN(parseInt(vnode.dom["inputLitroAltoFlujo"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputLitroAltoFlujo"].value)
+                }`,
+                "TIENDAFACIALPORCENTAJE": `${
+                  isNaN(parseInt(vnode.dom["inputPorcentajeTiendaFacial"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputPorcentajeTiendaFacial"].value)
+                }`,
+                "TIENDAFACIALLITROSPORMINUTO": `${
+                  isNaN(parseInt(vnode.dom["inputLitroPorMinutoTiendaFacial"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputLitroPorMinutoTiendaFacial"].value)
+                }`,
+                "TUBOENTPORCENTAJE": `${
+                  isNaN(parseInt(vnode.dom["inputPorcentajeTuboEnT"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputPorcentajeTuboEnT"].value)
+                }`,
+                "TUBOENTLITROSPORMINUTO": `${
+                  isNaN(parseInt(vnode.dom["inputLitroTuboEnT"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputLitroTuboEnT"].value)
+                }`,
+                "CANULANASALPORCENTAJE": `${
+                  isNaN(parseInt(vnode.dom["inputPorcentajeCanulaNasal"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputPorcentajeCanulaNasal"].value)
+                }`,
+                "CANULANASALLITROSPORMINUTO": `${
+                  isNaN(parseInt(vnode.dom["inputLitroPorMinutoCanulaNasal"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputLitroPorMinutoCanulaNasal"].value)
+                }`,
                 // "MASCARILLAPORCENTAJE": null,
                 // "MASCARILLALITROSPORMINUTO": null,
                 // "HELIOXPORCENTAJE": null,
