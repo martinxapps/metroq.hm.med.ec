@@ -3,6 +3,9 @@ import Pedido from "./pedido";
 import Encrypt from "../../../models/encrypt";
 import { urlTerapiaRespiratoria } from "./constants";
 
+let isNebulizacionSelected = false;
+let isUltrasonidoSelected = false;
+let isInhaladorDosisMedidaSelected = false;
 const Button = {
   estado: "",
   obtenerEstado: function (number) {
@@ -1052,6 +1055,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputNebulizacion",
+                  onclick: function (event) {
+                    isNebulizacionSelected = event.target.checked;
+                  },
                 }),
                 m(
                   "label",
@@ -1069,6 +1075,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputUltrasonido",
+                  onclick: function (event) {
+                    isUltrasonidoSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1086,6 +1095,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputInahaladorDosis",
+                  onclick: function (event) {
+                    isInhaladorDosisMedidaSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2509,9 +2521,9 @@ const FormularioDeRegistro = {
                     ? 0
                     : parseInt(vnode.dom["inputOtros"].value)
                 }`, */
-                // "NEBULIZACION": null,
-                // "ULTRASONIDO": null,
-                // "INHALADORESDOSISMEDIDA": null,
+                "NEBULIZACION": isNebulizacionSelected ? "'true'" : "'false'",
+                "ULTRASONIDO": isUltrasonidoSelected ? "'true'" : "'false'",
+                "INHALADORESDOSISMEDIDA": isInhaladorDosisMedidaSelected ? "'true'" : "'false'",
                 // "DRENAJEPOSTURAL": null,
                 // "PERCUSIONES": null,
                 // "VIBRACIONES": null,
@@ -2601,11 +2613,31 @@ const FormularioDeRegistro = {
                     ? 0
                     : parseInt(vnode.dom["inputLitroPorMinutoCanulaNasal"].value)
                 }`,
-                // "MASCARILLAPORCENTAJE": null,
-                // "MASCARILLALITROSPORMINUTO": null,
-                // "HELIOXPORCENTAJE": null,
-                // "HELIOXLITROSPORMINUTO": null,
-                // "AIREAMBIENTEPORCENTAJE": null,
+                "MASCARILLAPORCENTAJE": `${
+                  isNaN(parseInt(vnode.dom["inputPorcentajeMascarilla"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputPorcentajeMascarilla"].value)
+                }`,
+                "MASCARILLALITROSPORMINUTO": `${
+                  isNaN(parseInt(vnode.dom["inputLitroMascarilla"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputLitroMascarilla"].value)
+                }`,
+                "HELIOXPORCENTAJE": `${
+                  isNaN(parseInt(vnode.dom["inputPorcentajeHeliox"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputPorcentajeHeliox"].value)
+                }`,
+                "HELIOXLITROSPORMINUTO": `${
+                  isNaN(parseInt(vnode.dom["inputLitroPorMinutoHeliox"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputLitroPorMinutoHeliox"].value)
+                }`,
+                "AIREAMBIENTEPORCENTAJE": `${
+                  isNaN(parseInt(vnode.dom["inputPorcentajeAireAmbiente"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputPorcentajeAireAmbiente"].value)
+                }`,
                 // "SATURACION(O2%)": null,
                 // "VENTILACIONMECANICA": null,
                 // "VENTILACIONNOINVASIVA": null,
