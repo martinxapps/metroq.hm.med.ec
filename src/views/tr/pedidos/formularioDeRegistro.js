@@ -6,6 +6,13 @@ import { urlTerapiaRespiratoria } from "./constants";
 let isNebulizacionSelected = false;
 let isUltrasonidoSelected = false;
 let isInhaladorDosisMedidaSelected = false;
+// Higiene Bronco Pulmonar
+let isDrenajePosturalSelected = false;
+let isPercusionesSelected = false;
+let isVibracionesSelected = false;
+let isTosEfectivaSelected = false;
+let isAsistenteDeTosSelected = false;
+let isChalecoVibroprecutor = false;
 const Button = {
   estado: "",
   obtenerEstado: function (number) {
@@ -1279,6 +1286,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "${inputDrenajePostural}",
                   id: "inputDrenajePostural",
+                  onclick: function (event){
+                    isDrenajePosturalSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1296,6 +1306,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "${inputPercursiones}",
                   id: "inputPercursiones",
+                  onclick: function (event){
+                    isPercusionesSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1313,6 +1326,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "${inputVibraciones}",
                   id: "inputVibraciones",
+                  onclick: function (event){
+                    isVibracionesSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1330,6 +1346,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "${inputTosEfectiva}",
                   id: "inputTosEfectiva",
+                  onclick: function (event){
+                    isTosEfectivaSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1347,6 +1366,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "${inputAsistenteTos}",
                   id: "inputAsistenteTos",
+                  onclick: function (event){
+                    isAsistenteDeTosSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1364,6 +1386,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "${inputChalecoVibroprecutor}",
                   id: "inputChalecoVibroprecutor",
+                  onclick: function (event){
+                    isChalecoVibroprecutor = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2524,12 +2549,12 @@ const FormularioDeRegistro = {
                 "NEBULIZACION": isNebulizacionSelected ? "'true'" : "'false'",
                 "ULTRASONIDO": isUltrasonidoSelected ? "'true'" : "'false'",
                 "INHALADORESDOSISMEDIDA": isInhaladorDosisMedidaSelected ? "'true'" : "'false'",
-                // "DRENAJEPOSTURAL": null,
-                // "PERCUSIONES": null,
-                // "VIBRACIONES": null,
-                // "TOSEFECTIVA": null,
-                // "ASISTENCIADETOS": null,
-                // "CHALECOVIBROPRECUTOR": null,
+                "DRENAJEPOSTURAL": isDrenajePosturalSelected ? "'true'" : "'false'",
+                "PERCUSIONES": isPercusionesSelected ? "'true'" : "'false'",
+                "VIBRACIONES": isVibracionesSelected ? "'true'" : "'false'",
+                "TOSEFECTIVA": isTosEfectivaSelected ? "'true'" : "'false'",
+                "ASISTENCIADETOS": isAsistenteDeTosSelected ? "'true'" : "'false'",
+                "CHALECOVIBROPRECUTOR": isChalecoVibroprecutor ? "'true'" : "'false'",
                 // "NASOTRAQUEAL": null,
                 // "TRAQUEAL": null,
                 // "OROTRAQUEAL": null,
