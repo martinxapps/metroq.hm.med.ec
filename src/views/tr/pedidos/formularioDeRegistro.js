@@ -13,6 +13,12 @@ let isVibracionesSelected = false;
 let isTosEfectivaSelected = false;
 let isAsistenteDeTosSelected = false;
 let isChalecoVibroprecutor = false;
+// Terapia Expansiva
+let isIncentivoRespiratorioSelected = false;
+let isPresionPositivaContinuaEnLaViaAereaSelected = false;
+let isPresionPositivaAlFinalDeLaExpiracionSelected = false;
+let isKinesioterapiaSelected = false;
+let isEjerciciosRespiratorioSelected = false;
 const Button = {
   estado: "",
   obtenerEstado: function (number) {
@@ -1415,6 +1421,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputIncentivoRespiratorio",
+                  onclick: function (event){
+                    isIncentivoRespiratorioSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1432,6 +1441,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputPresionPositivaContinuaEnLaViaAeria",
+                  onclick: function (event){
+                    isPresionPositivaContinuaEnLaViaAereaSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1449,6 +1461,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputPresionPositivaAlFinalDeLaExpiracion",
+                  onclick: function (event){
+                    isPresionPositivaAlFinalDeLaExpiracionSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1466,6 +1481,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputKinesioterapiaDelTorax",
+                  onclick: function (event){
+                    isKinesioterapiaSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1483,6 +1501,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputEjerciciosRespiratorios",
+                  onclick: function (event){
+                    isEjerciciosRespiratorioSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2581,11 +2602,11 @@ const FormularioDeRegistro = {
                 // "DOLORTORACICO": null,
                 // "HEMOPTISIS": null,
                 // "FIEBRE": null,
-                // "INCENTIVORESPIRATORIO": null,
-                // "PRESIONPOSITIVAVIAAREA": null,
-                // "PRESIONPOSITIVAEXPIRACION": null,
-                // "KINISIOTERAPIADELTORAX": null,
-                // "EJERCICIOSRESPIRATORIOS": null,
+                "INCENTIVORESPIRATORIO": isIncentivoRespiratorioSelected ? "'true'" : "'false'",
+                "PRESIONPOSITIVAVIAAREA": isPresionPositivaContinuaEnLaViaAereaSelected ? "'true'" : "'false'",
+                "PRESIONPOSITIVAEXPIRACION": isPresionPositivaAlFinalDeLaExpiracionSelected ? "'true'" : "'false'",
+                "KINISIOTERAPIADELTORAX": isKinesioterapiaSelected ? "'true'" : "'false'",
+                "EJERCICIOSRESPIRATORIOS": isEjerciciosRespiratorioSelected ? "'true'" : "'false'",
                 // "MILILITROSPORSEGUNDOINCENTIVO": null,
                 // "CENTIMETROSSEGUNDOINCENTIVO": null,
                 "FRACCIONOXIGENOPORCENTAJE": `${
