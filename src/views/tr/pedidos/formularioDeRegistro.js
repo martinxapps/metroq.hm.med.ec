@@ -19,6 +19,9 @@ let isPresionPositivaContinuaEnLaViaAereaSelected = false;
 let isPresionPositivaAlFinalDeLaExpiracionSelected = false;
 let isKinesioterapiaSelected = false;
 let isEjerciciosRespiratorioSelected = false;
+// Monitoreo
+let isVentilacionMecanicaSelected = false;
+let isVentilacionNoInvasivaSelected = false;
 const Button = {
   estado: "",
   obtenerEstado: function (number) {
@@ -1532,7 +1535,7 @@ const FormularioDeRegistro = {
                   class: "form-control",
                   type: "text",
                   id: "inputMililitrosPorSegundo",
-                  value: "${inputMililitrosPorSegundo}",
+                  
                 }),
               ])
             ),
@@ -1549,7 +1552,6 @@ const FormularioDeRegistro = {
                   class: "form-control",
                   type: "text",
                   id: "inputCentimetrosCubicosPorSegundo",
-                  value: "${inputCentimetrosCubicosPorSegundo}",
                 }),
               ])
             ),
@@ -1862,6 +1864,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputVentilacionMecanica",
+                  onclick: function (event){
+                    isVentilacionMecanicaSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -1879,6 +1884,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputVentilacionNoInvasiva",
+                  onclick: function (event){
+                    isVentilacionNoInvasivaSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2607,8 +2615,16 @@ const FormularioDeRegistro = {
                 "PRESIONPOSITIVAEXPIRACION": isPresionPositivaAlFinalDeLaExpiracionSelected ? "'true'" : "'false'",
                 "KINISIOTERAPIADELTORAX": isKinesioterapiaSelected ? "'true'" : "'false'",
                 "EJERCICIOSRESPIRATORIOS": isEjerciciosRespiratorioSelected ? "'true'" : "'false'",
-                // "MILILITROSPORSEGUNDOINCENTIVO": null,
-                // "CENTIMETROSSEGUNDOINCENTIVO": null,
+                "MILILITROSPORSEGUNDOINCENTIVO": `${
+                  isNaN(parseInt(vnode.dom["inputMililitrosPorSegundo"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputMililitrosPorSegundo"].value)
+                }`,
+                "CENTIMETROSSEGUNDOINCENTIVO": `${
+                  isNaN(parseInt(vnode.dom["inputCentimetrosCubicosPorSegundo"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputCentimetrosCubicosPorSegundo"].value)
+                }`,
                 "FRACCIONOXIGENOPORCENTAJE": `${
                   isNaN(parseInt(vnode.dom["inputPorcentajeFraccion"].value))
                     ? 0
@@ -2685,8 +2701,8 @@ const FormularioDeRegistro = {
                     : parseInt(vnode.dom["inputPorcentajeAireAmbiente"].value)
                 }`,
                 // "SATURACION(O2%)": null,
-                // "VENTILACIONMECANICA": null,
-                // "VENTILACIONNOINVASIVA": null,
+                "VENTILACIONMECANICA": isVentilacionMecanicaSelected ? "'true'" : "'false'",
+                "VENTILACIONNOINVASIVA": isVentilacionNoInvasivaSelected ? "'true'" : "'false'",
                 // "SATURACIONPREVIA": null,
                 // "SATURACIONPOSTERIOR": null,
                 // "FRECUENCIACARDIACAPREVIA": null,
