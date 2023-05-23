@@ -2,6 +2,7 @@ import m from "mithril";
 import Pedido from "./pedido";
 import Encrypt from "../../../models/encrypt";
 import { urlTerapiaRespiratoria } from "./constants";
+import Button from "./botonEstado";
 
 let isNebulizacionSelected = false;
 let isUltrasonidoSelected = false;
@@ -22,7 +23,52 @@ let isEjerciciosRespiratorioSelected = false;
 // Monitoreo
 let isVentilacionMecanicaSelected = false;
 let isVentilacionNoInvasivaSelected = false;
-const Button = {
+
+// Succión
+let isNasotraquealSelected = false;
+let isTraquealSelected = false;
+let isOroTraquealSelected = false;
+let isLavadoNasalSelected = false;
+let isSubGloticoSelected = false;
+
+
+// Muestras
+let isEsputoSelected = false;
+let isHisopadoSelected = false;
+let isSecrecionTraquealSelected = false;
+
+//Observación Clínica
+let isDisneaSelected = false;
+let isTosSelected = false;
+let isExpectoracionSelected = false;
+let isDolorToracicoSelected = false;
+let isHemoptisisSelected = false;
+let isFiebreSelected = false;
+
+// Signos
+let isConscienciaSelected = false;
+let isIntubadoSelected = false;
+let isEstridorSelected = false;
+let isSibilanciasSelected = false;
+let isRoncusSelected = false;
+let isCrepitantesSelected = false;
+let isLocalizacionSelected = false;
+let isCianosisSelected = false;
+let isRuidoRespiratorioSelected = false;
+let isDisminuidoSelected = false;
+let isAbolidoSelected = false;
+let isSonidoDeLaVozSelected = false;
+let isEdemaSelected = false;
+
+const botonFinalizarTurno = {
+  view: function() {
+    return m("button", {"class":"btn btn-danger","type":"button", onclick: methodPutButton,}, 
+    "Finalizar Documento"
+  )
+  }
+};
+
+/* const Button = {
   estado: "",
   obtenerEstado: function (number) {
     m.request({
@@ -57,17 +103,17 @@ const Button = {
       Button.estado.length === 0 ||
       Button.estado === ""
     ) {
-      buttonText = "Terminar Documento";
+      buttonText = "Iniciar Documento";
       buttonClass += " btn-primary";
     } else {
-      buttonText = "Documento Finalizado";
-      buttonClass += " btn-danger";
+      buttonText = "Documento Inicializado";
+      buttonClass += " btn-warning";
     }
 
     const cancelClick = function (e) {
       if (confirm("¿Estas seguro de finalizar el documento?")) {
-        methodPutButton();
-        Button.estado = "1";
+        methodPostButton();
+        //Button.estado = "1";
         buttonText = "Documento Finalizado";
         buttonClass = "btn btn-danger";
         e.target.textContent = buttonText;
@@ -98,7 +144,7 @@ const Button = {
 
     return m("main", [button]);
   },
-};
+}; */
 
 function date() {
   const fechaActual = new Date();
@@ -110,7 +156,7 @@ function date() {
   return fechaFormateada;
 }
 
-function methodPutButton() {
+function methodPostButton() {
   m.request({
     method: "POST",
     url: "http://api.hospitalmetropolitano.org/t/v1/nuevo-status-pedido-tr",
@@ -118,6 +164,32 @@ function methodPutButton() {
       CD_PRE_MED: Pedido.numeroPedido,
       FECHA: date(),
       ESTADO: 1,
+    },
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      Accept: "application/json",
+      Authorization: localStorage.accessToken,
+    },
+  })
+    .then(function (result) {
+      window.location.reload();
+      //console.log("Datos enviados con exito")
+    })
+    .catch(function (error) {
+      alert(
+        `Error al enviar los datos, intente de nuevo al recargar la página`
+      );
+    });
+}
+
+function methodPutButton() {
+  m.request({
+    method: "Put",
+    url: "http://api.hospitalmetropolitano.org/t/v1/nuevo-status-pedido-tr",
+    body: {
+      CD_PRE_MED: Pedido.numeroPedido,
+      FECHA: date(),
+      ESTADO: 0,
     },
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -370,12 +442,16 @@ const FormularioDeRegistro = {
         "inputSolucionSalina"
       ).value;
       const inputHipersal3 = document.getElementById("inputHipersal3").value;
-      const inputAdrenalinaRacénica = document.getElementById(
-        "inputAdrenalinaRacénica"
+      const inputAdrenalinaRacenica = document.getElementById(
+        "inputAdrenalinaRacenica"
       ).value;
       const inputOtros = document.getElementById("inputOtros").value;
       const inputNebulizacion =
         document.getElementById("inputNebulizacion").checked;
+      
+      const inputMililitrosPorSegundo = document.getElementById("inputMililitrosPorSegundo").value;
+      const inputCentimetrosCubicosPorSegundo = document.getElementById("inputCentimetrosCubicosPorSegundo").value;
+      
 
       const prescripcion = Pedido.examenes.map(
         ({ EXAMEN, FRECUENCIA }) => `
@@ -388,370 +464,7 @@ const FormularioDeRegistro = {
     `
       );
 
-      const printContent = `
-          <html>
-            <head>
-              <title>Print form</title>
-              <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-              <style type="text/css">
-    @media print {
-        body {
-            font-size: 0.75rem;
-            margin: 0.5rem;
-        }
-    }
-</style>
-
-            </head>
-            <body>
-              <fieldset>
-              <form class="mx-auto">
-              <div>
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAABPlBMVEX///8fm9v//v////3///v8//8LZ7L///kAl9bC3/L///j///b///T5//8AWazv+Pf/+/8AYbHv9foQZqsun9yevdkAlNYAmNUAltyWyulsuenK5PAtodcAktX6/f/b6/QWmdAAkM8hmd0Aj9wAld7j8fao2ekqpN9bsuQAjtby///3//es0+sAlc95vuQ8qeBrstxkt92Gwd+Jzuaiz+Tf7e6v3eS/4fAAkeY7qdPF5/BTqtZRpN2lzeqUzN5es+p1w+oQmcpatdByzONwuNiEvdYdl8hlrejW8/NXqtSa1ubH0tuDlbpUcadeicaMr887SHEAAVkAKGoAO3kATY4lbKYAAEcAFFcZgcACHl0GMHUWVpAAI1s4ga8AQYvU5et8iJSxxc6N1uO71/Igp8m97u9EqO/K4eVYm8je5vZ7CkflAAAL+klEQVR4nO2ZCXfjxpHHG+juaVw9hGgGAEWQAEGABw7eMkRyqBnK1Cw1SdaJY8e51tm1vYnn+3+BFKg57GQSWX5PT8pu/ea9EQQ1m/3vqq4DIARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARB/r9BCeedLONE0Ideyj3BKWOWECaT6kMv5Z7gjKb5dJZzK3vopdwTnMq5pkTOwrzVhoIBsCPE/mcOzUgiBZFCreaiQqiUdHSdP7D/q0lXAcIau22kXC7rlJ4tPybZB9dMGe33rqVgPBWk2juqCrXe/hEz3yuUlDEIjLoBv21o3RslxOifryj/sL25KMM9J/1GWWmyCWOgUPMfWCEnpVPZUAtu9aWaEh8I7ccrMPz7u/TdT8oJk0SQTW9d3ZBpSh+DQpXpWqXQCW5dR13pnVHa1zaciXwzGQcqk+Xs2XDbyS6eb56NEyFa06Z40RjNTkUw9JXVOBX19oMrFDcK27crrO1GiaCltyHmC2c3ibuJ9Y0WDxuX9ND1NspIWVtle0i+20WhLw7+J8tnvT2pPbwNxY+3YRTtPCcMJySIuyl55U3JXLsQwrYOzkTSK20qSndokeftFuUGFVa6m3Qej0IvEMffOZdEpRDmiar+XTypDbTJ9fMJKMy9MTMT5aXI20qzLtWgPUlZ0vZlqf2HyTZaCfG0NR5GsZ/W40eisNE+MCGqyo0y0YGoyCiljMB/lL8Nsh3FSQkp2xPS7C0oTxSn3sk3o93CBIUdNS38WhlPGRk6OrWWo9VFXxl0Hs05DJXr6XA43FxevToIE0z481/88pf/+WkpQfB7he2EcN0FG7Zn1DiLX0phZaXrJZUNrVYPbOgMQWGhU9X36iQtBvLRKIyiSAnDMOr1Ru40MX7+q19/9pvPPzo5+SLn70pysGGlUJuQM69YH06dK5roPCh6QdAdpMkknJu6Cwqfu/M12Xi5mbmPyIZgRO1Gpe8p/i9+++Vnf/jqq6cfPTk5+ZSwNxJTd3QgIh9NiPmq6PW8TUqvvHDkzXjgKN1RfJ1aunZNaN47fylbYXfUdvxaMvKTx6HwezTc3/3+93/6w1efPwFOPi/f2bD/qkZZsM0ZtYPFJ/2UqcF2ftVPKdjw1UKXnAaLkqgyn/clS8oc6NS3uW0/MoVh2FD++OWfPrtR+OTJf8k3ElWwppBMUBOK6yomcTiHUJCrJOhOOoQYlEMQpipnVSA24YIKbpjMko9EoeO8t+Lvfv3lF3/86gT0gaP++c1QqKxVlVHJVfgnDegyOGeqwalxGDVSaCNslnXgT3AbNqID2YaqHUHt7FF4qR9fns5On+9iiDZVhfPfXJD/eVqZ8KOT/O1QwzaICYaR0BgJ8X7dIhnOO9UOQMd0h282eOI3BqqsX3ycQWqS7H66rHdVWwLNH61dxkoDfnNTbnLy6dGIJz97M7SzaDb7oIIbbNtsbr83CVhXMlDcYbc2KN/7ZlAYugNOV+fxEup2y7wfb36rUAs4B7dKtaPCsMYFZ399+gOFSeFoLyFBSnEoXHcCe/5WD3zOMpP+tW7eUaHiKSq5dLugsNaf5bd/6CfwNh9qUFRXVczYPR7EGjTqLPmhwpYWN5SAGdxsehEMgZ6fqqCTmsK2ORs7Tg5BhR/LvapQqICSSK2OLYGWUpWqCvHWhhtc2irsYeIqPsmS5jZVyUVPa5LjLlczwBW1ZXVlH+eBxozzfywk76awOgWUNLUbhdxURf2HCvMCytclEVRMI8XVzlhmS1PAgijNVMbGrveNRVSrOk6wWaCSwhaAfeGeCReUQbdlw9Itk6hww2agMGqoMMqArV16xRY+ZRrVRlNmmDxjVelI4FxAhIYtgkqSMIvxOzrzj1UIm9eMlY1yzSmD47OK2n8GXUL2x5tpMzFZshy67hTOaVouxsPhHuLRej8czgMCzUeSz6fD6WLN1Q7lrJbvV7McXOCokNCyuQjsi5kWTRd9yvQXk0HhTpapydT1q/kM5lhDaKOCredwXUJG+okKg3+pUIWsfRUXW09JuOg7xdeR9g3JRLLRXMdxwz4JRpGy07wZmbc9YM/kuBtpXlxcQDr1NU+Bm85edqh58LU4jrVdII4KKdtHo7IeamEvjKG5nnue67paPBV0PdLgU67S3afg7UvN9TytOwYH/ykK3/SHlDWdD9uQdqxhHNbdXq6ysTfUXadpGfZlHI7Lpn9eBLXLv4Bl9xdkrA02V/u12iwif76H5a0ZmYTx/uurEAZTlg1expvFZez5wjh6KTsNHT0dbyJlM7uS5npfJq91X+ke2NqL/f185kXt3LJLJ9YW828Vt3nHrPJjFYqONYgmZOLtKd/FTYgRY9Poe8qSmER3wzmjYw0WAgFH6+UQ+WuOUpxZZl/zriUdhE5LJevQ2yWk70XTzLKnrrtlQaVQnIY93TK31Q3VzqBzppa11ZyctSqfsEjTDaeZvYp3pbBa4CnJnQTeQWHWDp8TWEet5WqBaLtDLvbe7mCkMtG0Z9wYx2HOpDF2wr4ETy7cPemoMnThhA9CsCQjM0fJycb1Woa0/lcL/0KD8Eahp0uSuxBLZZYJXm/1l1PNqxRGl6qk63PvlL124xVNMzZz3fKeFKpJOxwz6JX+2uytOsQLJx3aUEI3Ltyw5/oZeQHbbkrzhaflVFpNz7uwuCGGoabTieK1oKjdhr25GITKgTOWRLuembxRGOmMLXteEyq/rL6P222nUJyctrTeEDamFe9OjdLTTqsM1Azj7S2SPqzwbaT5ZwqhkCmL3gURq6L5TBsLslHcmpgoSvOGpYTT6eSQRMeaU0ICuHK0rbAlmUWaziaK04I5lm13TAbOIIEkkLg7jyTKjcJYh2wRgw2hRds42mypzyO3UugMDVVAj31q6OH5FbiEuii85j0ppH0tfkXEwvMVrxRkpnQTMYxHGRMCcpgQ9K1CxdFhdNMLm6qw1BW4NKkU0ozOi2hBnilKAMXFwQkbJIBv+juFZezMiWn2vaPCaGiQo0Kma/EMEip74Xh3LH3eKTx7o/Cm06gUsu8rpORCGZWEBbESRjXG5lFbN+au0ycSSg8CfjcH9xTkRqFq6l1lRUyrHrrQ44PCNaUphNS1CaduCwdiGbunLHH/wYbL87CECfO3Cs0bhSLthmEKhd7EddZ361VU1oqhQlHcpCoppbrUoLeI/JQwKEaOzcWxt4Cuaeb1DkymqygcQtFxEXp9K3h5vitrrJPkqUEXnrspW9YL1+tTW3T82F3K2t6L94SuIq/sJHs39lO2hqTRyl77SlFmie/6hM0cF7rsZU95VrZYGZ2vEpm90uA06148o2ACR5lRNms7ezttOtEqvWO2YNJ3B4qzOb4/5PRQKI2Gc3Xzx+9OTp6cfFFVO6okq6pQU+n43Ombkuk994LaX4dx7PuRo7WoUflCMaPzMMwJFKLlt9H5AGLQLoF86EbFQOvFOx0mHbfjONp5I1h1EsU+JZeOBzYMujulO2H2TIudxqQRgTPqbjQTGS0dd2/SYOWNwrCrhOs76SNVubd+VoSz16xSaGei9IviRXrzgC377unTL8pjoZmRsBclEObLdnFQVWvd7U2pzXNfg8LFCbdqZn/SdZw92fd6WwLxgX7ju047vA4sgzRCpdsudquWtKFw++RlEcbFVWrxQ+G8pPTyvP0xU8WiGxdDZqRNv6pktG5T6CPn2+p1z6g347Z4PdnFXuG3WHaHBgYQtqBmUueWbZLquEF9m9RMxo6PLiSvJdKs3B6i2CE5gx6f24eACWl0krMkswmrrfO8DDoWgxGJ3qqph7NDJrLqRZRs5XkAZbWkE1crW3qSQbsAx1at6dsyIVC4Z8nhQGHiQ13NMiMp1wdT2laaJcCh3pHB2QH2vAYDpCoEb/XzlrSyh34f+SEg0gQPvYb75SYf/l9morXvGh/+zZitVoeHXsP9Uj1Ffeg13C9S3uUh3L8j6gM/2L9/+PuXkAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCID/kb5RtYRiE55+cAAAAAElFTkSuQmCC" class="img-fluid w-200" alt="...">
-              </div>
-              <!-- Primera Fila -->
-        <div class="row">
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputPeso" class="form-label"
-                ><b>Número de Pedido</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputNumeroPedido"
-                value="${inputNumeroPedido}"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputEscalaDolor" class="form-label"
-                ><b>Fecha</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputFechaPedido"
-                value="${inputFechaPedido}"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputUsuario" class="form-label"><b>Origen</b></label>
-              <input
-                type="text"
-                class="form-control"
-                id="inputOrigenPedido"
-                value="${inputOrigenPedido}"
-              />
-            </div>
-          </div>
-        </div>
-        <!-- Segunda Fila -->
-        <div class="row">
-            <div class="col">
-              <div class="mb-4">
-                <label for="inputPeso" class="form-label"
-                  ><b>Medico Solicitante</b></label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputMedicoSolicitante"
-                  value="${inputMedicoSolicitante}"
-                />
-              </div>
-            </div>
-            <div class="col">
-              <div class="mb-4">
-                <label for="inputEscalaDolor" class="form-label"
-                  ><b>Especialidad</b></label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputEspecialidad"
-                  value="${inputEspecialidad}"
-                />
-              </div>
-            </div>
-            <div class="col">
-              <div class="mb-4">
-                <label for="inputUsuario" class="form-label"><b>Apellidos y Nombres del Paciente</b></label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputApellidosYNombres"
-                  value="${inputApellidosYNombres}"
-                />
-              </div>
-            </div>
-        </div>
-        <!-- Tercera Fila -->
-        <div class="row">
-            <div class="col">
-              <div class="mb-4">
-                <label for="inputPeso" class="form-label"
-                  ><b>NHC</b></label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputNHC"
-                  value="${inputNHC}"
-                />
-              </div>
-            </div>
-            <div class="col">
-              <div class="mb-4">
-                <label for="inputEscalaDolor" class="form-label"
-                  ><b>Número de Atención</b></label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputNumeroAtencion"
-                  value="${inputNumeroAtencion}"
-                />
-              </div>
-            </div>
-            <div class="col">
-              <div class="mb-4">
-                <label for="inputUsuario" class="form-label"><b>Ubicación</b></label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputUbicacion"
-                  value="${inputUbicacion}"
-                />
-              </div>
-            </div>
-        </div>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-6">
-                        <label for="inputEscalaDolor" class="form-label"><b>Escala del Dolor</b></label>
-                        <input type="text" class="form-control" id="inputEscalaDolor" value="${inputEscalaDelDolor}">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-2">
-                        <label for="inputPeso" class="form-label"><b>Peso</b></label>
-                        <input type="text" class="form-control" id="inputPeso" value="${inputPeso}" />
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-6">
-                        <label for="inputUsuario" class="form-label"><b>Usuario</b></label>
-                        <input type="text" class="form-control" id="inputUsuario" value="${inputUsuario}">
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                
-                
-                
-            </div>
-
-            <!-- Prescripción -->
-            <label for="inputPrescripcion" class="form-label"><b>Prescripción</b></label>
-            ${prescripcion}
-            <br>
-            <!-- Código -->
-            <div class="row">
-                <div class="col">
-                    <div class="mb-4">
-                        <label for="inputCod" class="form-label"><b>Código</b></label>
-                        <input type="text" class="form-control" id="inputCod" value="${inputCodigo}">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-4">
-                        <label for="inputFecha" class="form-label"><b>Fecha</b></label>
-                        <input type="text" class="form-control" id="inputFecha" value="${inputFecha}">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-4">
-                        <label for="inputHora" class="form-label"><b>Hora</b></label>
-                        <input type="text" class="form-control" id="inputHora" value="${inputHora}">
-                    </div>
-                </div>
-            </div>
-            <!-- Primera Fila -->
-        <h1>Medicinas</h1>
-        <div class="row">
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputPeso" class="form-label"
-                ><b>Salbutamol</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputSalbumatol"
-                value="${inputSalbumatol}"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputEscalaDolor" class="form-label"
-                ><b>Hipersal (7%)</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputHipersal"
-                value="${inputHipersal}"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputUsuario" class="form-label"
-                ><b>Bromuro de Ipatropio</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputBromuroIpatropio"
-                value="${inputBromuroIpatropio}"
-              />
-            </div>
-          </div>
-        </div>
-        <!-- Segunda Fila -->
-        <div class="row">
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputPeso" class="form-label"
-                ><b>Dexametasona</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputDexametasona"
-                value="${inputDexametasona}"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputEscalaDolor" class="form-label"
-                ><b>Clorhidrato de Ambroxol</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputClorhidratoAmbroxol"
-                value="${inputClorhidratoAmbroxol}"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputUsuario" class="form-label"
-                ><b>Solución Salina (0,9%)</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputSolucionSalina"
-                value="${inputSolucionSalina}"
-              />
-            </div>
-          </div>
-        </div>
-        <!-- Tercera Fila -->
-        <div class="row">
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputPeso" class="form-label"
-                ><b>Hipersal (3,5%)</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputHipersal3"
-                value="${inputHipersal3}"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputEscalaDolor" class="form-label"
-                ><b>Adrenalina Racénica</b></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="inputAdrenalinaRacénica"
-                value="${inputAdrenalinaRacénica}"
-              />
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-4">
-              <label for="inputUsuario" class="form-label"><b>Otros</b></label>
-              <input
-                type="text"
-                class="form-control"
-                id="inputOtros"
-                value="${inputOtros}"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- Medicinas -->
-        <h1>Terapia Aerosol</h1>
-        <div class="row d-flex justify-content-center">
-          <div class="col text-center">
-            <div class="mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=${inputNebulizacion}
-                id="inputNebulizacion"
-              />
-              <label for="inputPeso" class="form-label">Nebulización</label>
-            </div>
-          </div>
-          <div class="col text-center">
-            <div class="mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="inputUltrasonido"
-              />
-              <label for="inputPeso" class="form-label">Ultrasonido</label>
-            </div>
-          </div>
-          <div class="col text-center">
-            <div class="mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="inputInahaladorDosis"
-              />
-              <label for="inputPeso" class="form-label"
-                >Inhaladores Dosis Medida</label
-              >
-            </div>
-          </div>
-        </div>
-        </form>
-              </fieldset>
-              <script>window.print();</script>
-            </body>
-          </html>
-        `;
+      
 
       printWindow.document.write(printContent);
       printWindow.document.close();
@@ -777,6 +490,9 @@ const FormularioDeRegistro = {
           m.trust("&nbsp;"),
           " ",
           m(Button, { pedido: Pedido.numeroPedido }),
+          // (Button.estado == 0) ? m(botonFinalizarTurno, { pedido: Pedido.numeroPedido }) : m(Button, { pedido: Pedido.numeroPedido }),
+          // m(botonFinalizarTurno),
+          m(botonFinalizarTurno, { pedido: Pedido.numeroPedido }),
         ]),
 
         m("div", { class: "row" }, [
@@ -1533,7 +1249,7 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputMililitrosPorSegundo",
                   
                 }),
@@ -1550,7 +1266,7 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputCentimetrosCubicosPorSegundo",
                 }),
               ])
@@ -1908,9 +1624,8 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputSaturacionPreviaPorcentaje",
-                  value: "${inputSaturacionPreviaPorcentaje}",
                 }),
               ])
             ),
@@ -1925,9 +1640,8 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputSaturacionPosteriorPorcentaje",
-                  value: "${inputSaturacionPosteriorPorcentaje}",
                 }),
               ])
             ),
@@ -1946,9 +1660,9 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputFrecuenciaCardiacaPreviaPorMinuto",
-                  value: "${inputFrecuenciaCardiacaPreviaPorMinuto}",
+                  
                 }),
               ])
             ),
@@ -1963,9 +1677,8 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
-                  value: "${inputFrecuenciaCardiacaPosteriorPorMinuto}",
                 }),
               ])
             ),
@@ -1983,9 +1696,8 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
-                  value: "${inputFrecuenciaRespiratoriaPreviaPorMinuto}",
                 }),
               ])
             ),
@@ -2000,9 +1712,8 @@ const FormularioDeRegistro = {
                 ),
                 m("input", {
                   class: "form-control",
-                  type: "text",
+                  type: "number",
                   id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
-                  value: "${inputFrecuenciaRespiratoriaPosteriorPorMinuto}",
                 }),
               ])
             ),
@@ -2026,6 +1737,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputNasotraqueal",
+                  onclick: function (event){
+                    isNasotraquealSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2043,6 +1757,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputTraqueal",
+                  onclick: (event) => {
+                    isTraquealSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2060,6 +1777,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputOrotraqueal",
+                  onclick: (event) => {
+                    isOroTraquealSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2077,6 +1797,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputLavadoNasal",
+                  onclick: (event) => {
+                    isLavadoNasalSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2094,6 +1817,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputSubglotica",
+                  onclick: (event) => {
+                    isSubGloticoSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2122,6 +1848,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputEsputo",
+                  onclick: (event) => {
+                    isEsputoSelected = event.target.checked
+                  }
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Esputo"),
               ])
@@ -2135,6 +1864,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputHisopado",
+                  onclick: (event) => {
+                    isHisopadoSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2152,6 +1884,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputSecrecionTraqueal",
+                  onclick: (event) => {
+                    isSecrecionTraquealSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2179,6 +1914,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputDisnea",
+                  onclick: (event) => {
+                    isDisneaSelected = event.target.checked;
+                  }
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Disnea"),
               ])
@@ -2192,6 +1930,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputTos",
+                  onclick: (event) => {
+                    isTosSelected = event.target.checked;
+                  }
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Tos"),
               ])
@@ -2205,6 +1946,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputExpectoacion",
+                  onclick: (event) => {
+                    isExpectoracionSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2222,6 +1966,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputDolorToracico",
+                  onclick: (event) => {
+                    isDolorToracicoSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2239,6 +1986,10 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputHemoptisis",
+                  onclick: (event) => {
+                    isHemoptisisSelected = event.target.checked;
+                  }
+
                 }),
                 m(
                   "label",
@@ -2256,6 +2007,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputFiebre",
+                  onclick: (event) => {
+                    isFiebreSelected = event.target.checked;
+                  }
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Fiebre"),
               ])
@@ -2272,6 +2026,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputConsciencia",
+                  onclick: (event) => {
+                    isConscienciaSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2289,6 +2046,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputIntubado",
+                  onclick: (event) => {
+                    isIntubadoSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2306,6 +2066,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputEstridor",
+                  onclick: (event) => {
+                    isEstridorSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2323,6 +2086,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputSibilancias",
+                  onclick: (event) => {
+                    isSibilanciasSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2340,6 +2106,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputRoncus",
+                  onclick: (event) => {
+                    isRoncusSelected = event.target.checked;
+                  }
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Roncus"),
               ])
@@ -2353,6 +2122,10 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputCrepitantes",
+                  onclick: (event) => {
+                    isCrepitantesSelected = event.target.checked;
+                  }
+
                 }),
                 m(
                   "label",
@@ -2370,6 +2143,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputLocalizacion",
+                  onclick: (event) => {
+                    isLocalizacionSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2389,6 +2165,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputCianosis",
+                  onclick: (event) => {
+                    isCianosisSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2406,6 +2185,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputRuidoRespiratorio",
+                  onclick: (event) => {
+                    isRuidoRespiratorioSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2423,6 +2205,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputDisminuido",
+                  onclick: (event) => {
+                    isDisminuidoSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2440,6 +2225,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputAbolido",
+                  onclick: (event) => {
+                    isAbolidoSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2457,6 +2245,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputSonidoDeLaVoz",
+                  onclick: (event) => {
+                    isSonidoDeLaVozSelected = event.target.checked;
+                  }
                 }),
                 m(
                   "label",
@@ -2474,6 +2265,9 @@ const FormularioDeRegistro = {
                   type: "checkbox",
                   value: "",
                   id: "inputEdema",
+                  onclick: (event) => {
+                    isEdemaSelected = event.target.checked;
+                  }
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Edema"),
               ])
@@ -2482,19 +2276,15 @@ const FormularioDeRegistro = {
         ],
         [
           m(
-            "div",
-            { class: "d-flex justify-content-center" },
-            m("h6", "Criterio")
+            "label",
+            { class: "form-label", for: "textAreaObservacionClinica" },
+            "Criterio"
           ),
-          m(
-            "div",
-            { class: "form-floating" },
-            m("textarea", {
-              class: "form-control",
-              id: "floatingTextarea2",
-              style: { height: "100px" },
-            })
-          ),
+          m("textarea", {
+            class: "form-control",
+            id: "textareaCriterio",
+            rows: "3",
+          }),
         ],
         m(
           "button",
@@ -2520,7 +2310,7 @@ const FormularioDeRegistro = {
               };
               const formulario = {
                 NUMERODEPEDIDO: vnode.dom["inputNumeroPedido"].value,
-                /* "FECHAMV": `'${vnode.dom["inputFechaPedido"].value}'`,
+                "FECHAMV": `'${vnode.dom["inputFechaPedido"].value}'`,
                 "ORIGEN": `'${vnode.dom["inputOrigenPedido"].value}'`,
                 "MEDICOSOLICITANTE": `'${vnode.dom["inputMedicoSolicitante"].value}'`,
                 "ESPECIALIDAD": `'${vnode.dom["inputEspecialidad"].value}'`,
@@ -2530,13 +2320,13 @@ const FormularioDeRegistro = {
                 "UBICACION": `'${vnode.dom["inputUbicacion"].value}'`,
                 "ESCALADELDOLOR": `'${vnode.dom["inputEscalaDolor"].value}'`,
                 "PESO": vnode.dom["inputPeso"].value,
-                "Usuario": `'${vnode.dom["inputUsuario"].value}'`, */
+                "Usuario": `'${vnode.dom["inputUsuario"].value}'`,
                 // "PRESCRIPCION": null,
                 // Aqui abajo hay un problema
                 /* FECHAHOY: `'${vnode.dom["inputFecha"].value}'`, 
                 HORAANTES: `'${vnode.dom["inputHora"].value}'`, */
                 // "HORADESPUES": null,
-                /* SALBUTAMOLDOSIS: `${
+                SALBUTAMOLDOSIS: `${
                   isNaN(parseInt(vnode.dom["inputSalbumatol"].value))
                     ? 0
                     : parseInt(vnode.dom["inputSalbumatol"].value)
@@ -2574,7 +2364,7 @@ const FormularioDeRegistro = {
                   isNaN(parseInt(vnode.dom["inputOtros"].value))
                     ? 0
                     : parseInt(vnode.dom["inputOtros"].value)
-                }`, */
+                }`,
                 "NEBULIZACION": isNebulizacionSelected ? "'true'" : "'false'",
                 "ULTRASONIDO": isUltrasonidoSelected ? "'true'" : "'false'",
                 "INHALADORESDOSISMEDIDA": isInhaladorDosisMedidaSelected ? "'true'" : "'false'",
@@ -2584,32 +2374,33 @@ const FormularioDeRegistro = {
                 "TOSEFECTIVA": isTosEfectivaSelected ? "'true'" : "'false'",
                 "ASISTENCIADETOS": isAsistenteDeTosSelected ? "'true'" : "'false'",
                 "CHALECOVIBROPRECUTOR": isChalecoVibroprecutor ? "'true'" : "'false'",
-                // "NASOTRAQUEAL": null,
-                // "TRAQUEAL": null,
-                // "OROTRAQUEAL": null,
-                // "LAVADONASAL": null,
-                // "SUBGLOTICA": null,
-                // "ESPUTO": null,
-                // "ISOPADO": null,
-                // "SECRECIONTRAQUEAL": null,
-                // "CONSCIENCIA": null,
-                // "INTUBADO": null,
-                // "ESTRIDOR": null,
-                // "SIBILANCIAS": null,
-                // "RONCUS": null,
-                // "CREPITANTES": null,
-                // "LOCALIZACION": null,
-                // "CIANOSIS": null,
-                // "RUIDORESPIRATORIO": null,
-                // "DISMINUIDO": null,
-                // "ABOLIDO": null,
-                // "SONIDODELAVOZ": null,
-                // "EDEMA": null,
-                // "TOS": null,
-                // "EXPECTORACION": null,
-                // "DOLORTORACICO": null,
-                // "HEMOPTISIS": null,
-                // "FIEBRE": null,
+                "NASOTRAQUEAL": isNasotraquealSelected ? "'true'" : "'false'",
+                "TRAQUEAL": isTraquealSelected ? "'true'": "'false'",
+                "OROTRAQUEAL": isOroTraquealSelected ? "'true'" : "'false'",
+                "LAVADONASAL": isLavadoNasalSelected ? "'true'" : "'false'",
+                "SUBGLOTICA": isSubGloticoSelected ? "'true'" : "'false'",
+                "ESPUTO": isEsputoSelected ? "'true'" : "'false'",
+                "ISOPADO": isHisopadoSelected ? "'true'" : "'false'",
+                "SECRECIONTRAQUEAL": isSecrecionTraquealSelected ? "'true'" : "'false'",
+                "CONSCIENCIA": isConscienciaSelected ? "'true'" : "'false'",
+                "INTUBADO": isIntubadoSelected ? "'true'" : "'false'",
+                "ESTRIDOR": isEstridorSelected ? "'true'" : "'false'",
+                "SIBILANCIAS": isSibilanciasSelected  ? "'true'" : "'false'",
+                "RONCUS": isRoncusSelected ? "'true'" : "'false'",
+                "CREPITANTES": isCrepitantesSelected ? "'true'" : "'false'",
+                "LOCALIZACION": isLocalizacionSelected ? "'true'" : "'false'",
+                "CIANOSIS": isCianosisSelected ? "'true'" : "'false'",
+                "RUIDORESPIRATORIO": isRuidoRespiratorioSelected ? "'true'" : "'false'",
+                "DISMINUIDO": isDisminuidoSelected ? "'true'" : "'false'",
+                "ABOLIDO": isAbolidoSelected ? "'true'" : "'false'",
+                "SONIDODELAVOZ": isSonidoDeLaVozSelected ? "'true'" : "'false'",
+                "EDEMA": isEdemaSelected ? "'true'" : "'false'",
+                "DISNEA": isDisneaSelected ? "'true'" : "'false'",
+                "TOS": isTosSelected ? "'true'" : "'false'",
+                "EXPECTORACION": isExpectoracionSelected ? "'true'" : "'false'",
+                "DOLORTORACICO": isDolorToracicoSelected ? "'true'" : "'false'",
+                "HEMOPTISIS": isHemoptisisSelected ? "'true'" : "'false'",
+                "FIEBRE": isFiebreSelected ? "'true'" : "'false'",
                 "INCENTIVORESPIRATORIO": isIncentivoRespiratorioSelected ? "'true'" : "'false'",
                 "PRESIONPOSITIVAVIAAREA": isPresionPositivaContinuaEnLaViaAereaSelected ? "'true'" : "'false'",
                 "PRESIONPOSITIVAEXPIRACION": isPresionPositivaAlFinalDeLaExpiracionSelected ? "'true'" : "'false'",
@@ -2700,16 +2491,39 @@ const FormularioDeRegistro = {
                     ? 0
                     : parseInt(vnode.dom["inputPorcentajeAireAmbiente"].value)
                 }`,
-                // "SATURACION(O2%)": null,
                 "VENTILACIONMECANICA": isVentilacionMecanicaSelected ? "'true'" : "'false'",
                 "VENTILACIONNOINVASIVA": isVentilacionNoInvasivaSelected ? "'true'" : "'false'",
-                // "SATURACIONPREVIA": null,
-                // "SATURACIONPOSTERIOR": null,
-                // "FRECUENCIACARDIACAPREVIA": null,
-                // "FRECUENCIACARDIACAPOSTERIOR": null,
-                // "FRECUENCIARESPIRATORIAPREVIA": null,
-                // "FRECUENCIARESPIRATORIAPOS": null,
-                // "CRITERIO": null,
+                "SATURACIONPREVIA": `${
+                  isNaN(parseInt(vnode.dom["inputSaturacionPreviaPorcentaje"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputSaturacionPreviaPorcentaje"].value)
+                }`,
+                "SATURACIONPOSTERIOR": `${
+                  isNaN(parseInt(vnode.dom["inputSaturacionPosteriorPorcentaje"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputSaturacionPosteriorPorcentaje"].value)
+                }`,
+                "FRECUENCIACARDIACAPREVIA": `${
+                  isNaN(parseInt(vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value)
+                }`,
+                "FRECUENCIACARDIACAPOSTERIOR": `${
+                  isNaN(parseInt(vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"].value)
+                }`, 
+                 "FRECUENCIARESPIRATORIAPREVIA": `${
+                  isNaN(parseInt(vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"].value)
+                }`,
+                "FRECUENCIARESPIRATORIAPOS": `${
+                  isNaN(parseInt(vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"].value))
+                    ? 0
+                    : parseInt(vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"].value)
+                }`,
+                "CRITERIO": `'${vnode.dom["textareaCriterio"].value}'`,
                 ESTADO: 0, //"1",
                 ID: "sec_TerapiaRespiratoria.nextval",
               };
