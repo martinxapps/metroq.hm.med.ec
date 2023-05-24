@@ -1,4 +1,4 @@
-import muestraModel from '../../../models/muestraModel';
+import muestraModel from './models/muestraModel';
 import muestraValida from './muestraValida';
 
 let muestraModelo = muestraModel;
@@ -73,7 +73,9 @@ const editarMuestra = {
                                     }
                                     muestraModelo.actualizar(muestra);
                                     m.mount(document.querySelector("#gestion-muestras"), null);
-                                    m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
+                                    m.mount(document.querySelector("#cerrar-gestion-muestras"), null);                                    
+                                    muestraModelo.listado = [];
+                                    muestraModelo.loading = true;
                                 }
                             },
                             style: {'margin': '6px 0'}

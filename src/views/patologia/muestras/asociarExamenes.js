@@ -1,4 +1,4 @@
-import muestraModel from '../../../models/muestraModel';
+import muestraModel from './models/muestraModel';
 
 let muestraModelo = muestraModel;
 let muestra = null;
@@ -47,13 +47,17 @@ const asociarExamenes = {
                                                     tieneinforme:  0,
                                                 }                                                                                                    
                                                 muestraModelo.asociarExamen(examenAsociado);
+                                                muestraModelo.listado = [];
+                                                muestraModelo.loading = true;
                                             } else {
                                                 let idAsociacion = muestra.examenesAsociados.findIndex(function(asociacion) {
                                                     return asociacion.codigoexamenmv === examen.CD_TIP_PRESC
-                                                 });
+                                                });
                                                 if (idAsociacion >= 0) {
                                                     {
                                                         muestraModelo.eliminarExamenasociado(muestra.examenesAsociados[idAsociacion].id);
+                                                        muestraModelo.listado = [];
+                                                        muestraModelo.loading = true;
                                                     }
                                                 }
                                             }
