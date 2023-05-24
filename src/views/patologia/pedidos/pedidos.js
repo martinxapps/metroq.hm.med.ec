@@ -1,4 +1,4 @@
-import SidebarPato from '../sidebarPato';
+import SidebarPato from '../utils/sidebarPato';
 import Notificaciones from '../../../models/notificaciones';
 import BreadCrumb from '../../layout/breadcrumb';
 import Stopwatch from "../utils/Stopwatch"

@@ -11,6 +11,7 @@ import NotificacionesEnviadasLab from '../views/laboratorio/notificaciones/envia
 import LaboratorioPedidos from '../views/laboratorio/flebotomista/flebotomista'
 import LisaPedidosIngresados from '../views/lisa/pedidosIngresados'
 import LisaPedido from '../views/lisa/pedidoLisa'
+import LaboratorioFlebotomista from '../views/laboratorio/flebotomista/flebotomista'
 import LaboratorioFormularios from '../views/laboratorio/formularios/formularios'
 import MiPerfil from '../views/perfil/perfil';
 import _404 from '../views/404';
@@ -22,6 +23,7 @@ import VerPedidoAuxiliarEmergencia from '../views/emergencia/auxiliar/verPedido'
 import EmergenciaEnfermeriaPedidosLaboratorio from '../views/emergencia/enfermeria/pedidos'
 import VerPedidoEnfermeriaEmergencia from '../views/emergencia/enfermeria/verPedido'
 import Farmacia from '../views/farmacia//farmacia'
+import FarmaciaRecetasAlta from '../views/farmacia//recetas/recetasAlta'
 import Admisiones from '../views/admisiones/admisiones'
 import PreAdmisiones from '../views/admisiones/pacientes/preadmisiones'
 import Mantenimiento from '../views/mantenimiento/mantenimiento'
@@ -52,17 +54,11 @@ import PedidoPatologia from '../views/patologia/pedidos/pedido'
 import Etiquetas from '../views/admisiones/etiquetas/etiquetas'
 import Recetas from '../views/farmacia/recetas/recetas'
 import RecetaFarmacia from '../views/farmacia/recetas/receta'
-import EtiCajas from '../views/laboratorio/etiquetas/etiCajas'
-import Conta from '../views/conta/conta'
-import AgendaImagen from '../views/imagen/agenda/agenImagen'
-import TRoja from '../views/conta/procesos/troja'
-import NuevaTRoja from '../views/conta/procesos/nuevaTRoja'
-import NSSImagen from '../views/imagen/nss/nss'
-import HeaderCalendar from '../views/layout/header-calendar'
-import DetalleCita from '../views/imagen/agenda/detalleCita'
-import NuevaCita from '../views/imagen/agenda/nuevaCita'
-import AuthTR from '../views/conta/procesos/autorizacionesTR'
-
+import crearInforme from '../views/patologia/informes/crearInforme'
+import editarInforme from '../views/patologia/informes/editarInforme'
+import listadoFirmas from '../views/patologia/firmas/listadoFirmas'
+import listadoPlantillasDiagnostico from '../views/patologia/plantillaDiagnostico/listadoPlantillasDiagnostico'
+import listadoPlantillasMacroscopico from '../views/patologia/plantillaMacroscopico/listadoPlantillasMacroscopico'
 
 
 // Routes here
@@ -221,19 +217,6 @@ const Routes = {
             }
         }
     }, //PedidoFlebotomista
-    '/laboratorio/etiquetas': {
-        oninit: (_data) => {
-            App.isAuth('laboratorio', 28);
-            document.title = "Configuración de Etiquetas | " + App.title;
-        },
-        view: (_data) => {
-            return [
-                m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("laboratorio") }),
-                m(EtiCajas),
-            ];
-        },
-
-    },
     '/laboratorio/formularios': LaboratorioFormularios, //LaboratorioPedidos
     '/emergencia': Emergencia, //Emergencia
     '/emergencia/auxiliar/pedidos/laboratorio': EmergenciaAuxiliarPedidosLaboratorio, //EmergenciaAuxiliarPedidosLaboratorio
@@ -308,13 +291,7 @@ const Routes = {
             }
         }
     }, // RecetaFarmacia
-
-    '/contabilidad': Conta, //Conta
-    '/contabilidad/proceso/tarjeta-roja': TRoja, //TRoja
-    '/contabilidad/proceso/tarjeta-roja/nueva': NuevaTRoja, // TRPedido
-    '/contabilidad/proceso/tarjeta-roja/id': AuthTR, // Detalle Pedido
     '/admisiones': Admisiones, //Admisiones
-
     '/admisiones/pre': PreAdmisiones, //PreAdmisiones
     '/admisiones/etiquetas': {
         oninit: (_data) => {
@@ -528,105 +505,6 @@ const Routes = {
         }
     }, // TRPedido
     '/imagen': Imagen, // Imagen
-    '/imagen/agendamiento': {
-        oninit: (_data) => {
-            App.isAuth('imagen', 31);
-            document.title = "Agendamiento de Imagen | " + App.title;
-        },
-        onupdate: (_data) => {
-
-        },
-        view: (_data) => {
-            return [
-                m(HeaderCalendar, { oncreate: HeaderCalendar.setPage("imagen") }),
-                m(AgendaImagen),
-            ];
-        },
-    }, // AgendaImagen
-    '/imagen/agendamiento/cita': {
-        oninit: (_data) => {
-            App.isAuth('imagen', 31);
-            document.title = "Detalle de Cita | " + App.title;
-        },
-        view: (_data) => {
-            return [
-                m(HeaderCalendar, { oncreate: HeaderCalendar.setPage("imagen") }),
-                m(DetalleCita, { id: _data.attrs.id }),
-            ];
-        },
-    }, // AgendaImagen
-    '/imagen/agendamiento/nueva-cita': {
-        oninit: (_data) => {
-            App.isAuth('imagen', 31);
-            document.title = "Agendamiento de Imagen | " + App.title;
-        },
-        onupdate: (_data) => {
-
-        },
-        view: (_data) => {
-            return [
-                m(HeaderCalendar, { oncreate: HeaderCalendar.setPage("imagen") }),
-                m(NuevaCita),
-            ];
-        },
-    }, // AgendaImagen
-    '/imagen/notificaciones': {
-        oninit: (_data) => {
-            App.isAuth('imagen', 35);
-            document.title = "Notificaciones de Imagen | " + App.title;
-            if (_data.attrs.idFiltro == undefined && _data.attrs.fechaDesde == undefined) {
-                return m.route.set('/imagen/notificaciones/', { idFiltro: 1 })
-            }
-            NSSImagen.idFiltro = _data.attrs.idFiltro;
-        },
-        onupdate: (_data) => {
-
-            if (_data.attrs.idFiltro !== NSSImagen.idFiltro && NSSImagen.idFiltro !== 1 && NSSImagen.fechaDesde !== undefined) {
-                NSSImagen.idFiltro = _data.attrs.idFiltro;
-                NSSImagen.fechaDesde = _data.attrs.fechaDesde;
-                NSSImagen.fechaHasta = _data.attrs.fechaHasta;
-                NSSImagen.loader = true;
-                NSSImagen.pedidos = [];
-                NSSImagen.fetch();
-            } else {
-                if (_data.attrs.idFiltro == 1) {
-
-                    moment.lang("es", {
-                        months: "Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre".split(
-                            "_"
-                        ),
-                        monthsShort: "Enero._Feb._Mar_Abr._May_Jun_Jul._Ago_Sept._Oct._Nov._Dec.".split(
-                            "_"
-                        ),
-                        weekdays: "Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado".split(
-                            "_"
-                        ),
-                        weekdaysShort: "Dom._Lun._Mar._Mier._Jue._Vier._Sab.".split("_"),
-                        weekdaysMin: "Do_Lu_Ma_Mi_Ju_Vi_Sa".split("_"),
-                    });
-
-                    NSSImagen.idFiltro = _data.attrs.idFiltro;
-                    NSSImagen.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
-                    NSSImagen.fechaHasta = moment().format('DD-MM-YYYY');
-                    if (NSSImagen.pedidos.length == 0) {
-                        NSSImagen.loader = true;
-                        NSSImagen.pedidos = [];
-                        NSSImagen.fetch();
-                    } else {
-                        NSSImagen.loader = false;
-                    }
-                }
-            }
-
-
-        },
-        view: (_data) => {
-            return [
-                m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("imagen") }),
-                m(NSSImagen),
-            ];
-        },
-    }, // Notificaciones Imagen
     '/imagen/pedidos': {
         oninit: (_data) => {
             App.isAuth('laboratorio', 16);
@@ -837,6 +715,59 @@ const Routes = {
         },
 
     },
+    '/patologia/pedidos/nuevoinforme': {
+        view: (_data) => {
+            if (_data.attrs.numeroPedido !== undefined && _data.attrs.numeroAtencion !== undefined && _data.attrs.numeroHistoriaClinica !== undefined) {
+                return m(crearInforme, {
+                    "numeroPedido": _data.attrs.numeroPedido,
+                    "numeroAtencion": _data.attrs.numeroAtencion,
+                    "numeroHistoriaClinica": _data.attrs.numeroHistoriaClinica,
+                });
+            } else {
+                return m.route.SKIP;
+            }
+        }
+    }, 
+    '/patologia/pedidos/editarinforme': {
+        view: (_data) => {
+            return m(editarInforme, {
+                "informeId": _data.attrs.informeId,
+                "informeModelo": _data.attrs.informeId
+                
+            });
+            if (_data.attrs.informeId !== undefined) {
+                return m(editarInforme, {
+                    "informeId": _data.attrs.informeId
+                });
+            } else {
+                return m.route.SKIP;
+            }
+        }
+    }, 
+    '/patologia/gestionPlantillaMacroscopico': {
+        view: (_data) => {
+            return [
+                m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("patologia") }),
+                m(listadoPlantillasMacroscopico),
+            ];
+        },
+    },
+    '/patologia/gestionPlantillaDiagnostico': {
+        view: (_data) => {
+            return [
+                m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("patologia") }),
+                m(listadoPlantillasDiagnostico),
+            ];
+        },
+    },
+    '/patologia/gestionFirmas': {
+        view: (_data) => {
+            return [
+                m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("patologia") }),
+                m(listadoFirmas)
+            ];
+        },
+    },
     '/patologia/pedido/': {
         onmatch: (_data) => {
             if (_data.numeroPedido !== undefined) {
@@ -846,7 +777,7 @@ const Routes = {
                 return m.route.SKIP;
             }
         }
-    }, // EndoPedido
+    },  // EndoPedido
     '/auth': Login, // Login
     '/mi-perfil': MiPerfil, // MiPerfil
     '/salir': Salir, // Salir

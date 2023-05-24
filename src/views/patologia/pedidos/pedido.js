@@ -1,13 +1,13 @@
 import HeaderPrivate from '../../layout/header-private';
-import SidebarPato from '../sidebarPato';
+import SidebarPato from '../utils/sidebarPato';
 import App from '../../app';
 import m, { redraw } from 'mithril';
 import PedidoPatologias from './pedidos';
 import BreadCrumb from '../../layout/breadcrumb';
-import listadoMuestras from './listadoMuestras';
-import crearMuestra from './crearMuestra';
-import cerrarGestionMuestra from './cerrarGestionMuestra';
-import listadoInformes from './listadoInformes';
+import listadoMuestras from '../muestras/listadoMuestras';
+import crearMuestra from '../muestras/crearMuestra';
+import cerrarGestionMuestra from '../muestras/cerrarGestionMuestra';
+import listadoInformes from '../informes/listadoInformes';
 
 const FOR005 = {
     secs: [],
@@ -644,7 +644,7 @@ const PedidoPatologia = {
             m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("patologia") }),
             m(SidebarPato, { oncreate: SidebarPato.setPage(26) }),
             m("div.content.content-components",
-                m("div.container.mg-l-0.mg-r-0", {
+                m("div#gestionpatologia.container.mg-l-0.mg-r-0", {
                     style: { "max-width": "100%" }
                 }, [
                     m(BreadCrumb, [{path: "/", label: "metroplus"}, 
@@ -926,8 +926,7 @@ const PedidoPatologia = {
                                                     ),
                                                 ]),
                                                 m("tr.d-print-none", [
-                                                    m("td[colspan='9']", {
-                                                        },
+                                                    m("td[colspan='9']", {style: {'padding': '0'}},
                                                         m(".tab-content.bd.bd-gray-300.bd-t-0[id='myTab']", [
                                                             m(".tab-pane.fade[id='home'][role='tabpanel'][aria-labelledby='home-tab']", [
                                                                 m(Evoluciones),
