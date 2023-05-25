@@ -301,8 +301,11 @@ const FormularioDeRegistro = {
     const dia = fechaActual.getDate();
     const mes = fechaActual.getMonth() + 1;
     const anio = fechaActual.getFullYear();
+    const hora = fechaActual.getHours();
+    const minutos = fechaActual.getMinutes();
+    const segundos = fechaActual.getSeconds();
 
-    const fechaFormateada = `${dia}/${mes}/${anio}`;
+    const fechaFormateada = `${dia}-${mes}-${anio} ${hora}:${minutos}:${segundos}`;
     FormularioDeRegistro.fechaActual = fechaFormateada;
     //console.log(FormularioDeRegistro.fechaActual);
   },
@@ -315,7 +318,15 @@ const FormularioDeRegistro = {
 
     const horaFormateada = `${hora}:${minutos}:${segundos}`;
     FormularioDeRegistro.horaActual = horaFormateada;
+    return horaFormateada;
     //console.log(FormularioDeRegistro.horaActual);
+  },
+
+  ExamenYFrecuencia: function () {
+    const examenes = Pedido.examenes.map(({Examen, Frecuencia}) => {
+      return `${Examen} ${Frecuencia}`;
+    });
+    return examenes;
   },
 
   cargarPrescripcion: function (numeroDeAtendimiento) {
@@ -386,6 +397,15 @@ const FormularioDeRegistro = {
         alert(FormularioDeRegistro.errorGuardar);
         console.log(error);
       });
+  },
+  handleCheckboxClick: (value) => {
+    if (selectedValues.includes(value)) {
+      // Si el valor ya está en el array, lo removemos
+      selectedValues = selectedValues.filter((val) => val !== value);
+    } else {
+      // Si el valor no está en el array, lo agregamos
+      selectedValues.push(value);
+    }
   },
 
   oninit: (_data) => {
@@ -724,6 +744,9 @@ const FormularioDeRegistro = {
                   class: "form-check-input",
                   id: `${EXAMEN}`,
                   value: `${EXAMEN} ${FRECUENCIA}`,
+                  onclick: function (event) {
+                    FormularioDeRegistro.handleCheckboxClick(event.target.value);
+                  },
                 }),
                 m(
                   "label",
@@ -2321,11 +2344,15 @@ const FormularioDeRegistro = {
                 "ESCALADELDOLOR": `'${vnode.dom["inputEscalaDolor"].value}'`,
                 "PESO": vnode.dom["inputPeso"].value,
                 "Usuario": `'${vnode.dom["inputUsuario"].value}'`,
-                // "PRESCRIPCION": null,
-                // Aqui abajo hay un problema
-                /* FECHAHOY: `'${vnode.dom["inputFecha"].value}'`, 
-                HORAANTES: `'${vnode.dom["inputHora"].value}'`, */
-                // "HORADESPUES": null,
+                "PRESCRIPCION": `'${Pedido.examenes.map(({Examen, Frecuencia}) => {
+                  return `${Examen} ${Frecuencia}`;
+                })}'`,
+                //FECHAHOY: `'${vnode.dom["inputFecha"].value}'`, 
+                FECHAHOY: "To_Date(" + `'${vnode.dom["inputFecha"].value}'` + ", 'DD-MM-YYYY HH24:MI:SS')",
+                //FECHAHOY: `'To_Date(${vnode.dom["inputFecha"].value}, DD-MM-YYYY HH24:MI:SS)'`, 
+                //FECHAHOY: "TO_DATE('23-05-2023 09:30:45', 'DD-MM-YYYY HH24:MI:SS')", 
+                HORAANTES: `'${vnode.dom["inputHora"].value}'`,
+                "HORADESPUES": `'${FormularioDeRegistro.cargarHoraActual()}'`,
                 SALBUTAMOLDOSIS: `${
                   isNaN(parseInt(vnode.dom["inputSalbumatol"].value))
                     ? 0
@@ -2524,7 +2551,7 @@ const FormularioDeRegistro = {
                     : parseInt(vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"].value)
                 }`,
                 "CRITERIO": `'${vnode.dom["textareaCriterio"].value}'`,
-                ESTADO: 0, //"1",
+                ESTADO: "'Activo'", //"1",
                 ID: "sec_TerapiaRespiratoria.nextval",
               };
               if (confirm("¿Estás seguro quieres guardar este formulario?")) {
