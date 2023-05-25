@@ -1,6 +1,7 @@
 import sidebarTr from '../sidebarTr';
 import Notificaciones from '../../../models/notificaciones';
 import m from 'mithril';
+import Button from './botonEstado';
 // http://localhost:3000/terapia-respiratoria/pedidos/?idFiltro=1
 function stopwatchModel() {
     return {
@@ -299,6 +300,65 @@ const PedidosTR = {
     idFiltro: 0,
     loader: false,
     error: "",
+    estado: "",
+    date:  () => {
+        const fechaActual = new Date();
+        const dia = fechaActual.getDate();
+        const mes = fechaActual.getMonth() + 1;
+        const anio = fechaActual.getFullYear();
+      
+        const fechaFormateada = `${dia}/${mes}/${anio}`;
+        return fechaFormateada;
+    },
+    enviarEstado: (numeroDePedido) => {
+        m.request({
+            method: "POST",
+            url: "http://api.hospitalmetropolitano.org/t/v1/nuevo-status-pedido-tr",
+            body: {
+              CD_PRE_MED: numeroDePedido,
+              FECHA: PedidosTR.date(),
+              ESTADO: 1,
+            },
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              Accept: "application/json",
+              Authorization: localStorage.accessToken,
+            },
+          })
+            .then(function (result) {
+              //window.location.reload();
+              //console.log("Datos enviados con exito")
+            })
+            .catch(function (error) {
+              alert(
+                `Error al enviar los datos, intente de nuevo al recargar la página`
+              );
+            });
+    },
+    obtenerEstado: (number) => {
+        m.request({
+            method: "GET",
+            url: `http://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/estados?CD_PRE_MED=${number}`,
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              Accept: "application/json",
+              Authorization: localStorage.accessToken,
+            },
+          })
+            .then(function (result) {
+              if (result.data.length === 0) {
+                PedidosTR.estado = "";
+              } else {
+                PedidosTR.estado = result.data[0].ESTADO;
+                m.redraw();
+              }
+            })
+            .catch(function (error) {
+              alert(
+                `Error al enviar los datos, intente de nuevo al recargar la página`
+              );
+            });
+    },
     oninit: (_data) => {
 
         sidebarTr.page = "";
@@ -326,6 +386,8 @@ const PedidosTR = {
             PedidosTR.loader = true;
             PedidosTR.pedidos = [];
             PedidosTR.fetchPedidos();
+            //Button.obtenerEstado(settings.aoData.CD_PRE_MED);
+            console.log(Button.estado);
 
         }
 
@@ -440,7 +502,9 @@ const PedidosTR = {
                         view: function() {
 
                             return [
-                                m("div.d-flex", {}, [
+                                m("div.d-flex", {oncreate: () => {
+                                    Button.obtenerEstado(_i._aData.CD_PRE_MED);
+                                }},[
                                     m("div.pd-0.flex-grow-1",
                                         m("div.pd-2", { "style": { "background-color": "rgb(168, 190, 214)" } },
                                             m('i.fas.fa-file-alt.tx-semibold.tx-15.pd-2.mg-r-5'),
@@ -475,6 +539,12 @@ const PedidosTR = {
                                             _i._aData.CD_PACIENTE
                                         ),
                                         m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                            "Estado"
+                                        ),
+                                        m("td", {"style": { "background-color": (Button.estado === '' ? "rgb(38,321,11)" : Button.estado === "1" ? "rgb(231,201,11)" : Button.estado=== "0" ? "rgb(231,11,11) " : "rgb(168, 190, 214)") } },
+                                            (Button.estado === '' ? "Sin Revisión" : Button.estado === "1" ? "En Revisión" : Button.estado === "0" ? "Finalizado" : "Sin Revisión")
+                                        ),
+                                        m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
                                             "N° AT.: "
                                         ),
                                         m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
@@ -496,6 +566,7 @@ const PedidosTR = {
                                         m("td.tx-10", {
                                                 "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" },
                                                 onclick: () => {
+                                                    // PedidosTR.enviarEstado(_i._aData.CD_PRE_MED);
                                                     m.route.set("/terapia-respiratoria/pedido/", {
                                                         numeroHistoriaClinica: _i._aData.CD_PACIENTE,
                                                         numeroAtencion: _i._aData.AT_MV,
