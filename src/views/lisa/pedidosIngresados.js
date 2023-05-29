@@ -187,14 +187,12 @@ const tablePedidosIngresados = {
                                 },
                                     m("input.tx-light.pd-4[type='date'][id='desde']", {
                                         oncreate: (el) => {
-                                            el.dom.value = (PedidosIngresados.idFiltro !== 1 ? moment(moment(PedidosIngresados.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                            el.dom.value = moment(moment(PedidosIngresados.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD');
                                         },
                                         onchange: (el) => {
                                             PedidosIngresados.fechaDesde = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
-                                            PedidosIngresados.loader = true;
-                                            PedidosIngresados.pedidos = [];
-                                            PedidosIngresados.fetchPedidosIngresados();
                                             m.route.set("/laboratorio/lisa/pedidos/ingresados?idFiltro=" + PedidosIngresados.idFiltro + "&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
+                                            window.location.reload();
                                         },
                                         style: {
                                             "border": "transparent"
@@ -214,14 +212,12 @@ const tablePedidosIngresados = {
                                 },
                                     m("input.tx-light.pd-4[type='date'][id='hasta']", {
                                         oncreate: (el) => {
-                                            el.dom.value = (PedidosIngresados.idFiltro !== 1 ? moment(moment(PedidosIngresados.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                            el.dom.value = moment(moment(PedidosIngresados.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD');
                                         },
                                         onchange: (el) => {
                                             PedidosIngresados.fechaHasta = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
-                                            PedidosIngresados.loader = true;
-                                            PedidosIngresados.pedidos = [];
-                                            PedidosIngresados.fetchPedidosIngresados();
                                             m.route.set("/laboratorio/lisa/pedidos/ingresados?idFiltro=" + PedidosIngresados.idFiltro + "&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
+                                            window.location.reload();
                                         },
                                         style: {
                                             "border": "transparent"
@@ -240,16 +236,47 @@ const tablePedidosIngresados = {
                                     m("h6.dropdown-header.tx-uppercase.tx-12.tx-bold.tx-inverse",
                                         "FILTROS:"
                                     ),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=1" }, [
+                                    m(m.route.Link, {
+                                        class: 'dropdown-item',
+                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=1",
+                                        onclick: () => {
+                                            m.route.set("/laboratorio/lisa/pedidos/ingresados/?idFiltro=1");
+                                            window.location.reload();
+                                        },
+                                    }, [
                                         "Pedidos de Hoy"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=2&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta }, [
+                                    m(m.route.Link, {
+                                        class: 'dropdown-item',
+                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=2&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
+                                        onclick: () => {
+                                            m.route.set("/laboratorio/lisa/pedidos/ingresados?idFiltro=2&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
+                                            window.location.reload();
+                                        },
+                                    }, [
+
+
+
                                         "Pedidos de Emergencia"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=3&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta }, [
+                                    m(m.route.Link, {
+                                        class: 'dropdown-item',
+                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=3&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
+                                        onclick: () => {
+                                            m.route.set("/laboratorio/lisa/pedidos/ingresados/?idFiltro=3&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
+                                            window.location.reload();
+                                        },
+                                    }, [
                                         "Pedidos de Hospitalización"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=4&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta }, [
+                                    m(m.route.Link, {
+                                        class: 'dropdown-item',
+                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=4&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
+                                        onclick: () => {
+                                            m.route.set("/laboratorio/lisa/pedidos/ingresados/?idFiltro=4&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
+                                            window.location.reload();
+                                        },
+                                    }, [
                                         "Pedidos de C. Externa"
                                     ]),
 
@@ -300,15 +327,6 @@ const PedidosIngresados = {
 
         SidebarLab.page = "";
 
-        if (PedidosIngresados.pedidos.length == 0) {
-
-            PedidosIngresados.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
-            PedidosIngresados.fechaHasta = moment().format('DD-MM-YYYY');
-            PedidosIngresados.loader = true;
-            PedidosIngresados.pedidos = [];
-            PedidosIngresados.fetchPedidosIngresados();
-
-        }
 
     },
 

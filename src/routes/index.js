@@ -105,38 +105,35 @@ const Routes = {
             App.isAuth('laboratorio', 16);
             document.title = "Recepción de Pedidos | " + App.title;
 
-            if (_data.attrs.idFiltro == undefined && _data.attrs.fechaDesde == undefined) {
+            if (_data.attrs.idFiltro == undefined && (_data.attrs.fechaDesde == undefined || _data.attrs.fechaHasta == undefined)) {
                 return m.route.set('/laboratorio/lisa/pedidos/ingresados/', { idFiltro: 1 })
             }
 
             LisaPedidosIngresados.idFiltro = _data.attrs.idFiltro;
 
+            if (LisaPedidosIngresados.idFiltro == 1) {
+                LisaPedidosIngresados.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
+                LisaPedidosIngresados.fechaHasta = moment().format('DD-MM-YYYY');
+                LisaPedidosIngresados.loader = true;
+                LisaPedidosIngresados.pedidos = [];
+                LisaPedidosIngresados.fetchPedidosIngresados();
+            }
 
-        },
-        onupdate: (_data) => {
-
-            if (_data.attrs.idFiltro !== LisaPedidosIngresados.idFiltro && LisaPedidosIngresados.idFiltro !== 1 && LisaPedidosIngresados.fechaDesde !== undefined) {
-                LisaPedidosIngresados.idFiltro = _data.attrs.idFiltro;
+            if (LisaPedidosIngresados.idFiltro == 2) {
                 LisaPedidosIngresados.fechaDesde = _data.attrs.fechaDesde;
                 LisaPedidosIngresados.fechaHasta = _data.attrs.fechaHasta;
                 LisaPedidosIngresados.loader = true;
                 LisaPedidosIngresados.pedidos = [];
                 LisaPedidosIngresados.fetchPedidosIngresados();
-            } else {
-
-                LisaPedidosIngresados.idFiltro = _data.attrs.idFiltro;
-                LisaPedidosIngresados.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
-                LisaPedidosIngresados.fechaHasta = moment().format('DD-MM-YYYY');
-                if (LisaPedidosIngresados.pedidos.length == 0) {
-                    LisaPedidosIngresados.loader = true;
-                    LisaPedidosIngresados.pedidos = [];
-                    LisaPedidosIngresados.fetchPedidosIngresados();
-                } else {
-                    LisaPedidosIngresados.loader = false;
-                }
-
-
             }
+
+        },
+        onupdate: (_data) => {
+
+
+
+
+
 
 
         },
