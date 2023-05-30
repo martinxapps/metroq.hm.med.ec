@@ -111,7 +111,7 @@ const Routes = {
 
             LisaPedidosIngresados.idFiltro = _data.attrs.idFiltro;
 
-            if (LisaPedidosIngresados.idFiltro == 1) {
+            if (LisaPedidosIngresados.idFiltro === 1 && LisaPedidosIngresados.pedidos.length == 0) {
                 LisaPedidosIngresados.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
                 LisaPedidosIngresados.fechaHasta = moment().format('DD-MM-YYYY');
                 LisaPedidosIngresados.loader = true;
@@ -119,7 +119,7 @@ const Routes = {
                 LisaPedidosIngresados.fetchPedidosIngresados();
             }
 
-            if (LisaPedidosIngresados.idFiltro == 2) {
+            if (LisaPedidosIngresados.idFiltro !== 1 && LisaPedidosIngresados.pedidos.length == 0) {
                 LisaPedidosIngresados.fechaDesde = _data.attrs.fechaDesde;
                 LisaPedidosIngresados.fechaHasta = _data.attrs.fechaHasta;
                 LisaPedidosIngresados.loader = true;
@@ -128,10 +128,31 @@ const Routes = {
             }
 
         },
+        onremove: (_data) => {
+            LisaPedidosIngresados.loader = true;
+            LisaPedidosIngresados.pedidos = [];
+        },
         onupdate: (_data) => {
 
+            LisaPedidosIngresados.idFiltro = _data.attrs.idFiltro;
 
 
+
+            if (LisaPedidosIngresados.idFiltro === 1 && LisaPedidosIngresados.pedidos.length == 0) {
+                LisaPedidosIngresados.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
+                LisaPedidosIngresados.fechaHasta = moment().format('DD-MM-YYYY');
+                LisaPedidosIngresados.loader = true;
+                LisaPedidosIngresados.pedidos = [];
+                LisaPedidosIngresados.fetchPedidosIngresados();
+            }
+
+            if (LisaPedidosIngresados.idFiltro !== 1 && LisaPedidosIngresados.pedidos.length == 0) {
+                LisaPedidosIngresados.fechaDesde = _data.attrs.fechaDesde;
+                LisaPedidosIngresados.fechaHasta = _data.attrs.fechaHasta;
+                LisaPedidosIngresados.loader = true;
+                LisaPedidosIngresados.pedidos = [];
+                LisaPedidosIngresados.fetchPedidosIngresados();
+            }
 
 
 
