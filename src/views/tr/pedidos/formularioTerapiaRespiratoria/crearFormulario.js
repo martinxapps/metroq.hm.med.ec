@@ -68,6 +68,7 @@ const CrearFormulario = {
     usuarioConectado: '',
     oninit: () => { 
         //muestraModelo.generarSecuencial();
+        formularioModelo.cargarEscalaDelDolor(Pedido.data.AT_MV);
         CrearFormulario.usuarioConectado = Encrypt.getDataUser();
     },
     view: (vnode) => {
@@ -328,6 +329,13 @@ const CrearFormulario = {
                         ? ""
                         : FormularioDeRegistro.listaEscalaDelDolor.data[0].VALUE
                       : "", */
+                  //value: formularioModelo.listaEscalaDelDolor.data[0].VALUE,
+                  value: formularioModelo.listaEscalaDelDolor &&
+                  formularioModelo.listaEscalaDelDolor.data &&
+                  formularioModelo.listaEscalaDelDolor.data.length > 0 &&
+                  formularioModelo.listaEscalaDelDolor.data[0].VALUE !== null
+                    ? formularioModelo.listaEscalaDelDolor.data[0].VALUE
+                    : "",
                 }),
               ]),
               m("div", { class: "form-group col-md-2" }, [
@@ -1954,9 +1962,9 @@ const CrearFormulario = {
                     //"ESCALADELDOLOR": `'${vnode.dom["inputEscalaDolor"].value}'`,
                     "PESO": `'${vnode.dom["inputPeso"].value}'`,
                     "Usuario": `'${vnode.dom["inputUsuario"].value}'`,
-                    /* "PRESCRIPCION": `'${Pedido.examenes.map(({Examen, Frecuencia}) => {
+                    "PRESCRIPCION": `'${Pedido.examenes.map(({Examen, Frecuencia}) => {
                       return `${Examen} ${Frecuencia}`;
-                    })}'`, */
+                    })}'`,
                     //FECHAHOY: `'${vnode.dom["inputFecha"].value}'`, 
                     FECHAHOY: "To_Date(" + `'${vnode.dom["inputFecha"].value}'` + ", 'DD-MM-YYYY HH24:MI:SS')",
                     //FECHAHOY: `'To_Date(${vnode.dom["inputFecha"].value}, DD-MM-YYYY HH24:MI:SS)'`, 
