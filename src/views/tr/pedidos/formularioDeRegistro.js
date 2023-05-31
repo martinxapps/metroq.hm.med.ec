@@ -2210,21 +2210,6 @@ const FormularioDeRegistro = {
             type: "button",
             //disabled: obtenerDatos.habilitarCampos,
             onclick: function () {
-              const valorPrescripcion = () => {
-                const valor = `${
-                  vnode.dom["inputPrescripcion"].options[
-                    vnode.dom["inputPrescripcion"].selectedIndex
-                  ].text
-                }`;
-                let palabraAEnviar = "";
-                for (const key in valor) {
-                  if (valor[key] === " ") {
-                    break;
-                  }
-                  palabraAEnviar += valor[key];
-                }
-                return parseInt(palabraAEnviar);
-              };
               const formulario = {
                 NUMERODEPEDIDO: vnode.dom["inputNumeroPedido"].value,
                 "FECHAMV": `'${vnode.dom["inputFechaPedido"].value}'`,
