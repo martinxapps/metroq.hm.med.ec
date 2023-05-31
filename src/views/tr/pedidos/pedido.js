@@ -3,8 +3,10 @@ import SidebarTR from '../sidebarTr';
 import App from '../../app';
 import m from 'mithril';
 import Pedidos from './pedidos';
+import CrearFormulario from './formularioTerapiaRespiratoria/crearFormulario';
+import cerrarGestionMuestra from '../../patologia/muestras/cerrarGestionMuestra';
 
-
+// http://localhost:3000/terapia-respiratoria/pedido/?numeroHistoriaClinica=838112&numeroAtencion=46512&numeroPedido=250221&track=view
 const FOR005 = {
     secs: [],
     nombres: "",
@@ -483,7 +485,7 @@ const Formulario = {
         ] : (Formulario.data.length !== 0) ? [
 
 
-            m(FOR005)
+            m(FOR005),// Aqui se llama el componente que necesito. Aqui debo trabajar para que se muestre el formulario que necesito.
 
 
 
@@ -625,7 +627,7 @@ const Pedido = {
         Pedido.loader = true;
         m.request({
                 method: "POST",
-                url: "https://api.hospitalmetropolitano.org/t/v1/status-pedido-tr",
+                url: "https://api.hospitalmetropolitano.org/t/v1/trn/status-pedido-tr",
                 body: {
                     numeroPedido: Pedido.numeroPedido,
                 },
@@ -1007,6 +1009,15 @@ const Pedido = {
                                                                     " HOJA 005"
                                                                 )
                                                             ),
+                                                            m("li.nav-item",
+                                                            m("a.nav-link[id='home-muestra'][data-toggle='tab'][href='#muestra'][role='tab'][aria-controls='muestra']", {
+                                                                    style: { "color": "#476ba3" }
+                                                                },
+                                                                m("i.fas.fa-file-alt.pd-1.mg-r-2"),
+
+                                                                "Registro Terapia Respiratoria"
+                                                            )
+                                                        ),
 
 
                                                         ]),
@@ -1022,6 +1033,36 @@ const Pedido = {
                                                         m(".tab-content.bd.bd-gray-300.bd-t-0[id='myTab']", [
                                                             m(".tab-pane.fade[id='home'][role='tabpanel'][aria-labelledby='home-tab']", [
                                                                 m(Evoluciones),
+                                                            ]),
+                                                                                
+                                                            //  m(".tab.pane.fade[id='muestra'][role='tabpanel'][aria-labelledby='home-muestra']", 
+                                                            // /* [
+                                                            //     // ( Pedido.data.length != 0 ?  m(FormularioDeRegistro, {pedido: Pedido.data}): '' )
+                                                            //     m("p", "Hola"),
+                                                            // ] */
+                                                            // ),
+                                                            m(".tab-pane.fade[id='muestra'][role='tabpanel'][aria-labelledby='recepcionmuestra-tab']", [
+                                                                m("div.mg-0.mg-t-10.mg-b-10.text-left", [
+                                                                    m("button#btnnuevamuestra.btn.btn-xs.btn-primary.mg-l-2.tx-semibold[type='button']", {
+                                                                        onclick: () => {
+                                                                            m.mount(document.querySelector("#gestion-muestras"), CrearFormulario);
+                                                                            m.mount(document.querySelector("#cerrar-gestion-muestras"), cerrarGestionMuestra);
+                                                                        }
+                                                                    }, [
+                                                                            m("i.fas.mg-r-5", )
+                                                                        ], "Nueva Muestra"
+                                                                    ),
+                                                                    m("div#cerrar-gestion-muestras", {
+                                                                        style: { 'width': '50%', 'float': 'right'}
+                                                                    }),
+                                                                ]),
+                                                                m("div#gestion-muestras"),
+                                                                // m(listadoMuestras, { 
+                                                                //     "numeroPedido": PedidoPatologia.numeroPedido,
+                                                                //     "numeroAtencion": PedidoPatologia.numeroAtencion,
+                                                                //     "numeroHistoriaClinica": PedidoPatologia.numeroHistoriaClinica,
+                                                                //     "medico": PedidoPatologia.medico
+                                                                // }),
                                                             ]),
 
                                                         ])
