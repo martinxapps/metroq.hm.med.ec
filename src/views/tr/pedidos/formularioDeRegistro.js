@@ -425,26 +425,6 @@ const FormularioDeRegistro = {
       FormularioDeRegistro.listaEscalaDelDolor !== 0
     ) {
       return m("form", [
-        m("div", { class: "d-flex flex-row mb-3" }, [
-          m(
-            "button",
-            {
-              class: "btn btn-primary",
-              type: "button",
-              onclick: printFormData,
-              disabled: Button.estado !== "" && Button.estado !== "0",
-            },
-            "Imprimir"
-          ),
-          " ",
-          m.trust("&nbsp;"),
-          m.trust("&nbsp;"),
-          " ",
-          m(Button, { pedido: Pedido.numeroPedido }),
-          // (Button.estado == 0) ? m(botonFinalizarTurno, { pedido: Pedido.numeroPedido }) : m(Button, { pedido: Pedido.numeroPedido }),
-          // m(botonFinalizarTurno),
-          m(botonFinalizarTurno, { pedido: Pedido.numeroPedido }),
-        ]),
 
         m("div", { class: "row" }, [
           m(
