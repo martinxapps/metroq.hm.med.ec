@@ -159,7 +159,7 @@ const FOR005 = {
                                     ),
                                     m("td.text-center[colspan='1']",
                                         m("div.m-0.p-0.text-center",
-                                            FOR005.sexo
+                                            (FOR005.sexo == 'F' ? 'Femenino' : 'Masculino')
                                         )
                                     ),
                                     m("td.text-center[colspan='1']",
@@ -2212,27 +2212,7 @@ const PedidoFlebotomista = {
                                                 "style": { "cursor": "pointer" },
                                                 title: "Cerrar",
                                                 onclick: () => {
-
-
-                                                    if (pedidosIngresados.idFiltro !== undefined && pedidosIngresados.idFiltro > 1) {
-
-                                                        m.route.set('/laboratorio/flebotomista/', {
-                                                            idFiltro: pedidosIngresados.idFiltro,
-                                                            fechaDesde: pedidosIngresados.fechaDesde,
-                                                            fechaHasta: pedidosIngresados.fechaHasta,
-                                                        });
-
-                                                    } else {
-
-                                                        m.route.set('/laboratorio/flebotomista/', {
-                                                            idFiltro: 1,
-                                                        });
-
-                                                    }
-
-
-
-
+                                                    window.close();
                                                 }
                                             }
 
@@ -2320,23 +2300,12 @@ const PedidoFlebotomista = {
                                                     },
                                                         "Médico Solicitante:"
                                                     ),
-                                                    m("td[colspan='4']", {
+                                                    m("td[colspan='9']", {
                                                         style: { "background-color": "#eaeff5" }
 
                                                     },
                                                         PedidoFlebotomista.data.PedidoExameLab.descPrestadorSolicitante,
 
-                                                    ),
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Especialidad:"
-                                                    ),
-                                                    m("td[colspan='4']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        PedidoFlebotomista.data.PedidoExameLab.descPrestadorSolicitante
                                                     ),
 
 
@@ -2413,7 +2382,10 @@ const PedidoFlebotomista = {
                                                         style: { "background-color": "#eaeff5" }
 
                                                     },
-                                                        PedidoFlebotomista.data.PedidoExameLab.paciente.sexo
+
+
+                                                        (PedidoFlebotomista.data.PedidoExameLab.paciente.sexo == 'F' ? 'Femenino' : 'Masculino')
+
                                                     ),
                                                     m("th", {
                                                         style: { "background-color": "#a8bed6" }
@@ -2473,7 +2445,7 @@ const PedidoFlebotomista = {
 
                                                     },
                                                         m("ul.nav.nav-tabs[id='myTab'][role='tablist']", [
-                                                            m("li.nav-item",
+                                                            m("li.nav-item.d-none",
                                                                 m("a.nav-link[id='home-tab'][data-toggle='tab'][href='#home'][role='tab'][aria-controls='home'][aria-selected='true']", {
                                                                     style: { "color": "#476ba3" }
                                                                 },

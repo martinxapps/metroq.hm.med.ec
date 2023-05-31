@@ -6,7 +6,7 @@ import m from 'mithril';
 function stopwatchModel() {
     return {
         interval: null,
-        seconds: 30,
+        seconds: 10,
         isPaused: false
     };
 }
@@ -214,7 +214,7 @@ const tableFlebotomista = {
                                             Flebotomista.loader = true;
                                             Flebotomista.pedidos = [];
                                             Flebotomista.fetchPedidos();
-                                            m.route.set("/laboratorio/flebotomista?idFiltro=" + Flebotomista.idFiltro + "&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta);
+                                            m.route.set("/laboratorio/flebotomista/?idFiltro=" + Flebotomista.idFiltro + "&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta);
                                         },
                                         style: {
                                             "border": "transparent"
@@ -241,7 +241,7 @@ const tableFlebotomista = {
                                             Flebotomista.loader = true;
                                             Flebotomista.pedidos = [];
                                             Flebotomista.fetchPedidos();
-                                            m.route.set("/laboratorio/flebotomista?idFiltro=" + Flebotomista.idFiltro + "&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta);
+                                            m.route.set("/laboratorio/flebotomista/?idFiltro=" + Flebotomista.idFiltro + "&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta);
                                         },
                                         style: {
                                             "border": "transparent"
