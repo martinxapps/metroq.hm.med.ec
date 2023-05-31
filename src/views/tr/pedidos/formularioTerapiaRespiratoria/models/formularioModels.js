@@ -48,7 +48,7 @@ let FormularioModels = {
         muestraModel.loading = true;
         m.request({
             method: "GET",
-            url: "http://localhost:8000/api/v1/muestras?nopedidomv=" + numeropedidomv,
+            url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios/historial?numeroPedido=" + numeropedidomv,
             body: {},
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
@@ -57,13 +57,13 @@ let FormularioModels = {
             },
         })
         .then(function(result) {
-            muestraModel.listado = result.data;
-            muestraModel.loading = false;
+            FormularioModels.listado = result.data;
+            FormularioModels.loading = false;
         })
         .catch(function(error) {
-            muestraModel.loading = false;
-            muestraModel.error = error;
-            alert(muestraModel.error);
+            FormularioModels.loading = false;
+            FormularioModels.error = error;
+            alert(FormularioModels.error);
         })
     },
 
