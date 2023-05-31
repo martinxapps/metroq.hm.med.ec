@@ -1,7 +1,7 @@
 import sidebarTr from '../sidebarTr';
 import Notificaciones from '../../../models/notificaciones';
 import m from 'mithril';
-
+// http://localhost:3000/terapia-respiratoria/pedidos/?idFiltro=1
 function stopwatchModel() {
     return {
         interval: null,
@@ -379,7 +379,7 @@ const PedidosTR = {
                 },
                 {
                     mRender: function(data, type, full) {
-                        return full.CD_PRE_MED;
+                        return full.AT_MV;
                     },
                     visible: false,
                     aTargets: [1],
@@ -497,6 +497,7 @@ const PedidosTR = {
                                         m("td.tx-10", {
                                                 "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" },
                                                 onclick: () => {
+                                                    // PedidosTR.enviarEstado(_i._aData.CD_PRE_MED);
                                                     m.route.set("/terapia-respiratoria/pedido/", {
                                                         numeroHistoriaClinica: _i._aData.CD_PACIENTE,
                                                         numeroAtencion: _i._aData.AT_MV,
@@ -554,7 +555,8 @@ const PedidosTR = {
 
         m.request({
                 method: "GET",
-                url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/pedidos" + _queryString,
+                //url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/pedidos" + _queryString,
+                url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/trn/pedidos" + _queryString,
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
                 },
