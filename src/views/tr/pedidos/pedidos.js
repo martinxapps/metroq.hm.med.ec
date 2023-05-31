@@ -538,12 +538,12 @@ const PedidosTR = {
                                         m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
                                             _i._aData.CD_PACIENTE
                                         ),
-                                        m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                        /* m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
                                             "Estado"
                                         ),
                                         m("td", {"style": { "background-color": (Button.estado === '' ? "rgb(38,321,11)" : Button.estado === "1" ? "rgb(231,201,11)" : Button.estado=== "0" ? "rgb(231,11,11) " : "rgb(168, 190, 214)") } },
                                             (Button.estado === '' ? "Sin Revisión" : Button.estado === "1" ? "En Revisión" : Button.estado === "0" ? "Finalizado" : "Sin Revisión")
-                                        ),
+                                        ), */
                                         m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
                                             "N° AT.: "
                                         ),
