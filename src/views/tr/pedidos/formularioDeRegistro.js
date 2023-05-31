@@ -322,12 +322,6 @@ const FormularioDeRegistro = {
     //console.log(FormularioDeRegistro.horaActual);
   },
 
-  ExamenYFrecuencia: function () {
-    const examenes = Pedido.examenes.map(({Examen, Frecuencia}) => {
-      return `${Examen} ${Frecuencia}`;
-    });
-    return examenes;
-  },
 
   cargarPrescripcion: function (numeroDeAtendimiento) {
     m.request({
@@ -374,17 +368,6 @@ const FormularioDeRegistro = {
       },
     })
       .then(function (result) {
-        //resultado = result;
-        /* if (result.status) {
-          terapiaRespiratoriaController.datosEnviadosDelFormulario = result;
-        }else{
-          terapiaRespiratoriaController.error = result.error;
-          alert(terapiaRespiratoriaController.error);
-        } */
-        /* if (result.status) {
-          FormularioDeRegistro.datosGuardados = result;
-          window.location.href = window.location.href;
-        } */
         FormularioDeRegistro.datosGuardados = result;
         //FormularioDeRegistro.bloquearCamposCuandoSeGuarda = true;
         window.location.href = window.location.href;
@@ -416,7 +399,7 @@ const FormularioDeRegistro = {
     FormularioDeRegistro.cargarPrescripcion(_data.attrs.pedido.AT_MV); // 1918 //
 
     FormularioDeRegistro.usuarioConectado = Encrypt.getDataUser(); // Obtener el nombre de usuario
-    Button.obtenerEstado(Pedido.numeroPedido);
+    // Button.obtenerEstado(Pedido.numeroPedido);
   },
   usuarioConectado: [],
   view: (vnode) => {
