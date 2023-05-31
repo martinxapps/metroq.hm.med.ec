@@ -1,5 +1,6 @@
 let FormularioModels = {
     listado: [],
+    listaEscalaDelDolor: [],
     examenes: [],
     error: '',
     secuencialMuestra: '',
@@ -8,6 +9,40 @@ let FormularioModels = {
     numeroHistoriaClinica: '',
     medico: '',
     loading: false,
+
+    cargarEscalaDelDolor: function (numeroDeAtendimiento) {
+        FormularioModels.loading = true;
+        m.request({
+          method: "GET",
+          url: `https://api.hospitalmetropolitano.org/t/v1/tr/formularios/sv?PARAM=ESCALA_DOLOR&CD_ATENDIMENTO=${numeroDeAtendimiento}`,
+          body: {},
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            Accept: "application/json",
+            Authorization: localStorage.accessToken,
+          },
+        })
+          .then(function (result) {
+            if (
+                result.status &&
+                result.data.length > 0 &&
+                result.data[0].VALUE != null
+            ) {
+              FormularioModels.listaEscalaDelDolor = result;
+              FormularioModels.loading = false;
+              //console.log(FormularioDeRegistro.listaEscalaDelDolor);
+            }else {
+              FormularioModels.listaEscalaDelDolor.push({data: [{VALUE: ''}]});
+              alert(terapiaRespiratoriaController.error);
+                FormularioModels.loading = false;
+            }
+          })
+          .catch(function (error) {
+            FormularioModels.error = error;
+            alert(FormularioModels.error);
+            FormularioDeRegistro.loading = false;
+          });
+      },
 
     cargarListado: function(numeropedidomv) {
         muestraModel.loading = true;
