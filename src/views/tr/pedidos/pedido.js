@@ -5,6 +5,7 @@ import m from 'mithril';
 import Pedidos from './pedidos';
 import CrearFormulario from './formularioTerapiaRespiratoria/crearFormulario';
 import cerrarGestionMuestra from '../../patologia/muestras/cerrarGestionMuestra';
+import ListadoFormulario from './formularioTerapiaRespiratoria/listadoFormulario';
 
 // http://localhost:3000/terapia-respiratoria/pedido/?numeroHistoriaClinica=838112&numeroAtencion=46512&numeroPedido=250221&track=view
 const FOR005 = {
@@ -1050,13 +1051,14 @@ const Pedido = {
                                                                         }
                                                                     }, [
                                                                             m("i.fas.mg-r-5", )
-                                                                        ], "Nueva Muestra"
+                                                                        ], "Nuevo Formulario"
                                                                     ),
                                                                     m("div#cerrar-gestion-muestras", {
                                                                         style: { 'width': '50%', 'float': 'right'}
                                                                     }),
                                                                 ]),
                                                                 m("div#gestion-muestras"),
+                                                                m(ListadoFormulario),
                                                                 // m(listadoMuestras, { 
                                                                 //     "numeroPedido": PedidoPatologia.numeroPedido,
                                                                 //     "numeroAtencion": PedidoPatologia.numeroAtencion,
