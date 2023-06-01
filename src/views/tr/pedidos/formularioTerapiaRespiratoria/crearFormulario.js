@@ -364,7 +364,7 @@ const CrearFormulario = {
                 }),
               ]),
             ]),
-            m("div", { class: "form-row" }, []),
+            //
             m("div", { class: "form-group" }, [
               m("label", { for: "inputPrescripcion" }, "Prescripción"),
               m(
@@ -394,7 +394,7 @@ const CrearFormulario = {
               ),
             ]),
     
-            m("div", { class: "form-group" }, [
+            /* m("div", { class: "form-group" }, [
               m("label", { for: "inputCod" }, "Cod"),
               m("input", {
                 class: "form-control",
@@ -404,7 +404,7 @@ const CrearFormulario = {
                 readonly: "readonly",
                 value: Pedido.data.AT_MV,
               }),
-            ]),
+            ]), */
             m("div", { class: "form-group" }, [
               m("label", { for: "inputFecha" }, "Fecha"),
               m("input", {
