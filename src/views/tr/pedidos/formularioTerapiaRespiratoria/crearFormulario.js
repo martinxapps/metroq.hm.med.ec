@@ -1959,7 +1959,7 @@ const CrearFormulario = {
                     "NHC": vnode.dom["inputNHC"].value,
                     "NUMEROATENCION": vnode.dom["inputNumeroAtencion"].value,
                     "UBICACION": `'${vnode.dom["inputUbicacion"].value}'`,
-                    //"ESCALADELDOLOR": `'${vnode.dom["inputEscalaDolor"].value}'`,
+                    "ESCALADELDOLOR": `'${vnode.dom["inputEscalaDolor"].value}'`,
                     "PESO": `'${vnode.dom["inputPeso"].value}'`,
                     "Usuario": `'${vnode.dom["inputUsuario"].value}'`,
                     "PRESCRIPCION": `'${Pedido.examenes.map(({Examen, Frecuencia}) => {
