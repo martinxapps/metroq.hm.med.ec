@@ -45,7 +45,7 @@ let FormularioModels = {
       },
 
     cargarListado: function(numeropedidomv) {
-        muestraModel.loading = true;
+        FormularioModels.loading = true;
         m.request({
             method: "GET",
             url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios/historial?numeroPedido=" + numeropedidomv,
@@ -131,7 +131,29 @@ let FormularioModels = {
             window.location.href = window.location.href;
         })
         .catch(function(error) {
-            FormularioModels.error = "Se produjo error guardando el formulario: " + error.response.message;
+            FormularioModels.error = "Se produjo modificando el estado: " + error.response.message;
+            alert(FormularioModels.error);
+        }) 
+    },
+
+    modificarEstado: (formulario) => {
+        m.request({
+            method: 'PUT',
+            url: "https://api.hospitalmetropolitano.org/t/v1/nuevo-status-pedido-tr",
+            body:  formulario,
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "Accept": "application/json",
+                "Authorization": localStorage.accessToken,
+            },
+        })
+        .then(function(result) {
+            //muestraModel.cargarListado(muestraModel.numeroPedido);
+            //muestraModel.secuencialMuestra = '';
+            window.location.href = window.location.href;
+        })
+        .catch(function(error) {
+            FormularioModels.error = "Se produjo error actualizando el estado: " + error.response.message;
             alert(FormularioModels.error);
         }) 
     },
