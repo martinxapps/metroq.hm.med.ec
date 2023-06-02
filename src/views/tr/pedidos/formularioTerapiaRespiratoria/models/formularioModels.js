@@ -139,6 +139,7 @@ let FormularioModels = {
     },
 
     guardar: (formulario) => {
+        FormularioModels.loading = true;
         m.request({
             method: 'POST',
             url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia",
@@ -152,8 +153,10 @@ let FormularioModels = {
         .then(function(result) {
             //muestraModel.cargarListado(muestraModel.numeroPedido);
             //muestraModel.secuencialMuestra = '';
-            FormularioModels.listado.push(result);
-            window.location.href = window.location.href;
+            //FormularioModels.listado.push(result);
+            FormularioModels.cargarListado(formulario.NUMERODEPEDIDO);
+            FormularioModels.loading = false;
+            //window.location.href = window.location.href;
         })
         .catch(function(error) {
             FormularioModels.error = "Se produjo modificando el estado: " + error.response.message;
