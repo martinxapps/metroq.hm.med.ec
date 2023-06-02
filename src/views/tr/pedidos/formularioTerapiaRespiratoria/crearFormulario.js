@@ -1971,45 +1971,15 @@ const CrearFormulario = {
                     //FECHAHOY: "TO_DATE('23-05-2023 09:30:45', 'DD-MM-YYYY HH24:MI:SS')", 
                     HORAANTES: `'${vnode.dom["inputHora"].value}'`,
                     "HORADESPUES": `'${cargarHoraActual()}'`,
-                    SALBUTAMOLDOSIS: `${
-                      isNaN(parseInt(vnode.dom["inputSalbumatol"].value))
-                        ? 0
-                        : parseInt(vnode.dom["inputSalbumatol"].value)
-                    }`,
-                    HIPERSAL7DOSIS: `${
-                      isNaN(parseInt(vnode.dom["inputHipersal"].value))
-                        ? 0
-                        : parseInt(vnode.dom["inputHipersal"].value)
-                    }`,
-                    BROMURODELPATROPIODOSIS: `${
-                      isNaN(parseInt(vnode.dom["inputBromuroIpatropio"].value))
-                        ? 0
-                        : parseInt(vnode.dom["inputBromuroIpatropio"].value)
-                    }`,
-                    DEXAMETASONADOSIS: `${isNaN(
-                      parseInt(vnode.dom["inputDexametasona"].value)
-                    ) ? 0 : parseInt(vnode.dom["inputDexametasona"].value)}`,
-                    CLORHIDRATODEAMBROXOLDOSIS: `${
-                      isNaN(parseInt(vnode.dom["inputClorhidratoAmbroxol"].value))
-                        ? 0
-                        : parseInt(vnode.dom["inputClorhidratoAmbroxol"].value)
-                    }`,
-                    SOLUCIONSALINADOSIS: `${
-                      isNaN(parseInt(vnode.dom["inputSolucionSalina"].value))
-                        ? 0
-                        : parseInt(vnode.dom["inputSolucionSalina"].value)
-                    }`,
-                    HIPERSAL35DOSIS: `${
-                      isNaN(parseInt(vnode.dom["inputHipersal3"].value))
-                        ? 0
-                        : parseInt(vnode.dom["inputHipersal3"].value)
-                    }`,
-                    ADRENALINARACENICADOSIS: `${isNaN(parseInt(vnode.dom["inputAdrenalinaRacenica"].value)) ? 0 : parseInt(vnode.dom["inputAdrenalinaRacenica"].value)}`,
-                    OTROSDOSIS: `${
-                      isNaN(parseInt(vnode.dom["inputOtros"].value))
-                        ? 0
-                        : parseInt(vnode.dom["inputOtros"].value)
-                    }`,
+                    SALBUTAMOLDOSIS: vnode.dom["inputSalbumatol"].value.length > 0 ? vnode.dom["inputSalbumatol"].value : 0,
+                    HIPERSAL7DOSIS: vnode.dom["inputHipersal"].value.length > 0 ? vnode.dom["inputHipersal"].value : 0,
+                    BROMURODELPATROPIODOSIS: vnode.dom["inputBromuroIpatropio"].value.length > 0 ? vnode.dom["inputBromuroIpatropio"].value : 0,
+                    DEXAMETASONADOSIS: vnode.dom["inputDexametasona"].value.length > 0 ? vnode.dom["inputDexametasona"].value : 0,
+                    CLORHIDRATODEAMBROXOLDOSIS: vnode.dom["inputClorhidratoAmbroxol"].value.length > 0 ? vnode.dom["inputClorhidratoAmbroxol"].value : 0,
+                    SOLUCIONSALINADOSIS: vnode.dom["inputSolucionSalina"].value.length > 0 ? vnode.dom["inputSolucionSalina"].value : 0,
+                    HIPERSAL35DOSIS: vnode.dom["inputHipersal3"].value.length > 0 ? vnode.dom["inputHipersal3"].value : 0,
+                    ADRENALINARACENICADOSIS: vnode.dom["inputAdrenalinaRacenica"].value.length > 0 ? vnode.dom["inputAdrenalinaRacenica"].value : 0,
+                    OTROSDOSIS: vnode.dom["inputOtros"].value.length > 0 ? vnode.dom["inputOtros"].value : 0,
                     "NEBULIZACION": isNebulizacionSelected ? "'true'" : "'false'",
                     "ULTRASONIDO": isUltrasonidoSelected ? "'true'" : "'false'",
                     "INHALADORESDOSISMEDIDA": isInhaladorDosisMedidaSelected ? "'true'" : "'false'",
