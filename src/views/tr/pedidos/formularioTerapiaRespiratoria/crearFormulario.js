@@ -2059,6 +2059,8 @@ const CrearFormulario = {
                     console.log(formulario);
                     console.log(Pedido.data.AT_MV);
                     formularioModelo.guardar(formulario);
+                    formularioModelo.listado= [];
+                    formularioModelo.loading = true;
                   }
     
                   //alert("Guardar");
