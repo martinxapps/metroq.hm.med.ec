@@ -1125,161 +1125,171 @@ const VerUnFormulario = {
         ],
         m("br"),
         m("br"),
-        // [
-        //   m(
-        //     "div",
-        //     { class: "d-flex justify-content-center" },
-        //     m("h6", "Monitoreo")
-        //   ),
-        //   m("div", { class: "row d-flex justify-content-center" }, [
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-1" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputVentilacionMecanica",
-        //           onclick: function (event){
-        //             isVentilacionMecanicaSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Ventilación Mecánica"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-4" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputVentilacionNoInvasiva",
-        //           onclick: function (event){
-        //             isVentilacionNoInvasivaSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Ventilación no invasiva"
-        //         ),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Previa Saturación O2(%) Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputSaturacionPreviaPorcentaje",
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Posterior Saturación O2(%) Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputSaturacionPosteriorPorcentaje",
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("br"),
-        //   m("br"),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Previa Frecuencia Cardiaca por Minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputFrecuenciaCardiacaPreviaPorMinuto",
+        [
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Monitoreo")
+          ),
+          m("div", { class: "row d-flex justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-1" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputVentilacionMecanica",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.VENTILACIONMECANICA === "true" ? "checked" : ""
                   
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Posterior Frecuencia Cardiaca por Minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("br"),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Previa Frecuencia Respiratoria por Minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Posterior Frecuencia Respiratoria por Minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        // ],
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Ventilación Mecánica"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputVentilacionNoInvasiva",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.VENTILACIONNOINVASIVA === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Ventilación no invasiva"
+                ),
+              ])
+            ),
+          ]),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Previa Saturación O2(%) Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputSaturacionPreviaPorcentaje",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.SATURACIONPREVIA
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Posterior Saturación O2(%) Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputSaturacionPosteriorPorcentaje",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.SATURACIONPOSTERIOR
+                }),
+              ])
+            ),
+          ]),
+          m("br"),
+          m("br"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Previa Frecuencia Cardiaca por Minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputFrecuenciaCardiacaPreviaPorMinuto",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.FRECUENCIACARDIACAPREVIA
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Posterior Frecuencia Cardiaca por Minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.FRECUENCIACARDIACAPOSTERIOR
+                }),
+              ])
+            ),
+          ]),
+          m("br"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Previa Frecuencia Respiratoria por Minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPREVIA
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Posterior Frecuencia Respiratoria por Minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPOS
+                }),
+              ])
+            ),
+          ]),
+        ],
         m("br"),
         m("br"),
         // [
