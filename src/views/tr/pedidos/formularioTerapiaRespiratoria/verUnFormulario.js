@@ -311,11 +311,9 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputNebulizacion",
-                  oncreate: (el) => {
-                    el.dom.checked = formularioModelo.listadoUnitario.NEBULIZACION === "true" ? "checked" : "";
-                  },  
+                  disabled: true,
 
-                  //checked: formularioModelo.listadoUnitario.NEBULIZACION === "true" ? "checked" : "",
+                  checked: formularioModelo.listadoUnitario.NEBULIZACION === "true" ? "checked" : "",
                 }),
                 m(
                   "label",
@@ -333,9 +331,8 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputUltrasonido",
-                  oncreate: (el) => {
-                    el.dom.checked = formularioModelo.listadoUnitario.ULTRASONIDO === "true" ? "checked" : "";
-                  },  
+                  disabled: true, 
+                  checked: formularioModelo.listadoUnitario.ULTRASONIDO === "true" ? "checked" : "",
                 }),
                 m(
                   "label",
@@ -353,9 +350,8 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputInahaladorDosis",
-                  oncreate: (el) => {
-                    el.dom.checked = formularioModelo.listadoUnitario.INHALADORESDOSISMEDIDA === "true" ? "checked" : "";
-                  },  
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.INHALADORESDOSISMEDIDA === "true" ? "checked" : "",
                 }),
                 m(
                   "label",
@@ -384,6 +380,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputSalbumatol",
+                  value: formularioModelo.listadoUnitario.SALBUTAMOLDOSIS,
+                  disabled: true,
                 }),
               ])
             ),
@@ -400,6 +398,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputHipersal",
+                  value: formularioModelo.listadoUnitario.HIPERSAL7DOSIS,
+                  disabled: true,
                 }),
               ])
             ),
@@ -416,6 +416,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputHipersal3",
+                  value: formularioModelo.listadoUnitario.HIPERSAL35DOSIS,
+                  disabled: true,
                 }),
               ])
             ),
@@ -434,6 +436,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputDexametasona",
+                  value: formularioModelo.listadoUnitario.DEXAMETASONADOSIS,
+                  disabled: true,
                 }),
               ])
             ),
@@ -450,6 +454,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputClorhidratoAmbroxol",
+                  value: formularioModelo.listadoUnitario.CLORHIDRATODEAMBROXOLDOSIS,
+                  disabled: true,
                 }),
               ])
             ),
@@ -466,6 +472,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputSolucionSalina",
+                  value: formularioModelo.listadoUnitario.SOLUCIONSALINADOSIS,
+                  disabled: true,
                 }),
               ])
             ),
@@ -484,6 +492,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputBromuroIpatropio",
+                  value: formularioModelo.listadoUnitario.BROMURODELPATROPIODOSIS,
+                  disabled: true,
                 }),
               ])
             ),
@@ -500,6 +510,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputAdrenalinaRacenica",
+                  value: formularioModelo.listadoUnitario.ADRENALINARACENICADOSIS,
+                  disabled: true,
                 }),
               ])
             ),
@@ -516,6 +528,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputOtros",
+                  value: formularioModelo.listadoUnitario.OTROSDOSIS,
+                  disabled: true,
                 }),
               ])
             ),
