@@ -43,6 +43,7 @@ const ListadoFormulario = {
                     class: "btn btn-primary",
                     type: "button",
                     onclick: function () {
+                      formularioModelo.listadoUnitario = null;
                       m.mount(document.querySelector("#gestion-muestras"), {
                         view: () => {
                           return m(VerUnFormulario, { id: formulario.ID });
@@ -102,7 +103,7 @@ const ListadoFormulario = {
                 "td",
                 m(
                   "button",
-                  { class: "btn btn-primary", type: "button" },
+                  { class: "btn btn-primary", type: "button", disabled: formulario.ESTADO === "Cancelado" },
                   "Finalizar"
                 )
               ),
