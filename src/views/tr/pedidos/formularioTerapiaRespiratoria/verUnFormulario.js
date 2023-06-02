@@ -535,284 +535,278 @@ const VerUnFormulario = {
             ),
           ]),
         ],
-        // [
-        //   m(
-        //     "div",
-        //     { class: "d-flex justify-content-center" },
-        //     m("h6", "Higiene Bronco Pulmonar")
-        //   ),
-        //   m("div", { class: "row d-flex justify-content-center" }, [
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-4" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "${inputDrenajePostural}",
-        //           id: "inputDrenajePostural",
-        //           onclick: function (event){
-        //             isDrenajePosturalSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Drenaje Postural"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-4" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "${inputPercursiones}",
-        //           id: "inputPercursiones",
-        //           onclick: function (event){
-        //             isPercusionesSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Percursiones"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-4" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "${inputVibraciones}",
-        //           id: "inputVibraciones",
-        //           onclick: function (event){
-        //             isVibracionesSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Vibraciones"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-4" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "${inputTosEfectiva}",
-        //           id: "inputTosEfectiva",
-        //           onclick: function (event){
-        //             isTosEfectivaSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Tos Efectiva"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-4" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "${inputAsistenteTos}",
-        //           id: "inputAsistenteTos",
-        //           onclick: function (event){
-        //             isAsistenteDeTosSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Asistente de Tos"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-4" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "${inputChalecoVibroprecutor}",
-        //           id: "inputChalecoVibroprecutor",
-        //           onclick: function (event){
-        //             isChalecoVibroprecutor = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Chaleco Vibroprecutor"
-        //         ),
-        //       ])
-        //     ),
-        //   ]),
-        // ],
-        // [
-        //   m(
-        //     "div",
-        //     { class: "d-flex justify-content-center" },
-        //     m("h6", "Terapia Expansiva")
-        //   ),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-1" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputIncentivoRespiratorio",
-        //           onclick: function (event){
-        //             isIncentivoRespiratorioSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Incentivo Respiratorio"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-4" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputPresionPositivaContinuaEnLaViaAeria",
-        //           onclick: function (event){
-        //             isPresionPositivaContinuaEnLaViaAereaSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Presión Positiva continua en la vía aérea"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-4" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputPresionPositivaAlFinalDeLaExpiracion",
-        //           onclick: function (event){
-        //             isPresionPositivaAlFinalDeLaExpiracionSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Presión Positiva al final de la expiración"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-1" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputKinesioterapiaDelTorax",
-        //           onclick: function (event){
-        //             isKinesioterapiaSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Kinesioterapia del tórax"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-1" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputEjerciciosRespiratorios",
-        //           onclick: function (event){
-        //             isEjerciciosRespiratorioSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Ejercicios respiratorios"
-        //         ),
-        //       ])
-        //     ),
-        //   ]),
-        //   m(
-        //     "div",
-        //     { class: "d-flex justify-content-center" },
-        //     m("h6", "Incentivo Respiratorio")
-        //   ),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Mililitros por segundo")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputMililitrosPorSegundo",
+        [
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Higiene Bronco Pulmonar")
+          ),
+          m("div", { class: "row d-flex justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputDrenajePostural}",
+                  disabled: true,
+                  id: "inputDrenajePostural",
+                  checked: formularioModelo.listadoUnitario.DRENAJEPOSTURAL === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Drenaje Postural"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputPercursiones}",
+                  id: "inputPercursiones",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.PERCUSIONES === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Percursiones"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputVibraciones}",
+                  id: "inputVibraciones",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.VIBRACIONES === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Vibraciones"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputTosEfectiva}",
+                  id: "inputTosEfectiva",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.TOSEFECTIVA === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Tos Efectiva"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputAsistenteTos}",
+                  id: "inputAsistenteTos",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.ASISTENCIADETOS === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Asistente de Tos"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "${inputChalecoVibroprecutor}",
+                  id: "inputChalecoVibroprecutor",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Chaleco Vibroprecutor"
+                ),
+              ])
+            ),
+          ]),
+        ],
+        [
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Terapia Expansiva")
+          ),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-1" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputIncentivoRespiratorio",
+                  onclick: function (event){
+                    isIncentivoRespiratorioSelected = event.target.checked;
+                  }
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Incentivo Respiratorio"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputPresionPositivaContinuaEnLaViaAeria",
+                  onclick: function (event){
+                    isPresionPositivaContinuaEnLaViaAereaSelected = event.target.checked;
+                  }
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Presión Positiva continua en la vía aérea"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-4" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputPresionPositivaAlFinalDeLaExpiracion",
+                  onclick: function (event){
+                    isPresionPositivaAlFinalDeLaExpiracionSelected = event.target.checked;
+                  }
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Presión Positiva al final de la expiración"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-1" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputKinesioterapiaDelTorax",
+                  onclick: function (event){
+                    isKinesioterapiaSelected = event.target.checked;
+                  }
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Kinesioterapia del tórax"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-1" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputEjerciciosRespiratorios",
+                  onclick: function (event){
+                    isEjerciciosRespiratorioSelected = event.target.checked;
+                  }
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Ejercicios respiratorios"
+                ),
+              ])
+            ),
+          ]),
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Incentivo Respiratorio")
+          ),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Mililitros por segundo")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputMililitrosPorSegundo",
                   
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Centimetros cúbicos por segundo")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputCentimetrosCubicosPorSegundo",
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        // ],
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Centimetros cúbicos por segundo")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputCentimetrosCubicosPorSegundo",
+                }),
+              ])
+            ),
+          ]),
+        ],
         // [
         //   m("br"),
         //   m("br"),
