@@ -20,14 +20,14 @@ const VerUnFormulario = {
     //console.log(formularioModelo.listadoUnitario);
   },
   onupdate: (vnode) => {
-    if (formularioModelo.listadoUnitario.length !== 0) {
+    if (formularioModelo.listadoUnitario !== null ) {
         pruebaFormulario =  formularioModelo.listadoUnitario;
     }
   },
   view: (vnode) => {
     return [
-        formularioModelo.listadoUnitario.length !== 0
-      ? m("form", [
+        formularioModelo.listadoUnitario !== null ?
+        m("form", [
 
         m("div", { class: "row" }, [
           m(
@@ -674,9 +674,8 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputIncentivoRespiratorio",
-                  onclick: function (event){
-                    isIncentivoRespiratorioSelected = event.target.checked;
-                  }
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO === "true" ? "checked" : ""
                 }),
                 m(
                   "label",
@@ -694,9 +693,8 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputPresionPositivaContinuaEnLaViaAeria",
-                  onclick: function (event){
-                    isPresionPositivaContinuaEnLaViaAereaSelected = event.target.checked;
-                  }
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA === "true" ? "checked" : ""
                 }),
                 m(
                   "label",
@@ -714,9 +712,8 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputPresionPositivaAlFinalDeLaExpiracion",
-                  onclick: function (event){
-                    isPresionPositivaAlFinalDeLaExpiracionSelected = event.target.checked;
-                  }
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION === "true" ? "checked" : ""
                 }),
                 m(
                   "label",
@@ -734,9 +731,8 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputKinesioterapiaDelTorax",
-                  onclick: function (event){
-                    isKinesioterapiaSelected = event.target.checked;
-                  }
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX === "true" ? "checked" : ""
                 }),
                 m(
                   "label",
@@ -754,9 +750,8 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputEjerciciosRespiratorios",
-                  onclick: function (event){
-                    isEjerciciosRespiratorioSelected = event.target.checked;
-                  }
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS === "true" ? "checked" : ""
                 }),
                 m(
                   "label",
@@ -785,6 +780,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputMililitrosPorSegundo",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.MILILITROSPORSEGUNDOINCENTIVO
                   
                 }),
               ])
@@ -802,6 +799,8 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputCentimetrosCubicosPorSegundo",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.CENTIMETROSSEGUNDOINCENTIVO
                 }),
               ])
             ),
