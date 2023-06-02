@@ -806,295 +806,323 @@ const VerUnFormulario = {
             ),
           ]),
         ],
-        // [
-        //   m("br"),
-        //   m("br"),
-        //   m(
-        //     "div",
-        //     { class: "d-flex justify-content-center" },
-        //     m("h6", "Oxigenoterapia")
-        //   ),
-        //   m("h6", "Fracción inspirada de oxigeno (FiO2 %)"),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputPorcentajeFraccion",
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-4" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Litros por minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputLitrosPorMinutoFraccion",
+        [
+          m("br"),
+          m("br"),
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Oxigenoterapia")
+          ),
+          m("h6", "Fracción inspirada de oxigeno (FiO2 %)"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputPorcentajeFraccion",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.FRACCIONOXIGENOPORCENTAJE
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litros por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputLitrosPorMinutoFraccion",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.FRACCIONIOXIGENOLITROS
                   
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("h6", "Alto Flujo (litro por minuto)"),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputPorcentajeAltoFlujo",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Alto Flujo (litro por minuto)"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputPorcentajeAltoFlujo",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.ALTOFLUJOPORCENTAJE
                   
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Litro por minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputLitroAltoFlujo",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litro por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputLitroAltoFlujo",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.ALTOFLUJOLITROSPORMINUTO
                   
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("h6", "Tienda Facial"),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputPorcentajeTiendaFacial",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Tienda Facial"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputPorcentajeTiendaFacial",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.TIENDAFACIALPORCENTAJE
                   
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-4" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Litros por minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputLitroPorMinutoTiendaFacial",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litros por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputLitroPorMinutoTiendaFacial",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.TIENDAFACIALLITROSPORMINUTO
                   
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("h6", "Tubo en T"),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputPorcentajeTuboEnT",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Tubo en T"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputPorcentajeTuboEnT",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.TUBOENTPORCENTAJE
                   
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Litro por minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputLitroTuboEnT",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litro por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputLitroTuboEnT",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.TUBOENTLITROSPORMINUTO
                   
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("h6", "Canula Nasal"),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputPorcentajeCanulaNasal",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Canula Nasal"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputPorcentajeCanulaNasal",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.CANULANASALPORCENTAJE
                   
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-4" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Litros por minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputLitroPorMinutoCanulaNasal",
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litros por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputLitroPorMinutoCanulaNasal",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.CANULANASALLITROSPORMINUTO
                   
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("h6", "Mascarilla"),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputPorcentajeMascarilla",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Mascarilla"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputPorcentajeMascarilla",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.MASCARILLAPORCENTAJE
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litro por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputLitroMascarilla",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.MASCARILLALITROSPORMINUTO
                   
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Litro por minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputLitroMascarilla",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Heliox"),
+          m("div", { class: "row" }, [
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputPorcentajeHeliox",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.HELIOXPORCENTAJE
+                }),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-4" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputEscalaDolor" },
+                  m("b", "Litros por minuto")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputLitroPorMinutoHeliox",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.HELIOXLITROSPORMINUTO
                   
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("h6", "Heliox"),
-        //   m("div", { class: "row" }, [
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputPorcentajeHeliox",
+                }),
+              ])
+            ),
+          ]),
+          m("h6", "Aire Ambiente"),
+          m(
+            "div",
+            { class: "row" },
+            m(
+              "div",
+              { class: "col" },
+              m("div", { class: "mb-6" }, [
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  m("b", "Porcentaje")
+                ),
+                m("input", {
+                  class: "form-control",
+                  type: "number",
+                  id: "inputPorcentajeAireAmbiente",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.AIREAMBIENTEPORCENTAJE
                   
-        //         }),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-4" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputEscalaDolor" },
-        //           m("b", "Litros por minuto")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputLitroPorMinutoHeliox",
-                  
-        //         }),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("h6", "Aire Ambiente"),
-        //   m(
-        //     "div",
-        //     { class: "row" },
-        //     m(
-        //       "div",
-        //       { class: "col" },
-        //       m("div", { class: "mb-6" }, [
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           m("b", "Porcentaje")
-        //         ),
-        //         m("input", {
-        //           class: "form-control",
-        //           type: "number",
-        //           id: "inputPorcentajeAireAmbiente",
-                  
-        //         }),
-        //       ])
-        //     )
-        //   ),
-        // ],
+                }),
+              ])
+            )
+          ),
+        ],
         m("br"),
         m("br"),
         // [
