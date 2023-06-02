@@ -1292,115 +1292,110 @@ const VerUnFormulario = {
         ],
         m("br"),
         m("br"),
-        // [
-        //   m(
-        //     "div",
-        //     { class: "d-flex justify-content-center" },
-        //     m("h6", "Succión")
-        //   ),
-        //   m("div", { class: "row justify-content-center" }, [
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputNasotraqueal",
-        //           onclick: function (event){
-        //             isNasotraquealSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Nasotraqueal"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputTraqueal",
-        //           onclick: (event) => {
-        //             isTraquealSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Traqueal"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputOrotraqueal",
-        //           onclick: (event) => {
-        //             isOroTraquealSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Orotraqueal"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputLavadoNasal",
-        //           onclick: (event) => {
-        //             isLavadoNasalSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Lavado Nasal"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-3" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputSubglotica",
-        //           onclick: (event) => {
-        //             isSubGloticoSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Subglótica"
-        //         ),
-        //       ])
-        //     ),
-        //   ]),
-        // ],
+        [
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Succión")
+          ),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputNasotraqueal",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.NASOTRAQUEAL === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Nasotraqueal"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputTraqueal",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.TRAQUEAL === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Traqueal"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputOrotraqueal",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.OROTRAQUEAL === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Orotraqueal"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputLavadoNasal",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.LAVADONASAL === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Lavado Nasal"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-3" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputSubglotica",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.SUBGLOTICA === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Subglótica"
+                ),
+              ])
+            ),
+          ]),
+        ],
         m("br"),
         m("br"),
         // [
