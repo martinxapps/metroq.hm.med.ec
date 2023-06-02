@@ -1,4 +1,3 @@
-import m from "mithril";
 import FormularioModels from "./models/formularioModels";
 import loader from "../../../patologia/utils/loader";
 
@@ -215,7 +214,7 @@ const VerUnFormulario = {
                     : FormularioDeRegistro.listaEscalaDelDolor.data[0].VALUE
                   : "", */
               //value: formularioModelo.listaEscalaDelDolor.data[0].VALUE,
-              value: formularioModelo.listadoUnitario.ESCALADOLOR,
+              value: formularioModelo.listadoUnitario.ESCALADELDOLOR,
             }),
           ]),
           m("div", { class: "form-group col-md-2" }, [
@@ -240,7 +239,7 @@ const VerUnFormulario = {
               id: "inputUsuario",
               placeholder: "Usuario",
               readonly: "readonly",
-              value: formularioModelo.listadoUnitario.USUARIO,
+              value: formularioModelo.listadoUnitario.Usuario,
             }),
           ]),
         ]),
@@ -1284,7 +1283,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
                   disabled: true,
-                  checked: formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPOS
+                  value: formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPOS
                 }),
               ])
             ),
@@ -1460,395 +1459,378 @@ const VerUnFormulario = {
             ),
           ]),
         ],
-        // [
-        //   m(
-        //     "div",
-        //     { class: "d-flex justify-content-center" },
-        //     m("h6", "Observación Clínica")
-        //   ),
-        //   m("h6", "Síntomas"),
-        //   m("div", { class: "row justify-content-center" }, [
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputDisnea",
-        //           onclick: (event) => {
-        //             isDisneaSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m("label", { class: "form-label", for: "inputPeso" }, "Disnea"),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputTos",
-        //           onclick: (event) => {
-        //             isTosSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m("label", { class: "form-label", for: "inputPeso" }, "Tos"),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputExpectoacion",
-        //           onclick: (event) => {
-        //             isExpectoracionSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Expectoración"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputDolorToracico",
-        //           onclick: (event) => {
-        //             isDolorToracicoSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Dolor Torácico"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputHemoptisis",
-        //           onclick: (event) => {
-        //             isHemoptisisSelected = event.target.checked;
-        //           }
+        [
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Observación Clínica")
+          ),
+          m("h6", "Síntomas"),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputDisnea",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.DISNEA === "true" ? "checked" : ""
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Disnea"),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputTos",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.TOS === "true" ? "checked" : ""
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Tos"),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputExpectoacion",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.EXPECTORACION === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Expectoración"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputDolorToracico",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.DOLORTORACICO === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Dolor Torácico"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputHemoptisis",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.HEMOPTISIS === "true" ? "checked" : ""
 
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Hemoptisis"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputFiebre",
-        //           onclick: (event) => {
-        //             isFiebreSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m("label", { class: "form-label", for: "inputPeso" }, "Fiebre"),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("h6", "Signos"),
-        //   m("div", { class: "row justify-content-center" }, [
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputConsciencia",
-        //           onclick: (event) => {
-        //             isConscienciaSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Consciencia"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputIntubado",
-        //           onclick: (event) => {
-        //             isIntubadoSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Intubado"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputEstridor",
-        //           onclick: (event) => {
-        //             isEstridorSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Estridor"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputSibilancias",
-        //           onclick: (event) => {
-        //             isSibilanciasSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Sibilancias"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputRoncus",
-        //           onclick: (event) => {
-        //             isRoncusSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m("label", { class: "form-label", for: "inputPeso" }, "Roncus"),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputCrepitantes",
-        //           onclick: (event) => {
-        //             isCrepitantesSelected = event.target.checked;
-        //           }
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Hemoptisis"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputFiebre",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.FIEBRE === "true" ? "checked" : ""
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Fiebre"),
+              ])
+            ),
+          ]),
+          m("h6", "Signos"),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputConsciencia",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.CONSCIENCIA === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Consciencia"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputIntubado",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.INTUBADO === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Intubado"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputEstridor",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.ESTRIDOR === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Estridor"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputSibilancias",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.SIBILANCIAS === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Sibilancias"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputRoncus",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.RONCUS === "true" ? "checked" : ""
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Roncus"),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputCrepitantes",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.CREPITANTES === "true" ? "checked" : ""
 
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Crepitantes"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputLocalizacion",
-        //           onclick: (event) => {
-        //             isLocalizacionSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Localización"
-        //         ),
-        //       ])
-        //     ),
-        //   ]),
-        //   m("div", { class: "row justify-content-center" }, [
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputCianosis",
-        //           onclick: (event) => {
-        //             isCianosisSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Cianosis"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputRuidoRespiratorio",
-        //           onclick: (event) => {
-        //             isRuidoRespiratorioSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Ruido Respiratorio"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputDisminuido",
-        //           onclick: (event) => {
-        //             isDisminuidoSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Disminuido"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputAbolido",
-        //           onclick: (event) => {
-        //             isAbolidoSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Abolido"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputSonidoDeLaVoz",
-        //           onclick: (event) => {
-        //             isSonidoDeLaVozSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Sonido de la voz"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputEdema",
-        //           onclick: (event) => {
-        //             isEdemaSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m("label", { class: "form-label", for: "inputPeso" }, "Edema"),
-        //       ])
-        //     ),
-        //   ]),
-        // ],
-        // [
-        //   m(
-        //     "label",
-        //     { class: "form-label", for: "textAreaObservacionClinica" },
-        //     "Criterio"
-        //   ),
-        //   m("textarea", {
-        //     class: "form-control",
-        //     id: "textareaCriterio",
-        //     rows: "3",
-        //   }),
-        // ],
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Crepitantes"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputLocalizacion",
+                  disabled: true,
+                  value: formularioModelo.listadoUnitario.LOCALIZACION === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Localización"
+                ),
+              ])
+            ),
+          ]),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputCianosis",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.CIANOSIS === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Cianosis"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputRuidoRespiratorio",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.RUIDORESPIRATORIO === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Ruido Respiratorio"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputDisminuido",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.DISMINUIDO === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Disminuido"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputAbolido",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.ABOLIDO === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Abolido"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputSonidoDeLaVoz",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.SONIDODELAVOZ === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Sonido de la voz"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputEdema",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.EDEMA === "true" ? "checked" : ""
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Edema"),
+              ])
+            ),
+          ]),
+        ],
+        [
+          m(
+            "label",
+            { class: "form-label", for: "textAreaObservacionClinica" },
+            "Criterio"
+          ),
+          m("textarea", {
+            class: "form-control",
+            id: "textareaCriterio",
+            rows: "3",
+            disabled: true,
+            value: formularioModelo.listadoUnitario.CRITERIO,
+          }),
+        ],
         ])
       : m(loader),
     ]
