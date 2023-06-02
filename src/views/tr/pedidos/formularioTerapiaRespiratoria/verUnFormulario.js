@@ -1398,71 +1398,68 @@ const VerUnFormulario = {
         ],
         m("br"),
         m("br"),
-        // [
-        //   m(
-        //     "div",
-        //     { class: "d-flex justify-content-center" },
-        //     m("h6", "Muestras")
-        //   ),
-        //   m("div", { class: "row justify-content-center" }, [
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputEsputo",
-        //           onclick: (event) => {
-        //             isEsputoSelected = event.target.checked
-        //           }
-        //         }),
-        //         m("label", { class: "form-label", for: "inputPeso" }, "Esputo"),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputHisopado",
-        //           onclick: (event) => {
-        //             isHisopadoSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Hisopado"
-        //         ),
-        //       ])
-        //     ),
-        //     m(
-        //       "div",
-        //       { class: "col text-center" },
-        //       m("div", { class: "mb-2" }, [
-        //         m("input", {
-        //           class: "form-check-input",
-        //           type: "checkbox",
-        //           value: "",
-        //           id: "inputSecrecionTraqueal",
-        //           onclick: (event) => {
-        //             isSecrecionTraquealSelected = event.target.checked;
-        //           }
-        //         }),
-        //         m(
-        //           "label",
-        //           { class: "form-label", for: "inputPeso" },
-        //           "Secreción Traqueal"
-        //         ),
-        //       ])
-        //     ),
-        //   ]),
-        // ],
+        [
+          m(
+            "div",
+            { class: "d-flex justify-content-center" },
+            m("h6", "Muestras")
+          ),
+          m("div", { class: "row justify-content-center" }, [
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputEsputo",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.ESPUTO === "true" ? "checked" : ""
+                }),
+                m("label", { class: "form-label", for: "inputPeso" }, "Esputo"),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputHisopado",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.ISOPADO === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Hisopado"
+                ),
+              ])
+            ),
+            m(
+              "div",
+              { class: "col text-center" },
+              m("div", { class: "mb-2" }, [
+                m("input", {
+                  class: "form-check-input",
+                  type: "checkbox",
+                  value: "",
+                  id: "inputSecrecionTraqueal",
+                  disabled: true,
+                  checked: formularioModelo.listadoUnitario.SECRECIONTRAQUEAL === "true" ? "checked" : ""
+                }),
+                m(
+                  "label",
+                  { class: "form-label", for: "inputPeso" },
+                  "Secreción Traqueal"
+                ),
+              ])
+            ),
+          ]),
+        ],
         // [
         //   m(
         //     "div",
