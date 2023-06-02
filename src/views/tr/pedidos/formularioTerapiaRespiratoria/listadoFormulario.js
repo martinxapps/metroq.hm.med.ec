@@ -1,6 +1,8 @@
 import m from "mithril";
 import FormularioModels from "./models/formularioModels";
 import Pedido from "../pedido";
+import VerUnFormulario from "./verUnFormulario";
+import cerrarGestionMuestra from "../../../patologia/muestras/cerrarGestionMuestra";
 
 let formularioModelo = FormularioModels;
 
@@ -35,13 +37,37 @@ const ListadoFormulario = {
               m("td", formulario.ESTADO),
               m(
                 "td",
-                m("button", { class: "btn btn-primary", type: "button" }, "Ver")
+                m(
+                  "button",
+                  {
+                    class: "btn btn-primary",
+                    type: "button",
+                    onclick: function () {
+                      m.mount(document.querySelector("#gestion-muestras"), {
+                        view: () => {
+                          return m(VerUnFormulario, { id: formulario.ID });
+                        },
+                      }),
+                      m.mount(
+                        document.querySelector("#cerrar-gestion-muestras"),
+                        cerrarGestionMuestra
+                      );
+                      /* console.log(formulario.ID);
+                      m(VerUnFormulario, { id: formulario.ID }); */
+                    },
+                  },
+                  "Ver"
+                )
               ),
               m(
                 "td",
                 m(
                   "button",
-                  { class: "btn btn-primary", type: "button", disabled: formulario.ESTADO === "Cancelado"},
+                  {
+                    class: "btn btn-primary",
+                    type: "button",
+                    disabled: formulario.ESTADO === "Cancelado",
+                  },
                   "Editar"
                 )
               ),
@@ -57,7 +83,7 @@ const ListadoFormulario = {
                       const datos = {
                         ID: formulario.ID,
                         ESTADO: "Cancelado",
-                      }
+                      };
                       if (
                         window.confirm(
                           "Está seguro que deseas modificar el estado a cancelado?"
