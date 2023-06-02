@@ -1,5 +1,6 @@
 let FormularioModels = {
     listado: [],
+    listadoUnitario: [],
     listaEscalaDelDolor: [],
     examenes: [],
     error: '',
@@ -58,6 +59,30 @@ let FormularioModels = {
         })
         .then(function(result) {
             FormularioModels.listado = result.data;
+            FormularioModels.loading = false;
+        })
+        .catch(function(error) {
+            FormularioModels.loading = false;
+            FormularioModels.error = error;
+            alert(FormularioModels.error);
+        })
+    },
+
+    cargarUnFormulario: function(id) {
+        FormularioModels.loading = true;
+        m.request({
+            method: "GET",
+            url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia?ID=" + id,
+            body: {},
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "Accept": "application/json",
+                "Authorization": localStorage.accessToken,
+            },
+        })
+        .then(function(result) {
+            //return result.data;
+            FormularioModels.listadoUnitario = result.data[0];
             FormularioModels.loading = false;
         })
         .catch(function(error) {
