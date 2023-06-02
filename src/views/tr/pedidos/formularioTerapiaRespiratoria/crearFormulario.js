@@ -1913,31 +1913,33 @@ const CrearFormulario = {
           onclick: function () {
             const formulario = {
               NUMERODEPEDIDO: vnode.dom["inputNumeroPedido"].value,
-              FECHAMV: `'${vnode.dom["inputFechaPedido"].value}'`,
-              ORIGEN: `'${vnode.dom["inputOrigenPedido"].value}'`,
-              MEDICOSOLICITANTE: `'${vnode.dom["inputMedicoSolicitante"].value}'`,
-              ESPECIALIDAD: `'${vnode.dom["inputEspecialidad"].value}'`,
-              APELLIDOSNOMBREPACIENTE: `'${vnode.dom["inputApellidosYNombres"].value}'`,
+              FECHAMV: vnode.dom["inputFechaPedido"].value,
+              ORIGEN: vnode.dom["inputOrigenPedido"].value,
+              MEDICOSOLICITANTE: vnode.dom["inputMedicoSolicitante"].value,
+              ESPECIALIDAD: vnode.dom["inputEspecialidad"].value,
+              APELLIDOSNOMBREPACIENTE: vnode.dom["inputApellidosYNombres"].value,
               NHC: vnode.dom["inputNHC"].value,
               NUMEROATENCION: vnode.dom["inputNumeroAtencion"].value,
-              UBICACION: `'${vnode.dom["inputUbicacion"].value}'`,
-              ESCALADELDOLOR: `'${vnode.dom["inputEscalaDolor"].value}'`,
-              PESO: `'${vnode.dom["inputPeso"].value}'`,
-              Usuario: `'${vnode.dom["inputUsuario"].value}'`,
-              PRESCRIPCION: `'${Pedido.examenes.map(
+              UBICACION: vnode.dom["inputUbicacion"].value,
+              ESCALADELDOLOR: vnode.dom["inputEscalaDolor"].value,
+              PESO: vnode.dom["inputPeso"].value,
+              Usuario: vnode.dom["inputUsuario"].value,
+              PRESCRIPCION: Pedido.examenes.map(
                 ({ Examen, Frecuencia }) => {
                   return `${Examen} ${Frecuencia}`;
                 }
-              )}'`,
+              ),
               //FECHAHOY: `'${vnode.dom["inputFecha"].value}'`,
-              FECHAHOY:
+              /* FECHAHOY:
                 "To_Date(" +
                 `'${vnode.dom["inputFecha"].value}'` +
-                ", 'DD-MM-YYYY HH24:MI:SS')",
+                ", 'DD-MM-YYYY HH24:MI:SS')", */
+
+              FECHAHOY:vnode.dom["inputFecha"].value,
               //FECHAHOY: `'To_Date(${vnode.dom["inputFecha"].value}, DD-MM-YYYY HH24:MI:SS)'`,
               //FECHAHOY: "TO_DATE('23-05-2023 09:30:45', 'DD-MM-YYYY HH24:MI:SS')",
-              HORAANTES: `'${vnode.dom["inputHora"].value}'`,
-              HORADESPUES: `'${cargarHoraActual()}'`,
+              HORAANTES: vnode.dom["inputHora"].value,
+              HORADESPUES: cargarHoraActual(),
               SALBUTAMOLDOSIS:
                 vnode.dom["inputSalbumatol"].value.length > 0
                   ? vnode.dom["inputSalbumatol"].value
@@ -1974,67 +1976,67 @@ const CrearFormulario = {
                 vnode.dom["inputOtros"].value.length > 0
                   ? vnode.dom["inputOtros"].value
                   : 0,
-              NEBULIZACION: isNebulizacionSelected ? "'true'" : "'false'",
-              ULTRASONIDO: isUltrasonidoSelected ? "'true'" : "'false'",
+              NEBULIZACION: isNebulizacionSelected ? 'true' : 'false',
+              ULTRASONIDO: isUltrasonidoSelected ? 'true' : 'false',
               INHALADORESDOSISMEDIDA: isInhaladorDosisMedidaSelected
-                ? "'true'"
-                : "'false'",
-              DRENAJEPOSTURAL: isDrenajePosturalSelected ? "'true'" : "'false'",
-              PERCUSIONES: isPercusionesSelected ? "'true'" : "'false'",
-              VIBRACIONES: isVibracionesSelected ? "'true'" : "'false'",
-              TOSEFECTIVA: isTosEfectivaSelected ? "'true'" : "'false'",
-              ASISTENCIADETOS: isAsistenteDeTosSelected ? "'true'" : "'false'",
+                ? 'true'
+                : 'false',
+              DRENAJEPOSTURAL: isDrenajePosturalSelected ? 'true' : 'false',
+              PERCUSIONES: isPercusionesSelected ? 'true' : 'false',
+              VIBRACIONES: isVibracionesSelected ? 'true' : 'false',
+              TOSEFECTIVA: isTosEfectivaSelected ? 'true' : 'false',
+              ASISTENCIADETOS: isAsistenteDeTosSelected ? 'true' : 'false',
               CHALECOVIBROPRECUTOR: isChalecoVibroprecutor
-                ? "'true'"
-                : "'false'",
-              NASOTRAQUEAL: isNasotraquealSelected ? "'true'" : "'false'",
-              TRAQUEAL: isTraquealSelected ? "'true'" : "'false'",
-              OROTRAQUEAL: isOroTraquealSelected ? "'true'" : "'false'",
-              LAVADONASAL: isLavadoNasalSelected ? "'true'" : "'false'",
-              SUBGLOTICA: isSubGloticoSelected ? "'true'" : "'false'",
-              ESPUTO: isEsputoSelected ? "'true'" : "'false'",
-              ISOPADO: isHisopadoSelected ? "'true'" : "'false'",
+                ? 'true'
+                : 'false',
+              NASOTRAQUEAL: isNasotraquealSelected ? 'true' : 'false',
+              TRAQUEAL: isTraquealSelected ? 'true' : 'false',
+              OROTRAQUEAL: isOroTraquealSelected ? 'true' : 'false',
+              LAVADONASAL: isLavadoNasalSelected ? 'true' : 'false',
+              SUBGLOTICA: isSubGloticoSelected ? 'true' : 'false',
+              ESPUTO: isEsputoSelected ? 'true' : 'false',
+              ISOPADO: isHisopadoSelected ? 'true' : 'false',
               SECRECIONTRAQUEAL: isSecrecionTraquealSelected
-                ? "'true'"
-                : "'false'",
-              CONSCIENCIA: isConscienciaSelected ? "'true'" : "'false'",
-              INTUBADO: isIntubadoSelected ? "'true'" : "'false'",
-              ESTRIDOR: isEstridorSelected ? "'true'" : "'false'",
-              SIBILANCIAS: isSibilanciasSelected ? "'true'" : "'false'",
-              RONCUS: isRoncusSelected ? "'true'" : "'false'",
-              CREPITANTES: isCrepitantesSelected ? "'true'" : "'false'",
-              LOCALIZACION: isLocalizacionSelected ? "'true'" : "'false'",
-              CIANOSIS: isCianosisSelected ? "'true'" : "'false'",
+                ? 'true'
+                : 'false',
+              CONSCIENCIA: isConscienciaSelected ? 'true' : 'false',
+              INTUBADO: isIntubadoSelected ? 'true' : 'false',
+              ESTRIDOR: isEstridorSelected ? 'true' : 'false',
+              SIBILANCIAS: isSibilanciasSelected ? 'true' : 'false',
+              RONCUS: isRoncusSelected ? 'true' : 'false',
+              CREPITANTES: isCrepitantesSelected ? 'true' : 'false',
+              LOCALIZACION: isLocalizacionSelected ? 'true' : 'false',
+              CIANOSIS: isCianosisSelected ? 'true' : 'false',
               RUIDORESPIRATORIO: isRuidoRespiratorioSelected
-                ? "'true'"
-                : "'false'",
-              DISMINUIDO: isDisminuidoSelected ? "'true'" : "'false'",
-              ABOLIDO: isAbolidoSelected ? "'true'" : "'false'",
-              SONIDODELAVOZ: isSonidoDeLaVozSelected ? "'true'" : "'false'",
-              EDEMA: isEdemaSelected ? "'true'" : "'false'",
-              DISNEA: isDisneaSelected ? "'true'" : "'false'",
-              TOS: isTosSelected ? "'true'" : "'false'",
-              EXPECTORACION: isExpectoracionSelected ? "'true'" : "'false'",
-              DOLORTORACICO: isDolorToracicoSelected ? "'true'" : "'false'",
-              HEMOPTISIS: isHemoptisisSelected ? "'true'" : "'false'",
-              FIEBRE: isFiebreSelected ? "'true'" : "'false'",
+                ? 'true'
+                : 'false',
+              DISMINUIDO: isDisminuidoSelected ? 'true' : 'false',
+              ABOLIDO: isAbolidoSelected ? 'true' : 'false',
+              SONIDODELAVOZ: isSonidoDeLaVozSelected ? 'true' : 'false',
+              EDEMA: isEdemaSelected ? 'true' : 'false',
+              DISNEA: isDisneaSelected ? 'true' : 'false',
+              TOS: isTosSelected ? 'true' : 'false',
+              EXPECTORACION: isExpectoracionSelected ? 'true' : 'false',
+              DOLORTORACICO: isDolorToracicoSelected ? 'true' : 'false',
+              HEMOPTISIS: isHemoptisisSelected ? 'true' : 'false',
+              FIEBRE: isFiebreSelected ? 'true' : 'false',
               INCENTIVORESPIRATORIO: isIncentivoRespiratorioSelected
-                ? "'true'"
-                : "'false'",
+                ? 'true'
+                : 'false',
               PRESIONPOSITIVAVIAAREA:
                 isPresionPositivaContinuaEnLaViaAereaSelected
-                  ? "'true'"
-                  : "'false'",
+                  ? 'true'
+                  : 'false',
               PRESIONPOSITIVAEXPIRACION:
                 isPresionPositivaAlFinalDeLaExpiracionSelected
-                  ? "'true'"
-                  : "'false'",
+                  ? 'true'
+                  : 'false',
               KINISIOTERAPIADELTORAX: isKinesioterapiaSelected
-                ? "'true'"
-                : "'false'",
+                ? 'true'
+                : 'false',
               EJERCICIOSRESPIRATORIOS: isEjerciciosRespiratorioSelected
-                ? "'true'"
-                : "'false'",
+                ? 'true'
+                : 'false',
               MILILITROSPORSEGUNDOINCENTIVO:
                 vnode.dom["inputMililitrosPorSegundo"].value.length > 0
                   ? vnode.dom["inputMililitrosPorSegundo"].value
@@ -2104,11 +2106,11 @@ const CrearFormulario = {
                   ? vnode.dom["inputPorcentajeAireAmbiente"].value
                   : 0,
               VENTILACIONMECANICA: isVentilacionMecanicaSelected
-                ? "'true'"
-                : "'false'",
+                ? 'true'
+                : 'false',
               VENTILACIONNOINVASIVA: isVentilacionNoInvasivaSelected
-                ? "'true'"
-                : "'false'",
+                ? 'true'
+                : 'false',
               SATURACIONPREVIA: `${
                 isNaN(
                   parseInt(vnode.dom["inputSaturacionPreviaPorcentaje"].value)
@@ -2142,9 +2144,10 @@ const CrearFormulario = {
                   ? vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"]
                       .value
                   : 0,
-              CRITERIO: `'${vnode.dom["textareaCriterio"].value}'`,
-              ESTADO: "'Activo'", //"1",
-              ID: "sec_TerapiaRespiratoria.nextval",
+              CRITERIO: vnode.dom["textareaCriterio"].value,
+              ESTADO: 'Activo', //"1",
+              ID: 'sec_TerapiaRespiratoria.nextval',
+              //ID: 300,
             };
             if (confirm("¿Estás seguro quieres guardar este formulario?")) {
               // Lógica de eliminación del elemento aquí
