@@ -22,8 +22,8 @@ const ListadoFormulario = {
             m("th", { scope: "col" }, m("b", "ID")),
             m("th", { scope: "col" }, m("b", "Fecha/Hora")),
             m("th", { scope: "col" }, m("b", "Estado")),
-            m("th", { scope: "col" }, m("b", "Ver")),
-            m("th", { scope: "col" }, m("b", "Editar")),
+            m("th", { scope: "col" }, m("b", "Ver y Editar")),
+            //m("th", { scope: "col" }, m("b", "Editar")),
             m("th", { scope: "col" }, m("b", "Cancelar")),
             m("th", { scope: "col" }, m("b", "Finalizar")),
           ])
@@ -57,10 +57,10 @@ const ListadoFormulario = {
                       m(VerUnFormulario, { id: formulario.ID }); */
                     },
                   },
-                  "Ver"
+                  "Ver y Editar"
                 )
               ),
-              m(
+              /* m(
                 "td",
                 m(
                   "button",
@@ -71,7 +71,7 @@ const ListadoFormulario = {
                   },
                   "Editar"
                 )
-              ),
+              ), */
               m(
                 "td",
                 m(
