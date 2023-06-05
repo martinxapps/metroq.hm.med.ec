@@ -4,7 +4,7 @@ import FormularioModels from "./models/formularioModels";
 import Pedido from "../pedido";
 import Encrypt from "../../../../models/encrypt";
 import {
-  handleCheckboxClick,
+  //handleCheckboxClick,
   cargarFechaActual,
   cargarHoraActual,
 } from "./logic/formulario";
@@ -75,77 +75,6 @@ const CrearFormulario = {
     CrearFormulario.usuarioConectado = Encrypt.getDataUser();
   },
   view: (vnode) => {
-    // return m("form#crear-muestra", [
-    //     m("table.table", [
-    //         /* m("tr", [
-    //             m("th.tx-12", "ID MUESTRA"),
-    //             m("td.tx-12", [
-    //                 m("input.form-control[id='inputmuestraid'][type='text']", {
-    //                     disabled: true,
-    //                     value: muestraModelo.secuencialMuestra,
-    //                 }),
-    //             ]),
-    //         ]),
-    //         m("tr.muestradescripcion", [
-    //             m("th.tx-12", "Descripción de la Muestra"),
-    //             m("td.tx-12", [
-    //                 m("textarea.form-control[id='inputmuestradescripcion'][placeholder='Descripción de la Muestra'][title='Descripción de la Muestra']", {
-    //                     style: "min-height: 100px",
-    //                     rows: 4,
-    //                 })
-    //             ]),
-    //         ]),  */
-    //         m("tr", [
-    //             //m(muestraValida),
-    //             m("td.tx-12", [
-    //                 m('div#observacionesnovalida'),
-    //                 m("button.btn.btn-xs.btn-primary.mg-l-2.tx-semibold[type='button']", {
-    //                     onclick: function() {
-    //                         /* if (vnode.dom['inputmuestradescripcion'].value.length === 0) {
-    //                             muestraModelo.error = "El campo Descripción es Requerido";
-    //                             alert(muestraModelo.error);
-    //                             vnode.dom['inputmuestradescripcion'].focus();
-    //                         } else if (!vnode.dom['checkvalida'].checked && vnode.dom['inputobservacionesnovalida'].value.length === 0) {
-    //                             muestraModelo.error = "El campo Observaciones es Requerido, cuando la muestra no es válida";
-    //                             alert(muestraModelo.error);
-    //                             vnode.dom['inputobservacionesnovalida'].focus();
-    //                         } else {
-    //                             let muestra = {
-    //                                 nopedidomv: parseInt(muestraModel.numeroPedido),
-    //                                 noatencionmv: parseInt(muestraModel.numeroAtencion),
-    //                                 nohistoriaclinicamv: parseInt(muestraModel.numeroHistoriaClinica),
-    //                                 idestadopedido: 1,
-    //                                 descripcion: vnode.dom['inputmuestradescripcion'].value,
-    //                                 valida: vnode.dom['checkvalida'].checked ? 1 : 0,
-    //                                 observacionesmuestranovalida: vnode.dom['checkvalida'].checked ? null : vnode.dom['inputobservacionesnovalida'].value
-    //                             }
-    //                             muestraModelo.guardar(muestra);
-    //                             m.mount(document.querySelector("#gestion-muestras"), null);
-    //                             m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
-    //                             muestraModelo.listado = [];
-    //                             muestraModelo.loading = true;
-    //                         } */
-    //                         const formulario = {
-    //                             NUMERODEPEDIDO: 555,
-    //                             ESTADO: "'PENDIENTE'",
-    //                             ID: "sec_TerapiaRespiratoria.nextval",
-    //                         }
-
-    //                         formularioModelo.guardar(formulario);
-    //                         m.mount(document.querySelector("#gestion-muestras"), null);
-    //                         m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
-    //                         formularioModelo.listado = [];
-    //                         formularioModelo.loading = true;
-    //                     },
-    //                         style: {'margin': '6px 0'}
-    //                 }, [
-    //                     m("i.fas.fa-save.mg-r-5", )
-    //                 ], "Guardar"
-    //                 ),]
-    //             ),
-    //         ]),
-    //     ]),
-    // ])
     return m("form", [
       m("div", { class: "row" }, [
         m(
@@ -379,9 +308,6 @@ const CrearFormulario = {
                 class: "form-check-input",
                 id: `${EXAMEN}`,
                 value: `${EXAMEN} ${FRECUENCIA}`,
-                onclick: function (event) {
-                  handleCheckboxClick(event.target.value);
-                },
               }),
               m(
                 "label",
@@ -1904,6 +1830,7 @@ const CrearFormulario = {
           rows: "3",
         }),
       ],
+      m("br"),
       m(
         "button",
         {
@@ -1929,6 +1856,7 @@ const CrearFormulario = {
                   return `${Examen} ${Frecuencia}`;
                 }
               ),
+              //PRESCRIPCION: valoresSeleccionados,
               //FECHAHOY: `'${vnode.dom["inputFecha"].value}'`,
               /* FECHAHOY:
                 "To_Date(" +
@@ -2150,6 +2078,8 @@ const CrearFormulario = {
               console.log(formulario);
               console.log(Pedido.data.AT_MV);
               formularioModelo.guardar(formulario);
+              m.mount(document.querySelector("#gestion-muestras"), null);
+              m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
               formularioModelo.listado = [];
               formularioModelo.loading = true;
             }
