@@ -27,7 +27,7 @@ const ListadoFormulario = {
             m("th", { scope: "col" }, m("b", "Ver y Editar")),
             //m("th", { scope: "col" }, m("b", "Editar")),
             m("th", { scope: "col" }, m("b", "Cancelar")),
-            m("th", { scope: "col" }, m("b", "Finalizar")),
+            //m("th", { scope: "col" }, m("b", "Finalizar")),
           ])
         ),
         m(
@@ -101,7 +101,7 @@ const ListadoFormulario = {
                   "Cancelar"
                 )
               ),
-              m(
+              /* m(
                 "td",
                 m(
                   "button",
@@ -112,7 +112,7 @@ const ListadoFormulario = {
                   },
                   "Finalizar"
                 )
-              ),
+              ), */
             ]);
           })
         ),
