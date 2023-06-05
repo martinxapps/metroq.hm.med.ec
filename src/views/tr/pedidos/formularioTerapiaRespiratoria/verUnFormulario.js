@@ -9,62 +9,6 @@ let idFormulario = null;
 // 
 let pruebaFormulario = null
 
-//Selected
-let isNebulizacionSelected = false;
-let isUltrasonidoSelected = false;
-let isInhaladorDosisMedidaSelected = false;
-// Higiene Bronco Pulmonar
-let isDrenajePosturalSelected = false;
-let isPercusionesSelected = false;
-let isVibracionesSelected = false;
-let isTosEfectivaSelected = false;
-let isAsistenteDeTosSelected = false;
-let isChalecoVibroprecutor = false;
-// Terapia Expansiva
-let isIncentivoRespiratorioSelected = false;
-let isPresionPositivaContinuaEnLaViaAereaSelected = false;
-let isPresionPositivaAlFinalDeLaExpiracionSelected = false;
-let isKinesioterapiaSelected = false;
-let isEjerciciosRespiratorioSelected = false;
-// Monitoreo
-let isVentilacionMecanicaSelected = false;
-let isVentilacionNoInvasivaSelected = false;
-
-// Succión
-let isNasotraquealSelected = false;
-let isTraquealSelected = false;
-let isOroTraquealSelected = false;
-let isLavadoNasalSelected = false;
-let isSubGloticoSelected = false;
-
-// Muestras
-let isEsputoSelected = false;
-let isHisopadoSelected = false;
-let isSecrecionTraquealSelected = false;
-
-//Observación Clínica
-let isDisneaSelected = false;
-let isTosSelected = false;
-let isExpectoracionSelected = false;
-let isDolorToracicoSelected = false;
-let isHemoptisisSelected = false;
-let isFiebreSelected = false;
-
-// Signos
-let isConscienciaSelected = false;
-let isIntubadoSelected = false;
-let isEstridorSelected = false;
-let isSibilanciasSelected = false;
-let isRoncusSelected = false;
-let isCrepitantesSelected = false;
-let isLocalizacionSelected = false;
-let isCianosisSelected = false;
-let isRuidoRespiratorioSelected = false;
-let isDisminuidoSelected = false;
-let isAbolidoSelected = false;
-let isSonidoDeLaVozSelected = false;
-let isEdemaSelected = false;
-
 const VerUnFormulario = {
   oninit: (vnode) => {
     if (vnode.attrs.id !== undefined) {
@@ -2092,66 +2036,46 @@ const VerUnFormulario = {
                   : 0,
               //NEBULIZACION: isNebulizacionSelected ? 'true' : 'false',
               NEBULIZACION: formularioModelo.listadoUnitario.NEBULIZACION,
-              ULTRASONIDO: isUltrasonidoSelected ? 'true' : 'false',
-              INHALADORESDOSISMEDIDA: isInhaladorDosisMedidaSelected
-                ? 'true'
-                : 'false',
-              DRENAJEPOSTURAL: isDrenajePosturalSelected ? 'true' : 'false',
-              PERCUSIONES: isPercusionesSelected ? 'true' : 'false',
-              VIBRACIONES: isVibracionesSelected ? 'true' : 'false',
-              TOSEFECTIVA: isTosEfectivaSelected ? 'true' : 'false',
-              ASISTENCIADETOS: isAsistenteDeTosSelected ? 'true' : 'false',
-              CHALECOVIBROPRECUTOR: isChalecoVibroprecutor
-                ? 'true'
-                : 'false',
-              NASOTRAQUEAL: isNasotraquealSelected ? 'true' : 'false',
-              TRAQUEAL: isTraquealSelected ? 'true' : 'false',
-              OROTRAQUEAL: isOroTraquealSelected ? 'true' : 'false',
-              LAVADONASAL: isLavadoNasalSelected ? 'true' : 'false',
-              SUBGLOTICA: isSubGloticoSelected ? 'true' : 'false',
-              ESPUTO: isEsputoSelected ? 'true' : 'false',
-              ISOPADO: isHisopadoSelected ? 'true' : 'false',
-              SECRECIONTRAQUEAL: isSecrecionTraquealSelected
-                ? 'true'
-                : 'false',
-              CONSCIENCIA: isConscienciaSelected ? 'true' : 'false',
-              INTUBADO: isIntubadoSelected ? 'true' : 'false',
-              ESTRIDOR: isEstridorSelected ? 'true' : 'false',
-              SIBILANCIAS: isSibilanciasSelected ? 'true' : 'false',
-              RONCUS: isRoncusSelected ? 'true' : 'false',
-              CREPITANTES: isCrepitantesSelected ? 'true' : 'false',
-              LOCALIZACION: isLocalizacionSelected ? 'true' : 'false',
-              CIANOSIS: isCianosisSelected ? 'true' : 'false',
-              RUIDORESPIRATORIO: isRuidoRespiratorioSelected
-                ? 'true'
-                : 'false',
-              DISMINUIDO: isDisminuidoSelected ? 'true' : 'false',
-              ABOLIDO: isAbolidoSelected ? 'true' : 'false',
-              SONIDODELAVOZ: isSonidoDeLaVozSelected ? 'true' : 'false',
-              EDEMA: isEdemaSelected ? 'true' : 'false',
-              DISNEA: isDisneaSelected ? 'true' : 'false',
-              TOS: isTosSelected ? 'true' : 'false',
-              EXPECTORACION: isExpectoracionSelected ? 'true' : 'false',
-              DOLORTORACICO: isDolorToracicoSelected ? 'true' : 'false',
-              HEMOPTISIS: isHemoptisisSelected ? 'true' : 'false',
-              FIEBRE: isFiebreSelected ? 'true' : 'false',
-              INCENTIVORESPIRATORIO: isIncentivoRespiratorioSelected
-                ? 'true'
-                : 'false',
-              PRESIONPOSITIVAVIAAREA:
-                isPresionPositivaContinuaEnLaViaAereaSelected
-                  ? 'true'
-                  : 'false',
-              PRESIONPOSITIVAEXPIRACION:
-                isPresionPositivaAlFinalDeLaExpiracionSelected
-                  ? 'true'
-                  : 'false',
-              KINISIOTERAPIADELTORAX: isKinesioterapiaSelected
-                ? 'true'
-                : 'false',
-              EJERCICIOSRESPIRATORIOS: isEjerciciosRespiratorioSelected
-                ? 'true'
-                : 'false',
+              ULTRASONIDO: formularioModelo.listadoUnitario.ULTRASONIDO,
+              INHALADORESDOSISMEDIDA: formularioModelo.listadoUnitario.INHALADORESDOSISMEDIDA,
+              DRENAJEPOSTURAL: formularioModelo.listadoUnitario.DRENAJEPOSTURAL,
+              PERCUSIONES: formularioModelo.listadoUnitario.PERCUSIONES,
+              VIBRACIONES: formularioModelo.listadoUnitario.VIBRACIONES,
+              TOSEFECTIVA: formularioModelo.listadoUnitario.TOSEFECTIVA,
+              ASISTENCIADETOS: formularioModelo.listadoUnitario.ASISTENCIADETOS,
+              CHALECOVIBROPRECUTOR: formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR,
+              NASOTRAQUEAL: formularioModelo.listadoUnitario.NASOTRAQUEAL,
+              TRAQUEAL: formularioModelo.listadoUnitario.TRAQUEAL,
+              OROTRAQUEAL: formularioModelo.listadoUnitario.OROTRAQUEAL,
+              LAVADONASAL: formularioModelo.listadoUnitario.LAVADONASAL,
+              SUBGLOTICA: formularioModelo.listadoUnitario.SUBGLOTICA,
+              ESPUTO: formularioModelo.listadoUnitario.ESPUTO,
+              ISOPADO: formularioModelo.listadoUnitario.ISOPADO,
+              SECRECIONTRAQUEAL: formularioModelo.listadoUnitario.SECRECIONTRAQUEAL,
+              CONSCIENCIA: formularioModelo.listadoUnitario.CONSCIENCIA,
+              INTUBADO: formularioModelo.listadoUnitario.INTUBADO,
+              ESTRIDOR: formularioModelo.listadoUnitario.ESTRIDOR,
+              SIBILANCIAS: formularioModelo.listadoUnitario.SIBILANCIAS,
+              RONCUS: formularioModelo.listadoUnitario.RONCUS,
+              CREPITANTES: formularioModelo.listadoUnitario.CREPITANTES,
+              LOCALIZACION: formularioModelo.listadoUnitario.LOCALIZACION,
+              CIANOSIS: formularioModelo.listadoUnitario.CIANOSIS,
+              RUIDORESPIRATORIO: formularioModelo.listadoUnitario.RUIDORESPIRATORIO,
+              DISMINUIDO: formularioModelo.listadoUnitario.DISMINUIDO,
+              ABOLIDO: formularioModelo.listadoUnitario.ABOLIDO,
+              SONIDODELAVOZ: formularioModelo.listadoUnitario.SONIDODELAVOZ,
+              EDEMA: formularioModelo.listadoUnitario.EDEMA,
+              DISNEA: formularioModelo.listadoUnitario.DISNEA,
+              TOS: formularioModelo.listadoUnitario.TOS,
+              EXPECTORACION: formularioModelo.listadoUnitario.EXPECTORACION,
+              DOLORTORACICO: formularioModelo.listadoUnitario.DOLORTORACICO,
+              HEMOPTISIS: formularioModelo.listadoUnitario.HEMOPTISIS,
+              FIEBRE: formularioModelo.listadoUnitario.FIEBRE,
+              INCENTIVORESPIRATORIO: formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO,
+              PRESIONPOSITIVAVIAAREA: formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA,
+              PRESIONPOSITIVAEXPIRACION: formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION,
+              KINISIOTERAPIADELTORAX: formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX,
+              EJERCICIOSRESPIRATORIOS: formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS,
               MILILITROSPORSEGUNDOINCENTIVO:
                 vnode.dom["inputMililitrosPorSegundo"].value.length > 0
                   ? vnode.dom["inputMililitrosPorSegundo"].value
@@ -2220,19 +2144,11 @@ const VerUnFormulario = {
                 vnode.dom["inputPorcentajeAireAmbiente"].value.length > 0
                   ? vnode.dom["inputPorcentajeAireAmbiente"].value
                   : 0,
-              VENTILACIONMECANICA: isVentilacionMecanicaSelected
-                ? 'true'
-                : 'false',
-              VENTILACIONNOINVASIVA: isVentilacionNoInvasivaSelected
-                ? 'true'
-                : 'false',
-              SATURACIONPREVIA: `${
-                isNaN(
-                  parseInt(vnode.dom["inputSaturacionPreviaPorcentaje"].value)
-                )
-                  ? 0
-                  : parseInt(vnode.dom["inputSaturacionPreviaPorcentaje"].value)
-              }`,
+              VENTILACIONMECANICA: formularioModelo.listadoUnitario.VENTILACIONMECANICA,
+              VENTILACIONNOINVASIVA: formularioModelo.listadoUnitario.VENTILACIONNOINVASIVA,
+              SATURACIONPREVIA: vnode.dom["inputSaturacionPreviaPorcentaje"].value.length > 0
+              ? vnode.dom["inputSaturacionPreviaPorcentaje"].value
+              : 0,
               SATURACIONPOSTERIOR:
                 vnode.dom["inputSaturacionPosteriorPorcentaje"].value.length > 0
                   ? vnode.dom["inputSaturacionPosteriorPorcentaje"].value
@@ -2261,9 +2177,9 @@ const VerUnFormulario = {
                   : 0,
               CRITERIO: vnode.dom["textareaCriterio"].value,
               ESTADO: 'Activo', //"1",
-              ID: 128,
+              ID: formularioModelo.listadoUnitario.ID,
               };
-              if (confirm("¿Estás seguro quieres guardar este formulario?")) {
+              if (confirm("¿Estás seguro quieres actualizar este formulario?")) {
                 // Lógica de eliminación del elemento aquí
                 console.log(formulario);
                 //console.log(Pedido.data.AT_MV);
