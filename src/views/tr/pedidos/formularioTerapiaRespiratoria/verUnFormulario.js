@@ -9,7 +9,7 @@ let idFormulario = null;
 // 
 let pruebaFormulario = null
 
-/* //Selected
+//Selected
 let isNebulizacionSelected = false;
 let isUltrasonidoSelected = false;
 let isInhaladorDosisMedidaSelected = false;
@@ -63,7 +63,7 @@ let isRuidoRespiratorioSelected = false;
 let isDisminuidoSelected = false;
 let isAbolidoSelected = false;
 let isSonidoDeLaVozSelected = false;
-let isEdemaSelected = false; */
+let isEdemaSelected = false;
 
 const VerUnFormulario = {
   oninit: (vnode) => {
@@ -661,7 +661,10 @@ const VerUnFormulario = {
                   value: "${inputVibraciones}",
                   id: "inputVibraciones",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.VIBRACIONES === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.VIBRACIONES === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.VIBRACIONES = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -680,7 +683,10 @@ const VerUnFormulario = {
                   value: "${inputTosEfectiva}",
                   id: "inputTosEfectiva",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.TOSEFECTIVA === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.TOSEFECTIVA === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.TOSEFECTIVA = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -699,7 +705,10 @@ const VerUnFormulario = {
                   value: "${inputAsistenteTos}",
                   id: "inputAsistenteTos",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.ASISTENCIADETOS === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.ASISTENCIADETOS === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.ASISTENCIADETOS = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -718,7 +727,10 @@ const VerUnFormulario = {
                   value: "${inputChalecoVibroprecutor}",
                   id: "inputChalecoVibroprecutor",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -746,7 +758,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputIncentivoRespiratorio",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -765,7 +780,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputPresionPositivaContinuaEnLaViaAeria",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -784,7 +802,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputPresionPositivaAlFinalDeLaExpiracion",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -803,7 +824,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputKinesioterapiaDelTorax",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -822,7 +846,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputEjerciciosRespiratorios",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1213,7 +1240,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputVentilacionMecanica",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.VENTILACIONMECANICA === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.VENTILACIONMECANICA === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.VENTILACIONMECANICA = event.target.checked ? "true" : "false";
+                  },
                   
                 }),
                 m(
@@ -1233,7 +1263,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputVentilacionNoInvasiva",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.VENTILACIONNOINVASIVA === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.VENTILACIONNOINVASIVA === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.VENTILACIONNOINVASIVA = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1380,7 +1413,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputNasotraqueal",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.NASOTRAQUEAL === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.NASOTRAQUEAL === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.NASOTRAQUEAL = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1399,7 +1435,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputTraqueal",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.TRAQUEAL === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.TRAQUEAL === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.TRAQUEAL = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1418,7 +1457,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputOrotraqueal",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.OROTRAQUEAL === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.OROTRAQUEAL === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.OROTRAQUEAL = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1437,7 +1479,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputLavadoNasal",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.LAVADONASAL === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.LAVADONASAL === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.LAVADONASAL = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1456,7 +1501,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputSubglotica",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.SUBGLOTICA === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.SUBGLOTICA === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.SUBGLOTICA = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1486,7 +1534,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputEsputo",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.ESPUTO === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.ESPUTO === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.ESPUTO = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Esputo"),
               ])
@@ -1501,7 +1552,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputHisopado",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.ISOPADO === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.ISOPADO === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.ISOPADO = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1520,7 +1574,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputSecrecionTraqueal",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.SECRECIONTRAQUEAL === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.SECRECIONTRAQUEAL === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.SECRECIONTRAQUEAL = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1549,7 +1606,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputDisnea",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.DISNEA === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.DISNEA === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.DISNEA = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Disnea"),
               ])
@@ -1564,7 +1624,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputTos",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.TOS === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.TOS === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.TOS = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Tos"),
               ])
@@ -1579,7 +1642,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputExpectoacion",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.EXPECTORACION === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.EXPECTORACION === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.EXPECTORACION = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1598,7 +1664,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputDolorToracico",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.DOLORTORACICO === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.DOLORTORACICO === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.DOLORTORACICO = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1617,7 +1686,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputHemoptisis",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.HEMOPTISIS === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.HEMOPTISIS === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.HEMOPTISIS = event.target.checked ? "true" : "false";
+                  },
 
                 }),
                 m(
@@ -1637,7 +1709,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputFiebre",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.FIEBRE === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.FIEBRE === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.FIEBRE = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Fiebre"),
               ])
@@ -1655,7 +1730,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputConsciencia",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.CONSCIENCIA === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.CONSCIENCIA === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.CONSCIENCIA = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1674,7 +1752,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputIntubado",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.INTUBADO === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.INTUBADO === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.INTUBADO = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1693,7 +1774,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputEstridor",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.ESTRIDOR === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.ESTRIDOR === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.ESTRIDOR = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1712,7 +1796,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputSibilancias",
                   //disabled: true,
-                  value: formularioModelo.listadoUnitario.SIBILANCIAS === "true" ? "checked" : ""
+                  value: formularioModelo.listadoUnitario.SIBILANCIAS === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.SIBILANCIAS = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1731,7 +1818,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputRoncus",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.RONCUS === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.RONCUS === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.RONCUS = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Roncus"),
               ])
@@ -1746,7 +1836,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputCrepitantes",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.CREPITANTES === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.CREPITANTES === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.CREPITANTES = event.target.checked ? "true" : "false";
+                  },
 
                 }),
                 m(
@@ -1766,7 +1859,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputLocalizacion",
                   //disabled: true,
-                  value: formularioModelo.listadoUnitario.LOCALIZACION === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.LOCALIZACION === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.LOCALIZACION = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1787,7 +1883,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputCianosis",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.CIANOSIS === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.CIANOSIS === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.CIANOSIS = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1806,7 +1905,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputRuidoRespiratorio",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.RUIDORESPIRATORIO === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.RUIDORESPIRATORIO === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.RUIDORESPIRATORIO = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1825,7 +1927,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputDisminuido",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.DISMINUIDO === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.DISMINUIDO === "true" ? "checked" : "", 
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.DISMINUIDO = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1844,7 +1949,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputAbolido",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.ABOLIDO === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.ABOLIDO === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.ABOLIDO = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1863,7 +1971,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputSonidoDeLaVoz",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.SONIDODELAVOZ === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.SONIDODELAVOZ === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.SONIDODELAVOZ = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -1882,7 +1993,10 @@ const VerUnFormulario = {
                   value: "",
                   id: "inputEdema",
                   //disabled: true,
-                  checked: formularioModelo.listadoUnitario.EDEMA === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.EDEMA === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.EDEMA = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Edema"),
               ])
