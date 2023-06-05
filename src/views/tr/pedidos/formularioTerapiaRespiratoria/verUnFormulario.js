@@ -1,10 +1,69 @@
 import FormularioModels from "./models/formularioModels";
 import loader from "../../../patologia/utils/loader";
+import {
+  cargarHoraActual,
+} from "./logic/formulario";
 
 let formularioModelo = FormularioModels;
 let idFormulario = null;
 // 
 let pruebaFormulario = null
+
+/* //Selected
+let isNebulizacionSelected = false;
+let isUltrasonidoSelected = false;
+let isInhaladorDosisMedidaSelected = false;
+// Higiene Bronco Pulmonar
+let isDrenajePosturalSelected = false;
+let isPercusionesSelected = false;
+let isVibracionesSelected = false;
+let isTosEfectivaSelected = false;
+let isAsistenteDeTosSelected = false;
+let isChalecoVibroprecutor = false;
+// Terapia Expansiva
+let isIncentivoRespiratorioSelected = false;
+let isPresionPositivaContinuaEnLaViaAereaSelected = false;
+let isPresionPositivaAlFinalDeLaExpiracionSelected = false;
+let isKinesioterapiaSelected = false;
+let isEjerciciosRespiratorioSelected = false;
+// Monitoreo
+let isVentilacionMecanicaSelected = false;
+let isVentilacionNoInvasivaSelected = false;
+
+// Succión
+let isNasotraquealSelected = false;
+let isTraquealSelected = false;
+let isOroTraquealSelected = false;
+let isLavadoNasalSelected = false;
+let isSubGloticoSelected = false;
+
+// Muestras
+let isEsputoSelected = false;
+let isHisopadoSelected = false;
+let isSecrecionTraquealSelected = false;
+
+//Observación Clínica
+let isDisneaSelected = false;
+let isTosSelected = false;
+let isExpectoracionSelected = false;
+let isDolorToracicoSelected = false;
+let isHemoptisisSelected = false;
+let isFiebreSelected = false;
+
+// Signos
+let isConscienciaSelected = false;
+let isIntubadoSelected = false;
+let isEstridorSelected = false;
+let isSibilanciasSelected = false;
+let isRoncusSelected = false;
+let isCrepitantesSelected = false;
+let isLocalizacionSelected = false;
+let isCianosisSelected = false;
+let isRuidoRespiratorioSelected = false;
+let isDisminuidoSelected = false;
+let isAbolidoSelected = false;
+let isSonidoDeLaVozSelected = false;
+let isEdemaSelected = false; */
 
 const VerUnFormulario = {
   oninit: (vnode) => {
@@ -310,9 +369,10 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputNebulizacion",
-                  disabled: true,
-
                   checked: formularioModelo.listadoUnitario.NEBULIZACION === "true" ? "checked" : "",
+  onclick: function (event) {
+    formularioModelo.listadoUnitario.NEBULIZACION = event.target.checked ? "true" : "false";
+  },
                 }),
                 m(
                   "label",
@@ -330,8 +390,11 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputUltrasonido",
-                  disabled: true, 
+                  //disabled: true, 
                   checked: formularioModelo.listadoUnitario.ULTRASONIDO === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.ULTRASONIDO = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -349,8 +412,11 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputInahaladorDosis",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.INHALADORESDOSISMEDIDA === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.INHALADORESDOSISMEDIDA = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -380,7 +446,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputSalbumatol",
                   value: formularioModelo.listadoUnitario.SALBUTAMOLDOSIS,
-                  disabled: true,
+                  //disabled: true,
                 }),
               ])
             ),
@@ -398,7 +464,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputHipersal",
                   value: formularioModelo.listadoUnitario.HIPERSAL7DOSIS,
-                  disabled: true,
+                  //disabled: true,
                 }),
               ])
             ),
@@ -416,7 +482,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputHipersal3",
                   value: formularioModelo.listadoUnitario.HIPERSAL35DOSIS,
-                  disabled: true,
+                  //disabled: true,
                 }),
               ])
             ),
@@ -436,7 +502,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputDexametasona",
                   value: formularioModelo.listadoUnitario.DEXAMETASONADOSIS,
-                  disabled: true,
+                  //disabled: true,
                 }),
               ])
             ),
@@ -454,7 +520,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputClorhidratoAmbroxol",
                   value: formularioModelo.listadoUnitario.CLORHIDRATODEAMBROXOLDOSIS,
-                  disabled: true,
+                  //disabled: true,
                 }),
               ])
             ),
@@ -472,7 +538,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputSolucionSalina",
                   value: formularioModelo.listadoUnitario.SOLUCIONSALINADOSIS,
-                  disabled: true,
+                  //disabled: true,
                 }),
               ])
             ),
@@ -492,7 +558,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputBromuroIpatropio",
                   value: formularioModelo.listadoUnitario.BROMURODELPATROPIODOSIS,
-                  disabled: true,
+                  //disabled: true,
                 }),
               ])
             ),
@@ -510,7 +576,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputAdrenalinaRacenica",
                   value: formularioModelo.listadoUnitario.ADRENALINARACENICADOSIS,
-                  disabled: true,
+                  //disabled: true,
                 }),
               ])
             ),
@@ -528,7 +594,7 @@ const VerUnFormulario = {
                   type: "number",
                   id: "inputOtros",
                   value: formularioModelo.listadoUnitario.OTROSDOSIS,
-                  disabled: true,
+                  //disabled: true,
                 }),
               ])
             ),
@@ -549,9 +615,12 @@ const VerUnFormulario = {
                   class: "form-check-input",
                   type: "checkbox",
                   value: "${inputDrenajePostural}",
-                  disabled: true,
+                  //disabled: true,
                   id: "inputDrenajePostural",
-                  checked: formularioModelo.listadoUnitario.DRENAJEPOSTURAL === "true" ? "checked" : ""
+                  checked: formularioModelo.listadoUnitario.DRENAJEPOSTURAL === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.DRENAJEPOSTURAL = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -569,8 +638,11 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "${inputPercursiones}",
                   id: "inputPercursiones",
-                  disabled: true,
-                  checked: formularioModelo.listadoUnitario.PERCUSIONES === "true" ? "checked" : ""
+                  //disabled: true,
+                  checked: formularioModelo.listadoUnitario.PERCUSIONES === "true" ? "checked" : "",
+                  onclick: function (event) {
+                    formularioModelo.listadoUnitario.PERCUSIONES = event.target.checked ? "true" : "false";
+                  },
                 }),
                 m(
                   "label",
@@ -588,7 +660,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "${inputVibraciones}",
                   id: "inputVibraciones",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.VIBRACIONES === "true" ? "checked" : ""
                 }),
                 m(
@@ -607,7 +679,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "${inputTosEfectiva}",
                   id: "inputTosEfectiva",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.TOSEFECTIVA === "true" ? "checked" : ""
                 }),
                 m(
@@ -626,7 +698,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "${inputAsistenteTos}",
                   id: "inputAsistenteTos",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.ASISTENCIADETOS === "true" ? "checked" : ""
                 }),
                 m(
@@ -645,7 +717,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "${inputChalecoVibroprecutor}",
                   id: "inputChalecoVibroprecutor",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR === "true" ? "checked" : ""
                 }),
                 m(
@@ -673,7 +745,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputIncentivoRespiratorio",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO === "true" ? "checked" : ""
                 }),
                 m(
@@ -692,7 +764,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputPresionPositivaContinuaEnLaViaAeria",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA === "true" ? "checked" : ""
                 }),
                 m(
@@ -711,7 +783,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputPresionPositivaAlFinalDeLaExpiracion",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION === "true" ? "checked" : ""
                 }),
                 m(
@@ -730,7 +802,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputKinesioterapiaDelTorax",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX === "true" ? "checked" : ""
                 }),
                 m(
@@ -749,7 +821,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputEjerciciosRespiratorios",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS === "true" ? "checked" : ""
                 }),
                 m(
@@ -779,7 +851,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputMililitrosPorSegundo",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.MILILITROSPORSEGUNDOINCENTIVO
                   
                 }),
@@ -798,7 +870,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputCentimetrosCubicosPorSegundo",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.CENTIMETROSSEGUNDOINCENTIVO
                 }),
               ])
@@ -828,7 +900,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputPorcentajeFraccion",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.FRACCIONOXIGENOPORCENTAJE
                 }),
               ])
@@ -846,7 +918,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputLitrosPorMinutoFraccion",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.FRACCIONIOXIGENOLITROS
                   
                 }),
@@ -868,7 +940,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputPorcentajeAltoFlujo",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.ALTOFLUJOPORCENTAJE
                   
                 }),
@@ -887,7 +959,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputLitroAltoFlujo",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.ALTOFLUJOLITROSPORMINUTO
                   
                 }),
@@ -909,7 +981,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputPorcentajeTiendaFacial",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.TIENDAFACIALPORCENTAJE
                   
                 }),
@@ -928,7 +1000,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputLitroPorMinutoTiendaFacial",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.TIENDAFACIALLITROSPORMINUTO
                   
                 }),
@@ -950,7 +1022,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputPorcentajeTuboEnT",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.TUBOENTPORCENTAJE
                   
                 }),
@@ -969,7 +1041,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputLitroTuboEnT",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.TUBOENTLITROSPORMINUTO
                   
                 }),
@@ -991,7 +1063,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputPorcentajeCanulaNasal",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.CANULANASALPORCENTAJE
                   
                 }),
@@ -1010,7 +1082,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputLitroPorMinutoCanulaNasal",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.CANULANASALLITROSPORMINUTO
                   
                 }),
@@ -1032,7 +1104,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputPorcentajeMascarilla",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.MASCARILLAPORCENTAJE
                 }),
               ])
@@ -1050,7 +1122,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputLitroMascarilla",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.MASCARILLALITROSPORMINUTO
                   
                 }),
@@ -1072,7 +1144,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputPorcentajeHeliox",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.HELIOXPORCENTAJE
                 }),
               ])
@@ -1090,7 +1162,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputLitroPorMinutoHeliox",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.HELIOXLITROSPORMINUTO
                   
                 }),
@@ -1114,7 +1186,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputPorcentajeAireAmbiente",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.AIREAMBIENTEPORCENTAJE
                   
                 }),
@@ -1140,7 +1212,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputVentilacionMecanica",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.VENTILACIONMECANICA === "true" ? "checked" : ""
                   
                 }),
@@ -1160,7 +1232,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputVentilacionNoInvasiva",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.VENTILACIONNOINVASIVA === "true" ? "checked" : ""
                 }),
                 m(
@@ -1185,7 +1257,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputSaturacionPreviaPorcentaje",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.SATURACIONPREVIA
                 }),
               ])
@@ -1203,7 +1275,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputSaturacionPosteriorPorcentaje",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.SATURACIONPOSTERIOR
                 }),
               ])
@@ -1225,7 +1297,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputFrecuenciaCardiacaPreviaPorMinuto",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.FRECUENCIACARDIACAPREVIA
                 }),
               ])
@@ -1243,7 +1315,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.FRECUENCIACARDIACAPOSTERIOR
                 }),
               ])
@@ -1264,7 +1336,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPREVIA
                 }),
               ])
@@ -1282,7 +1354,7 @@ const VerUnFormulario = {
                   class: "form-control",
                   type: "number",
                   id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPOS
                 }),
               ])
@@ -1307,7 +1379,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputNasotraqueal",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.NASOTRAQUEAL === "true" ? "checked" : ""
                 }),
                 m(
@@ -1326,7 +1398,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputTraqueal",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.TRAQUEAL === "true" ? "checked" : ""
                 }),
                 m(
@@ -1345,7 +1417,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputOrotraqueal",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.OROTRAQUEAL === "true" ? "checked" : ""
                 }),
                 m(
@@ -1364,7 +1436,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputLavadoNasal",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.LAVADONASAL === "true" ? "checked" : ""
                 }),
                 m(
@@ -1383,7 +1455,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputSubglotica",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.SUBGLOTICA === "true" ? "checked" : ""
                 }),
                 m(
@@ -1413,7 +1485,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputEsputo",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.ESPUTO === "true" ? "checked" : ""
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Esputo"),
@@ -1428,7 +1500,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputHisopado",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.ISOPADO === "true" ? "checked" : ""
                 }),
                 m(
@@ -1447,7 +1519,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputSecrecionTraqueal",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.SECRECIONTRAQUEAL === "true" ? "checked" : ""
                 }),
                 m(
@@ -1476,7 +1548,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputDisnea",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.DISNEA === "true" ? "checked" : ""
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Disnea"),
@@ -1491,7 +1563,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputTos",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.TOS === "true" ? "checked" : ""
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Tos"),
@@ -1506,7 +1578,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputExpectoacion",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.EXPECTORACION === "true" ? "checked" : ""
                 }),
                 m(
@@ -1525,7 +1597,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputDolorToracico",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.DOLORTORACICO === "true" ? "checked" : ""
                 }),
                 m(
@@ -1544,7 +1616,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputHemoptisis",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.HEMOPTISIS === "true" ? "checked" : ""
 
                 }),
@@ -1564,7 +1636,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputFiebre",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.FIEBRE === "true" ? "checked" : ""
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Fiebre"),
@@ -1582,7 +1654,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputConsciencia",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.CONSCIENCIA === "true" ? "checked" : ""
                 }),
                 m(
@@ -1601,7 +1673,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputIntubado",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.INTUBADO === "true" ? "checked" : ""
                 }),
                 m(
@@ -1620,7 +1692,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputEstridor",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.ESTRIDOR === "true" ? "checked" : ""
                 }),
                 m(
@@ -1639,7 +1711,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputSibilancias",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.SIBILANCIAS === "true" ? "checked" : ""
                 }),
                 m(
@@ -1658,7 +1730,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputRoncus",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.RONCUS === "true" ? "checked" : ""
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Roncus"),
@@ -1673,7 +1745,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputCrepitantes",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.CREPITANTES === "true" ? "checked" : ""
 
                 }),
@@ -1693,7 +1765,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputLocalizacion",
-                  disabled: true,
+                  //disabled: true,
                   value: formularioModelo.listadoUnitario.LOCALIZACION === "true" ? "checked" : ""
                 }),
                 m(
@@ -1714,7 +1786,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputCianosis",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.CIANOSIS === "true" ? "checked" : ""
                 }),
                 m(
@@ -1733,7 +1805,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputRuidoRespiratorio",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.RUIDORESPIRATORIO === "true" ? "checked" : ""
                 }),
                 m(
@@ -1752,7 +1824,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputDisminuido",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.DISMINUIDO === "true" ? "checked" : ""
                 }),
                 m(
@@ -1771,7 +1843,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputAbolido",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.ABOLIDO === "true" ? "checked" : ""
                 }),
                 m(
@@ -1790,7 +1862,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputSonidoDeLaVoz",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.SONIDODELAVOZ === "true" ? "checked" : ""
                 }),
                 m(
@@ -1809,7 +1881,7 @@ const VerUnFormulario = {
                   type: "checkbox",
                   value: "",
                   id: "inputEdema",
-                  disabled: true,
+                  //disabled: true,
                   checked: formularioModelo.listadoUnitario.EDEMA === "true" ? "checked" : ""
                 }),
                 m("label", { class: "form-label", for: "inputPeso" }, "Edema"),
@@ -1827,10 +1899,272 @@ const VerUnFormulario = {
             class: "form-control",
             id: "textareaCriterio",
             rows: "3",
-            disabled: true,
+            //disabled: true,
             value: formularioModelo.listadoUnitario.CRITERIO,
           }),
         ],
+        m(
+          "button",
+          {
+            class: "btn btn-primary",
+            type: "button",
+            //disabled: obtenerDatos.habilitarCampos,
+            onclick: function () {
+              const formulario = {
+              NUMERODEPEDIDO: vnode.dom["inputNumeroPedido"].value,
+              FECHAMV: vnode.dom["inputFechaPedido"].value,
+              ORIGEN: vnode.dom["inputOrigenPedido"].value,
+              MEDICOSOLICITANTE: vnode.dom["inputMedicoSolicitante"].value,
+              ESPECIALIDAD: vnode.dom["inputEspecialidad"].value,
+              APELLIDOSNOMBREPACIENTE: vnode.dom["inputApellidosYNombres"].value,
+              NHC: vnode.dom["inputNHC"].value,
+              NUMEROATENCION: vnode.dom["inputNumeroAtencion"].value,
+              UBICACION: vnode.dom["inputUbicacion"].value,
+              ESCALADELDOLOR: vnode.dom["inputEscalaDolor"].value,
+              PESO: vnode.dom["inputPeso"].value,
+              Usuario: vnode.dom["inputUsuario"].value,
+              /* PRESCRIPCION: Pedido.examenes.map(
+                ({ Examen, Frecuencia }) => {
+                  return `${Examen} ${Frecuencia}`;
+                }
+              ), */
+              PRESCRIPCION: "",
+              //FECHAHOY: `'${vnode.dom["inputFecha"].value}'`,
+              /* FECHAHOY:
+                "To_Date(" +
+                `'${vnode.dom["inputFecha"].value}'` +
+                ", 'DD-MM-YYYY HH24:MI:SS')", */
+
+              FECHAHOY:vnode.dom["inputFecha"].value,
+              //FECHAHOY: `'To_Date(${vnode.dom["inputFecha"].value}, DD-MM-YYYY HH24:MI:SS)'`,
+              //FECHAHOY: "TO_DATE('23-05-2023 09:30:45', 'DD-MM-YYYY HH24:MI:SS')",
+              HORAANTES: vnode.dom["inputHora"].value,
+              HORADESPUES: cargarHoraActual(),
+              SALBUTAMOLDOSIS:
+                vnode.dom["inputSalbumatol"].value.length > 0
+                  ? vnode.dom["inputSalbumatol"].value
+                  : 0,
+              HIPERSAL7DOSIS:
+                vnode.dom["inputHipersal"].value.length > 0
+                  ? vnode.dom["inputHipersal"].value
+                  : 0,
+              BROMURODELPATROPIODOSIS:
+                vnode.dom["inputBromuroIpatropio"].value.length > 0
+                  ? vnode.dom["inputBromuroIpatropio"].value
+                  : 0,
+              DEXAMETASONADOSIS:
+                vnode.dom["inputDexametasona"].value.length > 0
+                  ? vnode.dom["inputDexametasona"].value
+                  : 0,
+              CLORHIDRATODEAMBROXOLDOSIS:
+                vnode.dom["inputClorhidratoAmbroxol"].value.length > 0
+                  ? vnode.dom["inputClorhidratoAmbroxol"].value
+                  : 0,
+              SOLUCIONSALINADOSIS:
+                vnode.dom["inputSolucionSalina"].value.length > 0
+                  ? vnode.dom["inputSolucionSalina"].value
+                  : 0,
+              HIPERSAL35DOSIS:
+                vnode.dom["inputHipersal3"].value.length > 0
+                  ? vnode.dom["inputHipersal3"].value
+                  : 0,
+              ADRENALINARACENICADOSIS:
+                vnode.dom["inputAdrenalinaRacenica"].value.length > 0
+                  ? vnode.dom["inputAdrenalinaRacenica"].value
+                  : 0,
+              OTROSDOSIS:
+                vnode.dom["inputOtros"].value.length > 0
+                  ? vnode.dom["inputOtros"].value
+                  : 0,
+              //NEBULIZACION: isNebulizacionSelected ? 'true' : 'false',
+              NEBULIZACION: formularioModelo.listadoUnitario.NEBULIZACION,
+              ULTRASONIDO: isUltrasonidoSelected ? 'true' : 'false',
+              INHALADORESDOSISMEDIDA: isInhaladorDosisMedidaSelected
+                ? 'true'
+                : 'false',
+              DRENAJEPOSTURAL: isDrenajePosturalSelected ? 'true' : 'false',
+              PERCUSIONES: isPercusionesSelected ? 'true' : 'false',
+              VIBRACIONES: isVibracionesSelected ? 'true' : 'false',
+              TOSEFECTIVA: isTosEfectivaSelected ? 'true' : 'false',
+              ASISTENCIADETOS: isAsistenteDeTosSelected ? 'true' : 'false',
+              CHALECOVIBROPRECUTOR: isChalecoVibroprecutor
+                ? 'true'
+                : 'false',
+              NASOTRAQUEAL: isNasotraquealSelected ? 'true' : 'false',
+              TRAQUEAL: isTraquealSelected ? 'true' : 'false',
+              OROTRAQUEAL: isOroTraquealSelected ? 'true' : 'false',
+              LAVADONASAL: isLavadoNasalSelected ? 'true' : 'false',
+              SUBGLOTICA: isSubGloticoSelected ? 'true' : 'false',
+              ESPUTO: isEsputoSelected ? 'true' : 'false',
+              ISOPADO: isHisopadoSelected ? 'true' : 'false',
+              SECRECIONTRAQUEAL: isSecrecionTraquealSelected
+                ? 'true'
+                : 'false',
+              CONSCIENCIA: isConscienciaSelected ? 'true' : 'false',
+              INTUBADO: isIntubadoSelected ? 'true' : 'false',
+              ESTRIDOR: isEstridorSelected ? 'true' : 'false',
+              SIBILANCIAS: isSibilanciasSelected ? 'true' : 'false',
+              RONCUS: isRoncusSelected ? 'true' : 'false',
+              CREPITANTES: isCrepitantesSelected ? 'true' : 'false',
+              LOCALIZACION: isLocalizacionSelected ? 'true' : 'false',
+              CIANOSIS: isCianosisSelected ? 'true' : 'false',
+              RUIDORESPIRATORIO: isRuidoRespiratorioSelected
+                ? 'true'
+                : 'false',
+              DISMINUIDO: isDisminuidoSelected ? 'true' : 'false',
+              ABOLIDO: isAbolidoSelected ? 'true' : 'false',
+              SONIDODELAVOZ: isSonidoDeLaVozSelected ? 'true' : 'false',
+              EDEMA: isEdemaSelected ? 'true' : 'false',
+              DISNEA: isDisneaSelected ? 'true' : 'false',
+              TOS: isTosSelected ? 'true' : 'false',
+              EXPECTORACION: isExpectoracionSelected ? 'true' : 'false',
+              DOLORTORACICO: isDolorToracicoSelected ? 'true' : 'false',
+              HEMOPTISIS: isHemoptisisSelected ? 'true' : 'false',
+              FIEBRE: isFiebreSelected ? 'true' : 'false',
+              INCENTIVORESPIRATORIO: isIncentivoRespiratorioSelected
+                ? 'true'
+                : 'false',
+              PRESIONPOSITIVAVIAAREA:
+                isPresionPositivaContinuaEnLaViaAereaSelected
+                  ? 'true'
+                  : 'false',
+              PRESIONPOSITIVAEXPIRACION:
+                isPresionPositivaAlFinalDeLaExpiracionSelected
+                  ? 'true'
+                  : 'false',
+              KINISIOTERAPIADELTORAX: isKinesioterapiaSelected
+                ? 'true'
+                : 'false',
+              EJERCICIOSRESPIRATORIOS: isEjerciciosRespiratorioSelected
+                ? 'true'
+                : 'false',
+              MILILITROSPORSEGUNDOINCENTIVO:
+                vnode.dom["inputMililitrosPorSegundo"].value.length > 0
+                  ? vnode.dom["inputMililitrosPorSegundo"].value
+                  : 0,
+              CENTIMETROSSEGUNDOINCENTIVO:
+                vnode.dom["inputCentimetrosCubicosPorSegundo"].value.length > 0
+                  ? vnode.dom["inputCentimetrosCubicosPorSegundo"].value
+                  : 0,
+              FRACCIONOXIGENOPORCENTAJE:
+                vnode.dom["inputPorcentajeFraccion"].value.length > 0
+                  ? vnode.dom["inputPorcentajeFraccion"].value
+                  : 0,
+              FRACCIONIOXIGENOLITROS:
+                vnode.dom["inputLitrosPorMinutoFraccion"].value.length > 0
+                  ? vnode.dom["inputLitrosPorMinutoFraccion"].value
+                  : 0,
+              ALTOFLUJOPORCENTAJE:
+                vnode.dom["inputPorcentajeAltoFlujo"].value.length > 0
+                  ? vnode.dom["inputPorcentajeAltoFlujo"].value
+                  : 0,
+              ALTOFLUJOLITROSPORMINUTO:
+                vnode.dom["inputLitroAltoFlujo"].value.length > 0
+                  ? vnode.dom["inputLitroAltoFlujo"].value
+                  : 0,
+              TIENDAFACIALPORCENTAJE:
+                vnode.dom["inputPorcentajeTiendaFacial"].value.length > 0
+                  ? vnode.dom["inputPorcentajeTiendaFacial"].value
+                  : 0,
+              TIENDAFACIALLITROSPORMINUTO:
+                vnode.dom["inputLitroPorMinutoTiendaFacial"].value.length > 0
+                  ? vnode.dom["inputLitroPorMinutoTiendaFacial"].value
+                  : 0,
+              TUBOENTPORCENTAJE:
+                vnode.dom["inputPorcentajeTuboEnT"].value.length > 0
+                  ? vnode.dom["inputPorcentajeTuboEnT"].value
+                  : 0,
+              TUBOENTLITROSPORMINUTO:
+                vnode.dom["inputLitroTuboEnT"].value.length > 0
+                  ? vnode.dom["inputLitroTuboEnT"].value
+                  : 0,
+              CANULANASALPORCENTAJE:
+                vnode.dom["inputPorcentajeCanulaNasal"].value.length > 0
+                  ? vnode.dom["inputPorcentajeCanulaNasal"].value
+                  : 0,
+              CANULANASALLITROSPORMINUTO:
+                vnode.dom["inputLitroPorMinutoCanulaNasal"].value.length > 0
+                  ? vnode.dom["inputLitroPorMinutoCanulaNasal"].value
+                  : 0,
+              MASCARILLAPORCENTAJE:
+                vnode.dom["inputPorcentajeMascarilla"].value.length > 0
+                  ? vnode.dom["inputPorcentajeMascarilla"].value
+                  : 0,
+              MASCARILLALITROSPORMINUTO:
+                vnode.dom["inputLitroMascarilla"].value.length > 0
+                  ? vnode.dom["inputLitroMascarilla"].value
+                  : 0,
+              HELIOXPORCENTAJE:
+                vnode.dom["inputPorcentajeHeliox"].value.length > 0
+                  ? vnode.dom["inputPorcentajeHeliox"].value
+                  : 0,
+              HELIOXLITROSPORMINUTO:
+                vnode.dom["inputLitroPorMinutoHeliox"].value.length > 0
+                  ? vnode.dom["inputLitroPorMinutoHeliox"].value
+                  : 0,
+              AIREAMBIENTEPORCENTAJE:
+                vnode.dom["inputPorcentajeAireAmbiente"].value.length > 0
+                  ? vnode.dom["inputPorcentajeAireAmbiente"].value
+                  : 0,
+              VENTILACIONMECANICA: isVentilacionMecanicaSelected
+                ? 'true'
+                : 'false',
+              VENTILACIONNOINVASIVA: isVentilacionNoInvasivaSelected
+                ? 'true'
+                : 'false',
+              SATURACIONPREVIA: `${
+                isNaN(
+                  parseInt(vnode.dom["inputSaturacionPreviaPorcentaje"].value)
+                )
+                  ? 0
+                  : parseInt(vnode.dom["inputSaturacionPreviaPorcentaje"].value)
+              }`,
+              SATURACIONPOSTERIOR:
+                vnode.dom["inputSaturacionPosteriorPorcentaje"].value.length > 0
+                  ? vnode.dom["inputSaturacionPosteriorPorcentaje"].value
+                  : 0,
+              FRECUENCIACARDIACAPREVIA:
+                vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value
+                  .length > 0
+                  ? vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value
+                  : 0,
+              FRECUENCIACARDIACAPOSTERIOR:
+                vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"].value
+                  .length > 0
+                  ? vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"].value
+                  : 0,
+              FRECUENCIARESPIRATORIAPREVIA:
+                vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"].value
+                  .length > 0
+                  ? vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"]
+                      .value
+                  : 0,
+              FRECUENCIARESPIRATORIAPOS:
+                vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"].value
+                  .length > 0
+                  ? vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"]
+                      .value
+                  : 0,
+              CRITERIO: vnode.dom["textareaCriterio"].value,
+              ESTADO: 'Activo', //"1",
+              ID: 128,
+              };
+              if (confirm("¿Estás seguro quieres guardar este formulario?")) {
+                // Lógica de eliminación del elemento aquí
+                console.log(formulario);
+                //console.log(Pedido.data.AT_MV);
+                formularioModelo.actualizar(formulario);
+                formularioModelo.listado = [];
+                formularioModelo.loading = true;
+              }
+  
+              //alert("Guardar");
+              //alert("Guardar");
+              //terapiaRespiratoriaController.guardar(formulario);
+            },
+          },
+          "Actualizar"
+        ),
         ])
       : m(loader),
     ]
