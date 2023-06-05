@@ -1,6 +1,7 @@
 import FormularioModels from "./models/formularioModels";
 import loader from "../../../patologia/utils/loader";
-import { cargarHoraActual } from "./logic/formulario";
+import { cargarHoraActual, cargarFechaActual } from "./logic/formulario";
+import Encrypt from "../../../../models/encrypt";
 
 let formularioModelo = FormularioModels;
 let idFormulario = null;
@@ -8,6 +9,7 @@ let idFormulario = null;
 let pruebaFormulario = null;
 
 const VerUnFormulario = {
+  usuarioMoficado: '',
   oninit: (vnode) => {
     if (vnode.attrs.id !== undefined) {
       idFormulario = vnode.attrs.id;
@@ -15,6 +17,7 @@ const VerUnFormulario = {
     //idFormulario = vnode.attrs.id;
 
     formularioModelo.cargarUnFormulario(idFormulario);
+    VerUnFormulario.usuarioMoficado = Encrypt.getDataUser();
     //alert(prueba);
     //alert(formularioModelo.listadoUnitario)
     //console.log(formularioModelo.listadoUnitario);
@@ -2262,6 +2265,8 @@ const VerUnFormulario = {
               {
                 class: "btn btn-primary",
                 type: "button",
+                disabled:
+                  formularioModelo.listadoUnitario.ESTADO === "Cancelado",
                 //disabled: obtenerDatos.habilitarCampos,
                 onclick: function () {
                   const formulario = {
@@ -2278,7 +2283,7 @@ const VerUnFormulario = {
                     UBICACION: vnode.dom["inputUbicacion"].value,
                     ESCALADELDOLOR: vnode.dom["inputEscalaDolor"].value,
                     PESO: vnode.dom["inputPeso"].value,
-                    Usuario: vnode.dom["inputUsuario"].value,
+                    Usuario: VerUnFormulario.usuarioMoficado.user.user,
                     /* PRESCRIPCION: Pedido.examenes.map(
                 ({ Examen, Frecuencia }) => {
                   return `${Examen} ${Frecuencia}`;
@@ -2291,7 +2296,7 @@ const VerUnFormulario = {
                 `'${vnode.dom["inputFecha"].value}'` +
                 ", 'DD-MM-YYYY HH24:MI:SS')", */
 
-                    FECHAHOY: vnode.dom["inputFecha"].value,
+                    FECHAHOY: cargarFechaActual(),
                     //FECHAHOY: `'To_Date(${vnode.dom["inputFecha"].value}, DD-MM-YYYY HH24:MI:SS)'`,
                     //FECHAHOY: "TO_DATE('23-05-2023 09:30:45', 'DD-MM-YYYY HH24:MI:SS')",
                     HORAANTES: vnode.dom["inputHora"].value,
@@ -2528,7 +2533,12 @@ const VerUnFormulario = {
             m.trust("&nbsp;"),
             m(
               "button",
-              { class: "btn btn-primary", type: "button" },
+              {
+                class: "btn btn-primary",
+                type: "button",
+                disabled:
+                  formularioModelo.listadoUnitario.ESTADO === "Cancelado",
+              },
               "Imprimir"
             ),
           ])
