@@ -2111,13 +2111,9 @@ const CrearFormulario = {
               VENTILACIONNOINVASIVA: isVentilacionNoInvasivaSelected
                 ? 'true'
                 : 'false',
-              SATURACIONPREVIA: `${
-                isNaN(
-                  parseInt(vnode.dom["inputSaturacionPreviaPorcentaje"].value)
-                )
-                  ? 0
-                  : parseInt(vnode.dom["inputSaturacionPreviaPorcentaje"].value)
-              }`,
+              SATURACIONPREVIA: vnode.dom["inputSaturacionPreviaPorcentaje"].value.length > 0
+              ? vnode.dom["inputSaturacionPreviaPorcentaje"].value
+              : 0,
               SATURACIONPOSTERIOR:
                 vnode.dom["inputSaturacionPosteriorPorcentaje"].value.length > 0
                   ? vnode.dom["inputSaturacionPosteriorPorcentaje"].value
