@@ -15,6 +15,8 @@ const ListadoFormulario = {
   },
   view: (vnode) => {
     return [
+      " ",
+      m("br"),
       m("table", { class: "table" }, [
         m(
           "thead",
@@ -49,10 +51,10 @@ const ListadoFormulario = {
                           return m(VerUnFormulario, { id: formulario.ID });
                         },
                       }),
-                      m.mount(
-                        document.querySelector("#cerrar-gestion-muestras"),
-                        cerrarGestionMuestra
-                      );
+                        m.mount(
+                          document.querySelector("#cerrar-gestion-muestras"),
+                          cerrarGestionMuestra
+                        );
                       /* console.log(formulario.ID);
                       m(VerUnFormulario, { id: formulario.ID }); */
                     },
@@ -103,7 +105,11 @@ const ListadoFormulario = {
                 "td",
                 m(
                   "button",
-                  { class: "btn btn-primary", type: "button", disabled: formulario.ESTADO === "Cancelado" },
+                  {
+                    class: "btn btn-primary",
+                    type: "button",
+                    disabled: formulario.ESTADO === "Cancelado",
+                  },
                   "Finalizar"
                 )
               ),
