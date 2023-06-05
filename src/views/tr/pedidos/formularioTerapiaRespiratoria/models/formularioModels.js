@@ -186,11 +186,11 @@ let FormularioModels = {
         }) 
     },
 
-    actualizar: (muestra) => {
+    actualizar: (formulario) => {
         m.request({
             method: 'PUT',
-            url: "http://localhost:8000/api/v1/muestras/" + muestra.id + "?nopedidomv=" + muestraModel.numeroPedido,
-            body:  muestra,
+            url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia",
+            body:  formulario,
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
                 "Accept": "application/json",
@@ -198,12 +198,12 @@ let FormularioModels = {
             },
         })
         .then(function(result) {
-            muestraModel.cargarListado(muestraModel.numeroPedido);
-            muestraModel.secuencialMuestra = '';
+            FormularioModels.cargarListado(formulario.NUMERODEPEDIDO);
+            window.location.href = window.location.href;
         })
         .catch(function(error) {
-            muestraModel.error = "Se produjo error guardando la muestra: " + error.response.message;
-            alert(muestraModel.error);
+            FormularioModels.error = "Se produjo error editando el formulario: " + error.response.message;
+            alert(FormularioModels.error);
         }) 
     },  
 
