@@ -69,6 +69,12 @@ let isEdemaSelected = false;
 
 const CrearFormulario = {
   usuarioConectado: "",
+  valoresCheckBox: {},
+
+  actualizarValorCheckbox: (examen, valor) => {
+    CrearFormulario.valoresCheckBox[examen] = valor;
+  },
+
   oninit: () => {
     //muestraModelo.generarSecuencial();
     formularioModelo.cargarEscalaDelDolor(Pedido.data.AT_MV);
@@ -302,12 +308,22 @@ const CrearFormulario = {
           "div",
           {},
           Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
+            const id= `${EXAMEN}-${FRECUENCIA}`;
+            const valorInicial = CrearFormulario.valoresCheckBox[id] || false;
             return m("div", { class: "form-check" }, [
               m("input", {
                 type: "checkbox",
                 class: "form-check-input",
                 id: `${EXAMEN}`,
                 value: `${EXAMEN} ${FRECUENCIA}`,
+                checked: valorInicial,
+                onchange: function (e) {
+                  const valor = e.target.checked;
+                  //valoresCheckBox[id] = valor;
+                  CrearFormulario.actualizarValorCheckbox(id, valor);
+                  //console.log("valoresCheckBox", valoresCheckBox);
+                  console.log(CrearFormulario.valoresCheckBox);
+                }
               }),
               m(
                 "label",
@@ -1851,12 +1867,12 @@ const CrearFormulario = {
               ESCALADELDOLOR: vnode.dom["inputEscalaDolor"].value,
               PESO: vnode.dom["inputPeso"].value,
               Usuario: vnode.dom["inputUsuario"].value,
-              PRESCRIPCION: Pedido.examenes.map(
+              /* PRESCRIPCION: Pedido.examenes.map(
                 ({ Examen, Frecuencia }) => {
                   return `${Examen} ${Frecuencia}`;
                 }
-              ),
-              //PRESCRIPCION: valoresSeleccionados,
+              ), */
+              PRESCRIPCION: CrearFormulario.valoresCheckBox,
               //FECHAHOY: `'${vnode.dom["inputFecha"].value}'`,
               /* FECHAHOY:
                 "To_Date(" +
