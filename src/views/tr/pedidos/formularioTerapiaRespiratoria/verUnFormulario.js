@@ -2266,7 +2266,7 @@ const VerUnFormulario = {
                 class: "btn btn-primary",
                 type: "button",
                 disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" || formularioModelo.listadoUnitario.ESTADO === "Finalizado",
                 //disabled: obtenerDatos.habilitarCampos,
                 onclick: function () {
                   const formulario = {
@@ -2527,6 +2527,25 @@ const VerUnFormulario = {
               },
               "Actualizar"
             ),
+            m.trust("&nbsp;"),
+            m.trust("&nbsp;"),
+            m("button", {"class":"btn btn-primary","type":"button", disabled:formularioModelo.listadoUnitario.ESTADO === "Cancelado" || formularioModelo.listadoUnitario.ESTADO === "Finalizado",onclick: function () {
+              const datos = {
+                ID: formularioModelo.listadoUnitario.ID,
+                ESTADO: "Finalizado",
+              };
+              if (
+                window.confirm(
+                  "Está seguro que deseas modificar el estado a cancelado?"
+                )
+              ) {
+                formularioModelo.modificarEstado(datos);
+                formularioModelo.listado = [];
+                formularioModelo.loading = true;
+              }
+            },}, 
+              "Finalizar"
+            ),
             " ",
             m.trust("&nbsp;"),
             " ",
@@ -2537,7 +2556,7 @@ const VerUnFormulario = {
                 class: "btn btn-primary",
                 type: "button",
                 disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado",
+                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" || formularioModelo.listadoUnitario.ESTADO === "Activo",
               },
               "Imprimir"
             ),
