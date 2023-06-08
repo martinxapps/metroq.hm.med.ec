@@ -24,7 +24,7 @@ const ListadoFormulario = {
             m("th", { scope: "col" }, m("b", "ID")),
             m("th", { scope: "col" }, m("b", "Fecha/Hora")),
             m("th", { scope: "col" }, m("b", "Estado")),
-            m("th", { scope: "col" }, m("b", "Ver y Editar")),
+            m("th", { scope: "col" }, m("b", "Visualización")),
             //m("th", { scope: "col" }, m("b", "Editar")),
             m("th", { scope: "col" }, m("b", "Cancelar")),
             //m("th", { scope: "col" }, m("b", "Finalizar")),
@@ -42,7 +42,8 @@ const ListadoFormulario = {
                 m(
                   "button",
                   {
-                    class: "btn btn-primary",
+                    //class: "btn btn-primary",
+                    class: formulario.ESTADO === "Cancelado" || formulario.ESTADO === "Finalizado" ? "btn btn-secondary" : "btn btn-primary",
                     type: "button",
                     onclick: function () {
                       formularioModelo.listadoUnitario = null;
@@ -59,7 +60,7 @@ const ListadoFormulario = {
                       m(VerUnFormulario, { id: formulario.ID }); */
                     },
                   },
-                  "Ver y Editar"
+                  (formulario.ESTADO === "Cancelado" || formulario.ESTADO === "Finalizado" ? "Visualizar" : "Editar")
                 )
               ),
               /* m(
@@ -79,7 +80,7 @@ const ListadoFormulario = {
                 m(
                   "button",
                   {
-                    class: "btn btn-primary",
+                    class: "btn btn-danger",
                     type: "button",
                     disabled: formulario.ESTADO === "Cancelado",
                     onclick: function () {
