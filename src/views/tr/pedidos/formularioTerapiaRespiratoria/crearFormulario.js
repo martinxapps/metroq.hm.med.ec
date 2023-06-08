@@ -307,21 +307,29 @@ const CrearFormulario = {
         m(
           "div",
           {},
-          Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
-            const id= `${EXAMEN}-${FRECUENCIA}`;
-            const valorInicial = CrearFormulario.valoresCheckBox[id] || false;
+          Pedido.examenes.forEach(({ EXAMEN, FRECUENCIA }) => {
+            if (!CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`]) {
+              CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`] = false;
+            } 
+            //const valorInicial = CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`] || false;
+            //CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`] = false;
+            
+          }),
+           Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
+            const id= `${EXAMEN} ${FRECUENCIA}`;
             return m("div", { class: "form-check" }, [
               m("input", {
                 type: "checkbox",
                 class: "form-check-input",
-                id: `${EXAMEN}`,
+                id: `${EXAMEN} ${FRECUENCIA}`,
                 value: `${EXAMEN} ${FRECUENCIA}`,
-                checked: valorInicial,
-                onchange: function (e) {
+                checked: CrearFormulario.valoresCheckBox[id],
+                onclick: function (e) {
                   const valor = e.target.checked;
-                  //valoresCheckBox[id] = valor;
-                  CrearFormulario.actualizarValorCheckbox(id, valor);
-                  //console.log("valoresCheckBox", valoresCheckBox);
+                  console.log("valor", valor);
+                  
+                  CrearFormulario.valoresCheckBox[id] = valor;
+                  
                   console.log(CrearFormulario.valoresCheckBox);
                 }
               }),
@@ -334,7 +342,7 @@ const CrearFormulario = {
                 `${EXAMEN} - ${FRECUENCIA}`
               ),
             ]);
-          })
+          }) 
         ),
       ]),
 
@@ -1593,13 +1601,10 @@ const CrearFormulario = {
           ),
         ]),
         m("h6", "Signos"),
-        m("div", { class: "row justify-content-center" }, [
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+        m("div.row.justify-content-center", [
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputConsciencia",
@@ -1607,19 +1612,12 @@ const CrearFormulario = {
                   isConscienciaSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Consciencia"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Consciencia"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputIntubado",
@@ -1627,15 +1625,12 @@ const CrearFormulario = {
                   isIntubadoSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Intubado"),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Intubado"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputEstridor",
@@ -1643,15 +1638,12 @@ const CrearFormulario = {
                   isEstridorSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Estridor"),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Estridor"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputSibilancias",
@@ -1659,19 +1651,12 @@ const CrearFormulario = {
                   isSibilanciasSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Sibilancias"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Sibilancias"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputRoncus",
@@ -1679,15 +1664,12 @@ const CrearFormulario = {
                   isRoncusSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Roncus"),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Roncus"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputCrepitantes",
@@ -1695,19 +1677,15 @@ const CrearFormulario = {
                   isCrepitantesSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Crepitantes"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Crepitantes"),
+            ]),
+          ]),
+        ]),
+        
+        m("div.row.justify-content-center", [
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputLocalizacion",
@@ -1715,21 +1693,12 @@ const CrearFormulario = {
                   isLocalizacionSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Localización"
-              ),
-            ])
-          ),
-        ]),
-        m("div", { class: "row justify-content-center" }, [
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Localización"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputCianosis",
@@ -1737,15 +1706,12 @@ const CrearFormulario = {
                   isCianosisSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Cianosis"),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Cianosis"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputRuidoRespiratorio",
@@ -1753,19 +1719,12 @@ const CrearFormulario = {
                   isRuidoRespiratorioSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Ruido Respiratorio"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Ruido Respiratorio"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputDisminuido",
@@ -1773,19 +1732,12 @@ const CrearFormulario = {
                   isDisminuidoSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Disminuido"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Disminuido"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputAbolido",
@@ -1793,15 +1745,12 @@ const CrearFormulario = {
                   isAbolidoSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Abolido"),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Abolido"),
+            ]),
+          ]),
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputSonidoDeLaVoz",
@@ -1809,19 +1758,15 @@ const CrearFormulario = {
                   isSonidoDeLaVozSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Sonido de la voz"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-2" }, [
-              m("input", {
-                class: "form-check-input",
+              m("label.form-label", { for: "inputPeso" }, "Sonido de la voz"),
+            ]),
+          ]),
+        ]),
+        
+        m("div.row.justify-content-center", [
+          m("div.col.text-center", [
+            m("div.mb-2", [
+              m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
                 id: "inputEdema",
@@ -1829,10 +1774,11 @@ const CrearFormulario = {
                   isEdemaSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Edema"),
-            ])
-          ),
-        ]),
+              m("label.form-label", { for: "inputPeso" }, "Edema"),
+            ]),
+          ]),
+        ])
+        
       ],
       [
         m(
