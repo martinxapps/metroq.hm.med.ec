@@ -28,6 +28,7 @@ const VerUnFormulario = {
     }
   },
   view: (vnode) => {
+    //const checkboxes = formularioModelo.listadoUnitario.PRESCRIPCION;
     return [
       formularioModelo.listadoUnitario !== null
         ? m("form", [
@@ -245,12 +246,30 @@ const VerUnFormulario = {
                 }),
               ]),
             ]),
-            /* m("div", { class: "form-group" }, [
+            
+            m("div", { class: "form-group" }, [
           m("label", { for: "inputPrescripcion" }, "Prescripción"),
           m(
             "div",
             {},
-            Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
+            m('ul', Object.entries(formularioModelo.listadoUnitario.PRESCRIPCION).map(function([option, checked]) {
+              return m('li', [
+                m('label', [
+                  m('input[type=checkbox]', {
+                    checked: checked,
+                    disabled: true,
+                    onchange: function(e) {
+                      formularioModelo.listadoUnitario.PRESCRIPCION[option] = e.target.checked;
+                      m.redraw(); // Redibujar el componente después del cambio
+                    }
+                    
+                  }),
+                  m('span', option)
+                ])
+              ]);
+            }))
+            
+            /* Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
               return m("div", { class: "form-check" }, [
                 m("input", {
                   type: "checkbox",
@@ -270,9 +289,9 @@ const VerUnFormulario = {
                   `${EXAMEN} - ${FRECUENCIA}`
                 ),
               ]);
-            })
+            }) */
           ),
-        ]), */
+        ]),
 
             m("div", { class: "form-group" }, [
               m("label", { for: "inputFecha" }, "Fecha"),
@@ -2044,6 +2063,9 @@ const VerUnFormulario = {
                     ),
                   ])
                 ),
+                
+              ]),
+              m("div", { class: "row justify-content-center" }, [
                 m(
                   "div",
                   { class: "col text-center" },
@@ -2072,8 +2094,6 @@ const VerUnFormulario = {
                     ),
                   ])
                 ),
-              ]),
-              m("div", { class: "row justify-content-center" }, [
                 m(
                   "div",
                   { class: "col text-center" },
@@ -2214,6 +2234,9 @@ const VerUnFormulario = {
                     ),
                   ])
                 ),
+                
+              ]),
+              m("div", { class: "row justify-content-center" }, [
                 m(
                   "div",
                   { class: "col text-center" },
@@ -2290,7 +2313,7 @@ const VerUnFormulario = {
                   return `${Examen} ${Frecuencia}`;
                 }
               ), */
-                    PRESCRIPCION: "",
+                    PRESCRIPCION: formularioModelo.listadoUnitario.PRESCRIPCION,
                     //FECHAHOY: `'${vnode.dom["inputFecha"].value}'`,
                     /* FECHAHOY:
                 "To_Date(" +
@@ -2526,7 +2549,7 @@ const VerUnFormulario = {
                   //terapiaRespiratoriaController.guardar(formulario);
                 },
               },
-              "Actualizar"
+              "Guardar"
             ),
             m.trust("&nbsp;"),
             m.trust("&nbsp;"),
@@ -2545,7 +2568,7 @@ const VerUnFormulario = {
                   };
                   if (
                     window.confirm(
-                      "Está seguro que deseas modificar el estado a cancelado?"
+                      "Está seguro que deseas finalizar el formulario?"
                     )
                   ) {
                     formularioModelo.modificarEstado(datos);
