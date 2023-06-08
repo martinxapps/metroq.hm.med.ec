@@ -2540,6 +2540,8 @@ const VerUnFormulario = {
                     console.log(formulario);
                     //console.log(Pedido.data.AT_MV);
                     formularioModelo.actualizar(formulario);
+                    m.mount(document.querySelector("#gestion-muestras"), null);
+                    m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
                     formularioModelo.listado = [];
                     formularioModelo.loading = true;
                   }
