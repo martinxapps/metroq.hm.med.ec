@@ -2565,15 +2565,253 @@ const VerUnFormulario = {
                   formularioModelo.listadoUnitario.ESTADO === "Finalizado",
                 onclick: function () {
                   const datos = {
+                    NUMERODEPEDIDO: vnode.dom["inputNumeroPedido"].value,
+                    FECHAMV: vnode.dom["inputFechaPedido"].value,
+                    ORIGEN: vnode.dom["inputOrigenPedido"].value,
+                    MEDICOSOLICITANTE:
+                      vnode.dom["inputMedicoSolicitante"].value,
+                    ESPECIALIDAD: vnode.dom["inputEspecialidad"].value,
+                    APELLIDOSNOMBREPACIENTE:
+                      vnode.dom["inputApellidosYNombres"].value,
+                    NHC: vnode.dom["inputNHC"].value,
+                    NUMEROATENCION: vnode.dom["inputNumeroAtencion"].value,
+                    UBICACION: vnode.dom["inputUbicacion"].value,
+                    ESCALADELDOLOR: vnode.dom["inputEscalaDolor"].value,
+                    PESO: vnode.dom["inputPeso"].value,
+                    Usuario: VerUnFormulario.usuarioMoficado.user.user,
+                    /* PRESCRIPCION: Pedido.examenes.map(
+                ({ Examen, Frecuencia }) => {
+                  return `${Examen} ${Frecuencia}`;
+                }
+              ), */
+                    PRESCRIPCION: formularioModelo.listadoUnitario.PRESCRIPCION,
+                    //FECHAHOY: `'${vnode.dom["inputFecha"].value}'`,
+                    /* FECHAHOY:
+                "To_Date(" +
+                `'${vnode.dom["inputFecha"].value}'` +
+                ", 'DD-MM-YYYY HH24:MI:SS')", */
+
+                    FECHAHOY: cargarFechaActual(),
+                    //FECHAHOY: `'To_Date(${vnode.dom["inputFecha"].value}, DD-MM-YYYY HH24:MI:SS)'`,
+                    //FECHAHOY: "TO_DATE('23-05-2023 09:30:45', 'DD-MM-YYYY HH24:MI:SS')",
+                    HORAANTES: vnode.dom["inputHora"].value,
+                    HORADESPUES: cargarHoraActual(),
+                    SALBUTAMOLDOSIS:
+                      vnode.dom["inputSalbumatol"].value.length > 0
+                        ? vnode.dom["inputSalbumatol"].value
+                        : 0,
+                    HIPERSAL7DOSIS:
+                      vnode.dom["inputHipersal"].value.length > 0
+                        ? vnode.dom["inputHipersal"].value
+                        : 0,
+                    BROMURODELPATROPIODOSIS:
+                      vnode.dom["inputBromuroIpatropio"].value.length > 0
+                        ? vnode.dom["inputBromuroIpatropio"].value
+                        : 0,
+                    DEXAMETASONADOSIS:
+                      vnode.dom["inputDexametasona"].value.length > 0
+                        ? vnode.dom["inputDexametasona"].value
+                        : 0,
+                    CLORHIDRATODEAMBROXOLDOSIS:
+                      vnode.dom["inputClorhidratoAmbroxol"].value.length > 0
+                        ? vnode.dom["inputClorhidratoAmbroxol"].value
+                        : 0,
+                    SOLUCIONSALINADOSIS:
+                      vnode.dom["inputSolucionSalina"].value.length > 0
+                        ? vnode.dom["inputSolucionSalina"].value
+                        : 0,
+                    HIPERSAL35DOSIS:
+                      vnode.dom["inputHipersal3"].value.length > 0
+                        ? vnode.dom["inputHipersal3"].value
+                        : 0,
+                    ADRENALINARACENICADOSIS:
+                      vnode.dom["inputAdrenalinaRacenica"].value.length > 0
+                        ? vnode.dom["inputAdrenalinaRacenica"].value
+                        : 0,
+                    OTROSDOSIS:
+                      vnode.dom["inputOtros"].value.length > 0
+                        ? vnode.dom["inputOtros"].value
+                        : 0,
+                    //NEBULIZACION: isNebulizacionSelected ? 'true' : 'false',
+                    NEBULIZACION: formularioModelo.listadoUnitario.NEBULIZACION,
+                    ULTRASONIDO: formularioModelo.listadoUnitario.ULTRASONIDO,
+                    INHALADORESDOSISMEDIDA:
+                      formularioModelo.listadoUnitario.INHALADORESDOSISMEDIDA,
+                    DRENAJEPOSTURAL:
+                      formularioModelo.listadoUnitario.DRENAJEPOSTURAL,
+                    PERCUSIONES: formularioModelo.listadoUnitario.PERCUSIONES,
+                    VIBRACIONES: formularioModelo.listadoUnitario.VIBRACIONES,
+                    TOSEFECTIVA: formularioModelo.listadoUnitario.TOSEFECTIVA,
+                    ASISTENCIADETOS:
+                      formularioModelo.listadoUnitario.ASISTENCIADETOS,
+                    CHALECOVIBROPRECUTOR:
+                      formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR,
+                    NASOTRAQUEAL: formularioModelo.listadoUnitario.NASOTRAQUEAL,
+                    TRAQUEAL: formularioModelo.listadoUnitario.TRAQUEAL,
+                    OROTRAQUEAL: formularioModelo.listadoUnitario.OROTRAQUEAL,
+                    LAVADONASAL: formularioModelo.listadoUnitario.LAVADONASAL,
+                    SUBGLOTICA: formularioModelo.listadoUnitario.SUBGLOTICA,
+                    ESPUTO: formularioModelo.listadoUnitario.ESPUTO,
+                    ISOPADO: formularioModelo.listadoUnitario.ISOPADO,
+                    SECRECIONTRAQUEAL:
+                      formularioModelo.listadoUnitario.SECRECIONTRAQUEAL,
+                    CONSCIENCIA: formularioModelo.listadoUnitario.CONSCIENCIA,
+                    INTUBADO: formularioModelo.listadoUnitario.INTUBADO,
+                    ESTRIDOR: formularioModelo.listadoUnitario.ESTRIDOR,
+                    SIBILANCIAS: formularioModelo.listadoUnitario.SIBILANCIAS,
+                    RONCUS: formularioModelo.listadoUnitario.RONCUS,
+                    CREPITANTES: formularioModelo.listadoUnitario.CREPITANTES,
+                    LOCALIZACION: formularioModelo.listadoUnitario.LOCALIZACION,
+                    CIANOSIS: formularioModelo.listadoUnitario.CIANOSIS,
+                    RUIDORESPIRATORIO:
+                      formularioModelo.listadoUnitario.RUIDORESPIRATORIO,
+                    DISMINUIDO: formularioModelo.listadoUnitario.DISMINUIDO,
+                    ABOLIDO: formularioModelo.listadoUnitario.ABOLIDO,
+                    SONIDODELAVOZ:
+                      formularioModelo.listadoUnitario.SONIDODELAVOZ,
+                    EDEMA: formularioModelo.listadoUnitario.EDEMA,
+                    DISNEA: formularioModelo.listadoUnitario.DISNEA,
+                    TOS: formularioModelo.listadoUnitario.TOS,
+                    EXPECTORACION:
+                      formularioModelo.listadoUnitario.EXPECTORACION,
+                    DOLORTORACICO:
+                      formularioModelo.listadoUnitario.DOLORTORACICO,
+                    HEMOPTISIS: formularioModelo.listadoUnitario.HEMOPTISIS,
+                    FIEBRE: formularioModelo.listadoUnitario.FIEBRE,
+                    INCENTIVORESPIRATORIO:
+                      formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO,
+                    PRESIONPOSITIVAVIAAREA:
+                      formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA,
+                    PRESIONPOSITIVAEXPIRACION:
+                      formularioModelo.listadoUnitario
+                        .PRESIONPOSITIVAEXPIRACION,
+                    KINISIOTERAPIADELTORAX:
+                      formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX,
+                    EJERCICIOSRESPIRATORIOS:
+                      formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS,
+                    MILILITROSPORSEGUNDOINCENTIVO:
+                      vnode.dom["inputMililitrosPorSegundo"].value.length > 0
+                        ? vnode.dom["inputMililitrosPorSegundo"].value
+                        : 0,
+                    CENTIMETROSSEGUNDOINCENTIVO:
+                      vnode.dom["inputCentimetrosCubicosPorSegundo"].value
+                        .length > 0
+                        ? vnode.dom["inputCentimetrosCubicosPorSegundo"].value
+                        : 0,
+                    FRACCIONOXIGENOPORCENTAJE:
+                      vnode.dom["inputPorcentajeFraccion"].value.length > 0
+                        ? vnode.dom["inputPorcentajeFraccion"].value
+                        : 0,
+                    FRACCIONIOXIGENOLITROS:
+                      vnode.dom["inputLitrosPorMinutoFraccion"].value.length > 0
+                        ? vnode.dom["inputLitrosPorMinutoFraccion"].value
+                        : 0,
+                    ALTOFLUJOPORCENTAJE:
+                      vnode.dom["inputPorcentajeAltoFlujo"].value.length > 0
+                        ? vnode.dom["inputPorcentajeAltoFlujo"].value
+                        : 0,
+                    ALTOFLUJOLITROSPORMINUTO:
+                      vnode.dom["inputLitroAltoFlujo"].value.length > 0
+                        ? vnode.dom["inputLitroAltoFlujo"].value
+                        : 0,
+                    TIENDAFACIALPORCENTAJE:
+                      vnode.dom["inputPorcentajeTiendaFacial"].value.length > 0
+                        ? vnode.dom["inputPorcentajeTiendaFacial"].value
+                        : 0,
+                    TIENDAFACIALLITROSPORMINUTO:
+                      vnode.dom["inputLitroPorMinutoTiendaFacial"].value
+                        .length > 0
+                        ? vnode.dom["inputLitroPorMinutoTiendaFacial"].value
+                        : 0,
+                    TUBOENTPORCENTAJE:
+                      vnode.dom["inputPorcentajeTuboEnT"].value.length > 0
+                        ? vnode.dom["inputPorcentajeTuboEnT"].value
+                        : 0,
+                    TUBOENTLITROSPORMINUTO:
+                      vnode.dom["inputLitroTuboEnT"].value.length > 0
+                        ? vnode.dom["inputLitroTuboEnT"].value
+                        : 0,
+                    CANULANASALPORCENTAJE:
+                      vnode.dom["inputPorcentajeCanulaNasal"].value.length > 0
+                        ? vnode.dom["inputPorcentajeCanulaNasal"].value
+                        : 0,
+                    CANULANASALLITROSPORMINUTO:
+                      vnode.dom["inputLitroPorMinutoCanulaNasal"].value.length >
+                      0
+                        ? vnode.dom["inputLitroPorMinutoCanulaNasal"].value
+                        : 0,
+                    MASCARILLAPORCENTAJE:
+                      vnode.dom["inputPorcentajeMascarilla"].value.length > 0
+                        ? vnode.dom["inputPorcentajeMascarilla"].value
+                        : 0,
+                    MASCARILLALITROSPORMINUTO:
+                      vnode.dom["inputLitroMascarilla"].value.length > 0
+                        ? vnode.dom["inputLitroMascarilla"].value
+                        : 0,
+                    HELIOXPORCENTAJE:
+                      vnode.dom["inputPorcentajeHeliox"].value.length > 0
+                        ? vnode.dom["inputPorcentajeHeliox"].value
+                        : 0,
+                    HELIOXLITROSPORMINUTO:
+                      vnode.dom["inputLitroPorMinutoHeliox"].value.length > 0
+                        ? vnode.dom["inputLitroPorMinutoHeliox"].value
+                        : 0,
+                    AIREAMBIENTEPORCENTAJE:
+                      vnode.dom["inputPorcentajeAireAmbiente"].value.length > 0
+                        ? vnode.dom["inputPorcentajeAireAmbiente"].value
+                        : 0,
+                    VENTILACIONMECANICA:
+                      formularioModelo.listadoUnitario.VENTILACIONMECANICA,
+                    VENTILACIONNOINVASIVA:
+                      formularioModelo.listadoUnitario.VENTILACIONNOINVASIVA,
+                    SATURACIONPREVIA:
+                      vnode.dom["inputSaturacionPreviaPorcentaje"].value
+                        .length > 0
+                        ? vnode.dom["inputSaturacionPreviaPorcentaje"].value
+                        : 0,
+                    SATURACIONPOSTERIOR:
+                      vnode.dom["inputSaturacionPosteriorPorcentaje"].value
+                        .length > 0
+                        ? vnode.dom["inputSaturacionPosteriorPorcentaje"].value
+                        : 0,
+                    FRECUENCIACARDIACAPREVIA:
+                      vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value
+                        .length > 0
+                        ? vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"]
+                            .value
+                        : 0,
+                    FRECUENCIACARDIACAPOSTERIOR:
+                      vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"]
+                        .value.length > 0
+                        ? vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"]
+                            .value
+                        : 0,
+                    FRECUENCIARESPIRATORIAPREVIA:
+                      vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"]
+                        .value.length > 0
+                        ? vnode.dom[
+                            "inputFrecuenciaRespiratoriaPreviaPorMinuto"
+                          ].value
+                        : 0,
+                    FRECUENCIARESPIRATORIAPOS:
+                      vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"]
+                        .value.length > 0
+                        ? vnode.dom[
+                            "inputFrecuenciaRespiratoriaPosteriorPorMinuto"
+                          ].value
+                        : 0,
+                    CRITERIO: vnode.dom["textareaCriterio"].value,
+                    ESTADO: "Finalizado", //"1",
                     ID: formularioModelo.listadoUnitario.ID,
-                    ESTADO: "Finalizado",
                   };
                   if (
                     window.confirm(
                       "Está seguro que deseas finalizar el formulario?"
                     )
                   ) {
-                    formularioModelo.modificarEstado(datos);
+                    formularioModelo.actualizar(datos);
+                    m.mount(document.querySelector("#gestion-muestras"), null);
+                    m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
                     formularioModelo.listado = [];
                     formularioModelo.loading = true;
                   }
