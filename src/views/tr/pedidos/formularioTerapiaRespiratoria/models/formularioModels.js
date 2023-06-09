@@ -10,6 +10,7 @@ let FormularioModels = {
     numeroHistoriaClinica: '',
     medico: '',
     loading: false,
+    idRespuesta: '',
 
     cargarEscalaDelDolor: function (numeroDeAtendimiento) {
         FormularioModels.loading = true;
@@ -47,6 +48,7 @@ let FormularioModels = {
 
     cargarListado: function(numeropedidomv) {
         FormularioModels.loading = true;
+        FormularioModels.idRespuesta = '';
         m.request({
             method: "GET",
             url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios/historial?numeroPedido=" + numeropedidomv,
@@ -60,6 +62,9 @@ let FormularioModels = {
         .then(function(result) {
             FormularioModels.listado = result.data;
             FormularioModels.loading = false;
+            FormularioModels.idRespuesta = numeropedidomv;
+            //console.log(FormularioModels.idRespuesta);
+            //FormularioModels.listado = [];	
         })
         .catch(function(error) {
             FormularioModels.loading = false;
@@ -199,7 +204,7 @@ let FormularioModels = {
         })
         .then(function(result) {
             FormularioModels.cargarListado(formulario.NUMERODEPEDIDO);
-            window.location.href = window.location.href;
+            //window.location.href = window.location.href;
         })
         .catch(function(error) {
             FormularioModels.error = "Se produjo error editando el formulario: " + error.response.message;
