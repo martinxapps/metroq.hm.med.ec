@@ -1,6 +1,9 @@
 import sidebarTr from '../sidebarTr';
 import Notificaciones from '../../../models/notificaciones';
 import m from 'mithril';
+import FormularioModels from './formularioTerapiaRespiratoria/models/formularioModels';
+
+const formularioModelo = FormularioModels;
 // http://localhost:3000/terapia-respiratoria/pedidos/?idFiltro=1
 function stopwatchModel() {
     return {
@@ -427,108 +430,130 @@ const PedidosTR = {
 
             ],
             fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-
-            },
-            drawCallback: function(settings) {
-
-                PedidosTR.loader = false;
-
-                settings.aoData.map(function(_i) {
-
-                    $(_i.anCells[5]).css("padding", "0").css("background-color", "#f7fafe");
-
-                    m.mount(_i.anCells[5], {
-                        view: function() {
-
+                //formularioModelo.idRespuesta = '';
+                m.mount(nRow, {
+                    oninit: function() {
+                        
+                        formularioModelo.cargarListado(aData.CD_PRE_MED);
+                        console.log(formularioModelo.idRespuesta);
+                    },
+                    view: () => {
+                        /* if (formularioModelo.cargarListado(idFormulario)) {
                             return [
-                                m("div.d-flex", {}, [
-                                    m("div.pd-0.flex-grow-1",
-                                        m("div.pd-2", { "style": { "background-color": "rgb(168, 190, 214)" } },
-                                            m('i.fas.fa-file-alt.tx-semibold.tx-15.pd-2.mg-r-5'),
-                                            m('.d-inline.tx-15.mg-r-5', _i._aData.CD_PRE_MED),
-                                            m('i.fas.fa-hospital.tx-semibold.tx-12.pd-2'),
-                                            m('.tx-semibold.d-inline.tx-12', " SECTOR: "),
-                                            m('.d-inline.tx-12.mg-r-5', (_i._aData.SECTOR !== null ? _i._aData.SECTOR + " " + _i._aData.UBICACION : 'No Disponible')),
-                                            m('i.fas.fa-user-md.tx-semibold.tx-12.pd-2'),
-                                            m('.tx-semibold.d-inline.tx-12', " MED: "),
-                                            _i._aData.MED_MV
-                                        ),
-                                    ),
-                                    m("div.pd-2.tx-medium.mg-l-auto", { "style": { "background-color": "rgb(168, 190, 214)" } },
-                                        _i._aData.EDAD + " - " + _i._aData.PESO + " - " + _i._aData.ALTURA + "."
-                                    )
-                                ]),
-                                m("div.d-flex.mg-b-20", { "style": { "background-color": "rgb(234, 239, 245)" } }, [
-                                    m("div.pd-0.flex-grow-1",
-                                        m("td.wd-1p.tx-white", { "style": { "background-color": (_i._aData.SECTOR == 'EMERGENCIA' ? "#f10075" : "#0168fa") } },
-                                            (_i._aData.SECTOR == 'EMERGENCIA' ? "E" : "H")
-                                        ),
-                                        m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
-                                            "FECHA:"
-                                        ),
-                                        m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
-                                            _i._aData.FECHA_PEDIDO + " " + _i._aData.HORA_PEDIDO
-                                        ),
-                                        m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
-                                            "NHC:"
-                                        ),
-                                        m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
-                                            _i._aData.CD_PACIENTE
-                                        ),
-                                        m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
-                                            "N° AT.: "
-                                        ),
-                                        m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
-                                            _i._aData.AT_MV
-                                        ),
-
-                                        m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
-                                            "PTE: "
-                                        ),
-                                        m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
-                                            _i._aData.NM_PACIENTE
-                                        ),
-
-
-
-                                    ),
-
-                                    m("div.pd-0.mg-l-auto", { "style": { "background-color": "rgb(168, 190, 214)" } },
-                                        m("td.tx-10", {
-                                                "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" },
-                                                onclick: () => {
-                                                    // PedidosTR.enviarEstado(_i._aData.CD_PRE_MED);
-                                                    m.route.set("/terapia-respiratoria/pedido/", {
-                                                        numeroHistoriaClinica: _i._aData.CD_PACIENTE,
-                                                        numeroAtencion: _i._aData.AT_MV,
-                                                        numeroPedido: _i._aData.CD_PRE_MED,
-                                                        track: "view",
-                                                    });
-                                                }
-                                            },
-                                            m(".tx-normal",
-                                                m("i.fas.fa-file-alt.pd-1.mg-r-2"),
-
-                                                "Ver Pedido"
-                                            )
-                                        ),
-                                    )
-                                ]),
-
-
+                                m(EstadoTotal, {id: aData.CD_PRE_MED}),
                             ]
+                        } else {
+                            
+                        } */
+                        /* return (
+                        
+                        formularioModelo.idRespuesta == aData.CD_PRE_MED &&
+                        formularioModelo.listado.length > 0 ? "En Proceso" : "Pendiente") */
+                        
+                        return [
+                            m("div.d-flex", {
+                                /* oncreate: function() {
+                                    formularioModelo.cargarListado(_i._aData.CD_PRE_MED);
+                                }, */
+                            }, [
+                                m("div.pd-0.flex-grow-1",
+                                    m("div.pd-2", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                        m('i.fas.fa-file-alt.tx-semibold.tx-15.pd-2.mg-r-5'),
+                                        m('.d-inline.tx-15.mg-r-5', aData.CD_PRE_MED),
+                                        m('i.fas.fa-hospital.tx-semibold.tx-12.pd-2'),
+                                        m('.tx-semibold.d-inline.tx-12', " SECTOR: "),
+                                        m('.d-inline.tx-12.mg-r-5', (aData.SECTOR !== null ? aData.SECTOR + " " + aData.UBICACION : 'No Disponible')),
+                                        m('i.fas.fa-user-md.tx-semibold.tx-12.pd-2'),
+                                        m('.tx-semibold.d-inline.tx-12', " MED: "),
+                                        aData.MED_MV
+                                    ),
+                                ),
+                                m("div.pd-2.tx-medium.mg-l-auto", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                    aData.EDAD + " - " + aData.PESO + " - " + aData.ALTURA + "."
+                                )
+                            ]),
+                            m("div.d-flex.mg-b-20", { "style": { "background-color": "rgb(234, 239, 245)" } }, [
+                                m("div.pd-0.flex-grow-1",
+                                    m("td.wd-1p.tx-white", { "style": { "background-color": (aData.SECTOR == 'EMERGENCIA' ? "#f10075" : "#0168fa") } },
+                                        (aData.SECTOR == 'EMERGENCIA' ? "E" : "H")
+                                    ),
+                                    m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                        "FECHA:"
+                                    ),
+                                    m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
+                                        aData.FECHA_PEDIDO + " " + aData.HORA_PEDIDO
+                                    ),
+                                    m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                        "NHC:"
+                                    ),
+                                    m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
+                                        aData.CD_PACIENTE
+                                    ),
+                                    m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                        "N° AT.: "
+                                    ),
+                                    m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
+                                        aData.AT_MV
+                                    ),
+
+                                    m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                        "PTE: "
+                                    ),
+                                    m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
+                                        aData.NM_PACIENTE
+                                    ),
+                                    m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                        "Estado: "
+                                    ),
+                                    m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
+                                    (formularioModelo.idRespuesta == aData.CD_PRE_MED ? "En Proceso" : "Pendiente"
+                                    /* && formularioModelo.listado.length > 0 */ )
+                                    ),
+                                    /*m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
+                                        formularioModelo.listado.length > 0 ? "En Proceso" : "Pendiente",
+                                        
+                                    ), */
+                                    
+                                    /* m.mount('p', {
+                                        view: function() {
+                                            return [
+                                                m(EstadoTotal, { id: aData.CD_PRE_MED }),
+                                            ]
+                                        }
+                                    }) */
+                                    
 
 
 
+                                ),
 
-                        }
-                    });
+                                m("div.pd-0.mg-l-auto", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                    m("td.tx-10", {
+                                            "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" },
+                                            onclick: () => {
+                                                // PedidosTR.enviarEstado(aData.CD_PRE_MED);
+                                                m.route.set("/terapia-respiratoria/pedido/", {
+                                                    numeroHistoriaClinica: aData.CD_PACIENTE,
+                                                    numeroAtencion: aData.AT_MV,
+                                                    numeroPedido: aData.CD_PRE_MED,
+                                                    track: "view",
+                                                });
+                                            }
+                                        },
+                                        m(".tx-normal",
+                                            m("i.fas.fa-file-alt.pd-1.mg-r-2"),
 
-                })
+                                            "Ver Pedido"
+                                        )
+                                    ),
+                                )
+                            ]),
 
 
-
-
+                        ]
+                        
+                    },
+                });
             },
         });
 
