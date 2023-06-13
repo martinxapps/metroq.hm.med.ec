@@ -8,6 +8,56 @@ let idFormulario = null;
 //
 let pruebaFormulario = null;
 
+const inputIncentivoRespiratorio = {
+  view: (vnode) => {
+    return [
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Mililitros por segundo")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputMililitrosPorSegundo",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.MILILITROSPORSEGUNDOINCENTIVO;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Centimetros cúbicos por segundo")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputCentimetrosCubicosPorSegundo",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.CENTIMETROSSEGUNDOINCENTIVO;
+              },
+            }),
+          ])
+        ),
+      ]),
+    ];
+  },
+};
 const VerUnFormulario = {
   usuarioMoficado: "",
   oninit: (vnode) => {
@@ -246,30 +296,36 @@ const VerUnFormulario = {
                 }),
               ]),
             ]),
-            
+
             m("div", { class: "form-group" }, [
-          m("label", { for: "inputPrescripcion" }, "Prescripción"),
-          m(
-            "div",
-            {},
-            m('ul', Object.entries(formularioModelo.listadoUnitario.PRESCRIPCION).map(function([option, checked]) {
-              return m('li', [
-                m('label', [
-                  m('input[type=checkbox]', {
-                    checked: checked,
-                    disabled: true,
-                    onchange: function(e) {
-                      formularioModelo.listadoUnitario.PRESCRIPCION[option] = e.target.checked;
-                      m.redraw(); // Redibujar el componente después del cambio
-                    }
-                    
-                  }),
-                  m('span', option)
-                ])
-              ]);
-            }))
-            
-            /* Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
+              m("label", { for: "inputPrescripcion" }, "Prescripción"),
+              m(
+                "div",
+                {},
+                m(
+                  "ul",
+                  Object.entries(
+                    formularioModelo.listadoUnitario.PRESCRIPCION
+                  ).map(function ([option, checked]) {
+                    return m("li", [
+                      m("label", [
+                        m("input[type=checkbox]", {
+                          checked: checked,
+                          disabled: true,
+                          onchange: function (e) {
+                            formularioModelo.listadoUnitario.PRESCRIPCION[
+                              option
+                            ] = e.target.checked;
+                            m.redraw(); // Redibujar el componente después del cambio
+                          },
+                        }),
+                        m("span", option),
+                      ]),
+                    ]);
+                  })
+                )
+
+                /* Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
               return m("div", { class: "form-check" }, [
                 m("input", {
                   type: "checkbox",
@@ -290,8 +346,8 @@ const VerUnFormulario = {
                 ),
               ]);
             }) */
-          ),
-        ]),
+              ),
+            ]),
 
             m("div", { class: "form-group" }, [
               m("label", { for: "inputFecha" }, "Fecha"),
@@ -912,48 +968,7 @@ const VerUnFormulario = {
                 { class: "d-flex justify-content-center" },
                 m("h6", "Incentivo Respiratorio")
               ),
-              m("div", { class: "row" }, [
-                m(
-                  "div",
-                  { class: "col" },
-                  m("div", { class: "mb-6" }, [
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      m("b", "Mililitros por segundo")
-                    ),
-                    m("input", {
-                      class: "form-control",
-                      type: "number",
-                      id: "inputMililitrosPorSegundo",
-                      //disabled: true,
-                      value:
-                        formularioModelo.listadoUnitario
-                          .MILILITROSPORSEGUNDOINCENTIVO,
-                    }),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col" },
-                  m("div", { class: "mb-6" }, [
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputEscalaDolor" },
-                      m("b", "Centimetros cúbicos por segundo")
-                    ),
-                    m("input", {
-                      class: "form-control",
-                      type: "number",
-                      id: "inputCentimetrosCubicosPorSegundo",
-                      //disabled: true,
-                      value:
-                        formularioModelo.listadoUnitario
-                          .CENTIMETROSSEGUNDOINCENTIVO,
-                    }),
-                  ])
-                ),
-              ]),
+              m(inputIncentivoRespiratorio),
             ],
             [
               m("br"),
@@ -2063,7 +2078,6 @@ const VerUnFormulario = {
                     ),
                   ])
                 ),
-                
               ]),
               m("div", { class: "row justify-content-center" }, [
                 m(
@@ -2234,7 +2248,6 @@ const VerUnFormulario = {
                     ),
                   ])
                 ),
-                
               ]),
               m("div", { class: "row justify-content-center" }, [
                 m(
@@ -2541,7 +2554,10 @@ const VerUnFormulario = {
                     //console.log(Pedido.data.AT_MV);
                     formularioModelo.actualizar(formulario);
                     m.mount(document.querySelector("#gestion-muestras"), null);
-                    m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
+                    m.mount(
+                      document.querySelector("#cerrar-gestion-muestras"),
+                      null
+                    );
                     formularioModelo.listado = [];
                     formularioModelo.loading = true;
                   }
@@ -2811,7 +2827,10 @@ const VerUnFormulario = {
                   ) {
                     formularioModelo.actualizar(datos);
                     m.mount(document.querySelector("#gestion-muestras"), null);
-                    m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
+                    m.mount(
+                      document.querySelector("#cerrar-gestion-muestras"),
+                      null
+                    );
                     formularioModelo.listado = [];
                     formularioModelo.loading = true;
                   }
