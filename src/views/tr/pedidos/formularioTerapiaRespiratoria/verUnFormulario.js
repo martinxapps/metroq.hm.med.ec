@@ -744,6 +744,21 @@ const inputMonitoreo = {
     ];
   },
 };
+const inputCriterio = {
+  view: (vnode) => {
+    return [
+      m("textarea", {
+        class: "form-control",
+        id: "textareaCriterio",
+        rows: "3",
+        //disabled: true,
+        oncreate: (el) => {
+          el.dom.value = formularioModelo.listadoUnitario.CRITERIO;
+        },
+      }),
+    ];
+  },
+};
 const VerUnFormulario = {
   usuarioMoficado: "",
   oninit: (vnode) => {
@@ -2360,13 +2375,7 @@ const VerUnFormulario = {
                 { class: "form-label", for: "textAreaObservacionClinica" },
                 "Criterio"
               ),
-              m("textarea", {
-                class: "form-control",
-                id: "textareaCriterio",
-                rows: "3",
-                //disabled: true,
-                value: formularioModelo.listadoUnitario.CRITERIO,
-              }),
+              m(inputCriterio),
             ],
             " ",
             m("br"),
