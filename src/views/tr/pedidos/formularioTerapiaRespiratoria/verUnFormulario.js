@@ -604,6 +604,146 @@ const inputOxigenoTerapia = {
     ];
   },
 };
+const inputMonitoreo = {
+  view: (vnode) => {
+    return [
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Previa Saturación O2(%) Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputSaturacionPreviaPorcentaje",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.SATURACIONPREVIA;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Posterior Saturación O2(%) Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputSaturacionPosteriorPorcentaje",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.SATURACIONPOSTERIOR;
+              },
+            }),
+          ])
+        ),
+      ]),
+      m("br"),
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Previa Frecuencia Cardiaca por Minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputFrecuenciaCardiacaPreviaPorMinuto",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.FRECUENCIACARDIACAPREVIA;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Posterior Frecuencia Cardiaca por Minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.FRECUENCIACARDIACAPOSTERIOR;
+              },
+            }),
+          ])
+        ),
+      ]),
+      m("br"),
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Previa Frecuencia Respiratoria por Minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPREVIA;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Posterior Frecuencia Respiratoria por Minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPOS;
+              },
+            }),
+          ])
+        ),
+      ]),
+    ];
+  },
+};
 const VerUnFormulario = {
   usuarioMoficado: "",
   oninit: (vnode) => {
@@ -1416,132 +1556,7 @@ const VerUnFormulario = {
                   ])
                 ),
               ]),
-              m("div", { class: "row" }, [
-                m(
-                  "div",
-                  { class: "col" },
-                  m("div", { class: "mb-6" }, [
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      m("b", "Previa Saturación O2(%) Porcentaje")
-                    ),
-                    m("input", {
-                      class: "form-control",
-                      type: "number",
-                      id: "inputSaturacionPreviaPorcentaje",
-                      //disabled: true,
-                      value: formularioModelo.listadoUnitario.SATURACIONPREVIA,
-                    }),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col" },
-                  m("div", { class: "mb-6" }, [
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputEscalaDolor" },
-                      m("b", "Posterior Saturación O2(%) Porcentaje")
-                    ),
-                    m("input", {
-                      class: "form-control",
-                      type: "number",
-                      id: "inputSaturacionPosteriorPorcentaje",
-                      //disabled: true,
-                      value:
-                        formularioModelo.listadoUnitario.SATURACIONPOSTERIOR,
-                    }),
-                  ])
-                ),
-              ]),
-              m("br"),
-              m("br"),
-              m("div", { class: "row" }, [
-                m(
-                  "div",
-                  { class: "col" },
-                  m("div", { class: "mb-6" }, [
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      m("b", "Previa Frecuencia Cardiaca por Minuto")
-                    ),
-                    m("input", {
-                      class: "form-control",
-                      type: "number",
-                      id: "inputFrecuenciaCardiacaPreviaPorMinuto",
-                      //disabled: true,
-                      value:
-                        formularioModelo.listadoUnitario
-                          .FRECUENCIACARDIACAPREVIA,
-                    }),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col" },
-                  m("div", { class: "mb-6" }, [
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputEscalaDolor" },
-                      m("b", "Posterior Frecuencia Cardiaca por Minuto")
-                    ),
-                    m("input", {
-                      class: "form-control",
-                      type: "number",
-                      id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
-                      //disabled: true,
-                      value:
-                        formularioModelo.listadoUnitario
-                          .FRECUENCIACARDIACAPOSTERIOR,
-                    }),
-                  ])
-                ),
-              ]),
-              m("br"),
-              m("div", { class: "row" }, [
-                m(
-                  "div",
-                  { class: "col" },
-                  m("div", { class: "mb-6" }, [
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      m("b", "Previa Frecuencia Respiratoria por Minuto")
-                    ),
-                    m("input", {
-                      class: "form-control",
-                      type: "number",
-                      id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
-                      //disabled: true,
-                      value:
-                        formularioModelo.listadoUnitario
-                          .FRECUENCIARESPIRATORIAPREVIA,
-                    }),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col" },
-                  m("div", { class: "mb-6" }, [
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputEscalaDolor" },
-                      m("b", "Posterior Frecuencia Respiratoria por Minuto")
-                    ),
-                    m("input", {
-                      class: "form-control",
-                      type: "number",
-                      id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
-                      //disabled: true,
-                      value:
-                        formularioModelo.listadoUnitario
-                          .FRECUENCIARESPIRATORIAPOS,
-                    }),
-                  ])
-                ),
-              ]),
+              m(inputMonitoreo),
             ],
             m("br"),
             m("br"),
