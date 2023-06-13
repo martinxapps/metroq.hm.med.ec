@@ -26,8 +26,8 @@ const inputMedicinas = {
               type: "number",
               id: "inputSalbumatol",
               oncreate: (el) => {
-                el.dom.value = formularioModelo.listadoUnitario.SALBUTAMOLDOSIS
-              }
+                el.dom.value = formularioModelo.listadoUnitario.SALBUTAMOLDOSIS;
+              },
               //disabled: true,
             }),
           ])
@@ -46,8 +46,8 @@ const inputMedicinas = {
               type: "number",
               id: "inputHipersal",
               oncreate: (el) => {
-                el.dom.value = formularioModelo.listadoUnitario.HIPERSAL7DOSIS
-              }
+                el.dom.value = formularioModelo.listadoUnitario.HIPERSAL7DOSIS;
+              },
               //disabled: true,
             }),
           ])
@@ -66,8 +66,8 @@ const inputMedicinas = {
               type: "number",
               id: "inputHipersal3",
               oncreate: (el) => {
-                el.dom.value = formularioModelo.listadoUnitario.HIPERSAL35DOSIS
-              }
+                el.dom.value = formularioModelo.listadoUnitario.HIPERSAL35DOSIS;
+              },
               //disabled: true,
             }),
           ])
@@ -88,8 +88,9 @@ const inputMedicinas = {
               type: "number",
               id: "inputDexametasona",
               oncreate: (el) => {
-                el.dom.value = formularioModelo.listadoUnitario.DEXAMETASONADOSIS
-              }
+                el.dom.value =
+                  formularioModelo.listadoUnitario.DEXAMETASONADOSIS;
+              },
               //disabled: true,
             }),
           ])
@@ -108,8 +109,9 @@ const inputMedicinas = {
               type: "number",
               id: "inputClorhidratoAmbroxol",
               oncreate: (el) => {
-                el.dom.value = formularioModelo.listadoUnitario.CLORHIDRATODEAMBROXOLDOSIS
-              }
+                el.dom.value =
+                  formularioModelo.listadoUnitario.CLORHIDRATODEAMBROXOLDOSIS;
+              },
               //disabled: true,
             }),
           ])
@@ -128,8 +130,9 @@ const inputMedicinas = {
               type: "number",
               id: "inputSolucionSalina",
               oncreate: (el) => {
-                el.dom.value = formularioModelo.listadoUnitario.SOLUCIONSALINADOSIS
-              }
+                el.dom.value =
+                  formularioModelo.listadoUnitario.SOLUCIONSALINADOSIS;
+              },
               //disabled: true,
             }),
           ])
@@ -150,8 +153,9 @@ const inputMedicinas = {
               type: "number",
               id: "inputBromuroIpatropio",
               oncreate: (el) => {
-                el.dom.value = formularioModelo.listadoUnitario.BROMURODELPATROPIODOSIS
-              }
+                el.dom.value =
+                  formularioModelo.listadoUnitario.BROMURODELPATROPIODOSIS;
+              },
               //disabled: true,
             }),
           ])
@@ -170,8 +174,9 @@ const inputMedicinas = {
               type: "number",
               id: "inputAdrenalinaRacenica",
               oncreate: (el) => {
-                el.dom.value = formularioModelo.listadoUnitario.ADRENALINARACENICADOSIS
-              }
+                el.dom.value =
+                  formularioModelo.listadoUnitario.ADRENALINARACENICADOSIS;
+              },
               //disabled: true,
             }),
           ])
@@ -190,16 +195,16 @@ const inputMedicinas = {
               type: "number",
               id: "inputOtros",
               oncreate: (el) => {
-                el.dom.value = formularioModelo.listadoUnitario.OTROSDOSIS
-              }
+                el.dom.value = formularioModelo.listadoUnitario.OTROSDOSIS;
+              },
               //disabled: true,
             }),
           ])
         ),
       ]),
-    ]
+    ];
   },
-}
+};
 
 const inputIncentivoRespiratorio = {
   view: (vnode) => {
@@ -248,6 +253,354 @@ const inputIncentivoRespiratorio = {
           ])
         ),
       ]),
+    ];
+  },
+};
+
+const inputOxigenoTerapia = {
+  view: (vnode) => {
+    return [
+      m("h6", "Fracción inspirada de oxigeno (FiO2 %)"),
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputPorcentajeFraccion",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.FRACCIONOXIGENOPORCENTAJE;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-4" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Litros por minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputLitrosPorMinutoFraccion",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.FRACCIONIOXIGENOLITROS;
+              },
+            }),
+          ])
+        ),
+      ]),
+      m("h6", "Alto Flujo (litro por minuto)"),
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputPorcentajeAltoFlujo",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.ALTOFLUJOPORCENTAJE;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Litro por minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputLitroAltoFlujo",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.ALTOFLUJOLITROSPORMINUTO;
+              },
+            }),
+          ])
+        ),
+      ]),
+      m("h6", "Tienda Facial"),
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputPorcentajeTiendaFacial",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.TIENDAFACIALPORCENTAJE;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-4" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Litros por minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputLitroPorMinutoTiendaFacial",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.TIENDAFACIALLITROSPORMINUTO;
+              },
+            }),
+          ])
+        ),
+      ]),
+      m("h6", "Tubo en T"),
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputPorcentajeTuboEnT",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.TUBOENTPORCENTAJE;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Litro por minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputLitroTuboEnT",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.TUBOENTLITROSPORMINUTO;
+              },
+            }),
+          ])
+        ),
+      ]),
+      m("h6", "Canula Nasal"),
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputPorcentajeCanulaNasal",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.CANULANASALPORCENTAJE;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-4" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Litros por minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputLitroPorMinutoCanulaNasal",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.CANULANASALLITROSPORMINUTO;
+              },
+            }),
+          ])
+        ),
+      ]),
+      m("h6", "Mascarilla"),
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputPorcentajeMascarilla",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.MASCARILLAPORCENTAJE;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Litro por minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputLitroMascarilla",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.MASCARILLALITROSPORMINUTO;
+              },
+            }),
+          ])
+        ),
+      ]),
+      m("h6", "Heliox"),
+      m("div", { class: "row" }, [
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputPorcentajeHeliox",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.HELIOXPORCENTAJE;
+              },
+            }),
+          ])
+        ),
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-4" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputEscalaDolor" },
+              m("b", "Litros por minuto")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputLitroPorMinutoHeliox",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.HELIOXLITROSPORMINUTO;
+              },
+            }),
+          ])
+        ),
+      ]),
+      m("h6", "Aire Ambiente"),
+      m(
+        "div",
+        { class: "row" },
+        m(
+          "div",
+          { class: "col" },
+          m("div", { class: "mb-6" }, [
+            m(
+              "label",
+              { class: "form-label", for: "inputPeso" },
+              m("b", "Porcentaje")
+            ),
+            m("input", {
+              class: "form-control",
+              type: "number",
+              id: "inputPorcentajeAireAmbiente",
+              //disabled: true,
+              oncreate: (el) => {
+                el.dom.value =
+                  formularioModelo.listadoUnitario.AIREAMBIENTEPORCENTAJE;
+              },
+            }),
+          ])
+        )
+      ),
     ];
   },
 };
@@ -659,7 +1012,7 @@ const VerUnFormulario = {
                 { class: "d-flex justify-content-center" },
                 m("h6", "Medicinas")
               ),
-              m(inputMedicinas)
+              m(inputMedicinas),
             ],
             [
               m(
@@ -997,7 +1350,7 @@ const VerUnFormulario = {
                 { class: "d-flex justify-content-center" },
                 m("h6", "Oxigenoterapia")
               ),
-              
+              m(inputOxigenoTerapia),
             ],
             m("br"),
             m("br"),
