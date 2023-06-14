@@ -502,13 +502,13 @@ const PedidosTR = {
                                     m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
                                         aData.NM_PACIENTE
                                     ),
-                                    m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
-                                        "Estado: "
-                                    ),
-                                    m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
-                                    (formularioModelo.idRespuesta == aData.CD_PRE_MED ? "En Proceso" : "Pendiente"
-                                    /* && formularioModelo.listado.length > 0 */ )
-                                    ),
+                                    // m("td.tx-10.tx-semibold", { "style": { "background-color": "rgb(168, 190, 214)" } },
+                                    //     "Estado: "
+                                    // ),
+                                    // m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
+                                    // (formularioModelo.idRespuesta == aData.CD_PRE_MED ? "En Proceso" : "Pendiente"
+                                    // /* && formularioModelo.listado.length > 0 */ )
+                                    // ),
                                     /*m("td", { "style": { "background-color": "rgb(234, 239, 245)" } },
                                         formularioModelo.listado.length > 0 ? "En Proceso" : "Pendiente",
                                         

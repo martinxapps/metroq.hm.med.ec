@@ -1669,6 +1669,7 @@ const CrearFormulario = {
                 id: "inputSibilancias",
                 onclick: (event) => {
                   isSibilanciasSelected = event.target.checked;
+                  console.log(isSibilanciasSelected)
                 },
               }),
               m("label.form-label", { for: "inputPeso" }, "Sibilancias"),
@@ -1921,109 +1922,35 @@ const CrearFormulario = {
               EJERCICIOSRESPIRATORIOS: isEjerciciosRespiratorioSelected
                 ? 'true'
                 : 'false',
-              MILILITROSPORSEGUNDOINCENTIVO:
-                vnode.dom["inputMililitrosPorSegundo"].value.length > 0
-                  ? vnode.dom["inputMililitrosPorSegundo"].value
-                  : 0,
-              CENTIMETROSSEGUNDOINCENTIVO:
-                vnode.dom["inputCentimetrosCubicosPorSegundo"].value.length > 0
-                  ? vnode.dom["inputCentimetrosCubicosPorSegundo"].value
-                  : 0,
-              FRACCIONOXIGENOPORCENTAJE:
-                vnode.dom["inputPorcentajeFraccion"].value.length > 0
-                  ? vnode.dom["inputPorcentajeFraccion"].value
-                  : 0,
-              FRACCIONIOXIGENOLITROS:
-                vnode.dom["inputLitrosPorMinutoFraccion"].value.length > 0
-                  ? vnode.dom["inputLitrosPorMinutoFraccion"].value
-                  : 0,
-              ALTOFLUJOPORCENTAJE:
-                vnode.dom["inputPorcentajeAltoFlujo"].value.length > 0
-                  ? vnode.dom["inputPorcentajeAltoFlujo"].value
-                  : 0,
-              ALTOFLUJOLITROSPORMINUTO:
-                vnode.dom["inputLitroAltoFlujo"].value.length > 0
-                  ? vnode.dom["inputLitroAltoFlujo"].value
-                  : 0,
-              TIENDAFACIALPORCENTAJE:
-                vnode.dom["inputPorcentajeTiendaFacial"].value.length > 0
-                  ? vnode.dom["inputPorcentajeTiendaFacial"].value
-                  : 0,
-              TIENDAFACIALLITROSPORMINUTO:
-                vnode.dom["inputLitroPorMinutoTiendaFacial"].value.length > 0
-                  ? vnode.dom["inputLitroPorMinutoTiendaFacial"].value
-                  : 0,
-              TUBOENTPORCENTAJE:
-                vnode.dom["inputPorcentajeTuboEnT"].value.length > 0
-                  ? vnode.dom["inputPorcentajeTuboEnT"].value
-                  : 0,
-              TUBOENTLITROSPORMINUTO:
-                vnode.dom["inputLitroTuboEnT"].value.length > 0
-                  ? vnode.dom["inputLitroTuboEnT"].value
-                  : 0,
-              CANULANASALPORCENTAJE:
-                vnode.dom["inputPorcentajeCanulaNasal"].value.length > 0
-                  ? vnode.dom["inputPorcentajeCanulaNasal"].value
-                  : 0,
-              CANULANASALLITROSPORMINUTO:
-                vnode.dom["inputLitroPorMinutoCanulaNasal"].value.length > 0
-                  ? vnode.dom["inputLitroPorMinutoCanulaNasal"].value
-                  : 0,
-              MASCARILLAPORCENTAJE:
-                vnode.dom["inputPorcentajeMascarilla"].value.length > 0
-                  ? vnode.dom["inputPorcentajeMascarilla"].value
-                  : 0,
-              MASCARILLALITROSPORMINUTO:
-                vnode.dom["inputLitroMascarilla"].value.length > 0
-                  ? vnode.dom["inputLitroMascarilla"].value
-                  : 0,
-              HELIOXPORCENTAJE:
-                vnode.dom["inputPorcentajeHeliox"].value.length > 0
-                  ? vnode.dom["inputPorcentajeHeliox"].value
-                  : 0,
-              HELIOXLITROSPORMINUTO:
-                vnode.dom["inputLitroPorMinutoHeliox"].value.length > 0
-                  ? vnode.dom["inputLitroPorMinutoHeliox"].value
-                  : 0,
-              AIREAMBIENTEPORCENTAJE:
-                vnode.dom["inputPorcentajeAireAmbiente"].value.length > 0
-                  ? vnode.dom["inputPorcentajeAireAmbiente"].value
-                  : 0,
+              MILILITROSPORSEGUNDOINCENTIVO:vnode.dom["inputMililitrosPorSegundo"].value,
+              CENTIMETROSSEGUNDOINCENTIVO:vnode.dom["inputCentimetrosCubicosPorSegundo"].value,
+              FRACCIONOXIGENOPORCENTAJE:vnode.dom["inputPorcentajeFraccion"].value,
+              FRACCIONIOXIGENOLITROS:vnode.dom["inputLitrosPorMinutoFraccion"].value,
+              ALTOFLUJOPORCENTAJE:vnode.dom["inputPorcentajeAltoFlujo"].value,
+              ALTOFLUJOLITROSPORMINUTO:vnode.dom["inputLitroAltoFlujo"].value,
+              TIENDAFACIALPORCENTAJE:vnode.dom["inputPorcentajeTiendaFacial"].value,
+              TIENDAFACIALLITROSPORMINUTO:vnode.dom["inputLitroPorMinutoTiendaFacial"].value,
+              TUBOENTPORCENTAJE:vnode.dom["inputPorcentajeTuboEnT"].value,
+              TUBOENTLITROSPORMINUTO:vnode.dom["inputLitroTuboEnT"].value,
+              CANULANASALPORCENTAJE:vnode.dom["inputPorcentajeCanulaNasal"].value,
+              CANULANASALLITROSPORMINUTO:vnode.dom["inputLitroPorMinutoCanulaNasal"].value,
+              MASCARILLAPORCENTAJE:vnode.dom["inputPorcentajeMascarilla"].value,
+              MASCARILLALITROSPORMINUTO:vnode.dom["inputLitroMascarilla"].value,
+              HELIOXPORCENTAJE:vnode.dom["inputPorcentajeHeliox"].value,
+              HELIOXLITROSPORMINUTO:vnode.dom["inputLitroPorMinutoHeliox"].value,
+              AIREAMBIENTEPORCENTAJE:vnode.dom["inputPorcentajeAireAmbiente"].value,
               VENTILACIONMECANICA: isVentilacionMecanicaSelected
                 ? 'true'
                 : 'false',
               VENTILACIONNOINVASIVA: isVentilacionNoInvasivaSelected
                 ? 'true'
                 : 'false',
-              SATURACIONPREVIA: vnode.dom["inputSaturacionPreviaPorcentaje"].value.length > 0
-              ? vnode.dom["inputSaturacionPreviaPorcentaje"].value
-              : 0,
-              SATURACIONPOSTERIOR:
-                vnode.dom["inputSaturacionPosteriorPorcentaje"].value.length > 0
-                  ? vnode.dom["inputSaturacionPosteriorPorcentaje"].value
-                  : 0,
-              FRECUENCIACARDIACAPREVIA:
-                vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value
-                  .length > 0
-                  ? vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value
-                  : 0,
-              FRECUENCIACARDIACAPOSTERIOR:
-                vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"].value
-                  .length > 0
-                  ? vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"].value
-                  : 0,
-              FRECUENCIARESPIRATORIAPREVIA:
-                vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"].value
-                  .length > 0
-                  ? vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"]
-                      .value
-                  : 0,
-              FRECUENCIARESPIRATORIAPOS:
-                vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"].value
-                  .length > 0
-                  ? vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"]
-                      .value
-                  : 0,
+              SATURACIONPREVIA: vnode.dom["inputSaturacionPreviaPorcentaje"].value,
+              SATURACIONPOSTERIOR:vnode.dom["inputSaturacionPosteriorPorcentaje"].value,
+              FRECUENCIACARDIACAPREVIA:vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value,
+              FRECUENCIACARDIACAPOSTERIOR:vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"].value,
+              FRECUENCIARESPIRATORIAPREVIA:vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"].value,
+              FRECUENCIARESPIRATORIAPOS:vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"].value,
               CRITERIO: vnode.dom["textareaCriterio"].value,
               ESTADO: 'Activo', //"1",
               ID: 'sec_TerapiaRespiratoria.nextval',
