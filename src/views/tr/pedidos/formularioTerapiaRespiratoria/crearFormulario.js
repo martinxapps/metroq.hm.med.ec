@@ -464,7 +464,7 @@ const CrearFormulario = {
               ),
               m("input", {
                 class: "form-control",
-                type: "number",
+                type: "text",
                 id: "inputSalbumatol",
               }),
             ])
@@ -480,7 +480,7 @@ const CrearFormulario = {
               ),
               m("input", {
                 class: "form-control",
-                type: "number",
+                type: "text",
                 id: "inputHipersal",
               }),
             ])
@@ -496,7 +496,7 @@ const CrearFormulario = {
               ),
               m("input", {
                 class: "form-control",
-                type: "number",
+                type: "text",
                 id: "inputHipersal3",
               }),
             ])
@@ -514,7 +514,7 @@ const CrearFormulario = {
               ),
               m("input", {
                 class: "form-control",
-                type: "number",
+                type: "text",
                 id: "inputDexametasona",
               }),
             ])
@@ -530,7 +530,7 @@ const CrearFormulario = {
               ),
               m("input", {
                 class: "form-control",
-                type: "number",
+                type: "text",
                 id: "inputClorhidratoAmbroxol",
               }),
             ])
@@ -546,7 +546,7 @@ const CrearFormulario = {
               ),
               m("input", {
                 class: "form-control",
-                type: "number",
+                type: "text",
                 id: "inputSolucionSalina",
               }),
             ])
@@ -564,7 +564,7 @@ const CrearFormulario = {
               ),
               m("input", {
                 class: "form-control",
-                type: "number",
+                type: "text",
                 id: "inputBromuroIpatropio",
               }),
             ])
@@ -580,11 +580,31 @@ const CrearFormulario = {
               ),
               m("input", {
                 class: "form-control",
-                type: "number",
+                type: "text",
                 id: "inputAdrenalinaRacenica",
               }),
             ])
           ),
+          m(
+            "div",
+            { class: "col" },
+            m("div", { class: "mb-4" }, [
+              m(
+                "label",
+                { class: "form-label", for: "inputNAcetilcisteina" },
+                m("b", "N Acetilcisteina")
+              ),
+              m("input", {
+                class: "form-control",
+                type: "text",
+                id: "inputNAcetilcisteina",
+              }),
+            ])
+          ),
+        ]),
+        m("div", { class: "row" }, [
+          
+          
           m(
             "div",
             { class: "col" },
@@ -596,7 +616,7 @@ const CrearFormulario = {
               ),
               m("input", {
                 class: "form-control",
-                type: "number",
+                type: "text",
                 id: "inputOtros",
               }),
             ])
@@ -1830,42 +1850,16 @@ const CrearFormulario = {
               //FECHAHOY: "TO_DATE('23-05-2023 09:30:45', 'DD-MM-YYYY HH24:MI:SS')",
               HORAANTES: vnode.dom["inputHora"].value,
               HORADESPUES: cargarHoraActual(),
-              SALBUTAMOLDOSIS:
-                vnode.dom["inputSalbumatol"].value.length > 0
-                  ? vnode.dom["inputSalbumatol"].value
-                  : 0,
-              HIPERSAL7DOSIS:
-                vnode.dom["inputHipersal"].value.length > 0
-                  ? vnode.dom["inputHipersal"].value
-                  : 0,
-              BROMURODELPATROPIODOSIS:
-                vnode.dom["inputBromuroIpatropio"].value.length > 0
-                  ? vnode.dom["inputBromuroIpatropio"].value
-                  : 0,
-              DEXAMETASONADOSIS:
-                vnode.dom["inputDexametasona"].value.length > 0
-                  ? vnode.dom["inputDexametasona"].value
-                  : 0,
-              CLORHIDRATODEAMBROXOLDOSIS:
-                vnode.dom["inputClorhidratoAmbroxol"].value.length > 0
-                  ? vnode.dom["inputClorhidratoAmbroxol"].value
-                  : 0,
-              SOLUCIONSALINADOSIS:
-                vnode.dom["inputSolucionSalina"].value.length > 0
-                  ? vnode.dom["inputSolucionSalina"].value
-                  : 0,
-              HIPERSAL35DOSIS:
-                vnode.dom["inputHipersal3"].value.length > 0
-                  ? vnode.dom["inputHipersal3"].value
-                  : 0,
-              ADRENALINARACENICADOSIS:
-                vnode.dom["inputAdrenalinaRacenica"].value.length > 0
-                  ? vnode.dom["inputAdrenalinaRacenica"].value
-                  : 0,
-              OTROSDOSIS:
-                vnode.dom["inputOtros"].value.length > 0
-                  ? vnode.dom["inputOtros"].value
-                  : 0,
+              SALBUTAMOLDOSIS:vnode.dom["inputSalbumatol"].value,
+              HIPERSAL7DOSIS:vnode.dom["inputHipersal"].value,
+              BROMURODELPATROPIODOSIS:vnode.dom["inputBromuroIpatropio"].value,
+              DEXAMETASONADOSIS:vnode.dom["inputDexametasona"].value,
+              CLORHIDRATODEAMBROXOLDOSIS:vnode.dom["inputClorhidratoAmbroxol"].value,
+              SOLUCIONSALINADOSIS:vnode.dom["inputSolucionSalina"].value,
+              HIPERSAL35DOSIS:vnode.dom["inputHipersal3"].value,
+              ADRENALINARACENICADOSIS:vnode.dom["inputAdrenalinaRacenica"].value,
+              NAcetilcisteina: vnode.dom["inputNAcetilcisteina"].value,
+              OTROSDOSIS:vnode.dom["inputOtros"].value,
               NEBULIZACION: isNebulizacionSelected ? 'true' : 'false',
               ULTRASONIDO: isUltrasonidoSelected ? 'true' : 'false',
               INHALADORESDOSISMEDIDA: isInhaladorDosisMedidaSelected
