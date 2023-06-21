@@ -6,7 +6,7 @@ import m from 'mithril';
 function stopwatchModel() {
     return {
         interval: null,
-        seconds: 1000,
+        seconds: 10,
         isPaused: false
     };
 }
@@ -20,7 +20,8 @@ const actions = {
         if (Flebotomista.searchField.length == 0) {
             model.seconds--;
             if (model.seconds == 0) {
-                window.location.reload();
+                model.seconds = 10;
+                Flebotomista.reloadData();
             }
             m.redraw();
         }
@@ -120,7 +121,7 @@ function Stopwatch() {
 const tableFlebotomista = {
     oncreate: () => {
 
-        if (Flebotomista.idFiltro == 4) {
+        if (Flebotomista.idFiltro == 4 || Flebotomista.idFiltro == 5) {
             Flebotomista.loadFlebotomistaCE();
             if (Flebotomista.searchField.length !== 0) {
                 var table = $('#table-flebotomista').DataTable();
@@ -150,7 +151,8 @@ const tableFlebotomista = {
                     m("div.d-flex.align-items-center.justify-content-between.mg-b-80.mg-t-10", [
                         m("h5.mg-b-0",
                             "LISA:",
-                            m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15", {
+                            m("span.badge.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15", {
+                                    class: (Flebotomista.idFiltro == 5 ? 'badge-danger' : 'badge-primary'),
                                     oncreate: (el) => {
                                         if (Flebotomista.idFiltro == 1) {
                                             el.dom.innerHTML = 'Pedidos de Hoy';
@@ -163,6 +165,9 @@ const tableFlebotomista = {
                                         }
                                         if (Flebotomista.idFiltro == 4) {
                                             el.dom.innerHTML = 'Pedidos de C. Externa';
+                                        }
+                                        if (Flebotomista.idFiltro == 5) {
+                                            el.dom.innerHTML = 'Pedidos de C. Externa - Pendientes';
                                         }
 
                                     },
@@ -178,6 +183,9 @@ const tableFlebotomista = {
                                         }
                                         if (Flebotomista.idFiltro == 4) {
                                             el.dom.innerHTML = 'Pedidos de C. Externa';
+                                        }
+                                        if (Flebotomista.idFiltro == 5) {
+                                            el.dom.innerHTML = 'Pedidos de C. Externa - Pendientes';
                                         }
                                     }
                                 }
@@ -271,6 +279,9 @@ const tableFlebotomista = {
                                     ]),
                                     m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/flebotomista/?idFiltro=4&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
                                         "Pedidos de C. Externa"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item tx-danger', href: "/laboratorio/flebotomista/?idFiltro=5&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
+                                        "C. Externa Pendientes"
                                     ]),
 
                                 ])
@@ -762,10 +773,7 @@ const Flebotomista = {
             ],
             fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 
-                // Crea el array
-
                 Flebotomista.buscarListaAtenciones(aData.cdAtendimento, aData.codigoPedido);
-
 
                 m.mount(nRow, {
                     view: () => {
@@ -790,9 +798,9 @@ const Flebotomista = {
                                     m('.d-inline.tx-14.tx-semibold.tx-danger', {}, [
                                         m('i.fas.fa-file.mg-r-5.tx-12'),
                                         Flebotomista.listaAtenciones[iDisplayIndexFull].nro + ' de ' + Flebotomista.listaAtenciones[iDisplayIndexFull].pedidos
-
                                     ]),
                                     m('br'),
+                                    'SC: ' +
                                     aData.codigoPedido,
                                 ),
                             ),
@@ -813,7 +821,8 @@ const Flebotomista = {
 
                             ),
 
-                            m("td.tx-center.bg-warning", {
+                            m("td.tx-center", {
+                                    class: (aData.callToma == 0 ? 'bg-warning' : 'bg-success'),
                                     "style": { "cursor": "pointer" },
                                     onclick: () => {
                                         Flebotomista.atencion = aData.cdAtendimento;
@@ -821,7 +830,9 @@ const Flebotomista = {
                                     }
                                 }, [
 
-                                    m(".btn.bg-warning[type='button']",
+                                    m(".btn[type='button']", {
+                                            class: (aData.callToma == 0 ? 'bg-warning' : 'bg-success'),
+                                        },
                                         m('i.fas.fa-bell.tx-22'),
                                         m('div.tx-12.tx-semibold', 'Llamar'),
                                         m('div.d-inline.tx-12.tx-semibold.tx-danger', (Flebotomista.atencion == aData.cdAtendimento ? Flebotomista.toma : '')),
@@ -949,7 +960,7 @@ const Flebotomista = {
 
         m.request({
                 method: "POST",
-                url: "https://api.hospitalmetropolitano.org/t/v1/procesos/call-toma",
+                url: "https://lisa.hospitalmetropolitano.org/v1/procesos/call-toma",
                 body: {
                     atencion: atencion
                 },
@@ -960,6 +971,7 @@ const Flebotomista = {
             .then(function(response) {
                 if (response.status) {
                     Flebotomista.toma = 'Llamada Lista';
+                    Flebotomista.reloadData();
                     setTimeout(function() {
                         Flebotomista.atencion = '';
                         Flebotomista.toma = '';
@@ -980,6 +992,8 @@ const Flebotomista = {
     reloadData: () => {
         var table = $('#table-flebotomista').DataTable();
         table.clear();
+        Flebotomista.listaAtenciones = [];
+        Flebotomista.fetchPedidos();
         table.rows.add(Flebotomista.pedidos).draw();
     },
 
