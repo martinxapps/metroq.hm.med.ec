@@ -2727,7 +2727,7 @@ const VerUnFormulario = {
             m.trust("&nbsp;"),
             " ",
             m.trust("&nbsp;"),
-            m(
+            /* m(
               "button",
               {
                 class: "btn btn-primary",
@@ -2737,7 +2737,20 @@ const VerUnFormulario = {
                   formularioModelo.listadoUnitario.ESTADO === "Activo",
               },
               "Imprimir"
-            ),
+            ), */
+            (formularioModelo.listadoUnitario.ESTADO === "Finalizado" ? 
+            m(m.route.Link, {
+
+              href: "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" + formularioModelo.listadoUnitario.ID,
+
+              class: "btn btn-primary",
+
+              target: "_blank",
+              type: "button",
+
+          }, "Imprimir")  : null
+            )
+            
           ])
         : m(loader),
     ];
