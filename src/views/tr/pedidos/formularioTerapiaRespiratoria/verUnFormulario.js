@@ -146,7 +146,7 @@ const inputMedicinas = {
             m(
               "label",
               { class: "form-label", for: "inputUsuario" },
-              m("b", "Bromuro de Ipatropio")
+              m("b", "Bromuro de Ipratropio")
             ),
             m("input", {
               class: "form-control",
@@ -1028,19 +1028,19 @@ const VerUnFormulario = {
                 m(
                   "ul",
                   Object.entries(
-                    formularioModelo.listadoUnitario.PRESCRIPCION
+                    formularioModelo.listadoUnitario.PRESCRIPCION.PRESCRIPCIONANTES
                   ).map(function ([option, checked]) {
                     return m("li", [
                       m("label", [
                         m("input[type=checkbox]", {
                           checked: checked,
                           disabled: true,
-                          onchange: function (e) {
-                            formularioModelo.listadoUnitario.PRESCRIPCION[
+                          /* onchange: function (e) {
+                            formularioModelo.listadoUnitario.PRESCRIPCION.PRESCRIPCIONANTES[
                               option
                             ] = e.target.checked;
                             m.redraw(); // Redibujar el componente después del cambio
-                          },
+                          }, */
                         }),
                         m("span", option),
                       ]),
