@@ -34,3 +34,17 @@ export const cargarHoraActual =  () => {
     return horaFormateada;
     //console.log(FormularioDeRegistro.horaActual);
 }
+
+export const change = (prescripcionAntes) => {
+  const newObject = {
+    PRESCRIPCIONANTES: prescripcionAntes,
+    DATOS: [],
+  };
+  Object.entries(prescripcionAntes).map(([nombre, seleccionado]) => {
+    newObject.DATOS.push({
+      nombre,
+      seleccionado,
+    });
+  });
+  return newObject;
+};
