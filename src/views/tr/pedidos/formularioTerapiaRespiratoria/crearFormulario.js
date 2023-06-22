@@ -7,6 +7,7 @@ import {
   //handleCheckboxClick,
   cargarFechaActual,
   cargarHoraActual,
+  change,
 } from "./logic/formulario";
 
 let formularioModelo = FormularioModels;
@@ -560,7 +561,7 @@ const CrearFormulario = {
               m(
                 "label",
                 { class: "form-label", for: "inputUsuario" },
-                m("b", "Bromuro de Ipatropio")
+                m("b", "Bromuro de Ipratropio")
               ),
               m("input", {
                 class: "form-control",
@@ -1839,7 +1840,7 @@ const CrearFormulario = {
                   return `${Examen} ${Frecuencia}`;
                 }
               ), */
-              PRESCRIPCION: CrearFormulario.valoresCheckBox,
+              PRESCRIPCION: change(CrearFormulario.valoresCheckBox),
               //FECHAHOY: `'${vnode.dom["inputFecha"].value}'`,
               /* FECHAHOY:
                 "To_Date(" +
