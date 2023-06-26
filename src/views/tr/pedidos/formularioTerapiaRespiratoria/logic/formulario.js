@@ -40,11 +40,13 @@ export const change = (prescripcionAntes) => {
     PRESCRIPCIONANTES: prescripcionAntes,
     DATOS: [],
   };
-  Object.entries(prescripcionAntes).map(([nombre, seleccionado]) => {
-    newObject.DATOS.push({
-      nombre,
-      seleccionado,
-    });
+  Object.entries(prescripcionAntes).forEach(([nombre, seleccionado]) => {
+    if (seleccionado === true) {
+      newObject.DATOS.push({
+        nombre,
+        seleccionado,
+      });
+    }
   });
   return newObject;
 };
