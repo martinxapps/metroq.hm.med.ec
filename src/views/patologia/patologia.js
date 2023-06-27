@@ -1,5 +1,5 @@
 import HeaderPrivate from '../layout/header-private';
-import SidebarPato from './sidebarPato';
+import SidebarPato from './utils/sidebarPato';
 import App from '../app';
 
 const MenuPatologia = {
@@ -46,6 +46,72 @@ const MenuPatologia = {
                             ]),
 
                         ])] : []),
+                        (App.isShow('patologia', 26) ? [m("li", {
+                            "class": "list-item bg-white wd-100p",
+                            "style": { "cursor": "pointer" },
+                            onclick: () => {
+                                m.route.set("/patologia/gestionPlantillaMacroscopico")
+                            }
+                        }, [
+                            m("div", { "class": "media" }, [
+                                m("div.wd-60.tx-center", { "class": "pd-10 bg-litecoin" },
+                                    m("i", { "class": "fas fa-stream tx-30 tx-white" })
+                                ),
+                                m("div", { "class": "media-body mg-l-15" }, [
+                                    m("p", { "class": "tx-18 mg-b-0" },
+                                        "Gestión Plantillas Macróscopico",
+                                    ),
+                                    m("p", { "class": "mg-b-0 tx-11 tx-color-03 tx-medium tx-spacing-1 tx-sans" },
+                                        "Ir a Plantillas Macróscopico",
+                                    )
+                                ])
+                            ]),
+
+                        ])] : []),
+                        (App.isShow('patologia', 26) ? [m("li", {
+                            "class": "list-item bg-white wd-100p",
+                            "style": { "cursor": "pointer" },
+                            onclick: () => {
+                                m.route.set("/patologia/gestionPlantillaDiagnostico")
+                            }
+                        }, [
+                            m("div", { "class": "media" }, [
+                                m("div.wd-60.tx-center", { "class": "pd-10 bg-litecoin" },
+                                    m("i", { "class": "fas fa-stream tx-30 tx-white" })
+                                ),
+                                m("div", { "class": "media-body mg-l-15" }, [
+                                    m("p", { "class": "tx-18 mg-b-0" },
+                                        "Gestión Plantillas Diagnóstico",
+                                    ),
+                                    m("p", { "class": "mg-b-0 tx-11 tx-color-03 tx-medium tx-spacing-1 tx-sans" },
+                                        "Ir a Plantillas Diagnóstico",
+                                    )
+                                ])
+                            ]),
+
+                        ])] : []),
+                        (App.isShow('patologia', 26) ? [m("li", {
+                            "class": "list-item bg-white wd-100p",
+                            "style": { "cursor": "pointer" },
+                            onclick: () => {
+                                m.route.set("/patologia/gestionFirmas")
+                            }
+                        }, [
+                            m("div", { "class": "media" }, [
+                                m("div.wd-60.tx-center", { "class": "pd-10 bg-litecoin" },
+                                    m("i", { "class": "fas fa-cog tx-30 tx-white" })
+                                ),
+                                m("div", { "class": "media-body mg-l-15" }, [
+                                    m("p", { "class": "tx-18 mg-b-0" },
+                                        "Firma Patólogo",
+                                    ),
+                                    m("p", { "class": "mg-b-0 tx-11 tx-color-03 tx-medium tx-spacing-1 tx-sans" },
+                                        "Ver Firma Patólogo",
+                                    )
+                                ])
+                            ]),
+
+                        ])] : []),
                     ]),
 
                 ])
@@ -74,8 +140,5 @@ const Patologia = {
     },
 
 };
-
-
-
 
 export default Patologia;
