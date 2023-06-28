@@ -28,10 +28,10 @@ export const cargarFechaActual = () => {
 export const cargarHoraActual =  () => {
     const fechaActual = new Date();
     const hora = fechaActual.getHours();
-    const minutos = fechaActual.getMinutes();
-    const segundos = fechaActual.getSeconds();
+    const minutosNormal = fechaActual.getMinutes();
+    const minutos = minutosNormal < 10 ? `0${minutosNormal}` : minutosNormal;
 
-    const horaFormateada = `${hora}:${minutos}:${segundos}`;
+    const horaFormateada = `${hora}:${minutos}`;
     return horaFormateada;
     //console.log(FormularioDeRegistro.horaActual);
 }
