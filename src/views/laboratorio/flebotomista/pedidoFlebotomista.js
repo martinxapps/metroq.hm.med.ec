@@ -2,8 +2,6 @@ import HeaderPrivate from '../../layout/header-private';
 import SidebarLab from '../../laboratorio/sidebarLab';
 import App from '../../app';
 import m from 'mithril';
-import pedidosIngresados from './flebotomista';
-
 
 
 const FOR005 = {
@@ -18,7 +16,7 @@ const FOR005 = {
         let page = 0;
 
         if (Formulario.num == 0) {
-            setTimeout(function() {
+            setTimeout(function () {
                 Formulario.num = Formulario.data.length;
                 Formulario.parseFetch();
                 m.redraw.sync();
@@ -40,7 +38,7 @@ const FOR005 = {
             ),
         ] : [
 
-            FOR005.secs.map(function(_v, _i, _contentData) {
+            FOR005.secs.map(function (_v, _i, _contentData) {
 
                 if (_v.name == 'prescripciones_texto') {
 
@@ -96,9 +94,9 @@ const FOR005 = {
                                     ),
                                     m("th.tx-right[colspan='2'][scope='col']",
                                         m("a.tx-right.tx-semibold", {
-                                                href: urlFor,
-                                                target: "_blank"
-                                            },
+                                            href: urlFor,
+                                            target: "_blank"
+                                        },
                                             m('i.fas.fa-print.mg-r-2'),
                                             " Imprirmir  "
 
@@ -250,10 +248,10 @@ const FOR005 = {
                                     ),
                                     m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#eef9c8" } },
                                         m("div.m-0.p-0.tx-bold.text-center.", [
-                                                "FIRMAR AL PIE DE",
-                                                m("br"),
-                                                "CADA PRESCRIPCIÓN"
-                                            ]
+                                            "FIRMAR AL PIE DE",
+                                            m("br"),
+                                            "CADA PRESCRIPCIÓN"
+                                        ]
 
                                         )
                                     ),
@@ -279,21 +277,21 @@ const FOR005 = {
                                     ),
                                     m("th[colspan='4'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
                                         m("div.m-0.p-0.tx-bold.text-center.", [
-                                                "FARMACOTERAPIA E INDICACIONES",
-                                                m("br"),
-                                                "(PARA ENFERMERÍA Y OTRO PERSONAL)"
+                                            "FARMACOTERAPIA E INDICACIONES",
+                                            m("br"),
+                                            "(PARA ENFERMERÍA Y OTRO PERSONAL)"
 
-                                            ]
+                                        ]
 
                                         )
                                     ),
                                     m("th[colspan='2'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
                                         m("div.m-0.p-0.tx-bold.text-center.", [
-                                                "ADMINISTR.",
-                                                m("br"),
-                                                "FÁRMACOS INSUMOS"
+                                            "ADMINISTR.",
+                                            m("br"),
+                                            "FÁRMACOS INSUMOS"
 
-                                            ]
+                                        ]
 
                                         )
                                     ),
@@ -342,11 +340,11 @@ const Formulario = {
     error: "",
     parseDoc: (_data) => {
 
-        Object.keys(_data.data).map(function(_v, _i, _contentData) {
+        Object.keys(_data.data).map(function (_v, _i, _contentData) {
             FOR005.secs.push(_data.data[_v])
         })
 
-        return FOR005.secs.map(function(_v, _i, _contentData) {
+        return FOR005.secs.map(function (_v, _i, _contentData) {
 
 
 
@@ -439,7 +437,7 @@ const Formulario = {
     parseFetch: () => {
         FOR005.secs = [];
 
-        return Formulario.data.map(function(_v, _i, _contentData) {
+        return Formulario.data.map(function (_v, _i, _contentData) {
             Formulario.parseDoc(Formulario.data[_i])
 
         })
@@ -451,14 +449,14 @@ const Formulario = {
         Formulario.data = [];
         Formulario.error = "";
         m.request({
-                method: "GET",
-                url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
+            method: "GET",
+            url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
 
-                headers: {
-                    "Authorization": localStorage.accessToken,
-                },
-            })
-            .then(function(result) {
+            headers: {
+                "Authorization": localStorage.accessToken,
+            },
+        })
+            .then(function (result) {
                 if (result.length !== 0) {
                     Formulario.data = result;
                     Formulario.num = 0;
@@ -469,8 +467,8 @@ const Formulario = {
                 }
 
             })
-            .catch(function(e) {
-                setTimeout(function() { Formulario.fetch(); }, 5000);
+            .catch(function (e) {
+                setTimeout(function () { Formulario.fetch(); }, 5000);
 
             })
     },
@@ -514,16 +512,16 @@ const Evoluciones = {
         Evoluciones.data = [];
         Evoluciones.error = "";
         m.request({
-                method: "POST",
-                url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
-                body: {
-                    numeroHistoriaClinica: PedidoFlebotomista.data.PedidoExameLab.paciente.codigoPaciente + '01'
-                },
-                headers: {
-                    "Authorization": localStorage.accessToken,
-                },
-            })
-            .then(function(result) {
+            method: "POST",
+            url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
+            body: {
+                numeroHistoriaClinica: PedidoFlebotomista.data.PedidoExameLab.paciente.codigoPaciente + '01'
+            },
+            headers: {
+                "Authorization": localStorage.accessToken,
+            },
+        })
+            .then(function (result) {
                 if (result.status) {
                     Evoluciones.data = result.data;
                     Formulario.adm = Evoluciones.data[0].ADM;
@@ -533,8 +531,8 @@ const Evoluciones = {
                     Evoluciones.error = result.message;
                 }
             })
-            .catch(function(e) {
-                setTimeout(function() { Evoluciones.fetch(); }, 5000);
+            .catch(function (e) {
+                setTimeout(function () { Evoluciones.fetch(); }, 5000);
 
             })
     },
@@ -570,7 +568,7 @@ const Examenes = {
             }
 
 
-            return PedidoFlebotomista.examenes.Exame.map(function(_val, _i, _contentData) {
+            return PedidoFlebotomista.examenes.Exame.map(function (_val, _i, _contentData) {
 
                 if (_val.operacao == 'E') {
 
@@ -610,17 +608,17 @@ const StatusPedido = {
         StatusPedido.documento = [];
 
         m.request({
-                method: "POST",
-                url: "https://lisa.hospitalmetropolitano.org/v1/status-pedido-lisa",
-                body: {
-                    numeroPedido: PedidoFlebotomista.numeroPedido,
-                    idTimeRecord: PedidoFlebotomista.idTimeRecord
-                },
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-            })
-            .then(function(result) {
+            method: "POST",
+            url: "https://lisa.hospitalmetropolitano.org/v1/status-pedido-lisa",
+            body: {
+                numeroPedido: PedidoFlebotomista.numeroPedido,
+                idTimeRecord: PedidoFlebotomista.idTimeRecord
+            },
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(function (result) {
                 if (result.status) {
                     PedidoFlebotomista.loader = false;
                     PedidoFlebotomista.data = result.data.pedido;
@@ -645,7 +643,7 @@ const StatusPedido = {
                 }
 
             })
-            .catch(function(e) {
+            .catch(function (e) {
 
             })
 
@@ -726,21 +724,21 @@ const Observaciones = {
 
             columns: false,
             aoColumnDefs: [{
-                    mRender: function(data, type, row, meta) {
-                        return "";
-                    },
-                    visible: true,
-                    width: "100%",
-                    aTargets: [0],
-                    orderable: false,
+                mRender: function (data, type, row, meta) {
+                    return "";
                 },
+                visible: true,
+                width: "100%",
+                aTargets: [0],
+                orderable: false,
+            },
 
             ],
-            fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {},
-            drawCallback: function(settings) {
-                settings.aoData.map(function(_v, _i) {
+            fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) { },
+            drawCallback: function (settings) {
+                settings.aoData.map(function (_v, _i) {
                     m.mount(_v.anCells[0], {
-                        view: function() {
+                        view: function () {
                             if (_v._aData.title == 'Nuevo Mensaje') {
                                 return m("div.demo-static-toast",
                                     m(".toast[role='alert'][aria-live='assertive'][aria-atomic='true']", {
@@ -797,28 +795,28 @@ const Observaciones = {
     },
     fetch: () => {
         m.request({
-                method: "GET",
-                url: "https://api.hospitalmetropolitano.org/t/v1/notificaciones-pedido/" + PedidoFlebotomista.numeroPedido,
-            })
-            .then(function(result) {
+            method: "GET",
+            url: "https://api.hospitalmetropolitano.org/t/v1/notificaciones-pedido/" + PedidoFlebotomista.numeroPedido,
+        })
+            .then(function (result) {
                 Observaciones.data = result.data;
                 Observaciones.loadObservaciones();
 
             })
-            .catch(function(e) {})
+            .catch(function (e) { })
     },
     sendNotiLab: () => {
         m.request({
-                method: "POST",
-                url: "https://api.hospitalmetropolitano.org/t/v1/noti-eme/" + PedidoFlebotomista.numeroPedido,
-                body: {
-                    message: Observaciones.observaciones
-                },
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-            })
-            .then(function(result) {
+            method: "POST",
+            url: "https://api.hospitalmetropolitano.org/t/v1/noti-eme/" + PedidoFlebotomista.numeroPedido,
+            body: {
+                message: Observaciones.observaciones
+            },
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(function (result) {
                 if (result.status) {
                     Observaciones.observaciones = "";
                     Observaciones.fetch();
@@ -826,7 +824,7 @@ const Observaciones = {
 
                 }
             })
-            .catch(function(e) {
+            .catch(function (e) {
                 EditarPedido.error = e.message;
             })
 
@@ -856,7 +854,7 @@ const TomaMuestras = {
     seleccionarTodos: (status) => {
         TomaMuestras.checkedAll = status;
         var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
-        return StatusPedido.data.map(function(_val, _i, _contentData) {
+        return StatusPedido.data.map(function (_val, _i, _contentData) {
             if (status) {
                 StatusPedido.data[_i]['STATUS_TOMA'] = "1";
                 StatusPedido.data[_i]['FECHA_TOMA'] = _fechaToma;
@@ -931,23 +929,23 @@ const TomaMuestras = {
     udpateStatusTomaMuestra: () => {
         StatusPedido.documento.dataTomaMuestra.insumosToma = Insumos;
         m.request({
-                method: "POST",
-                url: "https://lisa.hospitalmetropolitano.org/v1/up-toma-status-pedido-lab",
-                body: {
-                    documento: JSON.stringify(StatusPedido.documento),
-                },
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-            })
-            .then(function(result) {
+            method: "POST",
+            url: "https://lisa.hospitalmetropolitano.org/v1/up-toma-status-pedido-lab",
+            body: {
+                documento: JSON.stringify(StatusPedido.documento),
+            },
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(function (result) {
                 StatusPedido.documento = result.data;
                 StatusPedido.data = result.data.dataTomaMuestra.examenesToma;
                 StatusPedido.documento.dataTomaMuestra.insumosToma = result.data.dataTomaMuestra.insumosToma;
 
 
             })
-            .catch(function(e) {})
+            .catch(function (e) { })
     },
     view: () => {
 
@@ -966,11 +964,11 @@ const TomaMuestras = {
 
                     (TomaMuestras.disabledToma ? [m("p.mg-5.tx-right", [
                         m("button.btn.btn-xs.btn-secondary[type='button']", {
-                                onclick: () => {
-                                    TomaMuestras.disabledToma = false;
-                                    TomaMuestras.disabledInsumos = false;
-                                }
-                            },
+                            onclick: () => {
+                                TomaMuestras.disabledToma = false;
+                                TomaMuestras.disabledInsumos = false;
+                            }
+                        },
                             m("i.fas.fa-edit.mg-r-5"),
                             " EDITAR"
 
@@ -1002,14 +1000,14 @@ const TomaMuestras = {
                                         ),
                                         m("th",
                                             m("button.btn.btn-xs.btn-outline-danger.btn-block.tx-semibold[type='button']", {
-                                                    onclick: (e) => {
-                                                        if (confirm("¿Esta Ud. seguro de confirmar este pedido como Pendiente?") == true) {
-                                                            PedidoFlebotomista.tomaPendiente(PedidoFlebotomista.numeroPedido)
-                                                        } else {
-                                                            alert('Ok. Operación Cancelada')
-                                                        }
+                                                onclick: (e) => {
+                                                    if (confirm("¿Esta Ud. seguro de confirmar este pedido como Pendiente?") == true) {
+                                                        PedidoFlebotomista.tomaPendiente(PedidoFlebotomista.numeroPedido)
+                                                    } else {
+                                                        alert('Ok. Operación Cancelada')
                                                     }
-                                                },
+                                                }
+                                            },
                                                 "Pendiente"
                                             )
                                         ),
@@ -1022,7 +1020,7 @@ const TomaMuestras = {
                                             m("div.custom-control.custom-checkbox", [
                                                 m("input.custom-control-input[type='checkbox'][id='selectTomaTodos']", {
                                                     checked: TomaMuestras.checkedAll,
-                                                    onclick: function(e) {
+                                                    onclick: function (e) {
                                                         TomaMuestras.seleccionarTodos(this.checked);
                                                     }
                                                 }),
@@ -1031,10 +1029,10 @@ const TomaMuestras = {
                                                 )
                                             ])
                                         ),
-                                        m("td.tx-medium.text-right[colspan='3']", ),
+                                        m("td.tx-medium.text-right[colspan='3']",),
                                     ]),
 
-                                    StatusPedido.data.map(function(_val, _i, _contentData) {
+                                    StatusPedido.data.map(function (_val, _i, _contentData) {
 
                                         return [
                                             m("tr", [
@@ -1043,14 +1041,14 @@ const TomaMuestras = {
                                                     _val.NM_EXA_LAB
                                                 ),
 
-                                                m("td.tx-16.tx-normal[colspan='2']",
+                                                m("td.tx-16.tx-normal[colspan='1']",
                                                     m("div.custom-control.custom-checkbox.tx-16", [
                                                         m("input.custom-control-input.tx-16[type='checkbox'][id='" + _val.CD_EXA_LAB + "']", {
                                                             checked: StatusPedido.data[_i]['customCheked'],
-                                                            onupdate: function(e) {
+                                                            onupdate: function (e) {
                                                                 this.checked = StatusPedido.data[_i]['customCheked'];
                                                             },
-                                                            onclick: function(e) {
+                                                            onclick: function (e) {
 
                                                                 e.preventDefault();
                                                                 var p = this.checked;
@@ -1072,11 +1070,47 @@ const TomaMuestras = {
 
                                                         }),
                                                         m("label.custom-control-label.tx-16[for='" + _val.CD_EXA_LAB + "']",
-                                                            (StatusPedido.data[_i]['STATUS_TOMA'].length !== 0) ? StatusPedido.data[_i]['FECHA_TOMA'] : StatusPedido.data[_i]['STATUS_TOMA'],
+                                                            (StatusPedido.data[_i]['STATUS_TOMA'].length !== 0) ? StatusPedido.data[_i]['FECHA_TOMA'] : 'Si' + StatusPedido.data[_i]['STATUS_TOMA'],
 
                                                         )
                                                     ])
-                                                )
+                                                ),
+                                                (_val.CD_EXA_LAB == '393' ? [m("td.tx-16.tx-normal[colspan='1']",
+                                                    m("div.custom-control.custom-checkbox.tx-16", [
+                                                        m("input.custom-control-input.tx-16[type='checkbox'][id='" + _val.CD_EXA_LAB + "']", {
+                                                            checked: StatusPedido.data[_i]['customCheked'],
+                                                            onupdate: function (e) {
+                                                                this.checked = StatusPedido.data[_i]['customCheked'];
+                                                            },
+                                                            onclick: function (e) {
+
+                                                                e.preventDefault();
+                                                                var p = this.checked;
+                                                                StatusPedido.data[_i]['customCheked'] = !StatusPedido.data[_i]['customCheked'];
+                                                                if (p) {
+                                                                    this.checked = true;
+                                                                    StatusPedido.data[_i]['STATUS_TOMA'] = "1";
+                                                                    StatusPedido.data[_i]['FECHA_TOMA'] = moment().format('DD-MM-YYYY HH:mm');
+                                                                } else {
+                                                                    this.checked = false;;
+                                                                    TomaMuestras.checkedAll = false;
+                                                                    StatusPedido.data[_i]['STATUS_TOMA'] = "";
+                                                                    StatusPedido.data[_i]['FECHA_TOMA'] = "";
+                                                                }
+
+                                                            },
+
+
+
+                                                        }),
+                                                        m("label.custom-control-label.tx-16[for='" + _val.CD_EXA_LAB + "']",
+                                                            (StatusPedido.data[_i]['STATUS_TOMA'].length !== 0) ? StatusPedido.data[_i]['FECHA_TOMA'] : 'No' + StatusPedido.data[_i]['STATUS_TOMA'],
+
+                                                        )
+                                                    ])
+                                                )] : [])
+
+
 
 
 
@@ -1180,25 +1214,25 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
+                                                    onclick: () => {
 
 
-                                                            Insumos.tuboLila++;
-                                                        },
-
+                                                        Insumos.tuboLila++;
                                                     },
+
+                                                },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.tuboLila--;
-                                                            if (Insumos.tuboLila < 0) {
-                                                                Insumos.tuboLila = 0;
-                                                            }
-
-                                                        },
+                                                    onclick: () => {
+                                                        Insumos.tuboLila--;
+                                                        if (Insumos.tuboLila < 0) {
+                                                            Insumos.tuboLila = 0;
+                                                        }
 
                                                     },
+
+                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1271,23 +1305,23 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.tuboRojo++;
-                                                        },
-
+                                                    onclick: () => {
+                                                        Insumos.tuboRojo++;
                                                     },
+
+                                                },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.tuboRojo--;
-                                                            if (Insumos.tuboRojo < 0) {
-                                                                Insumos.tuboRojo = 0;
-                                                            }
-
-                                                        },
+                                                    onclick: () => {
+                                                        Insumos.tuboRojo--;
+                                                        if (Insumos.tuboRojo < 0) {
+                                                            Insumos.tuboRojo = 0;
+                                                        }
 
                                                     },
+
+                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1359,20 +1393,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.tuboCeleste++;
-                                                        },
-
+                                                    onclick: () => {
+                                                        Insumos.tuboCeleste++;
                                                     },
+
+                                                },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.tuboCeleste--;
-
-                                                        },
+                                                    onclick: () => {
+                                                        Insumos.tuboCeleste--;
 
                                                     },
+
+                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1444,20 +1478,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.tuboNegro++;
-                                                        },
-
+                                                    onclick: () => {
+                                                        Insumos.tuboNegro++;
                                                     },
+
+                                                },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.tuboNegro--;
-
-                                                        },
+                                                    onclick: () => {
+                                                        Insumos.tuboNegro--;
 
                                                     },
+
+                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1530,20 +1564,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.tuboVerde++;
-                                                        },
-
+                                                    onclick: () => {
+                                                        Insumos.tuboVerde++;
                                                     },
+
+                                                },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.tuboVerde--;
-
-                                                        },
+                                                    onclick: () => {
+                                                        Insumos.tuboVerde--;
 
                                                     },
+
+                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1615,20 +1649,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.gsav++;
-                                                        },
-
+                                                    onclick: () => {
+                                                        Insumos.gsav++;
                                                     },
+
+                                                },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.gsav--;
-
-                                                        },
+                                                    onclick: () => {
+                                                        Insumos.gsav--;
 
                                                     },
+
+                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1700,20 +1734,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.hemocultivo++;
-                                                        },
-
+                                                    onclick: () => {
+                                                        Insumos.hemocultivo++;
                                                     },
+
+                                                },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.hemocultivo--;
-
-                                                        },
+                                                    onclick: () => {
+                                                        Insumos.hemocultivo--;
 
                                                     },
+
+                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1785,20 +1819,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.qtb++;
-                                                        },
-
+                                                    onclick: () => {
+                                                        Insumos.qtb++;
                                                     },
+
+                                                },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                        onclick: () => {
-                                                            Insumos.qtb--;
-
-                                                        },
+                                                    onclick: () => {
+                                                        Insumos.qtb--;
 
                                                     },
+
+                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1868,19 +1902,19 @@ const TomaMuestras = {
                         ),
                         ((!TomaMuestras.disabledToma) ? [m("div.pd-10", [
                             m("button.btn.btn-xs.btn-primary.btn-block.tx-semibold[type='button']", {
-                                    disabled: TomaMuestras.disabledToma,
-                                    onclick: () => {
+                                disabled: TomaMuestras.disabledToma,
+                                onclick: () => {
 
-                                        TomaMuestras.validarUpdateMuestras();
-                                        var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
-                                        StatusPedido.documento.dataTomaMuestra.usuarioToma = "flebot1";
-                                        StatusPedido.documento.dataTomaMuestra.fechaToma = _fechaToma;
-                                        TomaMuestras.disabledToma = true;
-                                        TomaMuestras.udpateStatusTomaMuestra();
+                                    TomaMuestras.validarUpdateMuestras();
+                                    var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
+                                    StatusPedido.documento.dataTomaMuestra.usuarioToma = "flebot1";
+                                    StatusPedido.documento.dataTomaMuestra.fechaToma = _fechaToma;
+                                    TomaMuestras.disabledToma = true;
+                                    TomaMuestras.udpateStatusTomaMuestra();
 
 
-                                    }
-                                },
+                                }
+                            },
                                 "Guardar Registro"
                             )
                         ])] : [m("p.mg-5.", [
@@ -1924,7 +1958,7 @@ const ControlLISA = {
 
         var existe = false;
 
-        ControlLISA.examenes.map(function(_val, _i, _contentData) {
+        ControlLISA.examenes.map(function (_val, _i, _contentData) {
             if (ControlLISA.examenes[_i]['codigoExame'] == exa.CD_EXA_LAB) {
                 existe = true;
             }
@@ -1932,7 +1966,7 @@ const ControlLISA = {
 
         if (!existe) {
 
-            PedidoFlebotomista.examenes.Exame.map(function(_val, _i, _contentData) {
+            PedidoFlebotomista.examenes.Exame.map(function (_val, _i, _contentData) {
                 if (PedidoFlebotomista.examenes.Exame[_i]['codigoExame'] == exa.CD_EXA_LAB) {
                     ControlLISA.examenes.push(PedidoFlebotomista.examenes.Exame[_i]);
                 }
@@ -1951,7 +1985,7 @@ const ControlLISA = {
         var existe = false;
         var _ni = null;
 
-        ControlLISA.examenes.map(function(_val, _i, _contentData) {
+        ControlLISA.examenes.map(function (_val, _i, _contentData) {
 
 
             if (ControlLISA.examenes[_i]['codigoExame'] == exa.CD_EXA_LAB) {
@@ -1999,19 +2033,19 @@ const ControlLISA = {
     },
     sendXML: (xmlRes, sc, itr) => {
         m.request({
-                method: "POST",
-                url: "https://lisa.hospitalmetropolitano.org/v1/pedidos/send-pedido",
-                body: {
-                    data: xmlRes,
-                    sc: sc,
-                    idTimeRecord: itr,
-                },
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-            })
-            .then(function(result) {
-                setTimeout(function() {
+            method: "POST",
+            url: "https://lisa.hospitalmetropolitano.org/v1/pedidos/send-pedido",
+            body: {
+                data: xmlRes,
+                sc: sc,
+                idTimeRecord: itr,
+            },
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(function (result) {
+                setTimeout(function () {
                     alert('Proceso realizado con éxito.');
                     window.location.reload();
                 }, 2000);
@@ -2023,27 +2057,27 @@ const ControlLISA = {
 
 
             })
-            .catch(function(e) {})
+            .catch(function (e) { })
     },
     fetch: () => {
 
         ControlLISA.logsEnvio = [];
 
         m.request({
-                method: "GET",
-                url: "https://lisa.hospitalmetropolitano.org/v1/logs-envio-pedido-lisa?numeroPedido=" + PedidoFlebotomista.numeroPedido,
+            method: "GET",
+            url: "https://lisa.hospitalmetropolitano.org/v1/logs-envio-pedido-lisa?numeroPedido=" + PedidoFlebotomista.numeroPedido,
 
-                headers: {
-                    "Authorization": localStorage.accessToken,
-                },
-            })
-            .then(function(result) {
+            headers: {
+                "Authorization": localStorage.accessToken,
+            },
+        })
+            .then(function (result) {
 
                 console.log(result)
                 ControlLISA.logsEnvio = result.data;
 
             })
-            .catch(function(e) {
+            .catch(function (e) {
 
             })
 
@@ -2075,16 +2109,16 @@ const PedidoFlebotomista = {
     tomaPendiente: (sc) => {
 
         m.request({
-                method: "POST",
-                url: "https://lisa.hospitalmetropolitano.org/v1/procesos/toma-pendiente",
-                body: {
-                    sc: sc
-                },
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-            })
-            .then(function(response) {
+            method: "POST",
+            url: "https://lisa.hospitalmetropolitano.org/v1/procesos/toma-pendiente",
+            body: {
+                sc: sc
+            },
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(function (response) {
                 if (response.status) {
 
                     alert('Preceso realizado con éxito.');
@@ -2094,7 +2128,7 @@ const PedidoFlebotomista = {
                 }
 
             })
-            .catch(function(e) {
+            .catch(function (e) {
                 alert('Error: ' + e);
             });
     },
@@ -2148,11 +2182,11 @@ const PedidoFlebotomista = {
                         m("div.col-12", [
 
                             m("div.table-loader.wd-100p", [
-                                    m("div.placeholder-paragraph", [
-                                        m("div.line"),
-                                        m("div.line")
-                                    ])
-                                ]
+                                m("div.placeholder-paragraph", [
+                                    m("div.line"),
+                                    m("div.line")
+                                ])
+                            ]
 
 
                             ),
@@ -2201,29 +2235,29 @@ const PedidoFlebotomista = {
                         m("div.col-12", [
 
                             m("div.table-loader.wd-100p", {
-                                    oncreate: (el) => {
-                                        if (PedidoFlebotomista.loader) {
-                                            el.dom.hidden = false;
-                                        } else {
-                                            el.dom.hidden = true;
+                                oncreate: (el) => {
+                                    if (PedidoFlebotomista.loader) {
+                                        el.dom.hidden = false;
+                                    } else {
+                                        el.dom.hidden = true;
 
-                                        }
-                                    },
-                                    onupdate: (el) => {
-                                        if (PedidoFlebotomista.loader) {
-                                            el.dom.hidden = false;
-                                        } else {
-                                            el.dom.hidden = true;
-
-                                        }
                                     }
+                                },
+                                onupdate: (el) => {
+                                    if (PedidoFlebotomista.loader) {
+                                        el.dom.hidden = false;
+                                    } else {
+                                        el.dom.hidden = true;
 
-                                }, [
-                                    m("div.placeholder-paragraph", [
-                                        m("div.line"),
-                                        m("div.line")
-                                    ])
-                                ]
+                                    }
+                                }
+
+                            }, [
+                                m("div.placeholder-paragraph", [
+                                    m("div.line"),
+                                    m("div.line")
+                                ])
+                            ]
 
 
                             ),
@@ -2251,12 +2285,12 @@ const PedidoFlebotomista = {
                                     m("h5.tx-right.tx-normal.tx-rubik.tx-color-03.mg-b-0",
                                         m("small.pd-2.tx-20",
                                             m("i.fas.fa-times-circle.pd-2", {
-                                                    "style": { "cursor": "pointer" },
-                                                    title: "Cerrar",
-                                                    onclick: () => {
-                                                        window.close();
-                                                    }
+                                                "style": { "cursor": "pointer" },
+                                                title: "Cerrar",
+                                                onclick: () => {
+                                                    window.close();
                                                 }
+                                            }
 
                                             )
 
@@ -2288,6 +2322,108 @@ const PedidoFlebotomista = {
 
                                                 m("tr.bg-litecoin.op-9.tx-white", [
                                                     m("th[scope='col'][colspan='10']",
+                                                        "DATOS DEL PACIENTE:"
+                                                    ),
+
+                                                ])
+                                            ),
+                                            m("tbody", [
+
+                                                m("tr", [
+                                                    m("th", {
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
+                                                        "Apellidos y Nombres:"
+                                                    ),
+                                                    m("td[colspan='5']", {
+                                                        style: { "background-color": "#eaeff5" }
+
+                                                    },
+                                                        PedidoFlebotomista.data.PedidoExameLab.paciente.nome
+                                                    ),
+                                                    m("th", {
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
+                                                        "Edad:"
+                                                    ),
+                                                    m("td", {
+                                                        style: { "background-color": "#eaeff5" }
+
+                                                    },
+                                                        PedidoFlebotomista.data.PedidoExameLab.paciente.anios +
+                                                        " Año(s)"
+
+                                                    ),
+
+                                                    m("th", {
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
+                                                        "NHC:"
+                                                    ),
+                                                    m("td", {
+                                                        style: { "background-color": "#eaeff5" }
+
+                                                    },
+                                                        PedidoFlebotomista.data.PedidoExameLab.paciente.codigoPaciente
+                                                    ),
+
+                                                ]),
+                                                m("tr", [
+                                                    m("th", {
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
+                                                        "N° Atención:"
+                                                    ),
+                                                    m("td", {
+                                                        style: { "background-color": "#eaeff5" }
+
+                                                    },
+                                                        PedidoFlebotomista.data.PedidoExameLab.atendimento.codigoAtendimento
+                                                    ),
+                                                    m("th", {
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
+                                                        "Sexo:"
+                                                    ),
+                                                    m("td", {
+                                                        style: { "background-color": "#eaeff5" }
+
+                                                    },
+
+
+                                                        (PedidoFlebotomista.data.PedidoExameLab.paciente.sexo == 'F' ? 'Femenino' : 'Masculino')
+
+                                                    ),
+                                                    m("th", {
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
+                                                        "F. de Nac.:"
+                                                    ),
+                                                    m("td", {
+                                                        style: { "background-color": "#eaeff5" }
+
+                                                    },
+                                                        PedidoFlebotomista.data.PedidoExameLab.paciente.dataNascimento
+                                                    ),
+                                                    m("th", {
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
+                                                        "Dg:"
+                                                    ),
+                                                    m("td[colspan='3']", {
+                                                        style: { "background-color": "#eaeff5" }
+
+                                                    },
+                                                        (PedidoFlebotomista.data.PedidoExameLab.diagnostico.codigoDiagnostico.length == undefined ? '' : 'CIE: ' + PedidoFlebotomista.data.PedidoExameLab.diagnostico.codigoDiagnostico) + (PedidoFlebotomista.data.PedidoExameLab.diagnostico.dsDiagostico.length == undefined ? '' : " - " + PedidoFlebotomista.data.PedidoExameLab.diagnostico.dsDiagostico)
+                                                    ),
+                                                ]),
+
+
+                                            ]),
+                                            m("thead",
+
+                                                m("tr.bg-litecoin.op-9.tx-white", [
+                                                    m("th[scope='col'][colspan='10']",
                                                         "DATOS DEL PEDIDO:"
                                                     ),
 
@@ -2295,42 +2431,31 @@ const PedidoFlebotomista = {
                                             ),
                                             m("tbody", [
                                                 m("tr", [
-                                                    m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
-                                                        "N° de Pedido:"
-                                                    ),
-                                                    m("td", {
-                                                            style: { "background-color": "#eaeff5" }
 
-                                                        },
-                                                        PedidoFlebotomista.data.PedidoExameLab.codigoPedido
-                                                    ),
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Fecha Pedido:",
                                                         m('br'),
                                                         m('.d-inline.tx-danger', "Fecha Toma de Muestra:"),
                                                     ),
-                                                    m("td[colspan='3']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                    m("td[colspan='4']", {
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         PedidoFlebotomista.data.PedidoExameLab.dataExame,
                                                         m('br'),
                                                         PedidoFlebotomista.data.PedidoExameLab.dataExame
 
                                                     ),
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Origen:"
                                                     ),
-                                                    m("td[colspan='3']", {
-                                                            style: { "background-color": "#eaeff5" }
-
-                                                        },
+                                                    m("td[colspan='4']", {
+                                                        style: { "background-color": "#eaeff5" }
+                                                    },
                                                         PedidoFlebotomista.data.PedidoExameLab.descSetorSolicitante
                                                     ),
 
@@ -2338,119 +2463,20 @@ const PedidoFlebotomista = {
 
                                                 m("tr", [
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Médico Solicitante:"
                                                     ),
                                                     m("td[colspan='9']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         PedidoFlebotomista.data.PedidoExameLab.descPrestadorSolicitante,
 
                                                     ),
 
 
 
-                                                ]),
-                                            ]),
-                                            m("thead",
-
-                                                m("tr.bg-litecoin.op-9.tx-white", [
-                                                    m("th[scope='col'][colspan='10']",
-                                                        "DATOS DEL PACIENTE:"
-                                                    ),
-
-                                                ])
-                                            ),
-                                            m("tbody", [
-                                                m("tr", [
-                                                    m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
-                                                        "Apellidos y Nombres:"
-                                                    ),
-                                                    m("td[colspan='5']", {
-                                                            style: { "background-color": "#eaeff5" }
-
-                                                        },
-                                                        PedidoFlebotomista.data.PedidoExameLab.paciente.nome
-                                                    ),
-                                                    m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
-                                                        "Edad:"
-                                                    ),
-                                                    m("td", {
-                                                            style: { "background-color": "#eaeff5" }
-
-                                                        },
-                                                        PedidoFlebotomista.data.PedidoExameLab.paciente.anios +
-                                                        " Año(s)"
-
-                                                    ),
-
-                                                    m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
-                                                        "NHC:"
-                                                    ),
-                                                    m("td", {
-                                                            style: { "background-color": "#eaeff5" }
-
-                                                        },
-                                                        PedidoFlebotomista.data.PedidoExameLab.paciente.codigoPaciente
-                                                    ),
-
-                                                ]),
-                                                m("tr", [
-                                                    m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
-                                                        "N° Atención:"
-                                                    ),
-                                                    m("td", {
-                                                            style: { "background-color": "#eaeff5" }
-
-                                                        },
-                                                        PedidoFlebotomista.data.PedidoExameLab.atendimento.codigoAtendimento
-                                                    ),
-                                                    m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
-                                                        "Sexo:"
-                                                    ),
-                                                    m("td", {
-                                                            style: { "background-color": "#eaeff5" }
-
-                                                        },
-
-
-                                                        (PedidoFlebotomista.data.PedidoExameLab.paciente.sexo == 'F' ? 'Femenino' : 'Masculino')
-
-                                                    ),
-                                                    m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
-                                                        "F. de Nac.:"
-                                                    ),
-                                                    m("td", {
-                                                            style: { "background-color": "#eaeff5" }
-
-                                                        },
-                                                        PedidoFlebotomista.data.PedidoExameLab.paciente.dataNascimento
-                                                    ),
-                                                    m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
-                                                        "Dg:"
-                                                    ),
-                                                    m("td[colspan='3']", {
-                                                            style: { "background-color": "#eaeff5" }
-
-                                                        },
-                                                        (PedidoFlebotomista.data.PedidoExameLab.diagnostico.codigoDiagnostico.length == undefined ? '' : 'CIE: ' + PedidoFlebotomista.data.PedidoExameLab.diagnostico.codigoDiagnostico) + (PedidoFlebotomista.data.PedidoExameLab.diagnostico.dsDiagostico.length == undefined ? '' : " - " + PedidoFlebotomista.data.PedidoExameLab.diagnostico.dsDiagostico)
-                                                    ),
                                                 ]),
                                                 m("tr.bg-litecoin.op-9.tx-white", [
                                                     m("th[scope='col'][colspan='10']",
@@ -2460,14 +2486,14 @@ const PedidoFlebotomista = {
                                                 ]),
                                                 m("tr", [
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Exámenes:"
                                                     ),
                                                     m("td[colspan='9']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         m(Examenes)
                                                     ),
 
@@ -2483,14 +2509,14 @@ const PedidoFlebotomista = {
                                                 m("tr.d-print-none", [
 
                                                     m("td[colspan='10']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         m("ul.nav.nav-tabs[id='myTab'][role='tablist']", [
                                                             m("li.nav-item.d-none",
                                                                 m("a.nav-link[id='home-tab'][data-toggle='tab'][href='#home'][role='tab'][aria-controls='home'][aria-selected='true']", {
-                                                                        style: { "color": "#476ba3" }
-                                                                    },
+                                                                    style: { "color": "#476ba3" }
+                                                                },
                                                                     m("i.fas.fa-file-alt.pd-1.mg-r-2"),
 
                                                                     " HOJA 005"
@@ -2498,8 +2524,8 @@ const PedidoFlebotomista = {
                                                             ),
                                                             m("li.nav-item",
                                                                 m("a.nav-link[id='home-muestra'][data-toggle='tab'][href='#muestra'][role='tab'][aria-controls='muestra']", {
-                                                                        style: { "color": "#476ba3" }
-                                                                    },
+                                                                    style: { "color": "#476ba3" }
+                                                                },
                                                                     m("i.fas.fa-edit.pd-1.mg-r-2"),
 
                                                                     " TOMA DE MUESTRA "
@@ -2508,8 +2534,8 @@ const PedidoFlebotomista = {
 
                                                             m("li.nav-item",
                                                                 m("a.nav-link[id='home-comment'][data-toggle='tab'][href='#comment'][role='tab'][aria-controls='comment']", {
-                                                                        style: { "color": "#476ba3" }
-                                                                    },
+                                                                    style: { "color": "#476ba3" }
+                                                                },
                                                                     m("i.fas.fa-inbox.pd-1.mg-r-2"),
 
                                                                     " COMENTARIOS "
@@ -2540,13 +2566,13 @@ const PedidoFlebotomista = {
                                                                         "Observaciones",
                                                                     ),
                                                                     m("textarea.form-control.mg-t-5[rows='5'][placeholder='Observaciones']", {
-                                                                        oninput: function(e) { Observaciones.observaciones = e.target.value; },
+                                                                        oninput: function (e) { Observaciones.observaciones = e.target.value; },
                                                                         value: Observaciones.observaciones,
                                                                     }),
                                                                     m("div.mg-0.mg-t-5.text-right", [
 
                                                                         m("button.btn.btn-xs.btn-primary.mg-l-2.tx-semibold[type='button']", {
-                                                                            onclick: function() {
+                                                                            onclick: function () {
                                                                                 if (Observaciones.observaciones.length !== 0) {
                                                                                     Observaciones.sendNotiLab();
                                                                                 } else {
@@ -2554,7 +2580,7 @@ const PedidoFlebotomista = {
                                                                                 }
                                                                             },
                                                                         }, [
-                                                                            m("i.fas.fa-paper-plane.mg-r-5", )
+                                                                            m("i.fas.fa-paper-plane.mg-r-5",)
                                                                         ], "Guardar"),
 
 
