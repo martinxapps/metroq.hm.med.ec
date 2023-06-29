@@ -1653,16 +1653,17 @@ const CrearFormulario = {
             ]),
           ]),
           m("div.col.text-center", [
+            
             m("div.mb-2", [
               m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
-                id: "inputEstridor",
+                id: "inputSonidoDeLaVoz",
                 onclick: (event) => {
-                  isEstridorSelected = event.target.checked;
+                  isSonidoDeLaVozSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Estridor"),
+              m("label.form-label", { for: "inputPeso" }, "Sonido de la voz"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1778,12 +1779,12 @@ const CrearFormulario = {
               m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
-                id: "inputSonidoDeLaVoz",
+                id: "inputEstridor",
                 onclick: (event) => {
-                  isSonidoDeLaVozSelected = event.target.checked;
+                  isEstridorSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Sonido de la voz"),
+              m("label.form-label", { for: "inputPeso" }, "Estridor"),
             ]),
           ]),
         ]),

@@ -2088,15 +2088,16 @@ const VerUnFormulario = {
                       class: "form-check-input",
                       type: "checkbox",
                       value: "",
-                      id: "inputEstridor",
+                      id: "inputSonidoDeLaVoz",
                       //disabled: true,
                       checked:
-                        formularioModelo.listadoUnitario.ESTRIDOR === "true"
+                        formularioModelo.listadoUnitario.SONIDODELAVOZ ===
+                        "true"
                           ? "checked"
                           : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.ESTRIDOR = event.target
-                          .checked
+                        formularioModelo.listadoUnitario.SONIDODELAVOZ = event
+                          .target.checked
                           ? "true"
                           : "false";
                       },
@@ -2104,7 +2105,7 @@ const VerUnFormulario = {
                     m(
                       "label",
                       { class: "form-label", for: "inputPeso" },
-                      "Estridor"
+                      "Sonido de la voz"
                     ),
                   ])
                 ),
@@ -2341,16 +2342,15 @@ const VerUnFormulario = {
                       class: "form-check-input",
                       type: "checkbox",
                       value: "",
-                      id: "inputSonidoDeLaVoz",
+                      id: "inputEstridor",
                       //disabled: true,
                       checked:
-                        formularioModelo.listadoUnitario.SONIDODELAVOZ ===
-                        "true"
+                        formularioModelo.listadoUnitario.ESTRIDOR === "true"
                           ? "checked"
                           : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.SONIDODELAVOZ = event
-                          .target.checked
+                        formularioModelo.listadoUnitario.ESTRIDOR = event.target
+                          .checked
                           ? "true"
                           : "false";
                       },
@@ -2358,7 +2358,7 @@ const VerUnFormulario = {
                     m(
                       "label",
                       { class: "form-label", for: "inputPeso" },
-                      "Sonido de la voz"
+                      "Estridor"
                     ),
                   ])
                 ),
