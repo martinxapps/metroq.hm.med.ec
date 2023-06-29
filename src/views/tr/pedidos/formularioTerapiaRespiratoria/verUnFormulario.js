@@ -372,6 +372,7 @@ const inputOxigenoTerapia = {
           ])
         ),
       ]),
+      m("br"),
       m("h6", "Tienda Facial"),
       m("div", { class: "row" }, [
         m(
@@ -462,6 +463,7 @@ const inputOxigenoTerapia = {
           ])
         ),
       ]),
+      m("br"),
       m("h6", "Canula Nasal"),
       m("div", { class: "row" }, [
         m(
@@ -552,6 +554,7 @@ const inputOxigenoTerapia = {
           ])
         ),
       ]),
+      m("br"),
       m("h6", "Heliox"),
       m("div", { class: "row" }, [
         m(
