@@ -892,7 +892,7 @@ const CrearFormulario = {
               m(
                 "label",
                 { class: "form-label", for: "inputEscalaDolor" },
-                m("b", "Centimetros cúbicos por segundo")
+                m("b", "Centímetros cúbicos por segundo")
               ),
               m("input", {
                 class: "form-control",
