@@ -51,3 +51,5 @@ Object.entries(prescripcionAntes).forEach(([nombre, seleccionado]) => {
 });
 return newObject;
 };
+
+export const siAlgunaEsVerdadero = (objeto) => Object.values(objeto).some(Boolean);
