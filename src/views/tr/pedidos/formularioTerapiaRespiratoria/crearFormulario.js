@@ -8,6 +8,7 @@ import {
   cargarFechaActual,
   cargarHoraActual,
   change,
+  siAlgunaEsVerdadero,
 } from "./logic/formulario";
 
 let formularioModelo = FormularioModels;
@@ -1984,16 +1985,21 @@ const CrearFormulario = {
               ID: 'sec_TerapiaRespiratoria.nextval',
               //ID: 300,
             };
-            if (confirm("¿Estás seguro quieres guardar este formulario?")) {
-              // Lógica de eliminación del elemento aquí
-              console.log(formulario);
-              console.log(Pedido.data.AT_MV);
-              formularioModelo.guardar(formulario);
-              m.mount(document.querySelector("#gestion-muestras"), null);
-              m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
-              formularioModelo.listado = [];
-              formularioModelo.loading = true;
+            if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
+              if (confirm("¿Estás seguro quieres guardar este formulario?")) {
+                // Lógica de eliminación del elemento aquí
+                console.log(formulario);
+                console.log(Pedido.data.AT_MV);
+                formularioModelo.guardar(formulario);
+                m.mount(document.querySelector("#gestion-muestras"), null);
+                m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
+                formularioModelo.listado = [];
+                formularioModelo.loading = true;
+              }
+            } else{
+              alert("Debe escoger al menos una prescripción");
             }
+            
 
             //alert("Guardar");
             //alert("Guardar");
