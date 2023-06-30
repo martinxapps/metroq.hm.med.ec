@@ -882,6 +882,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputMililitrosPorSegundo",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -898,6 +899,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputCentimetrosCubicosPorSegundo",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -926,6 +928,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeFraccion",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -942,6 +945,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitrosPorMinutoFraccion",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -961,6 +965,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeAltoFlujo",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -977,6 +982,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroAltoFlujo",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -997,6 +1003,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeTiendaFacial",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1013,6 +1020,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroPorMinutoTiendaFacial",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1032,6 +1040,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeTuboEnT",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1048,6 +1057,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroTuboEnT",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1068,6 +1078,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeCanulaNasal",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1084,6 +1095,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroPorMinutoCanulaNasal",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1103,6 +1115,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeMascarilla",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1119,6 +1132,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroMascarilla",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1139,6 +1153,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeHeliox",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1155,6 +1170,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroPorMinutoHeliox",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1176,6 +1192,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeAireAmbiente",
+                placeholder: "Ingrese un valor",
               }),
             ])
           )
@@ -1245,6 +1262,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputSaturacionPreviaPorcentaje",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1261,6 +1279,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputSaturacionPosteriorPorcentaje",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1281,6 +1300,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputFrecuenciaCardiacaPreviaPorMinuto",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1297,6 +1317,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1316,6 +1337,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
@@ -1332,6 +1354,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
+                placeholder: "Ingrese un valor",
               }),
             ])
           ),
