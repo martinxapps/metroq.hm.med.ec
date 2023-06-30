@@ -2730,7 +2730,7 @@ const VerUnFormulario = {
             (formularioModelo.listadoUnitario.ESTADO === "Finalizado" ? 
             m(m.route.Link, {
 
-              href: "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" + formularioModelo.listadoUnitario.ID,
+              href: "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" + formularioModelo.listadoUnitario.ID + "&output=pdf",
 
               class: "btn btn-primary",
 
