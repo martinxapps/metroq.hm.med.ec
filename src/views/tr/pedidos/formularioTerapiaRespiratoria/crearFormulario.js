@@ -402,7 +402,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputNebulizacion" },
                 "Nebulización"
               ),
             ])
@@ -422,7 +422,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputUltrasonido" },
                 "Ultrasonido"
               ),
             ])
@@ -442,7 +442,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputInahaladorDosis" },
                 "Inhaladores Dosis Medida"
               ),
             ])
@@ -646,7 +646,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputDrenajePostural" },
                 "Drenaje Postural"
               ),
             ])
@@ -666,7 +666,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPercursiones" },
                 "Percursiones"
               ),
             ])
@@ -686,7 +686,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputVibraciones" },
                 "Vibraciones"
               ),
             ])
@@ -706,7 +706,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputTosEfectiva" },
                 "Tos Efectiva"
               ),
             ])
@@ -726,7 +726,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputAsistenteTos" },
                 "Asistente de Tos"
               ),
             ])
@@ -746,7 +746,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputChalecoVibroprecutor" },
                 "Chaleco Vibroprecutor"
               ),
             ])
@@ -775,7 +775,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputIncentivoRespiratorio" },
                 "Incentivo Respiratorio"
               ),
             ])
@@ -796,7 +796,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPresionPositivaContinuaEnLaViaAeria" },
                 "Presión Positiva continua en la vía aérea"
               ),
             ])
@@ -817,7 +817,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPresionPositivaAlFinalDeLaExpiracion" },
                 "Presión Positiva al final de la expiración"
               ),
             ])
@@ -837,7 +837,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputKinesioterapiaDelTorax" },
                 "Kinesioterapia del tórax"
               ),
             ])
@@ -857,7 +857,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputEjerciciosRespiratorios" },
                 "Ejercicios respiratorios"
               ),
             ])
@@ -1222,7 +1222,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputVentilacionMecanica" },
                 "Ventilación Mecánica"
               ),
             ])
@@ -1242,7 +1242,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputVentilacionNoInvasiva" },
                 "Ventilación no invasiva"
               ),
             ])
@@ -1384,7 +1384,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputNasotraqueal" },
                 "Nasotraqueal"
               ),
             ])
@@ -1402,7 +1402,7 @@ const CrearFormulario = {
                   isTraquealSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Traqueal"),
+              m("label", { class: "form-label", for: "inputTraqueal" }, "Traqueal"),
             ])
           ),
           m(
@@ -1420,7 +1420,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputOrotraqueal" },
                 "Orotraqueal"
               ),
             ])
@@ -1440,7 +1440,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputLavadoNasal" },
                 "Lavado Nasal"
               ),
             ])
@@ -1460,7 +1460,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputSubglotica" },
                 "Subglótica"
               ),
             ])
@@ -1489,7 +1489,7 @@ const CrearFormulario = {
                   isEsputoSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Esputo"),
+              m("label", { class: "form-label", for: "inputEsputo" }, "Esputo"),
             ])
           ),
           m(
@@ -1505,7 +1505,7 @@ const CrearFormulario = {
                   isHisopadoSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Hisopado"),
+              m("label", { class: "form-label", for: "inputHisopado" }, "Hisopado"),
             ])
           ),
           m(
@@ -1523,7 +1523,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputSecrecionTraqueal" },
                 "Secreción Traqueal"
               ),
             ])
@@ -1551,7 +1551,7 @@ const CrearFormulario = {
                   isDisneaSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Disnea"),
+              m("label", { class: "form-label", for: "inputDisnea" }, "Disnea"),
             ])
           ),
           m(
@@ -1567,7 +1567,7 @@ const CrearFormulario = {
                   isTosSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Tos"),
+              m("label", { class: "form-label", for: "inputTos" }, "Tos"),
             ])
           ),
           m(
@@ -1585,7 +1585,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputExpectoacion" },
                 "Expectoración"
               ),
             ])
@@ -1605,7 +1605,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputDolorToracico" },
                 "Dolor Torácico"
               ),
             ])
@@ -1625,7 +1625,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputHemoptisis" },
                 "Hemoptisis"
               ),
             ])
@@ -1643,7 +1643,7 @@ const CrearFormulario = {
                   isFiebreSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Fiebre"),
+              m("label", { class: "form-label", for: "inputFiebre" }, "Fiebre"),
             ])
           ),
         ]),
@@ -1659,7 +1659,7 @@ const CrearFormulario = {
                   isConscienciaSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Consciencia"),
+              m("label.form-label", { for: "inputConsciencia" }, "Consciencia"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1672,7 +1672,7 @@ const CrearFormulario = {
                   isIntubadoSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Intubado"),
+              m("label.form-label", { for: "inputIntubado" }, "Intubado"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1686,7 +1686,7 @@ const CrearFormulario = {
                   isSonidoDeLaVozSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Sonido de la voz"),
+              m("label.form-label", { for: "inputSonidoDeLaVoz" }, "Sonido de la voz"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1700,7 +1700,7 @@ const CrearFormulario = {
                   console.log(isSibilanciasSelected)
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Sibilancias"),
+              m("label.form-label", { for: "inputSibilancias" }, "Sibilancias"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1713,7 +1713,7 @@ const CrearFormulario = {
                   isRoncusSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Roncus"),
+              m("label.form-label", { for: "inputRoncus" }, "Roncus"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1726,7 +1726,7 @@ const CrearFormulario = {
                   isCrepitantesSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Crepitantes"),
+              m("label.form-label", { for: "inputCrepitantes" }, "Crepitantes"),
             ]),
           ]),
         ]),
@@ -1742,7 +1742,7 @@ const CrearFormulario = {
                   isLocalizacionSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Localización"),
+              m("label.form-label", { for: "inputLocalizacion" }, "Localización"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1755,7 +1755,7 @@ const CrearFormulario = {
                   isCianosisSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Cianosis"),
+              m("label.form-label", { for: "inputCianosis" }, "Cianosis"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1768,7 +1768,7 @@ const CrearFormulario = {
                   isRuidoRespiratorioSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Ruido Respiratorio"),
+              m("label.form-label", { for: "inputRuidoRespiratorio" }, "Ruido Respiratorio"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1781,7 +1781,7 @@ const CrearFormulario = {
                   isDisminuidoSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Disminuido"),
+              m("label.form-label", { for: "inputDisminuido" }, "Disminuido"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1794,7 +1794,7 @@ const CrearFormulario = {
                   isAbolidoSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Abolido"),
+              m("label.form-label", { for: "inputAbolido" }, "Abolido"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1807,7 +1807,7 @@ const CrearFormulario = {
                   isEstridorSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Estridor"),
+              m("label.form-label", { for: "inputEstridor" }, "Estridor"),
             ]),
           ]),
         ]),
@@ -1823,7 +1823,7 @@ const CrearFormulario = {
                   isEdemaSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Edema"),
+              m("label.form-label", { for: "inputEdema" }, "Edema"),
             ]),
           ]),
         ])

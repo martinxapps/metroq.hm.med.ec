@@ -1149,7 +1149,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputNebulizacion" },
                       "Nebulización"
                     ),
                   ])
@@ -1177,7 +1177,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputUltrasonido" },
                       "Ultrasonido"
                     ),
                   ])
@@ -1204,7 +1204,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputInahaladorDosis" },
                       "Inhaladores Dosis Medida"
                     ),
                   ])
@@ -1248,7 +1248,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputDrenajePostural" },
                       "Drenaje Postural"
                     ),
                   ])
@@ -1260,7 +1260,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputPercursiones}",
                       id: "inputPercursiones",
                       //disabled: true,
                       checked:
@@ -1276,7 +1275,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputPercursiones" },
                       "Percursiones"
                     ),
                   ])
@@ -1288,7 +1287,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputVibraciones}",
                       id: "inputVibraciones",
                       //disabled: true,
                       checked:
@@ -1304,7 +1302,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputVibraciones" },
                       "Vibraciones"
                     ),
                   ])
@@ -1316,7 +1314,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputTosEfectiva}",
                       id: "inputTosEfectiva",
                       //disabled: true,
                       checked:
@@ -1332,7 +1329,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputTosEfectiva" },
                       "Tos Efectiva"
                     ),
                   ])
@@ -1344,7 +1341,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputAsistenteTos}",
                       id: "inputAsistenteTos",
                       //disabled: true,
                       checked:
@@ -1361,7 +1357,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputAsistenteTos" },
                       "Asistente de Tos"
                     ),
                   ])
@@ -1373,7 +1369,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputChalecoVibroprecutor}",
                       id: "inputChalecoVibroprecutor",
                       //disabled: true,
                       checked:
@@ -1388,7 +1383,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputChalecoVibroprecutor" },
                       "Chaleco Vibroprecutor"
                     ),
                   ])
@@ -1409,7 +1404,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputIncentivoRespiratorio",
                       //disabled: true,
                       checked:
@@ -1424,7 +1418,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputIncentivoRespiratorio" },
                       "Incentivo Respiratorio"
                     ),
                   ])
@@ -1436,7 +1430,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputPresionPositivaContinuaEnLaViaAeria",
                       //disabled: true,
                       checked:
@@ -1451,7 +1444,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputPresionPositivaContinuaEnLaViaAeria" },
                       "Presión Positiva continua en la vía aérea"
                     ),
                   ])
@@ -1463,7 +1456,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputPresionPositivaAlFinalDeLaExpiracion",
                       //disabled: true,
                       checked:
@@ -1478,7 +1470,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputPresionPositivaAlFinalDeLaExpiracion" },
                       "Presión Positiva al final de la expiración"
                     ),
                   ])
@@ -1490,7 +1482,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputKinesioterapiaDelTorax",
                       //disabled: true,
                       checked:
@@ -1505,7 +1496,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputKinesioterapiaDelTorax" },
                       "Kinesioterapia del tórax"
                     ),
                   ])
@@ -1517,7 +1508,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputEjerciciosRespiratorios",
                       //disabled: true,
                       checked:
@@ -1532,7 +1522,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputEjerciciosRespiratorios" },
                       "Ejercicios respiratorios"
                     ),
                   ])
@@ -1571,7 +1561,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputVentilacionMecanica",
                       //disabled: true,
                       checked:
@@ -1586,7 +1575,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputVentilacionMecanica" },
                       "Ventilación Mecánica"
                     ),
                   ])
@@ -1598,7 +1587,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputVentilacionNoInvasiva",
                       //disabled: true,
                       checked:
@@ -1613,7 +1601,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputVentilacionNoInvasiva" },
                       "Ventilación no invasiva"
                     ),
                   ])
@@ -1637,7 +1625,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputNasotraqueal",
                       //disabled: true,
                       checked:
@@ -1653,7 +1640,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputNasotraqueal" },
                       "Nasotraqueal"
                     ),
                   ])
@@ -1665,7 +1652,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputTraqueal",
                       //disabled: true,
                       checked:
@@ -1681,7 +1667,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputTraqueal" },
                       "Traqueal"
                     ),
                   ])
@@ -1693,7 +1679,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputOrotraqueal",
                       //disabled: true,
                       checked:
@@ -1709,7 +1694,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputOrotraqueal" },
                       "Orotraqueal"
                     ),
                   ])
@@ -1721,7 +1706,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputLavadoNasal",
                       //disabled: true,
                       checked:
@@ -1737,7 +1721,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputLavadoNasal" },
                       "Lavado Nasal"
                     ),
                   ])
@@ -1749,7 +1733,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputSubglotica",
                       //disabled: true,
                       checked:
@@ -1765,7 +1748,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputSubglotica" },
                       "Subglótica"
                     ),
                   ])
@@ -1788,7 +1771,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputEsputo",
                       //disabled: true,
                       checked:
@@ -1804,7 +1786,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputEsputo" },
                       "Esputo"
                     ),
                   ])
@@ -1816,7 +1798,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputHisopado",
                       //disabled: true,
                       checked:
@@ -1832,7 +1813,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputHisopado" },
                       "Hisopado"
                     ),
                   ])
@@ -1844,7 +1825,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputSecrecionTraqueal",
                       //disabled: true,
                       checked:
@@ -1859,7 +1839,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputSecrecionTraqueal" },
                       "Secreción Traqueal"
                     ),
                   ])
@@ -1881,7 +1861,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputDisnea",
                       //disabled: true,
                       checked:
@@ -1897,7 +1876,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputDisnea" },
                       "Disnea"
                     ),
                   ])
@@ -1909,7 +1888,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputTos",
                       //disabled: true,
                       checked:
@@ -1925,7 +1903,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputTos" },
                       "Tos"
                     ),
                   ])
@@ -1937,7 +1915,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputExpectoacion",
                       //disabled: true,
                       checked:
@@ -1954,7 +1931,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputExpectoacion" },
                       "Expectoración"
                     ),
                   ])
@@ -1966,7 +1943,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputDolorToracico",
                       //disabled: true,
                       checked:
@@ -1983,7 +1959,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputDolorToracico" },
                       "Dolor Torácico"
                     ),
                   ])
@@ -1995,7 +1971,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputHemoptisis",
                       //disabled: true,
                       checked:
@@ -2011,7 +1986,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputHemoptisis" },
                       "Hemoptisis"
                     ),
                   ])
@@ -2023,7 +1998,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputFiebre",
                       //disabled: true,
                       checked:
@@ -2039,7 +2013,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputFiebre" },
                       "Fiebre"
                     ),
                   ])
@@ -2054,7 +2028,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputConsciencia",
                       //disabled: true,
                       checked:
@@ -2070,7 +2043,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputConsciencia" },
                       "Consciencia"
                     ),
                   ])
@@ -2082,7 +2055,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputIntubado",
                       //disabled: true,
                       checked:
@@ -2098,7 +2070,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputIntubado" },
                       "Intubado"
                     ),
                   ])
@@ -2110,7 +2082,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputSonidoDeLaVoz",
                       //disabled: true,
                       checked:
@@ -2127,7 +2098,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputSonidoDeLaVoz" },
                       "Sonido de la voz"
                     ),
                   ])
@@ -2139,7 +2110,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputSibilancias",
                       //disabled: true,
                       checked:
@@ -2155,7 +2125,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputSibilancias" },
                       "Sibilancias"
                     ),
                   ])
@@ -2167,7 +2137,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputRoncus",
                       //disabled: true,
                       checked:
@@ -2183,7 +2152,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputRoncus" },
                       "Roncus"
                     ),
                   ])
@@ -2195,7 +2164,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputCrepitantes",
                       //disabled: true,
                       checked:
@@ -2211,7 +2179,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputCrepitantes" },
                       "Crepitantes"
                     ),
                   ])
@@ -2225,7 +2193,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputLocalizacion",
                       //disabled: true,
                       checked:
@@ -2241,7 +2208,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputLocalizacion" },
                       "Localización"
                     ),
                   ])
@@ -2253,7 +2220,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputCianosis",
                       //disabled: true,
                       checked:
@@ -2269,7 +2235,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputCianosis" },
                       "Cianosis"
                     ),
                   ])
@@ -2281,7 +2247,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputRuidoRespiratorio",
                       //disabled: true,
                       checked:
@@ -2296,7 +2261,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputRuidoRespiratorio" },
                       "Ruido Respiratorio"
                     ),
                   ])
@@ -2308,7 +2273,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputDisminuido",
                       //disabled: true,
                       checked:
@@ -2324,7 +2288,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputDisminuido" },
                       "Disminuido"
                     ),
                   ])
@@ -2336,7 +2300,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputAbolido",
                       //disabled: true,
                       checked:
@@ -2352,7 +2315,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputAbolido" },
                       "Abolido"
                     ),
                   ])
@@ -2364,7 +2327,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputEstridor",
                       //disabled: true,
                       checked:
@@ -2380,7 +2342,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputEstridor" },
                       "Estridor"
                     ),
                   ])
@@ -2394,7 +2356,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputEdema",
                       //disabled: true,
                       checked:
@@ -2410,7 +2371,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputEdema" },
                       "Edema"
                     ),
                   ])
