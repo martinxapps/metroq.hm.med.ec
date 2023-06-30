@@ -47,15 +47,23 @@ const ListadoFormulario = {
                     type: "button",
                     onclick: function () {
                       formularioModelo.listadoUnitario = null;
-                      m.mount(document.querySelector("#gestion-muestras"), {
-                        view: () => {
-                          return m(VerUnFormulario, { id: formulario.ID });
-                        },
-                      }),
+                      if (
+                        window.confirm(
+                          `Estas seguro que deseas ir al formulario ${formulario.ID}?`
+                        )
+                      ){
+                        m.mount(document.querySelector("#gestion-muestras"), {
+                          view: () => {
+                            return m(VerUnFormulario, { id: formulario.ID });
+                          },
+                        }),
                         m.mount(
                           document.querySelector("#cerrar-gestion-muestras"),
                           cerrarGestionMuestra
                         );
+                      } 
+                      
+                        
                       /* console.log(formulario.ID);
                       m(VerUnFormulario, { id: formulario.ID }); */
                     },
