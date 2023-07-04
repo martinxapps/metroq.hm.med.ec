@@ -1218,316 +1218,167 @@ const VerUnFormulario = {
               m(inputMedicinas),
             ],
             [
-              m(
-                "div",
-                { class: "d-flex justify-content-center" },
-                m("h6", "Higiene Bronco Pulmonar")
-              ),
-              m("div", { class: "row d-flex justify-content-center" }, [
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+              m("div", { class: "container" }, [
+                m("div", { class: "d-flex justify-content-center" }, [
+                  m("h6", "Higiene Bronco Pulmonar")
+                ]),
+                m("div", { class: "row d-flex justify-content-center" }, [
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputDrenajePostural}",
+                      //value: inputDrenajePostural,
                       //disabled: true,
                       id: "inputDrenajePostural",
-                      checked:
-                        formularioModelo.listadoUnitario.DRENAJEPOSTURAL ===
-                        "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.DRENAJEPOSTURAL === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.DRENAJEPOSTURAL = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.DRENAJEPOSTURAL = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputDrenajePostural" },
-                      "Drenaje Postural"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputDrenajePostural" }, "Drenaje Postural")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
                       id: "inputPercursiones",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.PERCUSIONES === "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.PERCUSIONES === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.PERCUSIONES = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.PERCUSIONES = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPercursiones" },
-                      "Percursiones"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputPercursiones" }, "Percursiones")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
                       id: "inputVibraciones",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.VIBRACIONES === "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.VIBRACIONES === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.VIBRACIONES = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.VIBRACIONES = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputVibraciones" },
-                      "Vibraciones"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputVibraciones" }, "Vibraciones")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
                       id: "inputTosEfectiva",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.TOSEFECTIVA === "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.TOSEFECTIVA === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.TOSEFECTIVA = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.TOSEFECTIVA = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputTosEfectiva" },
-                      "Tos Efectiva"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputTosEfectiva" }, "Tos Efectiva")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
                       id: "inputAsistenteTos",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.ASISTENCIADETOS ===
-                        "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.ASISTENCIADETOS === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.ASISTENCIADETOS = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.ASISTENCIADETOS = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputAsistenteTos" },
-                      "Asistente de Tos"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputAsistenteTos" }, "Asistente de Tos")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
                       id: "inputChalecoVibroprecutor",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .CHALECOVIBROPRECUTOR === "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR =
-                          event.target.checked ? "true" : "false";
+                        formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputChalecoVibroprecutor" },
-                      "Chaleco Vibroprecutor"
-                    ),
-                  ])
-                ),
-              ]),
+                    m("label", { class: "form-label", for: "inputChalecoVibroprecutor" }, "Chaleco Vibroprecutor")
+                  ]),
+                ]),
+              ])
+              
             ],
             [
-              m(
-                "div",
-                { class: "d-flex justify-content-center" },
+              
+              m("div", { class: "d-flex justify-content-center" }, [
                 m("h6", "Terapia Expansiva")
-              ),
-              m("div", { class: "row" }, [
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-1" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      id: "inputIncentivoRespiratorio",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .INCENTIVORESPIRATORIO === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputIncentivoRespiratorio" },
-                      "Incentivo Respiratorio"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      id: "inputPresionPositivaContinuaEnLaViaAeria",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .PRESIONPOSITIVAVIAAREA === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPresionPositivaContinuaEnLaViaAeria" },
-                      "Presión Positiva continua en la vía aérea"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      id: "inputPresionPositivaAlFinalDeLaExpiracion",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .PRESIONPOSITIVAEXPIRACION === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPresionPositivaAlFinalDeLaExpiracion" },
-                      "Presión Positiva al final de la expiración"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-1" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      id: "inputKinesioterapiaDelTorax",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .KINISIOTERAPIADELTORAX === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputKinesioterapiaDelTorax" },
-                      "Kinesioterapia del tórax"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-1" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      id: "inputEjerciciosRespiratorios",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .EJERCICIOSRESPIRATORIOS === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputEjerciciosRespiratorios" },
-                      "Ejercicios respiratorios"
-                    ),
-                  ])
-                ),
               ]),
+              m("div", { class: "row" }, [
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-1" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputIncentivoRespiratorio",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputIncentivoRespiratorio" }, "Incentivo Respiratorio"),
+                ]),
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-4" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputPresionPositivaContinuaEnLaViaAeria",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputPresionPositivaContinuaEnLaViaAeria" }, "Presión Positiva continua en la vía aérea"),
+                ]),
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-4" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputPresionPositivaAlFinalDeLaExpiracion",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputPresionPositivaAlFinalDeLaExpiracion" }, "Presión Positiva al final de la expiración"),
+                ]),
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-1" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputKinesioterapiaDelTorax",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputKinesioterapiaDelTorax" }, "Kinesioterapia del tórax"),
+                ]),
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-1" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputEjerciciosRespiratorios",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputEjerciciosRespiratorios" }, "Ejercicios respiratorios"),
+                ]),
+              ]),
+              
               m(
                 "div",
                 { class: "d-flex justify-content-center" },
@@ -2716,29 +2567,6 @@ const VerUnFormulario = {
             m.trust("&nbsp;"),
             " ",
             m.trust("&nbsp;"),
-            /* m(
-              "button",
-              {
-                class: "btn btn-primary",
-                type: "button",
-                disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Activo",
-              },
-              "Imprimir"
-            ), */
-            (formularioModelo.listadoUnitario.ESTADO === "Finalizado" ? 
-            m(m.route.Link, {
-
-              href: "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" + formularioModelo.listadoUnitario.ID + "&output=pdf",
-
-              class: "btn btn-primary",
-
-              target: "_blank",
-              type: "button",
-
-          }, "Imprimir")  : null
-            )
             
           ])
         : m(loader),
