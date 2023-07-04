@@ -53,3 +53,5 @@ return newObject;
 };
 
 export const siAlgunaEsVerdadero = (objeto) => Object.values(objeto).some(Boolean);
+
+export const  containsInvalidChars = (text) => /[-+e]/.test(text);
