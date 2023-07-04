@@ -1,6 +1,6 @@
 import FormularioModels from "./models/formularioModels";
 import loader from "../../../patologia/utils/loader";
-import { cargarHoraActual, cargarFechaActual } from "./logic/formulario";
+import { cargarHoraActual, cargarFechaActual, containsInvalidChars } from "./logic/formulario";
 import Encrypt from "../../../../models/encrypt";
 
 let formularioModelo = FormularioModels;
@@ -251,6 +251,18 @@ const inputIncentivoRespiratorio = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.MILILITROSPORSEGUNDOINCENTIVO;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -272,6 +284,18 @@ const inputIncentivoRespiratorio = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.CENTIMETROSSEGUNDOINCENTIVO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -305,6 +329,18 @@ const inputOxigenoTerapia = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRACCIONOXIGENOPORCENTAJE;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -326,6 +362,18 @@ const inputOxigenoTerapia = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRACCIONIOXIGENOLITROS;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -352,6 +400,18 @@ const inputOxigenoTerapia = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.ALTOFLUJOPORCENTAJE;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -373,6 +433,18 @@ const inputOxigenoTerapia = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.ALTOFLUJOLITROSPORMINUTO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -400,6 +472,18 @@ const inputOxigenoTerapia = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.TIENDAFACIALPORCENTAJE;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -421,6 +505,18 @@ const inputOxigenoTerapia = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.TIENDAFACIALLITROSPORMINUTO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -447,6 +543,18 @@ const inputOxigenoTerapia = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.TUBOENTPORCENTAJE;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -468,6 +576,18 @@ const inputOxigenoTerapia = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.TUBOENTLITROSPORMINUTO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -495,6 +615,18 @@ const inputOxigenoTerapia = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.CANULANASALPORCENTAJE;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -516,6 +648,18 @@ const inputOxigenoTerapia = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.CANULANASALLITROSPORMINUTO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -542,6 +686,18 @@ const inputOxigenoTerapia = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.MASCARILLAPORCENTAJE;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -563,6 +719,18 @@ const inputOxigenoTerapia = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.MASCARILLALITROSPORMINUTO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -590,6 +758,18 @@ const inputOxigenoTerapia = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.HELIOXPORCENTAJE;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -611,6 +791,18 @@ const inputOxigenoTerapia = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.HELIOXLITROSPORMINUTO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -638,6 +830,18 @@ const inputOxigenoTerapia = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.AIREAMBIENTEPORCENTAJE;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -669,6 +873,18 @@ const inputMonitoreo = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.SATURACIONPREVIA;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -690,6 +906,18 @@ const inputMonitoreo = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.SATURACIONPOSTERIOR;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -716,6 +944,18 @@ const inputMonitoreo = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRECUENCIACARDIACAPREVIA;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -737,6 +977,18 @@ const inputMonitoreo = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRECUENCIACARDIACAPOSTERIOR;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -763,6 +1015,18 @@ const inputMonitoreo = {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPREVIA;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
@@ -784,6 +1048,18 @@ const inputMonitoreo = {
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPOS;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])

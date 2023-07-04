@@ -800,6 +800,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputMililitrosPorSegundo",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -817,6 +829,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputCentimetrosCubicosPorSegundo",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -846,6 +870,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeFraccion",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -863,6 +899,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitrosPorMinutoFraccion",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -883,6 +931,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeAltoFlujo",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -900,6 +960,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroAltoFlujo",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -921,6 +993,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeTiendaFacial",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -938,6 +1022,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroPorMinutoTiendaFacial",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -958,6 +1054,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeTuboEnT",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -975,6 +1083,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroTuboEnT",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -996,6 +1116,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeCanulaNasal",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1013,6 +1145,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroPorMinutoCanulaNasal",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1033,6 +1177,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeMascarilla",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1050,6 +1206,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroMascarilla",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1071,6 +1239,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeHeliox",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1088,6 +1268,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroPorMinutoHeliox",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1110,6 +1302,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeAireAmbiente",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           )
@@ -1209,7 +1413,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputSaturacionPosteriorPorcentaje",
                 placeholder: "Ingrese un valor",
-                
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1231,6 +1446,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputFrecuenciaCardiacaPreviaPorMinuto",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1248,6 +1475,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1268,6 +1507,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1285,6 +1536,18 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
                 placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
