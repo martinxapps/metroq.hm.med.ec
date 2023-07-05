@@ -12,11 +12,13 @@ export const handleCheckboxClick  = (value) => {
 
 export const cargarFechaActual = () => {
   const fechaActual = new Date();
-  const dia = fechaActual.getDate();
+  const diaNormal = fechaActual.getDate();
+  const dia = diaNormal < 10 ? `0${diaNormal}` : diaNormal;
   const mesNormal = fechaActual.getMonth() + 1;
   const mes = mesNormal < 10 ? `0${mesNormal}` : mesNormal;
   const anio = fechaActual.getFullYear();
-  const hora = fechaActual.getHours();
+  const horaNormal = fechaActual.getHours();
+  const hora = horaNormal < 10 ? `0${horaNormal}` : horaNormal;
   const minutosNormal = fechaActual.getMinutes();
   const minutos = minutosNormal < 10 ? `0${minutosNormal}` : minutosNormal;
 
@@ -27,7 +29,8 @@ export const cargarFechaActual = () => {
 
 export const cargarHoraActual =  () => {
   const fechaActual = new Date();
-  const hora = fechaActual.getHours();
+  const horaNormal = fechaActual.getHours();
+  const hora = horaNormal < 10 ? `0${horaNormal}` : horaNormal;
   const minutosNormal = fechaActual.getMinutes();
   const minutos = minutosNormal < 10 ? `0${minutosNormal}` : minutosNormal;
 
