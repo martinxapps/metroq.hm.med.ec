@@ -1,12 +1,11 @@
 import SidebarLab from '../sidebarLab';
 import Notificaciones from '../../../models/notificaciones';
-
 import m from 'mithril';
 
 function stopwatchModel() {
     return {
         interval: null,
-        seconds: 3,
+        seconds: 4,
         isPaused: false
     };
 }
@@ -20,7 +19,7 @@ const actions = {
         if (Flebotomista.searchField.length == 0) {
             model.seconds--;
             if (model.seconds == 0) {
-                model.seconds = 3;
+                model.seconds = 4;
                 Flebotomista.reloadData();
             }
             m.redraw();
@@ -117,7 +116,6 @@ function Stopwatch() {
     };
 };
 
-
 const tableFlebotomista = {
     oncreate: () => {
 
@@ -144,14 +142,101 @@ const tableFlebotomista = {
 
             m("div.col-12", [
 
+                m("div.col-4.offset-7.d-flex.tx-14", [
+                    m('.', {
+                        class: (Flebotomista.idFiltro == 1 ? 'd-none' : 'd-flex')
+                    }, [
+                        m("div.link-03", {
+                            title: "Desde"
+                        },
+                            m(".tx-10.pd-r-0", {
+                                style: { "padding-top": "10px" }
+                            }, 'Desde:')
+                        ),
+                        m("div.link-03", {
+                            style: { "cursor": "pointer" },
+                            title: "Desde"
+                        },
+                            m("input.tx-light.pd-4[type='date'][id='desde']", {
+                                oncreate: (el) => {
+                                    el.dom.value = (Flebotomista.idFiltro !== 1 ? moment(moment(Flebotomista.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                },
+                                onchange: (el) => {
+                                    Flebotomista.fechaDesde = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
+                                    Flebotomista.loader = true;
+                                    Flebotomista.pedidos = [];
+                                    Flebotomista.fetchPedidos();
+                                    m.route.set("/laboratorio/flebotomista/?idFiltro=" + Flebotomista.idFiltro + "&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta);
+                                },
+                                style: {
+                                    "border": "transparent"
+                                }
+                            })
+                        ),
+                        m("div.link-03", {
+                            title: "Hasta"
+                        },
+                            m(".tx-10.pd-r-0", {
+                                style: { "padding-top": "10px" }
+                            }, 'Hasta:')
+                        ),
+                        m("div.link-03", {
+                            style: { "cursor": "pointer" },
+                            title: "Hasta"
+                        },
+                            m("input.tx-light.pd-4[type='date'][id='hasta']", {
+                                oncreate: (el) => {
+                                    el.dom.value = (Flebotomista.idFiltro !== 1 ? moment(moment(Flebotomista.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                },
+                                onchange: (el) => {
+                                    Flebotomista.fechaHasta = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
+                                    Flebotomista.loader = true;
+                                    Flebotomista.pedidos = [];
+                                    Flebotomista.fetchPedidos();
+                                    m.route.set("/laboratorio/flebotomista/?idFiltro=" + Flebotomista.idFiltro + "&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta);
+                                },
+                                style: {
+                                    "border": "transparent"
+                                }
+                            })
+                        )
+                    ]),
+                    m("div.dropdown.dropleft", [
+                        m("div.link-03.lh-0.mg-l-5[id='dropdownMenuButton'][data-toggle='dropdown'][aria-haspopup='true'][aria-expanded='false']", {
+                            style: { "cursor": "pointer" },
+                            title: "Filtrar"
+                        },
+                            m("i.fas.fa-filter.tx-18.pd-5")
+                        ),
+                        m(".dropdown-menu.tx-13[aria-labelledby='dropdownMenuButton']", [
+                            m("h6.dropdown-header.tx-uppercase.tx-12.tx-bold.tx-inverse",
+                                "FILTROS:"
+                            ),
+                            m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/flebotomista/?idFiltro=1" }, [
+                                "Pedidos de Hoy"
+                            ]),
+                            m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/flebotomista/?idFiltro=2&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
+                                "Pedidos de Emergencia"
+                            ]),
+                            m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/flebotomista/?idFiltro=3&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
+                                "Pedidos de Hospitalización"
+                            ]),
+                            m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/flebotomista/?idFiltro=4&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
+                                "Pedidos de C. Externa"
+                            ]),
+                            m(m.route.Link, { class: 'dropdown-item tx-danger', href: "/laboratorio/flebotomista/?idFiltro=5&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
+                                "C. Externa Pendientes"
+                            ]),
 
-
+                        ])
+                    ])
+                ]),
                 m("div.table-content.col-12.pd-r-0.pd-l-0.pd-b-20.", [
 
                     m("div.d-flex.align-items-center.justify-content-between.mg-b-80.mg-t-10", [
-                        m("h5.mg-b-0",
+                        m("h5.mg-b-0.tx-20",
                             "LISA:",
-                            m("span.badge.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15", {
+                            m("span.badge.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-20", {
                                 class: (Flebotomista.idFiltro == 5 ? 'badge-danger' : 'badge-primary'),
                                 oncreate: (el) => {
                                     if (Flebotomista.idFiltro == 1) {
@@ -192,102 +277,38 @@ const tableFlebotomista = {
 
                             ),
                             m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15",
-                                'TOMA1'
+                                m("select.bg-primary.tx-white.tx-semibold.tx-15.form-select", {
+                                    oncreate: (e) => {
+                                        Flebotomista.idToma = 'TOMA1';
+                                    },
+                                    onchange: (e) => {
+
+                                        Flebotomista.idToma = e.target.value;
+
+                                    }
+                                }, [
+                                    m("option[value='TOMA1']",
+                                        "TOMA1"
+                                    ),
+                                    m("option[value='TOMA2']",
+                                        "TOMA2"
+                                    ),
+                                    m("option[value='TOMA3']",
+                                        "TOMA3"
+                                    ),
+                                    m("option[value='TOMA4']",
+                                        "TOMA4"
+                                    )
+                                ])
                             )
 
                         ),
 
 
-                        m("div.d-flex.tx-14", [
-                            m('.', {
-                                class: (Flebotomista.idFiltro == 1 ? 'd-none' : 'd-flex')
-                            }, [
-                                m("div.link-03", {
-                                    title: "Desde"
-                                },
-                                    m(".tx-10.pd-r-0", {
-                                        style: { "padding-top": "10px" }
-                                    }, 'Desde:')
-                                ),
-                                m("div.link-03", {
-                                    style: { "cursor": "pointer" },
-                                    title: "Desde"
-                                },
-                                    m("input.tx-light.pd-4[type='date'][id='desde']", {
-                                        oncreate: (el) => {
-                                            el.dom.value = (Flebotomista.idFiltro !== 1 ? moment(moment(Flebotomista.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
-                                        },
-                                        onchange: (el) => {
-                                            Flebotomista.fechaDesde = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
-                                            Flebotomista.loader = true;
-                                            Flebotomista.pedidos = [];
-                                            Flebotomista.fetchPedidos();
-                                            m.route.set("/laboratorio/flebotomista/?idFiltro=" + Flebotomista.idFiltro + "&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta);
-                                        },
-                                        style: {
-                                            "border": "transparent"
-                                        }
-                                    })
-                                ),
-                                m("div.link-03", {
-                                    title: "Hasta"
-                                },
-                                    m(".tx-10.pd-r-0", {
-                                        style: { "padding-top": "10px" }
-                                    }, 'Hasta:')
-                                ),
-                                m("div.link-03", {
-                                    style: { "cursor": "pointer" },
-                                    title: "Hasta"
-                                },
-                                    m("input.tx-light.pd-4[type='date'][id='hasta']", {
-                                        oncreate: (el) => {
-                                            el.dom.value = (Flebotomista.idFiltro !== 1 ? moment(moment(Flebotomista.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
-                                        },
-                                        onchange: (el) => {
-                                            Flebotomista.fechaHasta = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
-                                            Flebotomista.loader = true;
-                                            Flebotomista.pedidos = [];
-                                            Flebotomista.fetchPedidos();
-                                            m.route.set("/laboratorio/flebotomista/?idFiltro=" + Flebotomista.idFiltro + "&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta);
-                                        },
-                                        style: {
-                                            "border": "transparent"
-                                        }
-                                    })
-                                )
-                            ]),
-                            m("div.dropdown.dropleft", [
-                                m("div.link-03.lh-0.mg-l-5[id='dropdownMenuButton'][data-toggle='dropdown'][aria-haspopup='true'][aria-expanded='false']", {
-                                    style: { "cursor": "pointer" },
-                                    title: "Filtrar"
-                                },
-                                    m("i.fas.fa-filter.tx-18.pd-5")
-                                ),
-                                m(".dropdown-menu.tx-13[aria-labelledby='dropdownMenuButton']", [
-                                    m("h6.dropdown-header.tx-uppercase.tx-12.tx-bold.tx-inverse",
-                                        "FILTROS:"
-                                    ),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/flebotomista/?idFiltro=1" }, [
-                                        "Pedidos de Hoy"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/flebotomista/?idFiltro=2&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
-                                        "Pedidos de Emergencia"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/flebotomista/?idFiltro=3&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
-                                        "Pedidos de Hospitalización"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/flebotomista/?idFiltro=4&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
-                                        "Pedidos de C. Externa"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item tx-danger', href: "/laboratorio/flebotomista/?idFiltro=5&fechaDesde=" + Flebotomista.fechaDesde + "&fechaHasta=" + Flebotomista.fechaHasta }, [
-                                        "C. Externa Pendientes"
-                                    ]),
 
-                                ])
-                            ])
-                        ])
                     ]),
+
+
 
                     m("div.col-sm-12.filemgr-content-header", {
                         class: (Flebotomista.idFiltro == 1 ? "mg-t-35" : "mg-t-40")
@@ -313,8 +334,6 @@ const tableFlebotomista = {
     }
 };
 
-
-
 const Flebotomista = {
     notificaciones: [],
     pedidos: [],
@@ -329,6 +348,7 @@ const Flebotomista = {
     toma: "",
     atencion: "",
     listaAtenciones: [],
+    idToma: '',
     oninit: (_data) => {
 
         SidebarLab.page = "";
@@ -360,7 +380,6 @@ const Flebotomista = {
         }
 
     },
-
     oncreate: (_data) => {
         Notificaciones.suscribirCanal('MetroPlus-LisaPedidos');
     },
@@ -374,7 +393,6 @@ const Flebotomista = {
             }
         });
     },
-
     buscarListaAtenciones: (_at_mv, _sc) => {
 
         try {
@@ -441,7 +459,6 @@ const Flebotomista = {
 
             }
 
-            console.log(Flebotomista.listaAtenciones)
 
         } catch (error) {
 
@@ -795,7 +812,8 @@ const Flebotomista = {
 
                                     m('.d-inline.tx-14.tx-semibold.tx-danger', {}, [
                                         m('i.fas.fa-file.mg-r-5.tx-12'),
-                                        Flebotomista.listaAtenciones[iDisplayIndexFull].nro + ' de ' + Flebotomista.listaAtenciones[iDisplayIndexFull].pedidos
+                                        (Flebotomista.listaAtenciones[iDisplayIndexFull].nro !== undefined ? Flebotomista.listaAtenciones[iDisplayIndexFull].nro + ' de ' + Flebotomista.listaAtenciones[iDisplayIndexFull].pedidos : '')
+
                                     ]),
                                     m('br'),
                                     'SC: ' +
@@ -877,7 +895,6 @@ const Flebotomista = {
 
                 Flebotomista.loader = false;
 
-                console.log(Flebotomista.listaAtenciones)
 
             },
         });
@@ -913,6 +930,10 @@ const Flebotomista = {
             .then(function (result) {
                 Flebotomista.loader = false;
                 Flebotomista.pedidos = result.data;
+                if (Flebotomista.pedidos.length == 0) {
+                    setTimeout(function () { Flebotomista.fetchPedidos(); }, 3000);
+
+                }
             })
             .catch(function (e) {
                 setTimeout(function () { Flebotomista.fetchPedidos(); }, 2000);
@@ -960,7 +981,8 @@ const Flebotomista = {
             method: "POST",
             url: "https://lisa.hospitalmetropolitano.org/v1/procesos/call-toma",
             body: {
-                atencion: atencion
+                atencion: atencion,
+                idToma: Flebotomista.idToma
             },
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
@@ -994,7 +1016,6 @@ const Flebotomista = {
         Flebotomista.fetchPedidos();
         table.rows.add(Flebotomista.pedidos).draw();
     },
-
     view: (_data) => {
 
         return Flebotomista.loader ? [

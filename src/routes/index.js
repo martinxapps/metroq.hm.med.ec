@@ -72,6 +72,7 @@ import BcoSangre from '../views/bcosangre/bcosangre'
 import PedidosBcoSangre from '../views/bcosangre/pedidos/pedidos'
 import PedidoTF from '../views/tf/pedidos/pedido'
 import NotificacionesPorEnviarLab from '../views/laboratorio/notificaciones/porenviar'
+import BcoPedido from '../views/bcosangre/pedidos/pedido'
 
 
 
@@ -325,7 +326,7 @@ const Routes = {
             document.title = "Recepción de Pedidos | " + App.title;
 
             if (_data.attrs.idFiltro == undefined && _data.attrs.fechaDesde == undefined) {
-                return m.route.set('/laboratorio/flebotomista/', { idFiltro: 1 })
+                return m.route.set('/laboratorio/flebotomista/', { idFiltro: 4 })
             }
 
             LaboratorioPedidos.idFiltro = _data.attrs.idFiltro;
@@ -774,6 +775,15 @@ const Routes = {
             ];
         },
     }, //PedidosBcoSangre
+    '/bco-sangre/pedido/': {
+        onmatch: (_data) => {
+            if (_data.numeroPedido !== undefined) {
+                return BcoPedido;
+            } else {
+                return m.route.SKIP;
+            }
+        }
+    }, // NeuroPedido
     '/neurofisiologia': Neuro, //Neuro
     '/neurofisiologia/pedidos': {
         oninit: (_data) => {

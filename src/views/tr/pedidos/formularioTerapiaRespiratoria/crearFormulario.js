@@ -8,6 +8,8 @@ import {
   cargarFechaActual,
   cargarHoraActual,
   change,
+  siAlgunaEsVerdadero,
+  containsInvalidChars,
 } from "./logic/formulario";
 
 let formularioModelo = FormularioModels;
@@ -402,7 +404,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputNebulizacion" },
                 "Nebulización"
               ),
             ])
@@ -422,7 +424,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputUltrasonido" },
                 "Ultrasonido"
               ),
             ])
@@ -442,7 +444,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputInahaladorDosis" },
                 "Inhaladores Dosis Medida"
               ),
             ])
@@ -625,36 +627,14 @@ const CrearFormulario = {
         ]),
       ],
       [
-        m(
-          "div",
-          { class: "d-flex justify-content-center" },
-          m("h6", "Higiene Bronco Pulmonar")
-        ),
-        m("div", { class: "row d-flex justify-content-center" }, [
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-4" }, [
-              m("input", {
-                class: "form-check-input",
-                type: "checkbox",
-                value: "${inputDrenajePostural}",
-                id: "inputDrenajePostural",
-                onclick: function (event) {
-                  isDrenajePosturalSelected = event.target.checked;
-                },
-              }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Drenaje Postural"
-              ),
+        m("div", { class: "container" }, [
+          m("div", { class: "row justify-content-center" }, [
+            m("div", { class: "col-12 col-md-6 text-center" }, [
+              m("h6", "Higiene Bronco Pulmonar")
             ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-4" }, [
+          ]),
+          m("div", { class: "row justify-content-center" }, [
+            m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
@@ -664,17 +644,21 @@ const CrearFormulario = {
                   isPercusionesSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Percursiones"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-4" }, [
+              m("label", { class: "form-label", for: "inputPercursiones" }, "Percursiones")
+            ]),
+            m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
+              m("input", {
+                class: "form-check-input",
+                type: "checkbox",
+                value: "${inputDrenajePostural}",
+                id: "inputDrenajePostural",
+                onclick: function (event) {
+                  isDrenajePosturalSelected = event.target.checked;
+                },
+              }),
+              m("label", { class: "form-label", for: "inputDrenajePostural" }, "Drenaje Postural")
+            ]),
+            m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
@@ -684,17 +668,9 @@ const CrearFormulario = {
                   isVibracionesSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Vibraciones"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-4" }, [
+              m("label", { class: "form-label", for: "inputVibraciones" }, "Vibraciones")
+            ]),
+            m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
@@ -704,17 +680,9 @@ const CrearFormulario = {
                   isTosEfectivaSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Tos Efectiva"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-4" }, [
+              m("label", { class: "form-label", for: "inputTosEfectiva" }, "Tos Efectiva")
+            ]),
+            m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
@@ -724,17 +692,9 @@ const CrearFormulario = {
                   isAsistenteDeTosSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Asistente de Tos"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-4" }, [
+              m("label", { class: "form-label", for: "inputAsistenteTos" }, "Asistente de Tos")
+            ]),
+            m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
@@ -744,26 +704,19 @@ const CrearFormulario = {
                   isChalecoVibroprecutor = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Chaleco Vibroprecutor"
-              ),
-            ])
-          ),
-        ]),
+              m("label", { class: "form-label", for: "inputChalecoVibroprecutor" }, "Chaleco Vibroprecutor")
+            ]),
+          ]),
+        ])
+        
       ],
       [
-        m(
-          "div",
-          { class: "d-flex justify-content-center" },
-          m("h6", "Terapia Expansiva")
-        ),
-        m("div", { class: "row" }, [
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-1" }, [
+        m("div", { class: "container" }, [
+          m("div", { class: "d-flex justify-content-center" }, [
+            m("h6", "Terapia Expansiva")
+          ]),
+          m("div", { class: "row justify-content-center" }, [
+            m("div", { class: "col-12 col-md-4 text-center mb-1" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
@@ -773,59 +726,33 @@ const CrearFormulario = {
                   isIncentivoRespiratorioSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Incentivo Respiratorio"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-4" }, [
+              m("label", { class: "form-label", for: "inputIncentivoRespiratorio" }, "Incentivo Respiratorio")
+            ]),
+            m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
                 value: "",
                 id: "inputPresionPositivaContinuaEnLaViaAeria",
                 onclick: function (event) {
-                  isPresionPositivaContinuaEnLaViaAereaSelected =
-                    event.target.checked;
+                  isPresionPositivaContinuaEnLaViaAereaSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Presión Positiva continua en la vía aérea"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-4" }, [
+              m("label", { class: "form-label", for: "inputPresionPositivaContinuaEnLaViaAeria" }, "Presión Positiva continua en la vía aérea")
+            ]),
+            m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
                 value: "",
                 id: "inputPresionPositivaAlFinalDeLaExpiracion",
                 onclick: function (event) {
-                  isPresionPositivaAlFinalDeLaExpiracionSelected =
-                    event.target.checked;
+                  isPresionPositivaAlFinalDeLaExpiracionSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Presión Positiva al final de la expiración"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-1" }, [
+              m("label", { class: "form-label", for: "inputPresionPositivaAlFinalDeLaExpiracion" }, "Presión Positiva al final de la expiración")
+            ]),
+            m("div", { class: "col-12 col-md-4 text-center mb-1" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
@@ -835,17 +762,9 @@ const CrearFormulario = {
                   isKinesioterapiaSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Kinesioterapia del tórax"
-              ),
-            ])
-          ),
-          m(
-            "div",
-            { class: "col text-center" },
-            m("div", { class: "mb-1" }, [
+              m("label", { class: "form-label", for: "inputKinesioterapiaDelTorax" }, "Kinesioterapia del tórax")
+            ]),
+            m("div", { class: "col-12 col-md-4 text-center mb-1" }, [
               m("input", {
                 class: "form-check-input",
                 type: "checkbox",
@@ -855,14 +774,12 @@ const CrearFormulario = {
                   isEjerciciosRespiratorioSelected = event.target.checked;
                 },
               }),
-              m(
-                "label",
-                { class: "form-label", for: "inputPeso" },
-                "Ejercicios respiratorios"
-              ),
-            ])
-          ),
+              m("label", { class: "form-label", for: "inputEjerciciosRespiratorios" }, "Ejercicios respiratorios")
+            ]),
+          ]),
         ]),
+        
+        /*  */
         m(
           "div",
           { class: "d-flex justify-content-center" },
@@ -882,6 +799,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputMililitrosPorSegundo",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -892,12 +822,25 @@ const CrearFormulario = {
               m(
                 "label",
                 { class: "form-label", for: "inputEscalaDolor" },
-                m("b", "Centimetros cúbicos por segundo")
+                m("b", "Centímetros cúbicos por segundo")
               ),
               m("input", {
                 class: "form-control",
                 type: "number",
                 id: "inputCentimetrosCubicosPorSegundo",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -926,6 +869,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeFraccion",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -942,6 +898,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitrosPorMinutoFraccion",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -961,6 +930,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeAltoFlujo",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -977,10 +959,24 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroAltoFlujo",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
         ]),
+        m('br'),
         m("h6", "Tienda Facial"),
         m("div", { class: "row" }, [
           m(
@@ -996,6 +992,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeTiendaFacial",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1012,6 +1021,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroPorMinutoTiendaFacial",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1031,6 +1053,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeTuboEnT",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1047,10 +1082,24 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroTuboEnT",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
         ]),
+        m("br"),
         m("h6", "Canula Nasal"),
         m("div", { class: "row" }, [
           m(
@@ -1066,6 +1115,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeCanulaNasal",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1082,6 +1144,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroPorMinutoCanulaNasal",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1101,6 +1176,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeMascarilla",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1117,10 +1205,24 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroMascarilla",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
         ]),
+        m("br"),
         m("h6", "Heliox"),
         m("div", { class: "row" }, [
           m(
@@ -1136,6 +1238,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeHeliox",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1152,6 +1267,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputLitroPorMinutoHeliox",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1173,6 +1301,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputPorcentajeAireAmbiente",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           )
@@ -1202,7 +1343,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputVentilacionMecanica" },
                 "Ventilación Mecánica"
               ),
             ])
@@ -1222,7 +1363,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputVentilacionNoInvasiva" },
                 "Ventilación no invasiva"
               ),
             ])
@@ -1242,6 +1383,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputSaturacionPreviaPorcentaje",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1258,6 +1412,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputSaturacionPosteriorPorcentaje",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1278,6 +1445,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputFrecuenciaCardiacaPreviaPorMinuto",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1294,6 +1474,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1313,6 +1506,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1329,6 +1535,19 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "number",
                 id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
+                placeholder: "Ingrese un valor",
+                oninput: function(e) {
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                },
+                onpaste: function(e) {
+                  const clipboardData = e.clipboardData || window.clipboardData;
+                  const pastedText = clipboardData.getData("text");
+          
+                  if (containsInvalidChars(pastedText)) {
+                    e.preventDefault();
+                  }
+                },
               }),
             ])
           ),
@@ -1358,7 +1577,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputNasotraqueal" },
                 "Nasotraqueal"
               ),
             ])
@@ -1376,7 +1595,7 @@ const CrearFormulario = {
                   isTraquealSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Traqueal"),
+              m("label", { class: "form-label", for: "inputTraqueal" }, "Traqueal"),
             ])
           ),
           m(
@@ -1394,7 +1613,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputOrotraqueal" },
                 "Orotraqueal"
               ),
             ])
@@ -1414,7 +1633,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputLavadoNasal" },
                 "Lavado Nasal"
               ),
             ])
@@ -1434,7 +1653,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputSubglotica" },
                 "Subglótica"
               ),
             ])
@@ -1463,7 +1682,7 @@ const CrearFormulario = {
                   isEsputoSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Esputo"),
+              m("label", { class: "form-label", for: "inputEsputo" }, "Esputo"),
             ])
           ),
           m(
@@ -1479,7 +1698,7 @@ const CrearFormulario = {
                   isHisopadoSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Hisopado"),
+              m("label", { class: "form-label", for: "inputHisopado" }, "Hisopado"),
             ])
           ),
           m(
@@ -1497,7 +1716,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputSecrecionTraqueal" },
                 "Secreción Traqueal"
               ),
             ])
@@ -1525,7 +1744,7 @@ const CrearFormulario = {
                   isDisneaSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Disnea"),
+              m("label", { class: "form-label", for: "inputDisnea" }, "Disnea"),
             ])
           ),
           m(
@@ -1541,7 +1760,7 @@ const CrearFormulario = {
                   isTosSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Tos"),
+              m("label", { class: "form-label", for: "inputTos" }, "Tos"),
             ])
           ),
           m(
@@ -1559,7 +1778,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputExpectoacion" },
                 "Expectoración"
               ),
             ])
@@ -1579,7 +1798,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputDolorToracico" },
                 "Dolor Torácico"
               ),
             ])
@@ -1599,7 +1818,7 @@ const CrearFormulario = {
               }),
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputHemoptisis" },
                 "Hemoptisis"
               ),
             ])
@@ -1617,7 +1836,7 @@ const CrearFormulario = {
                   isFiebreSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPeso" }, "Fiebre"),
+              m("label", { class: "form-label", for: "inputFiebre" }, "Fiebre"),
             ])
           ),
         ]),
@@ -1633,7 +1852,7 @@ const CrearFormulario = {
                   isConscienciaSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Consciencia"),
+              m("label.form-label", { for: "inputConsciencia" }, "Consciencia"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1646,20 +1865,21 @@ const CrearFormulario = {
                   isIntubadoSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Intubado"),
+              m("label.form-label", { for: "inputIntubado" }, "Intubado"),
             ]),
           ]),
           m("div.col.text-center", [
+            
             m("div.mb-2", [
               m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
-                id: "inputEstridor",
+                id: "inputSonidoDeLaVoz",
                 onclick: (event) => {
-                  isEstridorSelected = event.target.checked;
+                  isSonidoDeLaVozSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Estridor"),
+              m("label.form-label", { for: "inputSonidoDeLaVoz" }, "Sonido de la voz"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1673,7 +1893,7 @@ const CrearFormulario = {
                   console.log(isSibilanciasSelected)
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Sibilancias"),
+              m("label.form-label", { for: "inputSibilancias" }, "Sibilancias"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1686,7 +1906,7 @@ const CrearFormulario = {
                   isRoncusSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Roncus"),
+              m("label.form-label", { for: "inputRoncus" }, "Roncus"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1699,7 +1919,7 @@ const CrearFormulario = {
                   isCrepitantesSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Crepitantes"),
+              m("label.form-label", { for: "inputCrepitantes" }, "Crepitantes"),
             ]),
           ]),
         ]),
@@ -1715,7 +1935,7 @@ const CrearFormulario = {
                   isLocalizacionSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Localización"),
+              m("label.form-label", { for: "inputLocalizacion" }, "Localización"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1728,7 +1948,7 @@ const CrearFormulario = {
                   isCianosisSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Cianosis"),
+              m("label.form-label", { for: "inputCianosis" }, "Cianosis"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1741,7 +1961,7 @@ const CrearFormulario = {
                   isRuidoRespiratorioSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Ruido Respiratorio"),
+              m("label.form-label", { for: "inputRuidoRespiratorio" }, "Ruido Respiratorio"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1754,7 +1974,7 @@ const CrearFormulario = {
                   isDisminuidoSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Disminuido"),
+              m("label.form-label", { for: "inputDisminuido" }, "Disminuido"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1767,7 +1987,7 @@ const CrearFormulario = {
                   isAbolidoSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Abolido"),
+              m("label.form-label", { for: "inputAbolido" }, "Abolido"),
             ]),
           ]),
           m("div.col.text-center", [
@@ -1775,12 +1995,12 @@ const CrearFormulario = {
               m("input.form-check-input", {
                 type: "checkbox",
                 value: "",
-                id: "inputSonidoDeLaVoz",
+                id: "inputEstridor",
                 onclick: (event) => {
-                  isSonidoDeLaVozSelected = event.target.checked;
+                  isEstridorSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Sonido de la voz"),
+              m("label.form-label", { for: "inputEstridor" }, "Estridor"),
             ]),
           ]),
         ]),
@@ -1796,7 +2016,7 @@ const CrearFormulario = {
                   isEdemaSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputPeso" }, "Edema"),
+              m("label.form-label", { for: "inputEdema" }, "Edema"),
             ]),
           ]),
         ])
@@ -1957,16 +2177,21 @@ const CrearFormulario = {
               ID: 'sec_TerapiaRespiratoria.nextval',
               //ID: 300,
             };
-            if (confirm("¿Estás seguro quieres guardar este formulario?")) {
-              // Lógica de eliminación del elemento aquí
-              console.log(formulario);
-              console.log(Pedido.data.AT_MV);
-              formularioModelo.guardar(formulario);
-              m.mount(document.querySelector("#gestion-muestras"), null);
-              m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
-              formularioModelo.listado = [];
-              formularioModelo.loading = true;
+            if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
+              if (confirm("¿Estás seguro quieres guardar este formulario?")) {
+                // Lógica de eliminación del elemento aquí
+                console.log(formulario);
+                console.log(Pedido.data.AT_MV);
+                formularioModelo.guardar(formulario);
+                m.mount(document.querySelector("#gestion-muestras"), null);
+                m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
+                formularioModelo.listado = [];
+                formularioModelo.loading = true;
+              }
+            } else{
+              alert("Debe escoger al menos una prescripción");
             }
+            
 
             //alert("Guardar");
             //alert("Guardar");

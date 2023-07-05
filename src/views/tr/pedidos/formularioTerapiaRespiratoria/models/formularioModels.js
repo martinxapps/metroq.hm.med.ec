@@ -33,16 +33,16 @@ let FormularioModels = {
               FormularioModels.listaEscalaDelDolor = result;
               FormularioModels.loading = false;
               //console.log(FormularioDeRegistro.listaEscalaDelDolor);
-            }else {
+            }/* else {
               FormularioModels.listaEscalaDelDolor.push({data: [{VALUE: ''}]});
-              alert(terapiaRespiratoriaController.error);
+              alert(FormularioModels.error);
                 FormularioModels.loading = false;
-            }
+            } */
           })
           .catch(function (error) {
             FormularioModels.error = error;
             alert(FormularioModels.error);
-            FormularioDeRegistro.loading = false;
+            //FormularioDeRegistro.loading = false;
           });
       },
 
@@ -161,6 +161,7 @@ let FormularioModels = {
             //FormularioModels.listado.push(result);
             FormularioModels.cargarListado(formulario.NUMERODEPEDIDO);
             FormularioModels.loading = false;
+            window.location.reload();
             //window.location.href = window.location.href;
         })
         .catch(function(error) {

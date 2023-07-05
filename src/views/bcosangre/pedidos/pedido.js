@@ -1,8 +1,8 @@
 import HeaderPrivate from '../../layout/header-private';
-import SidebarNeuro from '../sidebarNeuro';
+import SidebarBcoSangre from '../sidebarBcosangre';
 import App from '../../app';
 import m from 'mithril';
-import NeuroPedidos from './pedidos';
+import BcoPedidos from './pedidos';
 
 
 const FOR005 = {
@@ -519,7 +519,7 @@ const Evoluciones = {
             method: "POST",
             url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
             body: {
-                numeroHistoriaClinica: NeuroPedido.data.CD_PACIENTE + '01'
+                numeroHistoriaClinica: BcoPedido.numeroHistoriaClinica + '01'
             },
             headers: {
                 "Authorization": localStorage.accessToken,
@@ -573,8 +573,8 @@ const Examenes = {
 
     view: () => {
 
-        if (NeuroPedido.examenes.length !== 0) {
-            return NeuroPedido.examenes.map(function (_val, _i, _contentData) {
+        if (BcoPedido.examenes.length !== 0) {
+            return BcoPedido.examenes.map(function (_val, _i, _contentData) {
                 return [
                     m('.tx-14.tx-semibold.d-inline', _val.EXAMEN),
                     m('br'),
@@ -589,7 +589,7 @@ const Examenes = {
 }
 
 
-const NeuroPedido = {
+const BcoPedido = {
     data: [],
     examenes: [],
     error: '',
@@ -599,448 +599,46 @@ const NeuroPedido = {
     oninit: (_data) => {
 
         if (_data.attrs.numeroPedido !== undefined) {
-            document.title = "Detalle de Pedidos N°: " + _data.attrs.numeroPedido + " | " + App.title;
+            document.title = "Detalle Hoja 005 " + _data.attrs.numeroPedido + " | " + App.title;
 
-            if (NeuroPedido.data !== undefined && NeuroPedido.data.length == 0) {
-                NeuroPedido.numeroPedido = _data.attrs.numeroPedido;
-                NeuroPedido.numeroAtencion = _data.attrs.numeroAtencion;
-                NeuroPedido.numeroHistoriaClinica = _data.attrs.numeroHistoriaClinica;
-                NeuroPedido.fetch();
+            if (BcoPedido.data !== undefined && BcoPedido.data.length == 0) {
+                BcoPedido.numeroPedido = _data.attrs.numeroPedido;
+                BcoPedido.numeroAtencion = _data.attrs.numeroAtencion;
+                BcoPedido.numeroHistoriaClinica = _data.attrs.numeroHistoriaClinica;
+                BcoPedido.fetch();
             } else {
-                if (NeuroPedido.numeroPedido !== _data.attrs.numeroPedido) {
-                    NeuroPedido.numeroPedido = _data.attrs.numeroPedido;
-                    NeuroPedido.numeroAtencion = _data.attrs.numeroAtencion;
-                    NeuroPedido.numeroHistoriaClinica = _data.attrs.numeroHistoriaClinica;
-                    NeuroPedido.fetch();
-
+                if (BcoPedido.numeroPedido !== _data.attrs.numeroPedido) {
+                    BcoPedido.numeroPedido = _data.attrs.numeroPedido;
+                    BcoPedido.numeroAtencion = _data.attrs.numeroAtencion;
+                    BcoPedido.numeroHistoriaClinica = _data.attrs.numeroHistoriaClinica;
+                    BcoPedido.fetch();
                 }
 
             }
         }
     },
     fetch: () => {
-        NeuroPedido.data = [];
-        NeuroPedido.loader = true;
-        m.request({
-            method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/status-pedido-neuro",
-            body: {
-                numeroPedido: NeuroPedido.numeroPedido,
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
-                if (result.status) {
-                    NeuroPedido.loader = false;
-                    NeuroPedido.data = result.data;
-                    NeuroPedido.examenes = result.examenes;
-                    Evoluciones.fetch();
-                } else {
-                    NeuroPedido.error = result.message;
-                }
-
-            })
-            .catch(function (e) {
-
-            })
+        BcoPedido.data = [];
+        BcoPedido.loader = true;
+        BcoPedido.loader = false;
+        BcoPedido.data = [];
+        BcoPedido.examenes = [];
+        Evoluciones.fetch();
 
     },
 
     view: (_data) => {
 
         return [
-            m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("neurofisiologia") }),
-            m(SidebarNeuro, { oncreate: SidebarNeuro.setPage(20) }),
+            m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("bco-sangre") }),
             m("div.content.content-components",
                 m("div.container.mg-l-0.mg-r-0", {
                     style: { "max-width": "100%" }
                 }, [
-                    m("ol.breadcrumb.df-breadcrumbs.mg-b-10", [
-                        m("li.breadcrumb-item",
-                            m(m.route.Link, { href: "/" }, [
-                                " MetroPlus "
-                            ])
-                        ),
-                        m("li.breadcrumb-item",
-                            m(m.route.Link, { href: "/neurofisiologia" }, [
-                                "Neurofisiología"
-                            ])
-
-                        ),
-                        m("li.breadcrumb-item.active[aria-current='page']",
-                            "Detalle de Pedido"
-                        ),
-
-                    ]),
-                    m("h1.df-title.mg-t-20.mg-b-10",
-                        "Detalle de Pedido N°: " + NeuroPedido.numeroPedido
-                    ),
-
 
                     m("div.row.animated.fadeInUp", [
 
-                        m("div.col-12", [
-
-                            m("div.table-loader.wd-100p", {
-                                oncreate: (el) => {
-                                    if (NeuroPedido.loader) {
-                                        el.dom.hidden = false;
-                                    } else {
-                                        el.dom.hidden = true;
-
-                                    }
-                                },
-                                onupdate: (el) => {
-                                    if (NeuroPedido.loader) {
-                                        el.dom.hidden = false;
-                                    } else {
-                                        el.dom.hidden = true;
-
-                                    }
-                                }
-
-                            }, [
-                                m("div.placeholder-paragraph", [
-                                    m("div.line"),
-                                    m("div.line")
-                                ])
-                            ]
-
-
-                            ),
-
-                            m("div.table-content.col-12.pd-r-0.pd-l-0.pd-b-20.", {
-                                oncreate: (el) => {
-                                    if (NeuroPedido.loader) {
-                                        el.dom.hidden = true;
-                                    } else {
-                                        el.dom.hidden = false;
-
-                                    }
-                                },
-                                onupdate: (el) => {
-                                    if (NeuroPedido.loader) {
-                                        el.dom.hidden = true;
-                                    } else {
-                                        el.dom.hidden = false;
-
-                                    }
-                                }
-                            }, [
-
-                                m("div.bg-white.bd.pd-20.pd-lg-30.d-flex.flex-column.justify-content-end", [
-                                    m("h5.tx-right.tx-normal.tx-rubik.tx-color-03.mg-b-0",
-                                        m("small.pd-2.tx-20",
-                                            m("i.fas.fa-times-circle.pd-2", {
-                                                "style": { "cursor": "pointer" },
-                                                title: "Cerrar",
-                                                onclick: () => {
-
-
-                                                    if (NeuroPedidos.idFiltro !== undefined && NeuroPedidos.idFiltro > 1) {
-
-                                                        m.route.set('/neurofisiologia/pedidos/', {
-                                                            idFiltro: NeuroPedidos.idFiltro,
-                                                            fechaDesde: NeuroPedidos.fechaDesde,
-                                                            fechaHasta: NeuroPedidos.fechaHasta,
-                                                        });
-
-                                                    } else {
-
-                                                        m.route.set('/neurofisiologia/pedidos/', {
-                                                            idFiltro: 1,
-                                                        });
-
-                                                    }
-
-
-
-
-                                                }
-                                            }
-
-                                            )
-
-
-                                        ),
-
-                                    ),
-
-
-                                    ((NeuroPedido.data.TIPO_NeuroPedido == 'N') ? [
-
-                                        m("span.pd-6.wd-100p.wd-md-20p", {
-                                            class: "badge badge-danger mg-b-2 mg-r-2 ",
-                                        }, [
-                                            m("i.fas.fa-file-alt.mg-r-5"),
-                                        ], "NeuroPedido Urgente"),
-
-                                    ] : [
-                                        m("span.pd-6.wd-100p.wd-md-20p", {
-                                            class: "badge badge-primary mg-b-2 mg-r-2",
-                                        }, [
-                                            m("i.fas.fa-file-alt.mg-r-5"),
-                                        ], "NeuroPedido Normal"),
-                                    ]),
-
-
-                                    m('div.table-responsive', [
-                                        m("table.table.table-bordered.table-sm.tx-12", [
-                                            m("thead",
-
-                                                m("tr.bg-litecoin.op-9.tx-white", [
-                                                    m("th[scope='col'][colspan='9']",
-                                                        "DATOS DEL NeuroPedido:"
-                                                    ),
-
-                                                ])
-                                            ),
-                                            m("tbody", [
-                                                m("tr", [
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "N° de NeuroPedido:"
-                                                    ),
-                                                    m("td", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.CD_PRE_MED
-                                                    ),
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Fecha:"
-                                                    ),
-                                                    m("td[colspan='2']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.FECHA_PEDIDO + " " + NeuroPedido.data.HORA_PEDIDO
-
-                                                    ),
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Origen:"
-                                                    ),
-                                                    m("td[colspan='3']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.SECTOR
-                                                    ),
-
-                                                ]),
-
-                                                m("tr", [
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Médico Solicitante:"
-                                                    ),
-                                                    m("td[colspan='4']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.MED_MV,
-
-                                                    ),
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Especialidad:"
-                                                    ),
-                                                    m("td[colspan='3']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.ESPECIALIDAD
-                                                    ),
-
-
-
-                                                ]),
-                                            ]),
-                                            m("thead",
-
-                                                m("tr.bg-litecoin.op-9.tx-white", [
-                                                    m("th[scope='col'][colspan='9']",
-                                                        "DATOS DEL PACIENTE:"
-                                                    ),
-
-                                                ])
-                                            ),
-                                            m("tbody", [
-                                                m("tr", [
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Apellidos y Nombres:"
-                                                    ),
-                                                    m("td[colspan='4']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.NM_PACIENTE
-                                                    ),
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "EDAD:"
-                                                    ),
-                                                    m("td", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.EDAD
-
-                                                    ),
-
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "NHC:"
-                                                    ),
-                                                    m("td[colspan='2']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.CD_PACIENTE
-                                                    ),
-
-                                                ]),
-                                                m("tr", [
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "N° Atención:"
-                                                    ),
-                                                    m("td", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.AT_MV
-                                                    ),
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Peso:"
-                                                    ),
-                                                    m("td", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.PESO
-                                                    ),
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Altura:"
-                                                    ),
-                                                    m("td", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.ALTURA
-                                                    ),
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Ubicación:"
-                                                    ),
-
-                                                    m("td[colspan='4']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        NeuroPedido.data.SECTOR + " " + NeuroPedido.data.UBICACION
-                                                    ),
-
-                                                ]),
-                                                m("tr.bg-litecoin.op-9.tx-white", [
-                                                    m("th[scope='col'][colspan='9']",
-                                                        "EXÁMENES Y OBSERVACIONES:"
-                                                    ),
-
-                                                ]),
-                                                m("tr", [
-                                                    m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
-                                                        "Exámenes:"
-                                                    ),
-                                                    m("td[colspan='8']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        m(Examenes)
-                                                    ),
-
-
-                                                ]),
-
-                                                m("tr.d-print-none.bg-litecoin.op-9.tx-white.", [
-                                                    m("th[scope='col'][colspan='9']",
-                                                        "EVOLUCIONES Y PRESCRIPCIONES:"
-                                                    ),
-
-                                                ]),
-                                                m("tr.d-print-none", [
-
-                                                    m("td[colspan='9']", {
-                                                        style: { "background-color": "#eaeff5" }
-
-                                                    },
-                                                        m("ul.nav.nav-tabs[id='myTab'][role='tablist']", [
-                                                            m("li.nav-item",
-                                                                m("a.nav-link[id='home-tab'][data-toggle='tab'][href='#home'][role='tab'][aria-controls='home'][aria-selected='true']", {
-                                                                    style: { "color": "#476ba3" }
-                                                                },
-                                                                    m("i.fas.fa-file-alt.pd-1.mg-r-2"),
-
-                                                                    " HOJA 005"
-                                                                )
-                                                            ),
-
-
-                                                        ]),
-                                                    ),
-
-
-                                                ]),
-                                                m("tr.d-print-none", [
-
-                                                    m("td[colspan='9']", {
-
-                                                    },
-                                                        m(".tab-content.bd.bd-gray-300.bd-t-0[id='myTab']", [
-                                                            m(".tab-pane.fade[id='home'][role='tabpanel'][aria-labelledby='home-tab']", [
-                                                                m(Evoluciones),
-                                                            ]),
-
-                                                        ])
-                                                    ),
-
-
-                                                ]),
-                                                m("tr.d-print-none", [
-
-                                                ]),
-
-                                            ])
-                                        ])
-                                    ]),
-
-
-                                ])
-
-
-                            ])
-                        ])
+                        m(Evoluciones),
                     ]),
 
 
@@ -1057,4 +655,4 @@ const NeuroPedido = {
 };
 
 
-export default NeuroPedido;
+export default BcoPedido;

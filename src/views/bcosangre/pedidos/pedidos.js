@@ -242,10 +242,10 @@ const tablePedidosBcoSangre = {
                                     m("h6.dropdown-header.tx-uppercase.tx-12.tx-bold.tx-inverse",
                                         "FILTROS:"
                                     ),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=1" }, [
+                                    m(m.route.Link, { class: 'dropdown-item', href: "/bco-sangre/pedidos/?idFiltro=1" }, [
                                         "Pedidos de Hoy"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=2&fechaDesde=" + PedidosBcoSangre.fechaDesde + "&fechaHasta=" + PedidosBcoSangre.fechaHasta }, [
+                                    m(m.route.Link, { class: 'dropdown-item', href: "/bco-sangre/pedidos/?idFiltro=2&fechaDesde=" + PedidosBcoSangre.fechaDesde + "&fechaHasta=" + PedidosBcoSangre.fechaHasta }, [
                                         "Pedidos entre Fechas"
                                     ]),
                                     m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-respiratoria/pedidos/?idFiltro=3&fechaDesde=" + PedidosBcoSangre.fechaDesde + "&fechaHasta=" + PedidosBcoSangre.fechaHasta }, [
@@ -383,7 +383,7 @@ const PedidosBcoSangre = {
             },
             {
                 mRender: function (data, type, full) {
-                    return full.CD_PED_LAB;
+                    return full.CD_PRE_MED;
                 },
                 visible: true,
                 aTargets: [1],
@@ -464,6 +464,8 @@ const PedidosBcoSangre = {
                                     class: (aData.SECTOR == 'EMERGENCIA' ? "tx-danger" : "tx-primary")
                                 }, aData.SECTOR),
                                 m('br'),
+                                'Prescripción N°:' + aData.CD_PRE_MED,
+                                m('br'),
                                 'NHC: ' + aData.CD_PACIENTE,
                                 m('br'),
                                 'PTE: ' + aData.NM_PACIENTE,
@@ -484,16 +486,16 @@ const PedidosBcoSangre = {
                             ]
 
                             ),
-                            m("td", { "style": {} },
+                            m("td.tx-14",
                                 aData.MED_MV
 
 
                             ),
 
 
-                            m("td.tx-center.d-none", {
+                            m("td.tx-center.tx-semibold.tx-14", {
                                 onclick: () => {
-                                    m.route.set("/cardiologia/pedido/", {
+                                    m.route.set("/bco-sangre/pedido/", {
                                         numeroHistoriaClinica: aData.CD_PACIENTE,
                                         numeroAtencion: aData.AT_MV,
                                         numeroPedido: aData.CD_PRE_MED,
@@ -502,7 +504,7 @@ const PedidosBcoSangre = {
                                 },
                                 "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" }
                             },
-                                " Ver Pedido "
+                                " Ver 005 "
 
                             )
 

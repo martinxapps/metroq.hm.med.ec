@@ -1,6 +1,6 @@
 import FormularioModels from "./models/formularioModels";
 import loader from "../../../patologia/utils/loader";
-import { cargarHoraActual, cargarFechaActual } from "./logic/formulario";
+import { cargarHoraActual, cargarFechaActual, containsInvalidChars } from "./logic/formulario";
 import Encrypt from "../../../../models/encrypt";
 
 let formularioModelo = FormularioModels;
@@ -245,10 +245,23 @@ const inputIncentivoRespiratorio = {
               class: "form-control",
               type: "number",
               id: "inputMililitrosPorSegundo",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.MILILITROSPORSEGUNDOINCENTIVO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -260,16 +273,29 @@ const inputIncentivoRespiratorio = {
             m(
               "label",
               { class: "form-label", for: "inputEscalaDolor" },
-              m("b", "Centimetros cúbicos por segundo")
+              m("b", "Centímetros cúbicos por segundo")
             ),
             m("input", {
               class: "form-control",
               type: "number",
               id: "inputCentimetrosCubicosPorSegundo",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.CENTIMETROSSEGUNDOINCENTIVO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -297,10 +323,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputPorcentajeFraccion",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRACCIONOXIGENOPORCENTAJE;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -318,10 +357,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputLitrosPorMinutoFraccion",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRACCIONIOXIGENOLITROS;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -342,10 +394,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputPorcentajeAltoFlujo",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.ALTOFLUJOPORCENTAJE;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -363,15 +428,29 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputLitroAltoFlujo",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.ALTOFLUJOLITROSPORMINUTO;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
       ]),
+      m("br"),
       m("h6", "Tienda Facial"),
       m("div", { class: "row" }, [
         m(
@@ -387,10 +466,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputPorcentajeTiendaFacial",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.TIENDAFACIALPORCENTAJE;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -408,10 +500,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputLitroPorMinutoTiendaFacial",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.TIENDAFACIALLITROSPORMINUTO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -432,10 +537,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputPorcentajeTuboEnT",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.TUBOENTPORCENTAJE;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -453,15 +571,29 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputLitroTuboEnT",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.TUBOENTLITROSPORMINUTO;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
       ]),
+      m("br"),
       m("h6", "Canula Nasal"),
       m("div", { class: "row" }, [
         m(
@@ -477,10 +609,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputPorcentajeCanulaNasal",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.CANULANASALPORCENTAJE;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -498,10 +643,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputLitroPorMinutoCanulaNasal",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.CANULANASALLITROSPORMINUTO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -522,10 +680,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputPorcentajeMascarilla",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.MASCARILLAPORCENTAJE;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -543,15 +714,29 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputLitroMascarilla",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.MASCARILLALITROSPORMINUTO;
               },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
+              },
             }),
           ])
         ),
       ]),
+      m("br"),
       m("h6", "Heliox"),
       m("div", { class: "row" }, [
         m(
@@ -567,10 +752,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputPorcentajeHeliox",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.HELIOXPORCENTAJE;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -588,10 +786,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputLitroPorMinutoHeliox",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.HELIOXLITROSPORMINUTO;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -614,10 +825,23 @@ const inputOxigenoTerapia = {
               class: "form-control",
               type: "number",
               id: "inputPorcentajeAireAmbiente",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.AIREAMBIENTEPORCENTAJE;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -643,10 +867,23 @@ const inputMonitoreo = {
               class: "form-control",
               type: "number",
               id: "inputSaturacionPreviaPorcentaje",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.SATURACIONPREVIA;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -664,10 +901,23 @@ const inputMonitoreo = {
               class: "form-control",
               type: "number",
               id: "inputSaturacionPosteriorPorcentaje",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.SATURACIONPOSTERIOR;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -688,10 +938,23 @@ const inputMonitoreo = {
               class: "form-control",
               type: "number",
               id: "inputFrecuenciaCardiacaPreviaPorMinuto",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRECUENCIACARDIACAPREVIA;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -709,10 +972,23 @@ const inputMonitoreo = {
               class: "form-control",
               type: "number",
               id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRECUENCIACARDIACAPOSTERIOR;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -733,10 +1009,23 @@ const inputMonitoreo = {
               class: "form-control",
               type: "number",
               id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPREVIA;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -754,10 +1043,23 @@ const inputMonitoreo = {
               class: "form-control",
               type: "number",
               id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
+              placeholder: "Ingrese un valor",
               //disabled: true,
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPOS;
+              },
+              oninput: function(e) {
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+              },
+              onpaste: function(e) {
+                const clipboardData = e.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData("text");
+        
+                if (containsInvalidChars(pastedText)) {
+                  e.preventDefault();
+                }
               },
             }),
           ])
@@ -1123,7 +1425,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputNebulizacion" },
                       "Nebulización"
                     ),
                   ])
@@ -1151,7 +1453,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputUltrasonido" },
                       "Ultrasonido"
                     ),
                   ])
@@ -1178,7 +1480,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputInahaladorDosis" },
                       "Inhaladores Dosis Medida"
                     ),
                   ])
@@ -1192,326 +1494,167 @@ const VerUnFormulario = {
               m(inputMedicinas),
             ],
             [
-              m(
-                "div",
-                { class: "d-flex justify-content-center" },
-                m("h6", "Higiene Bronco Pulmonar")
-              ),
-              m("div", { class: "row d-flex justify-content-center" }, [
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+              m("div", { class: "container" }, [
+                m("div", { class: "d-flex justify-content-center" }, [
+                  m("h6", "Higiene Bronco Pulmonar")
+                ]),
+                m("div", { class: "row d-flex justify-content-center" }, [
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputDrenajePostural}",
+                      //value: inputDrenajePostural,
                       //disabled: true,
                       id: "inputDrenajePostural",
-                      checked:
-                        formularioModelo.listadoUnitario.DRENAJEPOSTURAL ===
-                        "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.DRENAJEPOSTURAL === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.DRENAJEPOSTURAL = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.DRENAJEPOSTURAL = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Drenaje Postural"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputDrenajePostural" }, "Drenaje Postural")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputPercursiones}",
                       id: "inputPercursiones",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.PERCUSIONES === "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.PERCUSIONES === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.PERCUSIONES = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.PERCUSIONES = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Percursiones"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputPercursiones" }, "Percursiones")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputVibraciones}",
                       id: "inputVibraciones",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.VIBRACIONES === "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.VIBRACIONES === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.VIBRACIONES = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.VIBRACIONES = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Vibraciones"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputVibraciones" }, "Vibraciones")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputTosEfectiva}",
                       id: "inputTosEfectiva",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.TOSEFECTIVA === "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.TOSEFECTIVA === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.TOSEFECTIVA = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.TOSEFECTIVA = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Tos Efectiva"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputTosEfectiva" }, "Tos Efectiva")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputAsistenteTos}",
                       id: "inputAsistenteTos",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.ASISTENCIADETOS ===
-                        "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.ASISTENCIADETOS === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.ASISTENCIADETOS = event
-                          .target.checked
-                          ? "true"
-                          : "false";
+                        formularioModelo.listadoUnitario.ASISTENCIADETOS = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Asistente de Tos"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
+                    m("label", { class: "form-label", for: "inputAsistenteTos" }, "Asistente de Tos")
+                  ]),
+                  m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "${inputChalecoVibroprecutor}",
                       id: "inputChalecoVibroprecutor",
                       //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .CHALECOVIBROPRECUTOR === "true"
-                          ? "checked"
-                          : "",
+                      checked: formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR === "true" ? "checked" : "",
                       onclick: function (event) {
-                        formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR =
-                          event.target.checked ? "true" : "false";
+                        formularioModelo.listadoUnitario.CHALECOVIBROPRECUTOR = event.target.checked ? "true" : "false";
                       },
                     }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Chaleco Vibroprecutor"
-                    ),
-                  ])
-                ),
-              ]),
+                    m("label", { class: "form-label", for: "inputChalecoVibroprecutor" }, "Chaleco Vibroprecutor")
+                  ]),
+                ]),
+              ])
+              
             ],
             [
-              m(
-                "div",
-                { class: "d-flex justify-content-center" },
+              
+              m("div", { class: "d-flex justify-content-center" }, [
                 m("h6", "Terapia Expansiva")
-              ),
-              m("div", { class: "row" }, [
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-1" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputIncentivoRespiratorio",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .INCENTIVORESPIRATORIO === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Incentivo Respiratorio"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputPresionPositivaContinuaEnLaViaAeria",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .PRESIONPOSITIVAVIAAREA === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Presión Positiva continua en la vía aérea"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-4" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputPresionPositivaAlFinalDeLaExpiracion",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .PRESIONPOSITIVAEXPIRACION === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Presión Positiva al final de la expiración"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-1" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputKinesioterapiaDelTorax",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .KINISIOTERAPIADELTORAX === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Kinesioterapia del tórax"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-1" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputEjerciciosRespiratorios",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario
-                          .EJERCICIOSRESPIRATORIOS === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Ejercicios respiratorios"
-                    ),
-                  ])
-                ),
               ]),
+              m("div", { class: "row" }, [
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-1" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputIncentivoRespiratorio",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.INCENTIVORESPIRATORIO = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputIncentivoRespiratorio" }, "Incentivo Respiratorio"),
+                ]),
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-4" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputPresionPositivaContinuaEnLaViaAeria",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.PRESIONPOSITIVAVIAAREA = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputPresionPositivaContinuaEnLaViaAeria" }, "Presión Positiva continua en la vía aérea"),
+                ]),
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-4" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputPresionPositivaAlFinalDeLaExpiracion",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.PRESIONPOSITIVAEXPIRACION = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputPresionPositivaAlFinalDeLaExpiracion" }, "Presión Positiva al final de la expiración"),
+                ]),
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-1" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputKinesioterapiaDelTorax",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.KINISIOTERAPIADELTORAX = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputKinesioterapiaDelTorax" }, "Kinesioterapia del tórax"),
+                ]),
+                m("div", { class: "col-md-3 col-sm-6 col-xs-12 text-center mb-1" }, [
+                  m("input", {
+                    class: "form-check-input",
+                    type: "checkbox",
+                    id: "inputEjerciciosRespiratorios",
+                    //disabled: true,
+                    checked: formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS === "true" ? "checked" : "",
+                    onclick: function (event) {
+                      formularioModelo.listadoUnitario.EJERCICIOSRESPIRATORIOS = event.target.checked ? "true" : "false";
+                    },
+                  }),
+                  m("label", { class: "form-label", for: "inputEjerciciosRespiratorios" }, "Ejercicios respiratorios"),
+                ]),
+              ]),
+              
               m(
                 "div",
                 { class: "d-flex justify-content-center" },
@@ -1545,7 +1688,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputVentilacionMecanica",
                       //disabled: true,
                       checked:
@@ -1560,7 +1702,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputVentilacionMecanica" },
                       "Ventilación Mecánica"
                     ),
                   ])
@@ -1572,7 +1714,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputVentilacionNoInvasiva",
                       //disabled: true,
                       checked:
@@ -1587,7 +1728,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputVentilacionNoInvasiva" },
                       "Ventilación no invasiva"
                     ),
                   ])
@@ -1611,7 +1752,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputNasotraqueal",
                       //disabled: true,
                       checked:
@@ -1627,7 +1767,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputNasotraqueal" },
                       "Nasotraqueal"
                     ),
                   ])
@@ -1639,7 +1779,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputTraqueal",
                       //disabled: true,
                       checked:
@@ -1655,7 +1794,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputTraqueal" },
                       "Traqueal"
                     ),
                   ])
@@ -1667,7 +1806,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputOrotraqueal",
                       //disabled: true,
                       checked:
@@ -1683,7 +1821,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputOrotraqueal" },
                       "Orotraqueal"
                     ),
                   ])
@@ -1695,7 +1833,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputLavadoNasal",
                       //disabled: true,
                       checked:
@@ -1711,7 +1848,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputLavadoNasal" },
                       "Lavado Nasal"
                     ),
                   ])
@@ -1723,7 +1860,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputSubglotica",
                       //disabled: true,
                       checked:
@@ -1739,7 +1875,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputSubglotica" },
                       "Subglótica"
                     ),
                   ])
@@ -1762,7 +1898,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputEsputo",
                       //disabled: true,
                       checked:
@@ -1778,7 +1913,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputEsputo" },
                       "Esputo"
                     ),
                   ])
@@ -1790,7 +1925,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputHisopado",
                       //disabled: true,
                       checked:
@@ -1806,7 +1940,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputHisopado" },
                       "Hisopado"
                     ),
                   ])
@@ -1818,7 +1952,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputSecrecionTraqueal",
                       //disabled: true,
                       checked:
@@ -1833,7 +1966,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputSecrecionTraqueal" },
                       "Secreción Traqueal"
                     ),
                   ])
@@ -1855,7 +1988,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputDisnea",
                       //disabled: true,
                       checked:
@@ -1871,7 +2003,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputDisnea" },
                       "Disnea"
                     ),
                   ])
@@ -1883,7 +2015,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputTos",
                       //disabled: true,
                       checked:
@@ -1899,7 +2030,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputTos" },
                       "Tos"
                     ),
                   ])
@@ -1911,7 +2042,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputExpectoacion",
                       //disabled: true,
                       checked:
@@ -1928,7 +2058,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputExpectoacion" },
                       "Expectoración"
                     ),
                   ])
@@ -1940,7 +2070,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputDolorToracico",
                       //disabled: true,
                       checked:
@@ -1957,7 +2086,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputDolorToracico" },
                       "Dolor Torácico"
                     ),
                   ])
@@ -1969,7 +2098,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputHemoptisis",
                       //disabled: true,
                       checked:
@@ -1985,7 +2113,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputHemoptisis" },
                       "Hemoptisis"
                     ),
                   ])
@@ -1997,7 +2125,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputFiebre",
                       //disabled: true,
                       checked:
@@ -2013,7 +2140,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputFiebre" },
                       "Fiebre"
                     ),
                   ])
@@ -2028,7 +2155,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputConsciencia",
                       //disabled: true,
                       checked:
@@ -2044,7 +2170,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputConsciencia" },
                       "Consciencia"
                     ),
                   ])
@@ -2056,7 +2182,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
                       id: "inputIntubado",
                       //disabled: true,
                       checked:
@@ -2072,7 +2197,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputIntubado" },
                       "Intubado"
                     ),
                   ])
@@ -2084,260 +2209,6 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
-                      id: "inputEstridor",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.ESTRIDOR === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.ESTRIDOR = event.target
-                          .checked
-                          ? "true"
-                          : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Estridor"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-2" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputSibilancias",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.SIBILANCIAS === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.SIBILANCIAS = event
-                          .target.checked
-                          ? "true"
-                          : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Sibilancias"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-2" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputRoncus",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.RONCUS === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.RONCUS = event.target
-                          .checked
-                          ? "true"
-                          : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Roncus"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-2" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputCrepitantes",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.CREPITANTES === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.CREPITANTES = event
-                          .target.checked
-                          ? "true"
-                          : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Crepitantes"
-                    ),
-                  ])
-                ),
-              ]),
-              m("div", { class: "row justify-content-center" }, [
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-2" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputLocalizacion",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.LOCALIZACION === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.LOCALIZACION = event
-                          .target.checked
-                          ? "true"
-                          : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Localización"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-2" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputCianosis",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.CIANOSIS === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.CIANOSIS = event.target
-                          .checked
-                          ? "true"
-                          : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Cianosis"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-2" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputRuidoRespiratorio",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.RUIDORESPIRATORIO ===
-                        "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.RUIDORESPIRATORIO =
-                          event.target.checked ? "true" : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Ruido Respiratorio"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-2" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputDisminuido",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.DISMINUIDO === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.DISMINUIDO = event
-                          .target.checked
-                          ? "true"
-                          : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Disminuido"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-2" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
-                      id: "inputAbolido",
-                      //disabled: true,
-                      checked:
-                        formularioModelo.listadoUnitario.ABOLIDO === "true"
-                          ? "checked"
-                          : "",
-                      onclick: function (event) {
-                        formularioModelo.listadoUnitario.ABOLIDO = event.target
-                          .checked
-                          ? "true"
-                          : "false";
-                      },
-                    }),
-                    m(
-                      "label",
-                      { class: "form-label", for: "inputPeso" },
-                      "Abolido"
-                    ),
-                  ])
-                ),
-                m(
-                  "div",
-                  { class: "col text-center" },
-                  m("div", { class: "mb-2" }, [
-                    m("input", {
-                      class: "form-check-input",
-                      type: "checkbox",
-                      value: "",
                       id: "inputSonidoDeLaVoz",
                       //disabled: true,
                       checked:
@@ -2354,8 +2225,89 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputSonidoDeLaVoz" },
                       "Sonido de la voz"
+                    ),
+                  ])
+                ),
+                m(
+                  "div",
+                  { class: "col text-center" },
+                  m("div", { class: "mb-2" }, [
+                    m("input", {
+                      class: "form-check-input",
+                      type: "checkbox",
+                      id: "inputSibilancias",
+                      //disabled: true,
+                      checked:
+                        formularioModelo.listadoUnitario.SIBILANCIAS === "true"
+                          ? "checked"
+                          : "",
+                      onclick: function (event) {
+                        formularioModelo.listadoUnitario.SIBILANCIAS = event
+                          .target.checked
+                          ? "true"
+                          : "false";
+                      },
+                    }),
+                    m(
+                      "label",
+                      { class: "form-label", for: "inputSibilancias" },
+                      "Sibilancias"
+                    ),
+                  ])
+                ),
+                m(
+                  "div",
+                  { class: "col text-center" },
+                  m("div", { class: "mb-2" }, [
+                    m("input", {
+                      class: "form-check-input",
+                      type: "checkbox",
+                      id: "inputRoncus",
+                      //disabled: true,
+                      checked:
+                        formularioModelo.listadoUnitario.RONCUS === "true"
+                          ? "checked"
+                          : "",
+                      onclick: function (event) {
+                        formularioModelo.listadoUnitario.RONCUS = event.target
+                          .checked
+                          ? "true"
+                          : "false";
+                      },
+                    }),
+                    m(
+                      "label",
+                      { class: "form-label", for: "inputRoncus" },
+                      "Roncus"
+                    ),
+                  ])
+                ),
+                m(
+                  "div",
+                  { class: "col text-center" },
+                  m("div", { class: "mb-2" }, [
+                    m("input", {
+                      class: "form-check-input",
+                      type: "checkbox",
+                      id: "inputCrepitantes",
+                      //disabled: true,
+                      checked:
+                        formularioModelo.listadoUnitario.CREPITANTES === "true"
+                          ? "checked"
+                          : "",
+                      onclick: function (event) {
+                        formularioModelo.listadoUnitario.CREPITANTES = event
+                          .target.checked
+                          ? "true"
+                          : "false";
+                      },
+                    }),
+                    m(
+                      "label",
+                      { class: "form-label", for: "inputCrepitantes" },
+                      "Crepitantes"
                     ),
                   ])
                 ),
@@ -2368,7 +2320,169 @@ const VerUnFormulario = {
                     m("input", {
                       class: "form-check-input",
                       type: "checkbox",
-                      value: "",
+                      id: "inputLocalizacion",
+                      //disabled: true,
+                      checked:
+                        formularioModelo.listadoUnitario.LOCALIZACION === "true"
+                          ? "checked"
+                          : "",
+                      onclick: function (event) {
+                        formularioModelo.listadoUnitario.LOCALIZACION = event
+                          .target.checked
+                          ? "true"
+                          : "false";
+                      },
+                    }),
+                    m(
+                      "label",
+                      { class: "form-label", for: "inputLocalizacion" },
+                      "Localización"
+                    ),
+                  ])
+                ),
+                m(
+                  "div",
+                  { class: "col text-center" },
+                  m("div", { class: "mb-2" }, [
+                    m("input", {
+                      class: "form-check-input",
+                      type: "checkbox",
+                      id: "inputCianosis",
+                      //disabled: true,
+                      checked:
+                        formularioModelo.listadoUnitario.CIANOSIS === "true"
+                          ? "checked"
+                          : "",
+                      onclick: function (event) {
+                        formularioModelo.listadoUnitario.CIANOSIS = event.target
+                          .checked
+                          ? "true"
+                          : "false";
+                      },
+                    }),
+                    m(
+                      "label",
+                      { class: "form-label", for: "inputCianosis" },
+                      "Cianosis"
+                    ),
+                  ])
+                ),
+                m(
+                  "div",
+                  { class: "col text-center" },
+                  m("div", { class: "mb-2" }, [
+                    m("input", {
+                      class: "form-check-input",
+                      type: "checkbox",
+                      id: "inputRuidoRespiratorio",
+                      //disabled: true,
+                      checked:
+                        formularioModelo.listadoUnitario.RUIDORESPIRATORIO ===
+                        "true"
+                          ? "checked"
+                          : "",
+                      onclick: function (event) {
+                        formularioModelo.listadoUnitario.RUIDORESPIRATORIO =
+                          event.target.checked ? "true" : "false";
+                      },
+                    }),
+                    m(
+                      "label",
+                      { class: "form-label", for: "inputRuidoRespiratorio" },
+                      "Ruido Respiratorio"
+                    ),
+                  ])
+                ),
+                m(
+                  "div",
+                  { class: "col text-center" },
+                  m("div", { class: "mb-2" }, [
+                    m("input", {
+                      class: "form-check-input",
+                      type: "checkbox",
+                      id: "inputDisminuido",
+                      //disabled: true,
+                      checked:
+                        formularioModelo.listadoUnitario.DISMINUIDO === "true"
+                          ? "checked"
+                          : "",
+                      onclick: function (event) {
+                        formularioModelo.listadoUnitario.DISMINUIDO = event
+                          .target.checked
+                          ? "true"
+                          : "false";
+                      },
+                    }),
+                    m(
+                      "label",
+                      { class: "form-label", for: "inputDisminuido" },
+                      "Disminuido"
+                    ),
+                  ])
+                ),
+                m(
+                  "div",
+                  { class: "col text-center" },
+                  m("div", { class: "mb-2" }, [
+                    m("input", {
+                      class: "form-check-input",
+                      type: "checkbox",
+                      id: "inputAbolido",
+                      //disabled: true,
+                      checked:
+                        formularioModelo.listadoUnitario.ABOLIDO === "true"
+                          ? "checked"
+                          : "",
+                      onclick: function (event) {
+                        formularioModelo.listadoUnitario.ABOLIDO = event.target
+                          .checked
+                          ? "true"
+                          : "false";
+                      },
+                    }),
+                    m(
+                      "label",
+                      { class: "form-label", for: "inputAbolido" },
+                      "Abolido"
+                    ),
+                  ])
+                ),
+                m(
+                  "div",
+                  { class: "col text-center" },
+                  m("div", { class: "mb-2" }, [
+                    m("input", {
+                      class: "form-check-input",
+                      type: "checkbox",
+                      id: "inputEstridor",
+                      //disabled: true,
+                      checked:
+                        formularioModelo.listadoUnitario.ESTRIDOR === "true"
+                          ? "checked"
+                          : "",
+                      onclick: function (event) {
+                        formularioModelo.listadoUnitario.ESTRIDOR = event.target
+                          .checked
+                          ? "true"
+                          : "false";
+                      },
+                    }),
+                    m(
+                      "label",
+                      { class: "form-label", for: "inputEstridor" },
+                      "Estridor"
+                    ),
+                  ])
+                ),
+              ]),
+              m("div", { class: "row justify-content-center" }, [
+                m(
+                  "div",
+                  { class: "col text-center" },
+                  m("div", { class: "mb-2" }, [
+                    m("input", {
+                      class: "form-check-input",
+                      type: "checkbox",
                       id: "inputEdema",
                       //disabled: true,
                       checked:
@@ -2384,7 +2498,7 @@ const VerUnFormulario = {
                     }),
                     m(
                       "label",
-                      { class: "form-label", for: "inputPeso" },
+                      { class: "form-label", for: "inputEdema" },
                       "Edema"
                     ),
                   ])
@@ -2729,29 +2843,6 @@ const VerUnFormulario = {
             m.trust("&nbsp;"),
             " ",
             m.trust("&nbsp;"),
-            /* m(
-              "button",
-              {
-                class: "btn btn-primary",
-                type: "button",
-                disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Activo",
-              },
-              "Imprimir"
-            ), */
-            (formularioModelo.listadoUnitario.ESTADO === "Finalizado" ? 
-            m(m.route.Link, {
-
-              href: "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" + formularioModelo.listadoUnitario.ID,
-
-              class: "btn btn-primary",
-
-              target: "_blank",
-              type: "button",
-
-          }, "Imprimir")  : null
-            )
             
           ])
         : m(loader),

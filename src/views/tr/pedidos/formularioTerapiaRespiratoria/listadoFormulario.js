@@ -27,6 +27,7 @@ const ListadoFormulario = {
             m("th", { scope: "col" }, m("b", "Visualización")),
             //m("th", { scope: "col" }, m("b", "Editar")),
             m("th", { scope: "col" }, m("b", "Cancelar")),
+            m("th", { scope: "col" }, m("b", "Imprimir")),
             //m("th", { scope: "col" }, m("b", "Finalizar")),
           ])
         ),
@@ -45,17 +46,26 @@ const ListadoFormulario = {
                     //class: "btn btn-primary",
                     class: formulario.ESTADO === "Cancelado" || formulario.ESTADO === "Finalizado" ? "btn btn-secondary" : "btn btn-primary",
                     type: "button",
+                    disabled: formulario.ESTADO === "Cancelado" || formulario.ESTADO === "Finalizado",
                     onclick: function () {
                       formularioModelo.listadoUnitario = null;
-                      m.mount(document.querySelector("#gestion-muestras"), {
-                        view: () => {
-                          return m(VerUnFormulario, { id: formulario.ID });
-                        },
-                      }),
+                      if (
+                        window.confirm(
+                          `Estas seguro que deseas ir al formulario ${formulario.ID}?`
+                        )
+                      ){
+                        m.mount(document.querySelector("#gestion-muestras"), {
+                          view: () => {
+                            return m(VerUnFormulario, { id: formulario.ID });
+                          },
+                        }),
                         m.mount(
                           document.querySelector("#cerrar-gestion-muestras"),
                           cerrarGestionMuestra
                         );
+                      } 
+                      
+                        
                       /* console.log(formulario.ID);
                       m(VerUnFormulario, { id: formulario.ID }); */
                     },
@@ -101,6 +111,23 @@ const ListadoFormulario = {
                   },
                   "Cancelar"
                 )
+              ),
+              m(
+                "td",
+                (formulario.ESTADO === "Finalizado" ? 
+            m(m.route.Link, {
+
+              href: "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" + formulario.ID + "&output=pdf",
+
+              class: "btn btn-primary",
+
+              target: "_blank",
+              type: "button",
+
+          }, "Imprimir")  : m("div", {"class":"alert alert-danger","role":"alert"}, 
+          "Solo podras imprimir el formulario cuando este finalizado",
+        )
+            )
               ),
               /* m(
                 "td",
