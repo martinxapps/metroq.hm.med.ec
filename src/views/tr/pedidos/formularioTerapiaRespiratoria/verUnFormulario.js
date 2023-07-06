@@ -18,7 +18,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputSalbumatol" },
               m("b", "Salbutamol")
             ),
             m("input", {
@@ -38,7 +38,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputHipersal" },
               m("b", "Hipersal (7%)")
             ),
             m("input", {
@@ -58,7 +58,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputHipersal3" },
               m("b", "Hipersal (3,5%)")
             ),
             m("input", {
@@ -80,7 +80,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputDexametasona" },
               m("b", "Dexametasona")
             ),
             m("input", {
@@ -101,7 +101,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputClorhidratoAmbroxol" },
               m("b", "Clorhidrato de Ambroxol")
             ),
             m("input", {
@@ -122,7 +122,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputUsuario" },
+              { class: "form-label", for: "inputSolucionSalina" },
               m("b", "Solución Salina (0,9%)")
             ),
             m("input", {
@@ -145,7 +145,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputUsuario" },
+              { class: "form-label", for: "inputBromuroIpatropio" },
               m("b", "Bromuro de Ipratropio")
             ),
             m("input", {
@@ -166,7 +166,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputAdrenalinaRacenica" },
               m("b", "Adrenalina Racénica")
             ),
             m("input", {
@@ -209,7 +209,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputUsuario" },
+              { class: "form-label", for: "inputOtros" },
               m("b", "Otros")
             ),
             m("input", {
@@ -238,7 +238,7 @@ const inputIncentivoRespiratorio = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputMililitrosPorSegundo" },
               m("b", "Mililitros por segundo")
             ),
             m("input", {
@@ -272,7 +272,7 @@ const inputIncentivoRespiratorio = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputCentimetrosCubicosPorSegundo" },
               m("b", "Centímetros cúbicos por segundo")
             ),
             m("input", {
@@ -316,7 +316,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeFraccion" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -350,7 +350,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitrosPorMinutoFraccion" },
               m("b", "Litros por minuto")
             ),
             m("input", {
@@ -387,7 +387,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeAltoFlujo" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -421,7 +421,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroAltoFlujo" },
               m("b", "Litro por minuto")
             ),
             m("input", {
@@ -459,7 +459,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeTiendaFacial" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -493,7 +493,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroPorMinutoTiendaFacial" },
               m("b", "Litros por minuto")
             ),
             m("input", {
@@ -530,7 +530,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeTuboEnT" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -564,7 +564,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroTuboEnT" },
               m("b", "Litro por minuto")
             ),
             m("input", {
@@ -602,7 +602,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeCanulaNasal" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -636,7 +636,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroPorMinutoCanulaNasal" },
               m("b", "Litros por minuto")
             ),
             m("input", {
@@ -673,7 +673,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeMascarilla" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -707,7 +707,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroMascarilla" },
               m("b", "Litro por minuto")
             ),
             m("input", {
@@ -745,7 +745,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeHeliox" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -779,7 +779,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroPorMinutoHeliox" },
               m("b", "Litros por minuto")
             ),
             m("input", {
@@ -818,7 +818,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeAireAmbiente" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -860,7 +860,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputSaturacionPreviaPorcentaje" },
               m("b", "Previa Saturación O2(%) Porcentaje")
             ),
             m("input", {
@@ -894,7 +894,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputSaturacionPosteriorPorcentaje" },
               m("b", "Posterior Saturación O2(%) Porcentaje")
             ),
             m("input", {
@@ -931,7 +931,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputFrecuenciaCardiacaPreviaPorMinuto" },
               m("b", "Previa Frecuencia Cardiaca por Minuto")
             ),
             m("input", {
@@ -965,7 +965,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputFrecuenciaCardiacaPosteriorPorMinuto" },
               m("b", "Posterior Frecuencia Cardiaca por Minuto")
             ),
             m("input", {
@@ -1002,7 +1002,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputFrecuenciaRespiratoriaPreviaPorMinuto" },
               m("b", "Previa Frecuencia Respiratoria por Minuto")
             ),
             m("input", {
@@ -1036,7 +1036,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputFrecuenciaRespiratoriaPosteriorPorMinuto" },
               m("b", "Posterior Frecuencia Respiratoria por Minuto")
             ),
             m("input", {
@@ -1114,7 +1114,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputPeso" },
+                    { class: "form-label", for: "inputNumeroPedido" },
                     m("b", "Número de Pedido")
                   ),
                   m("input", {
@@ -1132,7 +1132,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputEscalaDolor" },
+                    { class: "form-label", for: "inputFechaPedido" },
                     m("b", "Fecha y Hora")
                   ),
                   m("input", {
@@ -1150,7 +1150,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputUsuario" },
+                    { class: "form-label", for: "inputOrigenPedido" },
                     m("b", "Origen")
                   ),
                   m("input", {
@@ -1170,7 +1170,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputPeso" },
+                    { class: "form-label", for: "inputMedicoSolicitante" },
                     m("b", "Medico Solicitante")
                   ),
                   m("input", {
@@ -1188,7 +1188,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputEscalaDolor" },
+                    { class: "form-label", for: "inputEspecialidad" },
                     m("b", "Especialidad")
                   ),
                   m("input", {
@@ -1206,7 +1206,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputUsuario" },
+                    { class: "form-label", for: "inputApellidosYNombres" },
                     m("b", "Apellidos y Nombres del Paciente")
                   ),
                   m("input", {
@@ -1227,7 +1227,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputPeso" },
+                    { class: "form-label", for: "inputNHC" },
                     m("b", "NHC")
                   ),
                   m("input", {
@@ -1245,7 +1245,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputEscalaDolor" },
+                    { class: "form-label", for: "inputNumeroAtencion" },
                     m("b", "Número de Atención")
                   ),
                   m("input", {
@@ -1263,7 +1263,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputUsuario" },
+                    { class: "form-label", for: "inputUbicacion" },
                     m("b", "Ubicación")
                   ),
                   m("input", {
