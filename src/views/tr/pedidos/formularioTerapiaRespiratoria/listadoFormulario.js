@@ -63,6 +63,10 @@ const ListadoFormulario = {
                           document.querySelector("#cerrar-gestion-muestras"),
                           cerrarGestionMuestra
                         );
+                        window.scrollTo({
+                          top: 0,
+                          behavior: 'smooth' // Opcional: agrega suavidad a la animación del scroll
+                        });
                       } 
                       
                         
