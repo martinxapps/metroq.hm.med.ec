@@ -469,6 +469,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputSalbumatol",
+                maxlength:"30",
               }),
             ])
           ),
@@ -485,6 +486,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputHipersal",
+                maxlength:"30",
               }),
             ])
           ),
@@ -501,6 +503,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputHipersal3",
+                maxlength:"30",
               }),
             ])
           ),
@@ -519,6 +522,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputDexametasona",
+                maxlength:"30",
               }),
             ])
           ),
@@ -535,6 +539,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputClorhidratoAmbroxol",
+                maxlength:"30",
               }),
             ])
           ),
@@ -551,6 +556,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputSolucionSalina",
+                maxlength:"30",
               }),
             ])
           ),
@@ -569,6 +575,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputBromuroIpatropio",
+                maxlength:"30",
               }),
             ])
           ),
@@ -585,6 +592,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputAdrenalinaRacenica",
+                maxlength:"30",
               }),
             ])
           ),
@@ -601,6 +609,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputNAcetilcisteina",
+                maxlength:"30",
               }),
             ])
           ),
@@ -801,9 +810,16 @@ const CrearFormulario = {
                 id: "inputMililitrosPorSegundo",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
+                  const inputValue = e.target.value;
                   // Remover caracteres inválidos durante la escritura
                   e.target.value = e.target.value.replace(/[-+e]/g, "");
-                },
+                  // Verificar si está dentro del rango válido
+                  if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
+                  },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
@@ -830,9 +846,16 @@ const CrearFormulario = {
                 id: "inputCentimetrosCubicosPorSegundo",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
+                  const inputValue = e.target.value;
                   // Remover caracteres inválidos durante la escritura
                   e.target.value = e.target.value.replace(/[-+e]/g, "");
-                },
+                  // Verificar si está dentro del rango válido
+                  if (isNaN(inputValue) || inputValue < 0 || inputValue > 10000 || inputValue.startsWith("0")) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
+                  },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
@@ -871,8 +894,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeFraccion",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -900,8 +930,15 @@ const CrearFormulario = {
                 id: "inputLitrosPorMinutoFraccion",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -932,8 +969,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeAltoFlujo",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -961,8 +1005,15 @@ const CrearFormulario = {
                 id: "inputLitroAltoFlujo",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -994,8 +1045,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeTiendaFacial",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1023,8 +1081,15 @@ const CrearFormulario = {
                 id: "inputLitroPorMinutoTiendaFacial",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1055,8 +1120,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeTuboEnT",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1084,8 +1156,15 @@ const CrearFormulario = {
                 id: "inputLitroTuboEnT",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1117,8 +1196,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeCanulaNasal",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1146,8 +1232,15 @@ const CrearFormulario = {
                 id: "inputLitroPorMinutoCanulaNasal",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1178,8 +1271,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeMascarilla",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1207,8 +1307,15 @@ const CrearFormulario = {
                 id: "inputLitroMascarilla",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1240,8 +1347,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeHeliox",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1269,8 +1383,15 @@ const CrearFormulario = {
                 id: "inputLitroPorMinutoHeliox",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1303,8 +1424,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeAireAmbiente",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1385,8 +1513,14 @@ const CrearFormulario = {
                 id: "inputSaturacionPreviaPorcentaje",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1414,8 +1548,14 @@ const CrearFormulario = {
                 id: "inputSaturacionPosteriorPorcentaje",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1447,8 +1587,14 @@ const CrearFormulario = {
                 id: "inputFrecuenciaCardiacaPreviaPorMinuto",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 300 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1476,8 +1622,14 @@ const CrearFormulario = {
                 id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 300 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1508,8 +1660,14 @@ const CrearFormulario = {
                 id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 60 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1537,8 +1695,14 @@ const CrearFormulario = {
                 id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 60 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
