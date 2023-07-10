@@ -5,7 +5,7 @@ import m from 'mithril';
 function stopwatchModel() {
     return {
         interval: null,
-        seconds: 4,
+        seconds: 2,
         isPaused: false
     };
 }
@@ -19,7 +19,7 @@ const actions = {
         if (Flebotomista.searchField.length == 0) {
             model.seconds--;
             if (model.seconds == 0) {
-                model.seconds = 4;
+                model.seconds = 2;
                 Flebotomista.reloadData();
             }
             m.redraw();
@@ -931,7 +931,7 @@ const Flebotomista = {
                 Flebotomista.loader = false;
                 Flebotomista.pedidos = result.data;
                 if (Flebotomista.pedidos.length == 0) {
-                    setTimeout(function () { Flebotomista.fetchPedidos(); }, 3000);
+                    setTimeout(function () { Flebotomista.fetchPedidos(); }, 1800);
 
                 }
             })
