@@ -814,7 +814,7 @@ const CrearFormulario = {
                   // Remover caracteres inválidos durante la escritura
                   e.target.value = e.target.value.replace(/[-+e]/g, "");
                   // Verificar si está dentro del rango válido
-                  if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  if (isNaN(inputValue) || inputValue < 0 || inputValue > 10000 || inputValue.startsWith("0")) {
                     e.target.value = ""; // Valor inválido, se vacía el campo
                   } else {
                     e.target.value = inputValue; // Valor válido, se mantiene en el campo
