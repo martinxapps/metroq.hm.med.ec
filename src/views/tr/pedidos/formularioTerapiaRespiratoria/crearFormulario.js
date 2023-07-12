@@ -92,7 +92,7 @@ const CrearFormulario = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputNumeroPedido" },
               m("b", "Número de Pedido")
             ),
             m("input", {
@@ -110,7 +110,7 @@ const CrearFormulario = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputFechaPedido" },
               m("b", "Fecha y Hora")
             ),
             m("input", {
@@ -128,7 +128,7 @@ const CrearFormulario = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputUsuario" },
+              { class: "form-label", for: "inputOrigenPedido" },
               m("b", "Origen")
             ),
             m("input", {
@@ -148,7 +148,7 @@ const CrearFormulario = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputMedicoSolicitante" },
               m("b", "Medico Solicitante")
             ),
             m("input", {
@@ -166,7 +166,7 @@ const CrearFormulario = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputEspecialidad" },
               m("b", "Especialidad")
             ),
             m("input", {
@@ -184,7 +184,7 @@ const CrearFormulario = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputUsuario" },
+              { class: "form-label", for: "inputApellidosYNombres" },
               m("b", "Apellidos y Nombres del Paciente")
             ),
             m("input", {
@@ -204,7 +204,7 @@ const CrearFormulario = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputNHC" },
               m("b", "NHC")
             ),
             m("input", {
@@ -222,7 +222,7 @@ const CrearFormulario = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputNumeroAtencion" },
               m("b", "Número de Atención")
             ),
             m("input", {
@@ -240,7 +240,7 @@ const CrearFormulario = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputUsuario" },
+              { class: "form-label", for: "inputUbicacion" },
               m("b", "Ubicación")
             ),
             m("input", {
@@ -462,13 +462,14 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputSalbumatol" },
                 m("b", "Salbutamol")
               ),
               m("input", {
                 class: "form-control",
                 type: "text",
                 id: "inputSalbumatol",
+                maxlength:"30",
               }),
             ])
           ),
@@ -478,13 +479,14 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputHipersal" },
                 m("b", "Hipersal (7%)")
               ),
               m("input", {
                 class: "form-control",
                 type: "text",
                 id: "inputHipersal",
+                maxlength:"30",
               }),
             ])
           ),
@@ -494,13 +496,14 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputHipersal3" },
                 m("b", "Hipersal (3,5%)")
               ),
               m("input", {
                 class: "form-control",
                 type: "text",
                 id: "inputHipersal3",
+                maxlength:"30",
               }),
             ])
           ),
@@ -512,13 +515,14 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputDexametasona" },
                 m("b", "Dexametasona")
               ),
               m("input", {
                 class: "form-control",
                 type: "text",
                 id: "inputDexametasona",
+                maxlength:"30",
               }),
             ])
           ),
@@ -528,13 +532,14 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputClorhidratoAmbroxol" },
                 m("b", "Clorhidrato de Ambroxol")
               ),
               m("input", {
                 class: "form-control",
                 type: "text",
                 id: "inputClorhidratoAmbroxol",
+                maxlength:"30",
               }),
             ])
           ),
@@ -544,13 +549,14 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputUsuario" },
+                { class: "form-label", for: "inputSolucionSalina" },
                 m("b", "Solución Salina (0,9%)")
               ),
               m("input", {
                 class: "form-control",
                 type: "text",
                 id: "inputSolucionSalina",
+                maxlength:"30",
               }),
             ])
           ),
@@ -562,13 +568,14 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputUsuario" },
+                { class: "form-label", for: "inputBromuroIpatropio" },
                 m("b", "Bromuro de Ipratropio")
               ),
               m("input", {
                 class: "form-control",
                 type: "text",
                 id: "inputBromuroIpatropio",
+                maxlength:"30",
               }),
             ])
           ),
@@ -578,13 +585,14 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputAdrenalinaRacenica" },
                 m("b", "Adrenalina Racénica")
               ),
               m("input", {
                 class: "form-control",
                 type: "text",
                 id: "inputAdrenalinaRacenica",
+                maxlength:"30",
               }),
             ])
           ),
@@ -601,6 +609,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputNAcetilcisteina",
+                maxlength:"30",
               }),
             ])
           ),
@@ -614,7 +623,7 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputUsuario" },
+                { class: "form-label", for: "inputOtros" },
                 m("b", "Otros")
               ),
               m("input", {
@@ -792,7 +801,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputMililitrosPorSegundo" },
                 m("b", "Mililitros por segundo")
               ),
               m("input", {
@@ -801,9 +810,16 @@ const CrearFormulario = {
                 id: "inputMililitrosPorSegundo",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
+                  const inputValue = e.target.value;
                   // Remover caracteres inválidos durante la escritura
                   e.target.value = e.target.value.replace(/[-+e]/g, "");
-                },
+                  // Verificar si está dentro del rango válido
+                  if (isNaN(inputValue) || inputValue < 0 || inputValue > 10000 || inputValue.startsWith("0")) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
+                  },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
@@ -821,7 +837,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputCentimetrosCubicosPorSegundo" },
                 m("b", "Centímetros cúbicos por segundo")
               ),
               m("input", {
@@ -830,9 +846,16 @@ const CrearFormulario = {
                 id: "inputCentimetrosCubicosPorSegundo",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
+                  const inputValue = e.target.value;
                   // Remover caracteres inválidos durante la escritura
                   e.target.value = e.target.value.replace(/[-+e]/g, "");
-                },
+                  // Verificar si está dentro del rango válido
+                  if (isNaN(inputValue) || inputValue < 0 || inputValue > 10000 || inputValue.startsWith("0")) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
+                  },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
@@ -862,7 +885,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPorcentajeFraccion" },
                 m("b", "Porcentaje")
               ),
               m("input", {
@@ -871,8 +894,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeFraccion",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -891,7 +921,7 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputLitrosPorMinutoFraccion" },
                 m("b", "Litros por minuto")
               ),
               m("input", {
@@ -900,8 +930,15 @@ const CrearFormulario = {
                 id: "inputLitrosPorMinutoFraccion",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -923,7 +960,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPorcentajeAltoFlujo" },
                 m("b", "Porcentaje")
               ),
               m("input", {
@@ -932,8 +969,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeAltoFlujo",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -952,7 +996,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputLitroAltoFlujo" },
                 m("b", "Litro por minuto")
               ),
               m("input", {
@@ -961,8 +1005,15 @@ const CrearFormulario = {
                 id: "inputLitroAltoFlujo",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -985,7 +1036,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPorcentajeTiendaFacial" },
                 m("b", "Porcentaje")
               ),
               m("input", {
@@ -994,8 +1045,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeTiendaFacial",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1014,7 +1072,7 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputLitroPorMinutoTiendaFacial" },
                 m("b", "Litros por minuto")
               ),
               m("input", {
@@ -1023,8 +1081,15 @@ const CrearFormulario = {
                 id: "inputLitroPorMinutoTiendaFacial",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1046,7 +1111,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPorcentajeTuboEnT" },
                 m("b", "Porcentaje")
               ),
               m("input", {
@@ -1055,8 +1120,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeTuboEnT",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1075,7 +1147,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputLitroTuboEnT" },
                 m("b", "Litro por minuto")
               ),
               m("input", {
@@ -1084,8 +1156,15 @@ const CrearFormulario = {
                 id: "inputLitroTuboEnT",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1108,7 +1187,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPorcentajeCanulaNasal" },
                 m("b", "Porcentaje")
               ),
               m("input", {
@@ -1117,8 +1196,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeCanulaNasal",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1137,7 +1223,7 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputLitroPorMinutoCanulaNasal" },
                 m("b", "Litros por minuto")
               ),
               m("input", {
@@ -1146,8 +1232,15 @@ const CrearFormulario = {
                 id: "inputLitroPorMinutoCanulaNasal",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1169,7 +1262,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPorcentajeMascarilla" },
                 m("b", "Porcentaje")
               ),
               m("input", {
@@ -1178,8 +1271,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeMascarilla",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1198,7 +1298,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputLitroMascarilla" },
                 m("b", "Litro por minuto")
               ),
               m("input", {
@@ -1207,8 +1307,15 @@ const CrearFormulario = {
                 id: "inputLitroMascarilla",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1231,7 +1338,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPorcentajeHeliox" },
                 m("b", "Porcentaje")
               ),
               m("input", {
@@ -1240,8 +1347,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeHeliox",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1260,7 +1374,7 @@ const CrearFormulario = {
             m("div", { class: "mb-4" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputLitroPorMinutoHeliox" },
                 m("b", "Litros por minuto")
               ),
               m("input", {
@@ -1269,8 +1383,15 @@ const CrearFormulario = {
                 id: "inputLitroPorMinutoHeliox",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1294,7 +1415,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputPorcentajeAireAmbiente" },
                 m("b", "Porcentaje")
               ),
               m("input", {
@@ -1303,8 +1424,15 @@ const CrearFormulario = {
                 id: "inputPorcentajeAireAmbiente",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1376,7 +1504,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputSaturacionPreviaPorcentaje" },
                 m("b", "Previa Saturación O2(%) Porcentaje")
               ),
               m("input", {
@@ -1385,8 +1513,14 @@ const CrearFormulario = {
                 id: "inputSaturacionPreviaPorcentaje",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1405,7 +1539,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputSaturacionPosteriorPorcentaje" },
                 m("b", "Posterior Saturación O2(%) Porcentaje")
               ),
               m("input", {
@@ -1414,8 +1548,14 @@ const CrearFormulario = {
                 id: "inputSaturacionPosteriorPorcentaje",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1438,7 +1578,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputFrecuenciaCardiacaPreviaPorMinuto" },
                 m("b", "Previa Frecuencia Cardiaca por Minuto")
               ),
               m("input", {
@@ -1447,8 +1587,14 @@ const CrearFormulario = {
                 id: "inputFrecuenciaCardiacaPreviaPorMinuto",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 300 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1467,7 +1613,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputFrecuenciaCardiacaPosteriorPorMinuto" },
                 m("b", "Posterior Frecuencia Cardiaca por Minuto")
               ),
               m("input", {
@@ -1476,8 +1622,14 @@ const CrearFormulario = {
                 id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 300 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1499,7 +1651,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputPeso" },
+                { class: "form-label", for: "inputFrecuenciaRespiratoriaPreviaPorMinuto" },
                 m("b", "Previa Frecuencia Respiratoria por Minuto")
               ),
               m("input", {
@@ -1508,8 +1660,14 @@ const CrearFormulario = {
                 id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 60 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -1528,7 +1686,7 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputEscalaDolor" },
+                { class: "form-label", for: "inputFrecuenciaRespiratoriaPosteriorPorMinuto" },
                 m("b", "Posterior Frecuencia Respiratoria por Minuto")
               ),
               m("input", {
@@ -1537,8 +1695,14 @@ const CrearFormulario = {
                 id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
                 placeholder: "Ingrese un valor",
                 oninput: function(e) {
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  const inputValue = e.target.value;
+                // Remover caracteres inválidos durante la escritura
+                e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 60 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
                 },
                 onpaste: function(e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
@@ -2025,7 +2189,7 @@ const CrearFormulario = {
       [
         m(
           "label",
-          { class: "form-label", for: "textAreaObservacionClinica" },
+          { class: "form-label", for: "textareaCriterio" },
           "Criterio"
         ),
         m("textarea", {

@@ -1046,8 +1046,16 @@ const Pedido = {
                                                                 m("div.mg-0.mg-t-10.mg-b-10.text-left", [
                                                                     m("button#btnnuevamuestra.btn.btn-xs.btn-primary.mg-l-2.tx-semibold[type='button']", {
                                                                         onclick: () => {
-                                                                            m.mount(document.querySelector("#gestion-muestras"), CrearFormulario);
-                                                                            m.mount(document.querySelector("#cerrar-gestion-muestras"), cerrarGestionMuestra);
+                                                                            if (
+                                                                                window.confirm(
+                                                                                  "¿Estas seguro de abrir un nuevo formulario?"
+                                                                                )
+                                                                              ){
+
+                                                                                m.mount(document.querySelector("#gestion-muestras"), CrearFormulario);
+                                                                                m.mount(document.querySelector("#cerrar-gestion-muestras"), cerrarGestionMuestra);
+                                                                              }
+                                                                            
                                                                         }
                                                                     }, [
                                                                             m("i.fas.mg-r-5", )

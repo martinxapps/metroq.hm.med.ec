@@ -22,6 +22,7 @@ const ListadoFormulario = {
           "thead",
           m("tr", [
             m("th", { scope: "col" }, m("b", "ID")),
+            m("th", { scope: "col" }, m("b", "Realizado por")),
             m("th", { scope: "col" }, m("b", "Fecha/Hora")),
             m("th", { scope: "col" }, m("b", "Estado")),
             m("th", { scope: "col" }, m("b", "Visualización")),
@@ -36,6 +37,7 @@ const ListadoFormulario = {
           formularioModelo.listado.map(function (formulario) {
             return m("tr", [
               m("td", { scope: "row" }, formulario.ID),
+              m("td", { scope: "row" }, formulario.Usuario.toUpperCase()),
               m("td", formulario.FECHAHOY),
               m("td", formulario.ESTADO),
               m(
@@ -51,7 +53,7 @@ const ListadoFormulario = {
                       formularioModelo.listadoUnitario = null;
                       if (
                         window.confirm(
-                          `Estas seguro que deseas ir al formulario ${formulario.ID}?`
+                          `¿Estas seguro que deseas ir al formulario ${formulario.ID}?`
                         )
                       ){
                         m.mount(document.querySelector("#gestion-muestras"), {
@@ -63,6 +65,10 @@ const ListadoFormulario = {
                           document.querySelector("#cerrar-gestion-muestras"),
                           cerrarGestionMuestra
                         );
+                        window.scrollTo({
+                          top: 0,
+                          behavior: 'smooth' // Opcional: agrega suavidad a la animación del scroll
+                        });
                       } 
                       
                         

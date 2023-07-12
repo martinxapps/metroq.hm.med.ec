@@ -18,13 +18,14 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputSalbumatol" },
               m("b", "Salbutamol")
             ),
             m("input", {
               class: "form-control",
               type: "text",
               id: "inputSalbumatol",
+              maxlength:"30",
               oncreate: (el) => {
                 el.dom.value = formularioModelo.listadoUnitario.SALBUTAMOLDOSIS;
               },
@@ -38,13 +39,14 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputHipersal" },
               m("b", "Hipersal (7%)")
             ),
             m("input", {
               class: "form-control",
               type: "text",
               id: "inputHipersal",
+              maxlength:"30",
               oncreate: (el) => {
                 el.dom.value = formularioModelo.listadoUnitario.HIPERSAL7DOSIS;
               },
@@ -58,13 +60,14 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputHipersal3" },
               m("b", "Hipersal (3,5%)")
             ),
             m("input", {
               class: "form-control",
               type: "text",
               id: "inputHipersal3",
+              maxlength:"30",
               oncreate: (el) => {
                 el.dom.value = formularioModelo.listadoUnitario.HIPERSAL35DOSIS;
               },
@@ -80,13 +83,14 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputDexametasona" },
               m("b", "Dexametasona")
             ),
             m("input", {
               class: "form-control",
               type: "text",
               id: "inputDexametasona",
+              maxlength:"30",
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.DEXAMETASONADOSIS;
@@ -101,13 +105,14 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputClorhidratoAmbroxol" },
               m("b", "Clorhidrato de Ambroxol")
             ),
             m("input", {
               class: "form-control",
               type: "text",
               id: "inputClorhidratoAmbroxol",
+              maxlength:"30",
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.CLORHIDRATODEAMBROXOLDOSIS;
@@ -122,13 +127,14 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputUsuario" },
+              { class: "form-label", for: "inputSolucionSalina" },
               m("b", "Solución Salina (0,9%)")
             ),
             m("input", {
               class: "form-control",
               type: "text",
               id: "inputSolucionSalina",
+              maxlength:"30",
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.SOLUCIONSALINADOSIS;
@@ -145,13 +151,14 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputUsuario" },
+              { class: "form-label", for: "inputBromuroIpatropio" },
               m("b", "Bromuro de Ipratropio")
             ),
             m("input", {
               class: "form-control",
               type: "text",
               id: "inputBromuroIpatropio",
+              maxlength:"30",
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.BROMURODELPATROPIODOSIS;
@@ -166,13 +173,14 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputAdrenalinaRacenica" },
               m("b", "Adrenalina Racénica")
             ),
             m("input", {
               class: "form-control",
               type: "text",
               id: "inputAdrenalinaRacenica",
+              maxlength:"30",
               oncreate: (el) => {
                 el.dom.value =
                   formularioModelo.listadoUnitario.ADRENALINARACENICADOSIS;
@@ -194,6 +202,7 @@ const inputMedicinas = {
               class: "form-control",
               type: "text",
               id: "inputNAcetilcisteina",
+              maxlength:"30",
               oncreate: (el) => {
                 el.dom.value = formularioModelo.listadoUnitario.NAcetilcisteina;
               },
@@ -209,7 +218,7 @@ const inputMedicinas = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputUsuario" },
+              { class: "form-label", for: "inputOtros" },
               m("b", "Otros")
             ),
             m("input", {
@@ -238,7 +247,7 @@ const inputIncentivoRespiratorio = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputMililitrosPorSegundo" },
               m("b", "Mililitros por segundo")
             ),
             m("input", {
@@ -252,9 +261,16 @@ const inputIncentivoRespiratorio = {
                   formularioModelo.listadoUnitario.MILILITROSPORSEGUNDOINCENTIVO;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
-              },
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 10000 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
+                },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
                 const pastedText = clipboardData.getData("text");
@@ -272,7 +288,7 @@ const inputIncentivoRespiratorio = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputCentimetrosCubicosPorSegundo" },
               m("b", "Centímetros cúbicos por segundo")
             ),
             m("input", {
@@ -286,9 +302,16 @@ const inputIncentivoRespiratorio = {
                   formularioModelo.listadoUnitario.CENTIMETROSSEGUNDOINCENTIVO;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
-              },
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 10000 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
+                },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
                 const pastedText = clipboardData.getData("text");
@@ -316,7 +339,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeFraccion" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -330,9 +353,16 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.FRACCIONOXIGENOPORCENTAJE;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
-              },
+                // Verificar si está dentro del rango válido
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
+                },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
                 const pastedText = clipboardData.getData("text");
@@ -350,7 +380,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitrosPorMinutoFraccion" },
               m("b", "Litros por minuto")
             ),
             m("input", {
@@ -364,8 +394,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.FRACCIONIOXIGENOLITROS;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -387,7 +423,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeAltoFlujo" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -401,8 +437,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.ALTOFLUJOPORCENTAJE;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -421,7 +463,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroAltoFlujo" },
               m("b", "Litro por minuto")
             ),
             m("input", {
@@ -435,8 +477,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.ALTOFLUJOLITROSPORMINUTO;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -459,7 +507,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeTiendaFacial" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -473,8 +521,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.TIENDAFACIALPORCENTAJE;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -493,7 +547,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroPorMinutoTiendaFacial" },
               m("b", "Litros por minuto")
             ),
             m("input", {
@@ -507,8 +561,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.TIENDAFACIALLITROSPORMINUTO;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -530,7 +590,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeTuboEnT" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -544,8 +604,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.TUBOENTPORCENTAJE;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -564,7 +630,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroTuboEnT" },
               m("b", "Litro por minuto")
             ),
             m("input", {
@@ -578,8 +644,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.TUBOENTLITROSPORMINUTO;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -602,7 +674,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeCanulaNasal" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -616,8 +688,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.CANULANASALPORCENTAJE;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -636,7 +714,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroPorMinutoCanulaNasal" },
               m("b", "Litros por minuto")
             ),
             m("input", {
@@ -650,8 +728,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.CANULANASALLITROSPORMINUTO;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -673,7 +757,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeMascarilla" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -687,8 +771,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.MASCARILLAPORCENTAJE;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -707,7 +797,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroMascarilla" },
               m("b", "Litro por minuto")
             ),
             m("input", {
@@ -721,8 +811,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.MASCARILLALITROSPORMINUTO;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -745,7 +841,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeHeliox" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -759,8 +855,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.HELIOXPORCENTAJE;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -779,7 +881,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-4" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputLitroPorMinutoHeliox" },
               m("b", "Litros por minuto")
             ),
             m("input", {
@@ -793,8 +895,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.HELIOXLITROSPORMINUTO;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -818,7 +926,7 @@ const inputOxigenoTerapia = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputPorcentajeAireAmbiente" },
               m("b", "Porcentaje")
             ),
             m("input", {
@@ -832,8 +940,14 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.AIREAMBIENTEPORCENTAJE;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -860,7 +974,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputSaturacionPreviaPorcentaje" },
               m("b", "Previa Saturación O2(%) Porcentaje")
             ),
             m("input", {
@@ -874,8 +988,14 @@ const inputMonitoreo = {
                   formularioModelo.listadoUnitario.SATURACIONPREVIA;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -894,7 +1014,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputSaturacionPosteriorPorcentaje" },
               m("b", "Posterior Saturación O2(%) Porcentaje")
             ),
             m("input", {
@@ -908,8 +1028,14 @@ const inputMonitoreo = {
                   formularioModelo.listadoUnitario.SATURACIONPOSTERIOR;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -931,7 +1057,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputFrecuenciaCardiacaPreviaPorMinuto" },
               m("b", "Previa Frecuencia Cardiaca por Minuto")
             ),
             m("input", {
@@ -945,8 +1071,14 @@ const inputMonitoreo = {
                   formularioModelo.listadoUnitario.FRECUENCIACARDIACAPREVIA;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 300 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -965,7 +1097,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputFrecuenciaCardiacaPosteriorPorMinuto" },
               m("b", "Posterior Frecuencia Cardiaca por Minuto")
             ),
             m("input", {
@@ -979,8 +1111,14 @@ const inputMonitoreo = {
                   formularioModelo.listadoUnitario.FRECUENCIACARDIACAPOSTERIOR;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 300 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -1002,7 +1140,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputPeso" },
+              { class: "form-label", for: "inputFrecuenciaRespiratoriaPreviaPorMinuto" },
               m("b", "Previa Frecuencia Respiratoria por Minuto")
             ),
             m("input", {
@@ -1016,8 +1154,14 @@ const inputMonitoreo = {
                   formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPREVIA;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 60 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -1036,7 +1180,7 @@ const inputMonitoreo = {
           m("div", { class: "mb-6" }, [
             m(
               "label",
-              { class: "form-label", for: "inputEscalaDolor" },
+              { class: "form-label", for: "inputFrecuenciaRespiratoriaPosteriorPorMinuto" },
               m("b", "Posterior Frecuencia Respiratoria por Minuto")
             ),
             m("input", {
@@ -1050,8 +1194,14 @@ const inputMonitoreo = {
                   formularioModelo.listadoUnitario.FRECUENCIARESPIRATORIAPOS;
               },
               oninput: function(e) {
+                const inputValue = e.target.value;
                 // Remover caracteres inválidos durante la escritura
                 e.target.value = e.target.value.replace(/[-+e]/g, "");
+                if (isNaN(inputValue) || inputValue < 0 || inputValue > 60 || inputValue.startsWith("0")) {
+                  e.target.value = ""; // Valor inválido, se vacía el campo
+                } else {
+                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                }
               },
               onpaste: function(e) {
                 const clipboardData = e.clipboardData || window.clipboardData;
@@ -1067,8 +1217,7 @@ const inputMonitoreo = {
       ]),
     ];
   },
-};
-const inputCriterio = {
+};const inputCriterio = {
   view: (vnode) => {
     return [
       m("textarea", {
@@ -1082,8 +1231,7 @@ const inputCriterio = {
       }),
     ];
   },
-};
-const VerUnFormulario = {
+};const VerUnFormulario = {
   usuarioMoficado: "",
   oninit: (vnode) => {
     if (vnode.attrs.id !== undefined) {
@@ -1114,7 +1262,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputPeso" },
+                    { class: "form-label", for: "inputNumeroPedido" },
                     m("b", "Número de Pedido")
                   ),
                   m("input", {
@@ -1132,7 +1280,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputEscalaDolor" },
+                    { class: "form-label", for: "inputFechaPedido" },
                     m("b", "Fecha y Hora")
                   ),
                   m("input", {
@@ -1150,7 +1298,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputUsuario" },
+                    { class: "form-label", for: "inputOrigenPedido" },
                     m("b", "Origen")
                   ),
                   m("input", {
@@ -1170,7 +1318,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputPeso" },
+                    { class: "form-label", for: "inputMedicoSolicitante" },
                     m("b", "Medico Solicitante")
                   ),
                   m("input", {
@@ -1188,7 +1336,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputEscalaDolor" },
+                    { class: "form-label", for: "inputEspecialidad" },
                     m("b", "Especialidad")
                   ),
                   m("input", {
@@ -1206,7 +1354,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputUsuario" },
+                    { class: "form-label", for: "inputApellidosYNombres" },
                     m("b", "Apellidos y Nombres del Paciente")
                   ),
                   m("input", {
@@ -1227,7 +1375,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputPeso" },
+                    { class: "form-label", for: "inputNHC" },
                     m("b", "NHC")
                   ),
                   m("input", {
@@ -1245,7 +1393,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputEscalaDolor" },
+                    { class: "form-label", for: "inputNumeroAtencion" },
                     m("b", "Número de Atención")
                   ),
                   m("input", {
@@ -1263,7 +1411,7 @@ const VerUnFormulario = {
                 m("div", { class: "mb-4" }, [
                   m(
                     "label",
-                    { class: "form-label", for: "inputUsuario" },
+                    { class: "form-label", for: "inputUbicacion" },
                     m("b", "Ubicación")
                   ),
                   m("input", {
@@ -2519,7 +2667,7 @@ const VerUnFormulario = {
               "button",
               {
                 class: "btn btn-primary",
-                type: "button",
+                type: "submit",
                 disabled:
                   formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
                   formularioModelo.listadoUnitario.ESTADO === "Finalizado",

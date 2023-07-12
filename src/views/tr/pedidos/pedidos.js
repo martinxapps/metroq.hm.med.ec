@@ -133,7 +133,6 @@ const tablePedidosTR = {
 
 
                 m("div.table-content.col-12.pd-r-0.pd-l-0.pd-b-20.", [
-
                     m("div.d-flex.align-items-center.justify-content-between.mg-b-80.mg-t-10", [
                         m("h5.mg-b-0",
                             "Pedidos de Terapia Respiratoria:",
@@ -149,10 +148,19 @@ const tablePedidosTR = {
                                         el.dom.innerHTML = 'Pedidos de Emergencia';
                                     }
                                     if (PedidosTR.idFiltro == 4) {
-                                        el.dom.innerHTML = 'Pedidos de C. Externa';
+                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
                                     }
                                     if (PedidosTR.idFiltro == 5) {
-                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
+                                        el.dom.innerHTML = 'Pedidos de PB';
+                                    }
+                                    if (PedidosTR.idFiltro == 6) {
+                                        el.dom.innerHTML = 'Pedidos de H1';
+                                    }
+                                    if (PedidosTR.idFiltro == 7) {
+                                        el.dom.innerHTML = 'Pedidos de H2';
+                                    }
+                                    if (PedidosTR.idFiltro == 8) {
+                                        el.dom.innerHTML = 'Pedidos de C2';
                                     }
                                 },
                                 onupdate: (el) => {
@@ -166,10 +174,19 @@ const tablePedidosTR = {
                                         el.dom.innerHTML = 'Pedidos de Emergencia';
                                     }
                                     if (PedidosTR.idFiltro == 4) {
-                                        el.dom.innerHTML = 'Pedidos de C. Externa';
+                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
                                     }
                                     if (PedidosTR.idFiltro == 5) {
-                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
+                                        el.dom.innerHTML = 'Pedidos de PB';
+                                    }
+                                    if (PedidosTR.idFiltro == 6) {
+                                        el.dom.innerHTML = 'Pedidos de H1';
+                                    }
+                                    if (PedidosTR.idFiltro == 7) {
+                                        el.dom.innerHTML = 'Pedidos de H2';
+                                    }
+                                    if (PedidosTR.idFiltro == 8) {
+                                        el.dom.innerHTML = 'Pedidos de C2';
                                     }
                                 }
                             }
@@ -179,7 +196,7 @@ const tablePedidosTR = {
                         ),
                         m("div.d-flex.tx-14", [
                             m('.', {
-                                class: (PedidosTR.idFiltro == 1 ? 'd-none' : 'd-flex')
+                                class: (PedidosTR.idFiltro > 0 ? 'd-flex' : 'd-none')
                             }, [
                                 m("div.link-03", {
                                     title: "Desde"
@@ -254,14 +271,23 @@ const tablePedidosTR = {
                                     m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=2&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
                                         "Pedidos entre Fechas"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-respiratoria/pedidos/?idFiltro=3&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=3&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
                                         "Pedidos de Emergencia"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-respiratoria/pedidos/?idFiltro=4&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
-                                        "Pedidos de C. Externa"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-respiratoria/pedidos/?idFiltro=5&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=4&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
                                         "Pedidos de Hospitalización"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=5&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de PB"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=6&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de H1"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=7&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de H2"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=8&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de C2"
                                     ]),
 
                                 ])
@@ -269,7 +295,7 @@ const tablePedidosTR = {
                         ])
                     ]),
                     m("div.col-sm-12.filemgr-content-header", {
-                        class: (PedidosTR.idFiltro == 1 ? "mg-t-35" : "mg-t-40")
+                        class: (PedidosTR.idFiltro > 0 ? "mg-t-35" : "mg-t-40")
                     }, [
                         m("i[data-feather='search']"),
                         m("div.search-form",
@@ -469,7 +495,7 @@ const PedidosTR = {
                                     ),
                                 ),
                                 m("div.pd-2.tx-medium.mg-l-auto", { "style": { "background-color": "rgb(168, 190, 214)" } },
-                                    aData.EDAD + " - " + aData.PESO + " - " + aData.ALTURA + "."
+                                    (aData.EDAD !== null ? aData.EDAD : '') + (aData.PESO !== null ? " - " + aData.PESO : '') + (aData.ALTURA !== null ? " - " + aData.ALTURA : '')
                                 )
                             ]),
                             m("div.d-flex.mg-b-20", { "style": { "background-color": "rgb(234, 239, 245)" } }, [
@@ -723,6 +749,8 @@ const PedidosTR = {
                     m("h1.df-title.mg-t-20.mg-b-10",
                         "Recepción de Pedidos:"
                     ),
+
+
                     m(tablePedidosTR)
 
 
@@ -793,6 +821,169 @@ const PedidosTR = {
                     m("h1.df-title.mg-t-20.mg-b-10",
                         "Recepción de Pedidos:"
                     ),
+
+                    m("div.d-flex.align-items-center.justify-content-between.mg-b-40.mg-t-10", [
+                        m("h5.mg-b-0",
+                            "Pedidos de Terapia Respiratoria:",
+                            m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15", {
+                                oncreate: (el) => {
+                                    if (PedidosTR.idFiltro == 1) {
+                                        el.dom.innerHTML = 'Pedidos de Hoy';
+                                    }
+                                    if (PedidosTR.idFiltro == 2) {
+                                        el.dom.innerHTML = 'Pedidos entre Fechas';
+                                    }
+                                    if (PedidosTR.idFiltro == 3) {
+                                        el.dom.innerHTML = 'Pedidos de Emergencia';
+                                    }
+                                    if (PedidosTR.idFiltro == 4) {
+                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
+                                    }
+                                    if (PedidosTR.idFiltro == 5) {
+                                        el.dom.innerHTML = 'Pedidos de PB';
+                                    }
+                                    if (PedidosTR.idFiltro == 6) {
+                                        el.dom.innerHTML = 'Pedidos de H1';
+                                    }
+                                    if (PedidosTR.idFiltro == 7) {
+                                        el.dom.innerHTML = 'Pedidos de H2';
+                                    }
+                                    if (PedidosTR.idFiltro == 8) {
+                                        el.dom.innerHTML = 'Pedidos de C2';
+                                    }
+                                },
+                                onupdate: (el) => {
+                                    if (PedidosTR.idFiltro == 1) {
+                                        el.dom.innerHTML = 'Pedidos de Hoy';
+                                    }
+                                    if (PedidosTR.idFiltro == 2) {
+                                        el.dom.innerHTML = 'Pedidos entre Fechas';
+                                    }
+                                    if (PedidosTR.idFiltro == 3) {
+                                        el.dom.innerHTML = 'Pedidos de Emergencia';
+                                    }
+                                    if (PedidosTR.idFiltro == 4) {
+                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
+                                    }
+                                    if (PedidosTR.idFiltro == 5) {
+                                        el.dom.innerHTML = 'Pedidos de PB';
+                                    }
+                                    if (PedidosTR.idFiltro == 6) {
+                                        el.dom.innerHTML = 'Pedidos de H1';
+                                    }
+                                    if (PedidosTR.idFiltro == 7) {
+                                        el.dom.innerHTML = 'Pedidos de H2';
+                                    }
+                                    if (PedidosTR.idFiltro == 8) {
+                                        el.dom.innerHTML = 'Pedidos de C2';
+                                    }
+                                }
+                            }
+
+                            )
+
+                        ),
+                        m("div.d-flex.tx-14", [
+                            m('.', {
+                                class: 'd-flex'
+                            }, [
+                                m("div.link-03", {
+                                    title: "Desde"
+                                },
+                                    m(".tx-10.pd-r-0", {
+                                        style: { "padding-top": "10px" }
+                                    }, 'Desde:')
+                                ),
+                                m("div.link-03", {
+                                    style: { "cursor": "pointer" },
+                                    title: "Desde"
+                                },
+
+                                    m("input.tx-light.pd-4[type='date'][id='desde']", {
+                                        oncreate: (el) => {
+                                            el.dom.value = (PedidosTR.idFiltro !== 1 ? moment(moment(PedidosTR.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                        },
+                                        onchange: (el) => {
+                                            PedidosTR.fechaDesde = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
+                                            PedidosTR.loader = true;
+                                            PedidosTR.pedidos = [];
+                                            PedidosTR.fetchPedidos();
+                                            m.route.set("/terapia-respiratoria/pedidos?idFiltro=" + PedidosTR.idFiltro + "&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta);
+                                        },
+                                        style: {
+                                            "border": "transparent"
+                                        }
+                                    })
+                                ),
+                                m("div.link-03", {
+                                    title: "Hasta"
+                                },
+                                    m(".tx-10.pd-r-0", {
+                                        style: { "padding-top": "10px" }
+                                    }, 'Hasta:')
+                                ),
+                                m("div.link-03", {
+                                    style: { "cursor": "pointer" },
+                                    title: "Hasta"
+                                },
+                                    m("input.tx-light.pd-4[type='date'][id='hasta']", {
+                                        oncreate: (el) => {
+                                            el.dom.value = (PedidosTR.idFiltro !== 1 ? moment(moment(PedidosTR.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                        },
+                                        onchange: (el) => {
+                                            PedidosTR.fechaHasta = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
+                                            PedidosTR.loader = true;
+                                            PedidosTR.pedidos = [];
+                                            PedidosTR.fetchPedidos();
+                                            m.route.set("/terapia-respiratoria/pedidos?idFiltro=" + PedidosTR.idFiltro + "&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta);
+                                        },
+                                        style: {
+                                            "border": "transparent"
+                                        }
+                                    })
+                                )
+                            ]),
+                            m("div.dropdown.dropleft", [
+                                m("div.link-03.lh-0.mg-l-5[id='dropdownMenuButton'][data-toggle='dropdown'][aria-haspopup='true'][aria-expanded='false']", {
+                                    style: { "cursor": "pointer" },
+                                    title: "Filtrar"
+                                },
+                                    m("i.fas.fa-filter.tx-18.pd-5")
+                                ),
+                                m(".dropdown-menu.tx-13[aria-labelledby='dropdownMenuButton']", [
+                                    m("h6.dropdown-header.tx-uppercase.tx-12.tx-bold.tx-inverse",
+                                        "FILTROS:"
+                                    ),
+                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=1" }, [
+                                        "Pedidos de Hoy"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=2&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos entre Fechas"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=3&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de Emergencia"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=4&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de Hospitalización"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=5&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de PB"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=6&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de H1"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=7&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de H2"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=8&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "Pedidos de C2"
+                                    ]),
+
+                                ])
+                            ])
+                        ])
+                    ]),
+
                     m("div.row.animated.fadeInUp", [
 
                         m("div.col-12", [
