@@ -59,7 +59,7 @@ const ListadoFormulario = {
                       formularioModelo.listadoUnitario = null;
                       if (
                         window.confirm(
-                          `¿Estas seguro que deseas ir al formulario ${formulario.ID}?`
+                          `¿Estás seguro que deseas ir al formulario ${formulario.ID}?`
                         )
                       ) {
                         m.mount(document.querySelector("#gestion-muestras"), {
@@ -114,7 +114,7 @@ const ListadoFormulario = {
                       };
                       if (
                         window.confirm(
-                          "Está seguro que deseas modificar el estado a cancelado?"
+                          "¿Estás seguro que deseas modificar el estado a cancelado?"
                         )
                       ) {
                         formularioModelo.modificarEstado(datos);

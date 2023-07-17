@@ -3139,11 +3139,10 @@ const VerUnFormulario = {
               "button",
               {
                 class: "btn btn-primary",
-                type: "submit",
+                type: "button",
                 disabled:
                   formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
                   formularioModelo.listadoUnitario.ESTADO === "Finalizado",
-                //disabled: obtenerDatos.habilitarCampos,
                 onclick: function () {
                   const formulario = {
                     NUMERODEPEDIDO: vnode.dom["inputNumeroPedido"].value,
@@ -3305,11 +3304,10 @@ const VerUnFormulario = {
                     ID: formularioModelo.listadoUnitario.ID,
                   };
                   if (
-                    confirm("¿Estás seguro quieres actualizar este formulario?")
+                    window.confirm(
+                      "¿Estás seguro que deseas actualizar el formulario?"
+                    )
                   ) {
-                    // Lógica de eliminación del elemento aquí
-                    console.log(formulario);
-                    //console.log(Pedido.data.AT_MV);
                     formularioModelo.actualizar(formulario);
                     m.mount(document.querySelector("#gestion-muestras"), null);
                     m.mount(
@@ -3319,10 +3317,6 @@ const VerUnFormulario = {
                     formularioModelo.listado = [];
                     formularioModelo.loading = true;
                   }
-
-                  //alert("Guardar");
-                  //alert("Guardar");
-                  //terapiaRespiratoriaController.guardar(formulario);
                 },
               },
               "Guardar"
@@ -3499,7 +3493,7 @@ const VerUnFormulario = {
                   };
                   if (
                     window.confirm(
-                      "Está seguro que deseas finalizar el formulario?"
+                      "¿Estás seguro que deseas finalizar el formulario?"
                     )
                   ) {
                     formularioModelo.actualizar(datos);
