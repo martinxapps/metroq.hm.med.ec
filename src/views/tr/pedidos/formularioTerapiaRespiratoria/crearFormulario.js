@@ -626,10 +626,11 @@ const CrearFormulario = {
                 { class: "form-label", for: "inputOtros" },
                 m("b", "Otros")
               ),
-              m("input", {
+              m("textarea", {
                 class: "form-control",
-                type: "text",
+                // type: "text",
                 id: "inputOtros",
+                maxlength:"4000",
               }),
             ])
           ),
@@ -2196,6 +2197,7 @@ const CrearFormulario = {
           class: "form-control",
           id: "textareaCriterio",
           rows: "3",
+          maxlength:"4000",
         }),
       ],
       m("br"),

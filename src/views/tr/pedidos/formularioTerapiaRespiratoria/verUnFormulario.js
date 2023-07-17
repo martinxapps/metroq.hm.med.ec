@@ -221,13 +221,14 @@ const inputMedicinas = {
               { class: "form-label", for: "inputOtros" },
               m("b", "Otros")
             ),
-            m("input", {
+            m("textarea", {
               class: "form-control",
-              type: "text",
+              // type: "text",
               id: "inputOtros",
               oncreate: (el) => {
                 el.dom.value = formularioModelo.listadoUnitario.OTROSDOSIS;
               },
+              maxlength:"4000",
               //disabled: true,
             }),
           ])
@@ -1228,6 +1229,7 @@ const inputMonitoreo = {
         oncreate: (el) => {
           el.dom.value = formularioModelo.listadoUnitario.CRITERIO;
         },
+        maxlength:"4000",
       }),
     ];
   },
