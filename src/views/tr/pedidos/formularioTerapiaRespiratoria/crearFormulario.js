@@ -202,11 +202,7 @@ const CrearFormulario = {
           "div",
           { class: "col" },
           m("div", { class: "mb-4" }, [
-            m(
-              "label",
-              { class: "form-label", for: "inputNHC" },
-              m("b", "NHC")
-            ),
+            m("label", { class: "form-label", for: "inputNHC" }, m("b", "NHC")),
             m("input", {
               class: "form-control",
               type: "text",
@@ -312,14 +308,15 @@ const CrearFormulario = {
           {},
           Pedido.examenes.forEach(({ EXAMEN, FRECUENCIA }) => {
             if (!CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`]) {
-              CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`] = false;
-            } 
+              CrearFormulario.valoresCheckBox[
+                `${EXAMEN} ${FRECUENCIA}`
+              ] = false;
+            }
             //const valorInicial = CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`] || false;
             //CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`] = false;
-            
           }),
-           Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
-            const id= `${EXAMEN} ${FRECUENCIA}`;
+          Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
+            const id = `${EXAMEN} ${FRECUENCIA}`;
             return m("div", { class: "form-check" }, [
               m("input", {
                 type: "checkbox",
@@ -330,11 +327,11 @@ const CrearFormulario = {
                 onclick: function (e) {
                   const valor = e.target.checked;
                   console.log("valor", valor);
-                  
+
                   CrearFormulario.valoresCheckBox[id] = valor;
-                  
+
                   console.log(CrearFormulario.valoresCheckBox);
-                }
+                },
               }),
               m(
                 "label",
@@ -345,7 +342,7 @@ const CrearFormulario = {
                 `${EXAMEN} - ${FRECUENCIA}`
               ),
             ]);
-          }) 
+          })
         ),
       ]),
 
@@ -469,7 +466,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputSalbumatol",
-                maxlength:"30",
+                maxlength: "30",
               }),
             ])
           ),
@@ -486,7 +483,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputHipersal",
-                maxlength:"30",
+                maxlength: "30",
               }),
             ])
           ),
@@ -503,7 +500,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputHipersal3",
-                maxlength:"30",
+                maxlength: "30",
               }),
             ])
           ),
@@ -522,7 +519,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputDexametasona",
-                maxlength:"30",
+                maxlength: "30",
               }),
             ])
           ),
@@ -539,7 +536,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputClorhidratoAmbroxol",
-                maxlength:"30",
+                maxlength: "30",
               }),
             ])
           ),
@@ -556,7 +553,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputSolucionSalina",
-                maxlength:"30",
+                maxlength: "30",
               }),
             ])
           ),
@@ -575,7 +572,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputBromuroIpatropio",
-                maxlength:"30",
+                maxlength: "30",
               }),
             ])
           ),
@@ -592,7 +589,7 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputAdrenalinaRacenica",
-                maxlength:"30",
+                maxlength: "30",
               }),
             ])
           ),
@@ -609,14 +606,12 @@ const CrearFormulario = {
                 class: "form-control",
                 type: "text",
                 id: "inputNAcetilcisteina",
-                maxlength:"30",
+                maxlength: "30",
               }),
             ])
           ),
         ]),
         m("div", { class: "row" }, [
-          
-          
           m(
             "div",
             { class: "col" },
@@ -630,7 +625,7 @@ const CrearFormulario = {
                 class: "form-control",
                 // type: "text",
                 id: "inputOtros",
-                maxlength:"4000",
+                maxlength: "4000",
               }),
             ])
           ),
@@ -640,8 +635,8 @@ const CrearFormulario = {
         m("div", { class: "container" }, [
           m("div", { class: "row justify-content-center" }, [
             m("div", { class: "col-12 col-md-6 text-center" }, [
-              m("h6", "Higiene Bronco Pulmonar")
-            ])
+              m("h6", "Higiene Bronco Pulmonar"),
+            ]),
           ]),
           m("div", { class: "row justify-content-center" }, [
             m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
@@ -654,7 +649,11 @@ const CrearFormulario = {
                   isPercusionesSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPercursiones" }, "Percursiones")
+              m(
+                "label",
+                { class: "form-label", for: "inputPercursiones" },
+                "Percursiones"
+              ),
             ]),
             m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
@@ -666,7 +665,11 @@ const CrearFormulario = {
                   isDrenajePosturalSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputDrenajePostural" }, "Drenaje Postural")
+              m(
+                "label",
+                { class: "form-label", for: "inputDrenajePostural" },
+                "Drenaje Postural"
+              ),
             ]),
             m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
@@ -678,7 +681,11 @@ const CrearFormulario = {
                   isVibracionesSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputVibraciones" }, "Vibraciones")
+              m(
+                "label",
+                { class: "form-label", for: "inputVibraciones" },
+                "Vibraciones"
+              ),
             ]),
             m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
@@ -690,7 +697,11 @@ const CrearFormulario = {
                   isTosEfectivaSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputTosEfectiva" }, "Tos Efectiva")
+              m(
+                "label",
+                { class: "form-label", for: "inputTosEfectiva" },
+                "Tos Efectiva"
+              ),
             ]),
             m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
@@ -702,7 +713,11 @@ const CrearFormulario = {
                   isAsistenteDeTosSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputAsistenteTos" }, "Asistente de Tos")
+              m(
+                "label",
+                { class: "form-label", for: "inputAsistenteTos" },
+                "Asistente de Tos"
+              ),
             ]),
             m("div", { class: "col-6 col-md-2 text-center mb-4" }, [
               m("input", {
@@ -714,16 +729,19 @@ const CrearFormulario = {
                   isChalecoVibroprecutor = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputChalecoVibroprecutor" }, "Chaleco Vibroprecutor")
+              m(
+                "label",
+                { class: "form-label", for: "inputChalecoVibroprecutor" },
+                "Chaleco Vibroprecutor"
+              ),
             ]),
           ]),
-        ])
-        
+        ]),
       ],
       [
         m("div", { class: "container" }, [
           m("div", { class: "d-flex justify-content-center" }, [
-            m("h6", "Terapia Expansiva")
+            m("h6", "Terapia Expansiva"),
           ]),
           m("div", { class: "row justify-content-center" }, [
             m("div", { class: "col-12 col-md-4 text-center mb-1" }, [
@@ -736,7 +754,11 @@ const CrearFormulario = {
                   isIncentivoRespiratorioSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputIncentivoRespiratorio" }, "Incentivo Respiratorio")
+              m(
+                "label",
+                { class: "form-label", for: "inputIncentivoRespiratorio" },
+                "Incentivo Respiratorio"
+              ),
             ]),
             m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
               m("input", {
@@ -745,10 +767,18 @@ const CrearFormulario = {
                 value: "",
                 id: "inputPresionPositivaContinuaEnLaViaAeria",
                 onclick: function (event) {
-                  isPresionPositivaContinuaEnLaViaAereaSelected = event.target.checked;
+                  isPresionPositivaContinuaEnLaViaAereaSelected =
+                    event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPresionPositivaContinuaEnLaViaAeria" }, "Presión Positiva continua en la vía aérea")
+              m(
+                "label",
+                {
+                  class: "form-label",
+                  for: "inputPresionPositivaContinuaEnLaViaAeria",
+                },
+                "Presión Positiva continua en la vía aérea"
+              ),
             ]),
             m("div", { class: "col-12 col-md-4 text-center mb-4" }, [
               m("input", {
@@ -757,10 +787,18 @@ const CrearFormulario = {
                 value: "",
                 id: "inputPresionPositivaAlFinalDeLaExpiracion",
                 onclick: function (event) {
-                  isPresionPositivaAlFinalDeLaExpiracionSelected = event.target.checked;
+                  isPresionPositivaAlFinalDeLaExpiracionSelected =
+                    event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputPresionPositivaAlFinalDeLaExpiracion" }, "Presión Positiva al final de la expiración")
+              m(
+                "label",
+                {
+                  class: "form-label",
+                  for: "inputPresionPositivaAlFinalDeLaExpiracion",
+                },
+                "Presión Positiva al final de la expiración"
+              ),
             ]),
             m("div", { class: "col-12 col-md-4 text-center mb-1" }, [
               m("input", {
@@ -772,7 +810,11 @@ const CrearFormulario = {
                   isKinesioterapiaSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputKinesioterapiaDelTorax" }, "Kinesioterapia del tórax")
+              m(
+                "label",
+                { class: "form-label", for: "inputKinesioterapiaDelTorax" },
+                "Kinesioterapia del tórax"
+              ),
             ]),
             m("div", { class: "col-12 col-md-4 text-center mb-1" }, [
               m("input", {
@@ -784,11 +826,15 @@ const CrearFormulario = {
                   isEjerciciosRespiratorioSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputEjerciciosRespiratorios" }, "Ejercicios respiratorios")
+              m(
+                "label",
+                { class: "form-label", for: "inputEjerciciosRespiratorios" },
+                "Ejercicios respiratorios"
+              ),
             ]),
           ]),
         ]),
-        
+
         /*  */
         m(
           "div",
@@ -810,21 +856,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputMililitrosPorSegundo",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
                   // Remover caracteres inválidos durante la escritura
                   e.target.value = e.target.value.replace(/[-+e]/g, "");
                   // Verificar si está dentro del rango válido
-                  if (isNaN(inputValue) || inputValue < 0 || inputValue > 10000 || inputValue.startsWith("0")) {
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 10000 ||
+                    inputValue.startsWith("0")
+                  ) {
                     e.target.value = ""; // Valor inválido, se vacía el campo
                   } else {
                     e.target.value = inputValue; // Valor válido, se mantiene en el campo
                   }
-                  },
-                onpaste: function(e) {
+                },
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -838,7 +889,10 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputCentimetrosCubicosPorSegundo" },
+                {
+                  class: "form-label",
+                  for: "inputCentimetrosCubicosPorSegundo",
+                },
                 m("b", "Centímetros cúbicos por segundo")
               ),
               m("input", {
@@ -846,21 +900,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputCentimetrosCubicosPorSegundo",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
                   // Remover caracteres inválidos durante la escritura
                   e.target.value = e.target.value.replace(/[-+e]/g, "");
                   // Verificar si está dentro del rango válido
-                  if (isNaN(inputValue) || inputValue < 0 || inputValue > 10000 || inputValue.startsWith("0")) {
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 10000 ||
+                    inputValue.startsWith("0")
+                  ) {
                     e.target.value = ""; // Valor inválido, se vacía el campo
                   } else {
                     e.target.value = inputValue; // Valor válido, se mantiene en el campo
                   }
-                  },
-                onpaste: function(e) {
+                },
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -894,21 +953,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeFraccion",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -930,21 +994,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitrosPorMinutoFraccion",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -969,21 +1038,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeAltoFlujo",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1005,21 +1079,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroAltoFlujo",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1028,7 +1107,7 @@ const CrearFormulario = {
             ])
           ),
         ]),
-        m('br'),
+        m("br"),
         m("h6", "Tienda Facial"),
         m("div", { class: "row" }, [
           m(
@@ -1045,21 +1124,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeTiendaFacial",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1081,21 +1165,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroPorMinutoTiendaFacial",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1120,21 +1209,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeTuboEnT",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1156,21 +1250,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroTuboEnT",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1196,21 +1295,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeCanulaNasal",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1232,21 +1336,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroPorMinutoCanulaNasal",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1271,21 +1380,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeMascarilla",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1307,21 +1421,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroMascarilla",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1347,21 +1466,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeHeliox",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1383,21 +1507,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputLitroPorMinutoHeliox",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1424,21 +1553,26 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputPorcentajeAireAmbiente",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                // Verificar si está dentro del rango válido
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  // Verificar si está dentro del rango válido
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1513,20 +1647,25 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputSaturacionPreviaPorcentaje",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1540,7 +1679,10 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputSaturacionPosteriorPorcentaje" },
+                {
+                  class: "form-label",
+                  for: "inputSaturacionPosteriorPorcentaje",
+                },
                 m("b", "Posterior Saturación O2(%) Porcentaje")
               ),
               m("input", {
@@ -1548,20 +1690,25 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputSaturacionPosteriorPorcentaje",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 100 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 100 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1579,7 +1726,10 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputFrecuenciaCardiacaPreviaPorMinuto" },
+                {
+                  class: "form-label",
+                  for: "inputFrecuenciaCardiacaPreviaPorMinuto",
+                },
                 m("b", "Previa Frecuencia Cardiaca por Minuto")
               ),
               m("input", {
@@ -1587,20 +1737,25 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputFrecuenciaCardiacaPreviaPorMinuto",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 300 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 300 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1614,7 +1769,10 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputFrecuenciaCardiacaPosteriorPorMinuto" },
+                {
+                  class: "form-label",
+                  for: "inputFrecuenciaCardiacaPosteriorPorMinuto",
+                },
                 m("b", "Posterior Frecuencia Cardiaca por Minuto")
               ),
               m("input", {
@@ -1622,20 +1780,25 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputFrecuenciaCardiacaPosteriorPorMinuto",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 300 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 300 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1652,7 +1815,10 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputFrecuenciaRespiratoriaPreviaPorMinuto" },
+                {
+                  class: "form-label",
+                  for: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
+                },
                 m("b", "Previa Frecuencia Respiratoria por Minuto")
               ),
               m("input", {
@@ -1660,20 +1826,25 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputFrecuenciaRespiratoriaPreviaPorMinuto",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 60 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 60 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1687,7 +1858,10 @@ const CrearFormulario = {
             m("div", { class: "mb-6" }, [
               m(
                 "label",
-                { class: "form-label", for: "inputFrecuenciaRespiratoriaPosteriorPorMinuto" },
+                {
+                  class: "form-label",
+                  for: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
+                },
                 m("b", "Posterior Frecuencia Respiratoria por Minuto")
               ),
               m("input", {
@@ -1695,20 +1869,25 @@ const CrearFormulario = {
                 type: "number",
                 id: "inputFrecuenciaRespiratoriaPosteriorPorMinuto",
                 placeholder: "Ingrese un valor",
-                oninput: function(e) {
+                oninput: function (e) {
                   const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (isNaN(inputValue) || inputValue < 0 || inputValue > 60 || inputValue.startsWith("0")) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
-                }
+                  // Remover caracteres inválidos durante la escritura
+                  e.target.value = e.target.value.replace(/[-+e]/g, "");
+                  if (
+                    isNaN(inputValue) ||
+                    inputValue < 0 ||
+                    inputValue > 60 ||
+                    inputValue.startsWith("0")
+                  ) {
+                    e.target.value = ""; // Valor inválido, se vacía el campo
+                  } else {
+                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  }
                 },
-                onpaste: function(e) {
+                onpaste: function (e) {
                   const clipboardData = e.clipboardData || window.clipboardData;
                   const pastedText = clipboardData.getData("text");
-          
+
                   if (containsInvalidChars(pastedText)) {
                     e.preventDefault();
                   }
@@ -1760,7 +1939,11 @@ const CrearFormulario = {
                   isTraquealSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputTraqueal" }, "Traqueal"),
+              m(
+                "label",
+                { class: "form-label", for: "inputTraqueal" },
+                "Traqueal"
+              ),
             ])
           ),
           m(
@@ -1863,7 +2046,11 @@ const CrearFormulario = {
                   isHisopadoSelected = event.target.checked;
                 },
               }),
-              m("label", { class: "form-label", for: "inputHisopado" }, "Hisopado"),
+              m(
+                "label",
+                { class: "form-label", for: "inputHisopado" },
+                "Hisopado"
+              ),
             ])
           ),
           m(
@@ -2034,7 +2221,6 @@ const CrearFormulario = {
             ]),
           ]),
           m("div.col.text-center", [
-            
             m("div.mb-2", [
               m("input.form-check-input", {
                 type: "checkbox",
@@ -2044,7 +2230,11 @@ const CrearFormulario = {
                   isSonidoDeLaVozSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputSonidoDeLaVoz" }, "Sonido de la voz"),
+              m(
+                "label.form-label",
+                { for: "inputSonidoDeLaVoz" },
+                "Sonido de la voz"
+              ),
             ]),
           ]),
           m("div.col.text-center", [
@@ -2055,7 +2245,7 @@ const CrearFormulario = {
                 id: "inputSibilancias",
                 onclick: (event) => {
                   isSibilanciasSelected = event.target.checked;
-                  console.log(isSibilanciasSelected)
+                  console.log(isSibilanciasSelected);
                 },
               }),
               m("label.form-label", { for: "inputSibilancias" }, "Sibilancias"),
@@ -2088,7 +2278,7 @@ const CrearFormulario = {
             ]),
           ]),
         ]),
-        
+
         m("div.row.justify-content-center", [
           m("div.col.text-center", [
             m("div.mb-2", [
@@ -2100,7 +2290,11 @@ const CrearFormulario = {
                   isLocalizacionSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputLocalizacion" }, "Localización"),
+              m(
+                "label.form-label",
+                { for: "inputLocalizacion" },
+                "Localización"
+              ),
             ]),
           ]),
           m("div.col.text-center", [
@@ -2126,7 +2320,11 @@ const CrearFormulario = {
                   isRuidoRespiratorioSelected = event.target.checked;
                 },
               }),
-              m("label.form-label", { for: "inputRuidoRespiratorio" }, "Ruido Respiratorio"),
+              m(
+                "label.form-label",
+                { for: "inputRuidoRespiratorio" },
+                "Ruido Respiratorio"
+              ),
             ]),
           ]),
           m("div.col.text-center", [
@@ -2169,7 +2367,7 @@ const CrearFormulario = {
             ]),
           ]),
         ]),
-        
+
         m("div.row.justify-content-center", [
           m("div.col.text-center", [
             m("div.mb-2", [
@@ -2184,8 +2382,7 @@ const CrearFormulario = {
               m("label.form-label", { for: "inputEdema" }, "Edema"),
             ]),
           ]),
-        ])
-        
+        ]),
       ],
       [
         m(
@@ -2197,7 +2394,7 @@ const CrearFormulario = {
           class: "form-control",
           id: "textareaCriterio",
           rows: "3",
-          maxlength:"4000",
+          maxlength: "4000",
         }),
       ],
       m("br"),
@@ -2214,7 +2411,8 @@ const CrearFormulario = {
               ORIGEN: vnode.dom["inputOrigenPedido"].value,
               MEDICOSOLICITANTE: vnode.dom["inputMedicoSolicitante"].value,
               ESPECIALIDAD: vnode.dom["inputEspecialidad"].value,
-              APELLIDOSNOMBREPACIENTE: vnode.dom["inputApellidosYNombres"].value,
+              APELLIDOSNOMBREPACIENTE:
+                vnode.dom["inputApellidosYNombres"].value,
               NHC: vnode.dom["inputNHC"].value,
               NUMEROATENCION: vnode.dom["inputNumeroAtencion"].value,
               UBICACION: vnode.dom["inputUbicacion"].value,
@@ -2233,114 +2431,129 @@ const CrearFormulario = {
                 `'${vnode.dom["inputFecha"].value}'` +
                 ", 'DD-MM-YYYY HH24:MI:SS')", */
 
-              FECHAHOY:vnode.dom["inputFecha"].value,
+              FECHAHOY: vnode.dom["inputFecha"].value,
               //FECHAHOY: `'To_Date(${vnode.dom["inputFecha"].value}, DD-MM-YYYY HH24:MI:SS)'`,
               //FECHAHOY: "TO_DATE('23-05-2023 09:30:45', 'DD-MM-YYYY HH24:MI:SS')",
               HORAANTES: vnode.dom["inputHora"].value,
               HORADESPUES: cargarHoraActual(),
-              SALBUTAMOLDOSIS:vnode.dom["inputSalbumatol"].value,
-              HIPERSAL7DOSIS:vnode.dom["inputHipersal"].value,
-              BROMURODELPATROPIODOSIS:vnode.dom["inputBromuroIpatropio"].value,
-              DEXAMETASONADOSIS:vnode.dom["inputDexametasona"].value,
-              CLORHIDRATODEAMBROXOLDOSIS:vnode.dom["inputClorhidratoAmbroxol"].value,
-              SOLUCIONSALINADOSIS:vnode.dom["inputSolucionSalina"].value,
-              HIPERSAL35DOSIS:vnode.dom["inputHipersal3"].value,
-              ADRENALINARACENICADOSIS:vnode.dom["inputAdrenalinaRacenica"].value,
+              SALBUTAMOLDOSIS: vnode.dom["inputSalbumatol"].value,
+              HIPERSAL7DOSIS: vnode.dom["inputHipersal"].value,
+              BROMURODELPATROPIODOSIS: vnode.dom["inputBromuroIpatropio"].value,
+              DEXAMETASONADOSIS: vnode.dom["inputDexametasona"].value,
+              CLORHIDRATODEAMBROXOLDOSIS:
+                vnode.dom["inputClorhidratoAmbroxol"].value,
+              SOLUCIONSALINADOSIS: vnode.dom["inputSolucionSalina"].value,
+              HIPERSAL35DOSIS: vnode.dom["inputHipersal3"].value,
+              ADRENALINARACENICADOSIS:
+                vnode.dom["inputAdrenalinaRacenica"].value,
               NAcetilcisteina: vnode.dom["inputNAcetilcisteina"].value,
-              OTROSDOSIS:vnode.dom["inputOtros"].value,
-              NEBULIZACION: isNebulizacionSelected ? 'true' : 'false',
-              ULTRASONIDO: isUltrasonidoSelected ? 'true' : 'false',
+              OTROSDOSIS: vnode.dom["inputOtros"].value,
+              NEBULIZACION: isNebulizacionSelected ? "true" : "false",
+              ULTRASONIDO: isUltrasonidoSelected ? "true" : "false",
               INHALADORESDOSISMEDIDA: isInhaladorDosisMedidaSelected
-                ? 'true'
-                : 'false',
-              DRENAJEPOSTURAL: isDrenajePosturalSelected ? 'true' : 'false',
-              PERCUSIONES: isPercusionesSelected ? 'true' : 'false',
-              VIBRACIONES: isVibracionesSelected ? 'true' : 'false',
-              TOSEFECTIVA: isTosEfectivaSelected ? 'true' : 'false',
-              ASISTENCIADETOS: isAsistenteDeTosSelected ? 'true' : 'false',
-              CHALECOVIBROPRECUTOR: isChalecoVibroprecutor
-                ? 'true'
-                : 'false',
-              NASOTRAQUEAL: isNasotraquealSelected ? 'true' : 'false',
-              TRAQUEAL: isTraquealSelected ? 'true' : 'false',
-              OROTRAQUEAL: isOroTraquealSelected ? 'true' : 'false',
-              LAVADONASAL: isLavadoNasalSelected ? 'true' : 'false',
-              SUBGLOTICA: isSubGloticoSelected ? 'true' : 'false',
-              ESPUTO: isEsputoSelected ? 'true' : 'false',
-              ISOPADO: isHisopadoSelected ? 'true' : 'false',
-              SECRECIONTRAQUEAL: isSecrecionTraquealSelected
-                ? 'true'
-                : 'false',
-              CONSCIENCIA: isConscienciaSelected ? 'true' : 'false',
-              INTUBADO: isIntubadoSelected ? 'true' : 'false',
-              ESTRIDOR: isEstridorSelected ? 'true' : 'false',
-              SIBILANCIAS: isSibilanciasSelected ? 'true' : 'false',
-              RONCUS: isRoncusSelected ? 'true' : 'false',
-              CREPITANTES: isCrepitantesSelected ? 'true' : 'false',
-              LOCALIZACION: isLocalizacionSelected ? 'true' : 'false',
-              CIANOSIS: isCianosisSelected ? 'true' : 'false',
-              RUIDORESPIRATORIO: isRuidoRespiratorioSelected
-                ? 'true'
-                : 'false',
-              DISMINUIDO: isDisminuidoSelected ? 'true' : 'false',
-              ABOLIDO: isAbolidoSelected ? 'true' : 'false',
-              SONIDODELAVOZ: isSonidoDeLaVozSelected ? 'true' : 'false',
-              EDEMA: isEdemaSelected ? 'true' : 'false',
-              DISNEA: isDisneaSelected ? 'true' : 'false',
-              TOS: isTosSelected ? 'true' : 'false',
-              EXPECTORACION: isExpectoracionSelected ? 'true' : 'false',
-              DOLORTORACICO: isDolorToracicoSelected ? 'true' : 'false',
-              HEMOPTISIS: isHemoptisisSelected ? 'true' : 'false',
-              FIEBRE: isFiebreSelected ? 'true' : 'false',
+                ? "true"
+                : "false",
+              DRENAJEPOSTURAL: isDrenajePosturalSelected ? "true" : "false",
+              PERCUSIONES: isPercusionesSelected ? "true" : "false",
+              VIBRACIONES: isVibracionesSelected ? "true" : "false",
+              TOSEFECTIVA: isTosEfectivaSelected ? "true" : "false",
+              ASISTENCIADETOS: isAsistenteDeTosSelected ? "true" : "false",
+              CHALECOVIBROPRECUTOR: isChalecoVibroprecutor ? "true" : "false",
+              NASOTRAQUEAL: isNasotraquealSelected ? "true" : "false",
+              TRAQUEAL: isTraquealSelected ? "true" : "false",
+              OROTRAQUEAL: isOroTraquealSelected ? "true" : "false",
+              LAVADONASAL: isLavadoNasalSelected ? "true" : "false",
+              SUBGLOTICA: isSubGloticoSelected ? "true" : "false",
+              ESPUTO: isEsputoSelected ? "true" : "false",
+              ISOPADO: isHisopadoSelected ? "true" : "false",
+              SECRECIONTRAQUEAL: isSecrecionTraquealSelected ? "true" : "false",
+              CONSCIENCIA: isConscienciaSelected ? "true" : "false",
+              INTUBADO: isIntubadoSelected ? "true" : "false",
+              ESTRIDOR: isEstridorSelected ? "true" : "false",
+              SIBILANCIAS: isSibilanciasSelected ? "true" : "false",
+              RONCUS: isRoncusSelected ? "true" : "false",
+              CREPITANTES: isCrepitantesSelected ? "true" : "false",
+              LOCALIZACION: isLocalizacionSelected ? "true" : "false",
+              CIANOSIS: isCianosisSelected ? "true" : "false",
+              RUIDORESPIRATORIO: isRuidoRespiratorioSelected ? "true" : "false",
+              DISMINUIDO: isDisminuidoSelected ? "true" : "false",
+              ABOLIDO: isAbolidoSelected ? "true" : "false",
+              SONIDODELAVOZ: isSonidoDeLaVozSelected ? "true" : "false",
+              EDEMA: isEdemaSelected ? "true" : "false",
+              DISNEA: isDisneaSelected ? "true" : "false",
+              TOS: isTosSelected ? "true" : "false",
+              EXPECTORACION: isExpectoracionSelected ? "true" : "false",
+              DOLORTORACICO: isDolorToracicoSelected ? "true" : "false",
+              HEMOPTISIS: isHemoptisisSelected ? "true" : "false",
+              FIEBRE: isFiebreSelected ? "true" : "false",
               INCENTIVORESPIRATORIO: isIncentivoRespiratorioSelected
-                ? 'true'
-                : 'false',
+                ? "true"
+                : "false",
               PRESIONPOSITIVAVIAAREA:
                 isPresionPositivaContinuaEnLaViaAereaSelected
-                  ? 'true'
-                  : 'false',
+                  ? "true"
+                  : "false",
               PRESIONPOSITIVAEXPIRACION:
                 isPresionPositivaAlFinalDeLaExpiracionSelected
-                  ? 'true'
-                  : 'false',
+                  ? "true"
+                  : "false",
               KINISIOTERAPIADELTORAX: isKinesioterapiaSelected
-                ? 'true'
-                : 'false',
+                ? "true"
+                : "false",
               EJERCICIOSRESPIRATORIOS: isEjerciciosRespiratorioSelected
-                ? 'true'
-                : 'false',
-              MILILITROSPORSEGUNDOINCENTIVO:vnode.dom["inputMililitrosPorSegundo"].value,
-              CENTIMETROSSEGUNDOINCENTIVO:vnode.dom["inputCentimetrosCubicosPorSegundo"].value,
-              FRACCIONOXIGENOPORCENTAJE:vnode.dom["inputPorcentajeFraccion"].value,
-              FRACCIONIOXIGENOLITROS:vnode.dom["inputLitrosPorMinutoFraccion"].value,
-              ALTOFLUJOPORCENTAJE:vnode.dom["inputPorcentajeAltoFlujo"].value,
-              ALTOFLUJOLITROSPORMINUTO:vnode.dom["inputLitroAltoFlujo"].value,
-              TIENDAFACIALPORCENTAJE:vnode.dom["inputPorcentajeTiendaFacial"].value,
-              TIENDAFACIALLITROSPORMINUTO:vnode.dom["inputLitroPorMinutoTiendaFacial"].value,
-              TUBOENTPORCENTAJE:vnode.dom["inputPorcentajeTuboEnT"].value,
-              TUBOENTLITROSPORMINUTO:vnode.dom["inputLitroTuboEnT"].value,
-              CANULANASALPORCENTAJE:vnode.dom["inputPorcentajeCanulaNasal"].value,
-              CANULANASALLITROSPORMINUTO:vnode.dom["inputLitroPorMinutoCanulaNasal"].value,
-              MASCARILLAPORCENTAJE:vnode.dom["inputPorcentajeMascarilla"].value,
-              MASCARILLALITROSPORMINUTO:vnode.dom["inputLitroMascarilla"].value,
-              HELIOXPORCENTAJE:vnode.dom["inputPorcentajeHeliox"].value,
-              HELIOXLITROSPORMINUTO:vnode.dom["inputLitroPorMinutoHeliox"].value,
-              AIREAMBIENTEPORCENTAJE:vnode.dom["inputPorcentajeAireAmbiente"].value,
+                ? "true"
+                : "false",
+              MILILITROSPORSEGUNDOINCENTIVO:
+                vnode.dom["inputMililitrosPorSegundo"].value,
+              CENTIMETROSSEGUNDOINCENTIVO:
+                vnode.dom["inputCentimetrosCubicosPorSegundo"].value,
+              FRACCIONOXIGENOPORCENTAJE:
+                vnode.dom["inputPorcentajeFraccion"].value,
+              FRACCIONIOXIGENOLITROS:
+                vnode.dom["inputLitrosPorMinutoFraccion"].value,
+              ALTOFLUJOPORCENTAJE: vnode.dom["inputPorcentajeAltoFlujo"].value,
+              ALTOFLUJOLITROSPORMINUTO: vnode.dom["inputLitroAltoFlujo"].value,
+              TIENDAFACIALPORCENTAJE:
+                vnode.dom["inputPorcentajeTiendaFacial"].value,
+              TIENDAFACIALLITROSPORMINUTO:
+                vnode.dom["inputLitroPorMinutoTiendaFacial"].value,
+              TUBOENTPORCENTAJE: vnode.dom["inputPorcentajeTuboEnT"].value,
+              TUBOENTLITROSPORMINUTO: vnode.dom["inputLitroTuboEnT"].value,
+              CANULANASALPORCENTAJE:
+                vnode.dom["inputPorcentajeCanulaNasal"].value,
+              CANULANASALLITROSPORMINUTO:
+                vnode.dom["inputLitroPorMinutoCanulaNasal"].value,
+              MASCARILLAPORCENTAJE:
+                vnode.dom["inputPorcentajeMascarilla"].value,
+              MASCARILLALITROSPORMINUTO:
+                vnode.dom["inputLitroMascarilla"].value,
+              HELIOXPORCENTAJE: vnode.dom["inputPorcentajeHeliox"].value,
+              HELIOXLITROSPORMINUTO:
+                vnode.dom["inputLitroPorMinutoHeliox"].value,
+              AIREAMBIENTEPORCENTAJE:
+                vnode.dom["inputPorcentajeAireAmbiente"].value,
               VENTILACIONMECANICA: isVentilacionMecanicaSelected
-                ? 'true'
-                : 'false',
+                ? "true"
+                : "false",
               VENTILACIONNOINVASIVA: isVentilacionNoInvasivaSelected
-                ? 'true'
-                : 'false',
-              SATURACIONPREVIA: vnode.dom["inputSaturacionPreviaPorcentaje"].value,
-              SATURACIONPOSTERIOR:vnode.dom["inputSaturacionPosteriorPorcentaje"].value,
-              FRECUENCIACARDIACAPREVIA:vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value,
-              FRECUENCIACARDIACAPOSTERIOR:vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"].value,
-              FRECUENCIARESPIRATORIAPREVIA:vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"].value,
-              FRECUENCIARESPIRATORIAPOS:vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"].value,
+                ? "true"
+                : "false",
+              SATURACIONPREVIA:
+                vnode.dom["inputSaturacionPreviaPorcentaje"].value,
+              SATURACIONPOSTERIOR:
+                vnode.dom["inputSaturacionPosteriorPorcentaje"].value,
+              FRECUENCIACARDIACAPREVIA:
+                vnode.dom["inputFrecuenciaCardiacaPreviaPorMinuto"].value,
+              FRECUENCIACARDIACAPOSTERIOR:
+                vnode.dom["inputFrecuenciaCardiacaPosteriorPorMinuto"].value,
+              FRECUENCIARESPIRATORIAPREVIA:
+                vnode.dom["inputFrecuenciaRespiratoriaPreviaPorMinuto"].value,
+              FRECUENCIARESPIRATORIAPOS:
+                vnode.dom["inputFrecuenciaRespiratoriaPosteriorPorMinuto"]
+                  .value,
               CRITERIO: vnode.dom["textareaCriterio"].value,
-              ESTADO: 'Activo', //"1",
-              ID: 'sec_TerapiaRespiratoria.nextval',
+              ESTADO: "Activo", //"1",
+              ID: "sec_TerapiaRespiratoria.nextval",
               //ID: 300,
             };
             if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
@@ -2350,14 +2563,16 @@ const CrearFormulario = {
                 console.log(Pedido.data.AT_MV);
                 formularioModelo.guardar(formulario);
                 m.mount(document.querySelector("#gestion-muestras"), null);
-                m.mount(document.querySelector("#cerrar-gestion-muestras"), null);
+                m.mount(
+                  document.querySelector("#cerrar-gestion-muestras"),
+                  null
+                );
                 formularioModelo.listado = [];
                 formularioModelo.loading = true;
               }
-            } else{
+            } else {
               alert("Debe escoger al menos una prescripción");
             }
-            
 
             //alert("Guardar");
             //alert("Guardar");
