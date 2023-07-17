@@ -52,9 +52,9 @@ const ListadoFormulario = {
                         ? "btn btn-secondary"
                         : "btn btn-primary",
                     type: "button",
-                    disabled:
+                    /* disabled:
                       formulario.ESTADO === "Cancelado" ||
-                      formulario.ESTADO === "Finalizado",
+                      formulario.ESTADO === "Finalizado", */
                     onclick: function () {
                       formularioModelo.listadoUnitario = null;
                       if (
