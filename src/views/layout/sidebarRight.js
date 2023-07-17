@@ -49,20 +49,17 @@ const SidebarRight = {
                         m("p.mg-b-25.tx-12.tx-color-03", [
                             m(vRol)
                         ]),
-                        m(m.route.Link, { href: "/", class: "dropdown-item tx-16 " }, [
-                            m("i[data-feather='user']"),
-                            " Mi Perfil "
-                        ]),
-                        m(m.route.Link, { href: "/", class: "dropdown-item tx-16 " }, [
-                            m("i[data-feather='help-circle']"),
-                            " Soporte CONCAS "
-                        ]),
-
                         m("div.dropdown-divider"),
-                        m(m.route.Link, { href: "/salir", class: "dropdown-item tx-16 " }, [
+                        m('button', {
+                            class: "dropdown-item tx-16 ",
+                            onclick: (e) => {
+                                m.route.set('/salir');
+                            }
+                        }, [
                             m("i[data-feather='log-out']"),
                             "Salir"
                         ]),
+
 
 
 
