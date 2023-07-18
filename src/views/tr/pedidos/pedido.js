@@ -584,6 +584,7 @@ const Examenes = {
                     (_val.OBS_EXAMEN !== null ? m('.d-inline', 'Observaciones:') : ''),
                     (_val.OBS_EXAMEN !== null ? m('br') : ''),
                     (_val.OBS_EXAMEN !== null ? m('.d-inline', _val.OBS_EXAMEN) : ''),
+                    m('br'),
                 ]
             })
         }
