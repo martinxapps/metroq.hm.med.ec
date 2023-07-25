@@ -59,7 +59,7 @@ const ListadoFormulario = {
                       formularioModelo.listadoUnitario = null;
                       if (
                         window.confirm(
-                          `¿Estás seguro que deseas ir al formulario ${formulario.ID}?`
+                          `¿Estás seguro que deseas ir al formulario que fue realizado por ${formulario.Usuario.toUpperCase()} el ${formulario.FECHAHOY}?`
                         )
                       ) {
                         m.mount(document.querySelector("#gestion-muestras"), {
