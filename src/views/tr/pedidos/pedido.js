@@ -1049,7 +1049,7 @@ const Pedido = {
                                                                         onclick: () => {
                                                                             if (
                                                                                 window.confirm(
-                                                                                  "¿Estas seguro de abrir un nuevo formulario?"
+                                                                                  "¿Estás seguro de abrir un nuevo formulario?"
                                                                                 )
                                                                               ){
 
