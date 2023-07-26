@@ -137,59 +137,59 @@ const tablePedidosTR = {
                         m("h5.mg-b-0",
                             "Pedidos de Terapia Respiratoria:",
                             m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15", {
-                                    oncreate: (el) => {
-                                        if (PedidosTR.idFiltro == 1) {
-                                            el.dom.innerHTML = 'Pedidos de Hoy';
-                                        }
-                                        if (PedidosTR.idFiltro == 2) {
-                                            el.dom.innerHTML = 'Pedidos entre Fechas';
-                                        }
-                                        if (PedidosTR.idFiltro == 3) {
-                                            el.dom.innerHTML = 'Pedidos de Emergencia';
-                                        }
-                                        if (PedidosTR.idFiltro == 4) {
-                                            el.dom.innerHTML = 'Pedidos de Hospitalización';
-                                        }
-                                        if (PedidosTR.idFiltro == 5) {
-                                            el.dom.innerHTML = 'Pedidos de PB';
-                                        }
-                                        if (PedidosTR.idFiltro == 6) {
-                                            el.dom.innerHTML = 'Pedidos de H1';
-                                        }
-                                        if (PedidosTR.idFiltro == 7) {
-                                            el.dom.innerHTML = 'Pedidos de H2';
-                                        }
-                                        if (PedidosTR.idFiltro == 8) {
-                                            el.dom.innerHTML = 'Pedidos de C2';
-                                        }
-                                    },
-                                    onupdate: (el) => {
-                                        if (PedidosTR.idFiltro == 1) {
-                                            el.dom.innerHTML = 'Pedidos de Hoy';
-                                        }
-                                        if (PedidosTR.idFiltro == 2) {
-                                            el.dom.innerHTML = 'Pedidos entre Fechas';
-                                        }
-                                        if (PedidosTR.idFiltro == 3) {
-                                            el.dom.innerHTML = 'Pedidos de Emergencia';
-                                        }
-                                        if (PedidosTR.idFiltro == 4) {
-                                            el.dom.innerHTML = 'Pedidos de Hospitalización';
-                                        }
-                                        if (PedidosTR.idFiltro == 5) {
-                                            el.dom.innerHTML = 'Pedidos de PB';
-                                        }
-                                        if (PedidosTR.idFiltro == 6) {
-                                            el.dom.innerHTML = 'Pedidos de H1';
-                                        }
-                                        if (PedidosTR.idFiltro == 7) {
-                                            el.dom.innerHTML = 'Pedidos de H2';
-                                        }
-                                        if (PedidosTR.idFiltro == 8) {
-                                            el.dom.innerHTML = 'Pedidos de C2';
-                                        }
+                                oncreate: (el) => {
+                                    if (PedidosTR.idFiltro == 1) {
+                                        el.dom.innerHTML = 'Pedidos de Hoy';
+                                    }
+                                    if (PedidosTR.idFiltro == 2) {
+                                        el.dom.innerHTML = 'Pedidos entre Fechas';
+                                    }
+                                    if (PedidosTR.idFiltro == 3) {
+                                        el.dom.innerHTML = 'Pedidos de Emergencia';
+                                    }
+                                    if (PedidosTR.idFiltro == 4) {
+                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
+                                    }
+                                    if (PedidosTR.idFiltro == 5) {
+                                        el.dom.innerHTML = 'Pedidos de PB';
+                                    }
+                                    if (PedidosTR.idFiltro == 6) {
+                                        el.dom.innerHTML = 'Pedidos de H1';
+                                    }
+                                    if (PedidosTR.idFiltro == 7) {
+                                        el.dom.innerHTML = 'Pedidos de H2';
+                                    }
+                                    if (PedidosTR.idFiltro == 8) {
+                                        el.dom.innerHTML = 'Pedidos de C2';
+                                    }
+                                },
+                                onupdate: (el) => {
+                                    if (PedidosTR.idFiltro == 1) {
+                                        el.dom.innerHTML = 'Pedidos de Hoy';
+                                    }
+                                    if (PedidosTR.idFiltro == 2) {
+                                        el.dom.innerHTML = 'Pedidos entre Fechas';
+                                    }
+                                    if (PedidosTR.idFiltro == 3) {
+                                        el.dom.innerHTML = 'Pedidos de Emergencia';
+                                    }
+                                    if (PedidosTR.idFiltro == 4) {
+                                        el.dom.innerHTML = 'Pedidos de Hospitalización';
+                                    }
+                                    if (PedidosTR.idFiltro == 5) {
+                                        el.dom.innerHTML = 'Pedidos de PB';
+                                    }
+                                    if (PedidosTR.idFiltro == 6) {
+                                        el.dom.innerHTML = 'Pedidos de H1';
+                                    }
+                                    if (PedidosTR.idFiltro == 7) {
+                                        el.dom.innerHTML = 'Pedidos de H2';
+                                    }
+                                    if (PedidosTR.idFiltro == 8) {
+                                        el.dom.innerHTML = 'Pedidos de C2';
                                     }
                                 }
+                            }
 
                             )
 
@@ -199,20 +199,20 @@ const tablePedidosTR = {
                                 class: (PedidosTR.idFiltro > 1 ? 'd-flex' : 'd-none')
                             }, [
                                 m("div.link-03", {
-                                        title: "Desde"
-                                    },
+                                    title: "Desde"
+                                },
                                     m(".tx-10.pd-r-0", {
                                         style: { "padding-top": "10px" }
                                     }, 'Desde:')
                                 ),
                                 m("div.link-03", {
-                                        style: { "cursor": "pointer" },
-                                        title: "Desde"
-                                    },
+                                    style: { "cursor": "pointer" },
+                                    title: "Desde"
+                                },
 
                                     m("input.tx-light.pd-4[type='date'][id='desde']", {
                                         oncreate: (el) => {
-                                            el.dom.value = (PedidosTR.idFiltro !== 1 ? moment(moment(PedidosTR.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                            el.dom.value = (PedidosTR.idFiltro > 1 ? moment(moment(PedidosTR.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
                                         },
                                         onchange: (el) => {
                                             PedidosTR.fechaDesde = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
@@ -227,19 +227,19 @@ const tablePedidosTR = {
                                     })
                                 ),
                                 m("div.link-03", {
-                                        title: "Hasta"
-                                    },
+                                    title: "Hasta"
+                                },
                                     m(".tx-10.pd-r-0", {
                                         style: { "padding-top": "10px" }
                                     }, 'Hasta:')
                                 ),
                                 m("div.link-03", {
-                                        style: { "cursor": "pointer" },
-                                        title: "Hasta"
-                                    },
+                                    style: { "cursor": "pointer" },
+                                    title: "Hasta"
+                                },
                                     m("input.tx-light.pd-4[type='date'][id='hasta']", {
                                         oncreate: (el) => {
-                                            el.dom.value = (PedidosTR.idFiltro !== 1 ? moment(moment(PedidosTR.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                            el.dom.value = (PedidosTR.idFiltro > 1 ? moment(moment(PedidosTR.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
                                         },
                                         onchange: (el) => {
                                             PedidosTR.fechaHasta = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
@@ -256,9 +256,9 @@ const tablePedidosTR = {
                             ]),
                             m("div.dropdown.dropleft", [
                                 m("div.link-03.lh-0.mg-l-5[id='dropdownMenuButton'][data-toggle='dropdown'][aria-haspopup='true'][aria-expanded='false']", {
-                                        style: { "cursor": "pointer" },
-                                        title: "Filtrar"
-                                    },
+                                    style: { "cursor": "pointer" },
+                                    title: "Filtrar"
+                                },
                                     m("i.fas.fa-filter.tx-18.pd-5")
                                 ),
                                 m(".dropdown-menu.tx-13[aria-labelledby='dropdownMenuButton']", [
@@ -295,13 +295,13 @@ const tablePedidosTR = {
                         ])
                     ]),
                     m("div.col-sm-12.filemgr-content-header", {
-                        class: (PedidosTR.idFiltro > 0 ? "mg-t-35" : "mg-t-40")
+                        class: (PedidosTR.idFiltro > 1 ? "mg-t-35" : "mg-t-40")
                     }, [
                         m("i[data-feather='search']"),
                         m("div.search-form",
                             m("input.form-control[type='search'][placeholder='Buscar'][id='searchField']", {
 
-                                oninput: function(e) { PedidosTR.searchField = e.target.value; },
+                                oninput: function (e) { PedidosTR.searchField = e.target.value; },
                                 value: PedidosTR.searchField,
                             })
                         ),
@@ -333,35 +333,25 @@ const PedidosTR = {
 
         sidebarTr.page = "";
 
-        if (PedidosTR.pedidos.length == 0) {
-
-            moment.lang("es", {
-                months: "Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre".split(
-                    "_"
-                ),
-                monthsShort: "Enero._Feb._Mar_Abr._May_Jun_Jul._Ago_Sept._Oct._Nov._Dec.".split(
-                    "_"
-                ),
-                weekdays: "Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado".split(
-                    "_"
-                ),
-                weekdaysShort: "Dom._Lun._Mar._Mier._Jue._Vier._Sab.".split("_"),
-                weekdaysMin: "Do_Lu_Ma_Mi_Ju_Vi_Sa".split("_"),
-            });
-
-
-
+        if (_data.attrs.fechaDesde == undefined || _data.attrs.fechaHasta == undefined) {
             PedidosTR.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
             PedidosTR.fechaHasta = moment().format('DD-MM-YYYY');
-            PedidosTR.loader = true;
-            PedidosTR.pedidos = [];
-            PedidosTR.fetchPedidos();
-
+            console.log(PedidosTR)
         }
+
 
     },
     oncreate: (_data) => {
+
+        if (_data.attrs.fechaDesde == undefined || _data.attrs.fechaHasta == undefined) {
+            PedidosTR.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
+            PedidosTR.fechaHasta = moment().format('DD-MM-YYYY');
+        }
+
+
         Notificaciones.suscribirCanal('MetroPlus-Terapia-Respiratoria');
+
+
     },
     loadPedidos: () => {
 
@@ -399,82 +389,70 @@ const PedidosTR = {
             destroy: true,
             columns: false,
             aoColumnDefs: [{
-                    mRender: function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    },
-                    visible: false,
-                    aTargets: [0],
-                    orderable: true,
+                mRender: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
                 },
-                {
-                    mRender: function(data, type, full) {
-                        return full.AT_MV;
-                    },
-                    visible: false,
-                    aTargets: [1],
-                    orderable: false,
-
+                visible: false,
+                aTargets: [0],
+                orderable: true,
+            },
+            {
+                mRender: function (data, type, full) {
+                    return full.AT_MV;
                 },
-                {
-                    mRender: function(data, type, full) {
-                        return full.CD_PACIENTE;
+                visible: false,
+                aTargets: [1],
+                orderable: false,
 
-                    },
-                    visible: false,
-                    aTargets: [2],
-                    orderable: false,
-
-                }, {
-                    mRender: function(data, type, full) {
-                        return full.NM_PACIENTE;
-
-                    },
-                    visible: false,
-                    aTargets: [3],
-                    orderable: false,
-
-                }, {
-                    mRender: function(data, type, full) {
-                        return full.MED_MV;
-
-                    },
-                    visible: false,
-                    aTargets: [4],
-                    orderable: false,
-
-                }, {
-                    mRender: function(data, type, full) {
-                        return "";
-
-                    },
-                    visible: true,
-                    aTargets: [5],
-                    orderable: false,
+            },
+            {
+                mRender: function (data, type, full) {
+                    return full.CD_PACIENTE;
 
                 },
+                visible: false,
+                aTargets: [2],
+                orderable: false,
 
+            }, {
+                mRender: function (data, type, full) {
+                    return full.NM_PACIENTE;
+
+                },
+                visible: false,
+                aTargets: [3],
+                orderable: false,
+
+            }, {
+                mRender: function (data, type, full) {
+                    return full.MED_MV;
+
+                },
+                visible: false,
+                aTargets: [4],
+                orderable: false,
+
+            }, {
+                mRender: function (data, type, full) {
+                    return "";
+
+                },
+                visible: true,
+                aTargets: [5],
+                orderable: false,
+
+            },
 
             ],
-            fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                //formularioModelo.idRespuesta = '';
+            fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                 m.mount(nRow, {
-                    oninit: function() {
+                    oninit: function () {
 
                         formularioModelo.cargarListado(aData.CD_PRE_MED);
                         console.log(formularioModelo.idRespuesta);
                     },
                     view: () => {
-                        /* if (formularioModelo.cargarListado(idFormulario)) {
-                            return [
-                                m(EstadoTotal, {id: aData.CD_PRE_MED}),
-                            ]
-                        } else {
-                            
-                        } */
-                        /* return (
-                        
-                        formularioModelo.idRespuesta == aData.CD_PRE_MED &&
-                        formularioModelo.listado.length > 0 ? "En Proceso" : "Pendiente") */
+
 
                         return [
                             m("div.d-flex", {
@@ -559,17 +537,17 @@ const PedidosTR = {
 
                                 m("div.pd-0.mg-l-auto", { "style": { "background-color": "rgb(168, 190, 214)" } },
                                     m("td.tx-10", {
-                                            "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" },
-                                            onclick: () => {
-                                                // PedidosTR.enviarEstado(aData.CD_PRE_MED);
-                                                m.route.set("/terapia-respiratoria/pedido/", {
-                                                    numeroHistoriaClinica: aData.CD_PACIENTE,
-                                                    numeroAtencion: aData.AT_MV,
-                                                    numeroPedido: aData.CD_PRE_MED,
-                                                    track: "view",
-                                                });
-                                            }
-                                        },
+                                        "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" },
+                                        onclick: () => {
+                                            // PedidosTR.enviarEstado(aData.CD_PRE_MED);
+                                            m.route.set("/terapia-respiratoria/pedido/", {
+                                                numeroHistoriaClinica: aData.CD_PACIENTE,
+                                                numeroAtencion: aData.AT_MV,
+                                                numeroPedido: aData.CD_PRE_MED,
+                                                track: "view",
+                                            });
+                                        }
+                                    },
                                         m(".tx-normal",
                                             m("i.fas.fa-file-alt.pd-1.mg-r-2"),
 
@@ -591,7 +569,7 @@ const PedidosTR = {
             minimumResultsForSearch: Infinity
         });
 
-        $('#searchField').keyup(function(e) {
+        $('#searchField').keyup(function (e) {
 
             table.search($('#searchField').val()).draw();
         });
@@ -609,19 +587,19 @@ const PedidosTR = {
         }
 
         m.request({
-                method: "GET",
-                //url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/pedidos" + _queryString,
-                url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/trn/pedidos" + _queryString,
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-            })
-            .then(function(result) {
+            method: "GET",
+            //url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/pedidos" + _queryString,
+            url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/trn/pedidos" + _queryString,
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(function (result) {
                 PedidosTR.loader = false;
                 PedidosTR.pedidos = result.data;
             })
-            .catch(function(e) {
-                setTimeout(function() { PedidosTR.fetchPedidos(); }, 2000);
+            .catch(function (e) {
+                // setTimeout(function () { PedidosTR.fetchPedidos(); }, 2000);
             });
 
 
@@ -664,11 +642,11 @@ const PedidosTR = {
                         m("div.col-12", [
 
                             m("div.table-loader.wd-100p", [
-                                    m("div.placeholder-paragraph", [
-                                        m("div.line"),
-                                        m("div.line")
-                                    ])
-                                ]
+                                m("div.placeholder-paragraph", [
+                                    m("div.line"),
+                                    m("div.line")
+                                ])
+                            ]
 
 
                             ),
@@ -684,7 +662,6 @@ const PedidosTR = {
 
                 ])
             ),
-
         ] : PedidosTR.error.length !== 0 ? [
             m(sidebarTr, { oncreate: sidebarTr.setPage(18) }),
             m("div.content.content-components",
@@ -723,7 +700,7 @@ const PedidosTR = {
                 ])
             ),
 
-        ] : !PedidosTR.loader && PedidosTR.pedidos.length !== 0 ? [
+        ] : PedidosTR.pedidos.length == 0 ? [
             m(sidebarTr, { oncreate: sidebarTr.setPage(18) }),
             m("div.content.content-components",
                 m("div.container.mg-l-0.mg-r-0", {
@@ -761,16 +738,16 @@ const PedidosTR = {
             ),
             m("div.section-nav", [
                 m("label.nav-label",
-                    "RECEPCIÓN DE PedidosTR"
+                    "RECEPCIÓN DE PEDIDOS:"
                 ),
                 m("div.mg-t-10.bg-white", {
 
-                    },
+                },
 
                     m("div.mg-t-10.bg-white",
                         m("div.card-header.pd-t-20.pd-b-0.bd-b-0", [
                             m("h6.lh-5.mg-b-5",
-                                "N° de PedidosTR:"
+                                "N° de Pedidos:"
                             ),
 
                         ]),
@@ -795,7 +772,7 @@ const PedidosTR = {
 
             ])
 
-        ] : !PedidosTR.loader && PedidosTR.pedidos.length == 0 ? [
+        ] : PedidosTR.pedidos.length !== 0 ? [
             m(sidebarTr, { oncreate: sidebarTr.setPage(18) }),
             m("div.content.content-components",
                 m("div.container.mg-l-0.mg-r-0", {
@@ -822,180 +799,8 @@ const PedidosTR = {
                         "Recepción de Pedidos:"
                     ),
 
-                    m("div.d-flex.align-items-center.justify-content-between.mg-b-40.mg-t-10", [
-                        m("h5.mg-b-0",
-                            "Pedidos de Terapia Respiratoria:",
-                            m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15", {
-                                    oncreate: (el) => {
-                                        if (PedidosTR.idFiltro == 1) {
-                                            el.dom.innerHTML = 'Pedidos de Hoy';
-                                        }
-                                        if (PedidosTR.idFiltro == 2) {
-                                            el.dom.innerHTML = 'Pedidos entre Fechas';
-                                        }
-                                        if (PedidosTR.idFiltro == 3) {
-                                            el.dom.innerHTML = 'Pedidos de Emergencia';
-                                        }
-                                        if (PedidosTR.idFiltro == 4) {
-                                            el.dom.innerHTML = 'Pedidos de Hospitalización';
-                                        }
-                                        if (PedidosTR.idFiltro == 5) {
-                                            el.dom.innerHTML = 'Pedidos de PB';
-                                        }
-                                        if (PedidosTR.idFiltro == 6) {
-                                            el.dom.innerHTML = 'Pedidos de H1';
-                                        }
-                                        if (PedidosTR.idFiltro == 7) {
-                                            el.dom.innerHTML = 'Pedidos de H2';
-                                        }
-                                        if (PedidosTR.idFiltro == 8) {
-                                            el.dom.innerHTML = 'Pedidos de C2';
-                                        }
-                                    },
-                                    onupdate: (el) => {
-                                        if (PedidosTR.idFiltro == 1) {
-                                            el.dom.innerHTML = 'Pedidos de Hoy';
-                                        }
-                                        if (PedidosTR.idFiltro == 2) {
-                                            el.dom.innerHTML = 'Pedidos entre Fechas';
-                                        }
-                                        if (PedidosTR.idFiltro == 3) {
-                                            el.dom.innerHTML = 'Pedidos de Emergencia';
-                                        }
-                                        if (PedidosTR.idFiltro == 4) {
-                                            el.dom.innerHTML = 'Pedidos de Hospitalización';
-                                        }
-                                        if (PedidosTR.idFiltro == 5) {
-                                            el.dom.innerHTML = 'Pedidos de PB';
-                                        }
-                                        if (PedidosTR.idFiltro == 6) {
-                                            el.dom.innerHTML = 'Pedidos de H1';
-                                        }
-                                        if (PedidosTR.idFiltro == 7) {
-                                            el.dom.innerHTML = 'Pedidos de H2';
-                                        }
-                                        if (PedidosTR.idFiltro == 8) {
-                                            el.dom.innerHTML = 'Pedidos de C2';
-                                        }
-                                    }
-                                }
 
-                            )
-
-                        ),
-                        m("div.d-flex.tx-14", [
-                            m('.', {
-                                class: 'd-flex'
-                            }, [
-                                m("div.link-03", {
-                                        title: "Desde"
-                                    },
-                                    m(".tx-10.pd-r-0", {
-                                        style: { "padding-top": "10px" }
-                                    }, 'Desde:')
-                                ),
-                                m("div.link-03", {
-                                        style: { "cursor": "pointer" },
-                                        title: "Desde"
-                                    },
-
-                                    m("input.tx-light.pd-4[type='date'][id='desde']", {
-                                        oncreate: (el) => {
-                                            el.dom.value = (PedidosTR.idFiltro !== 1 ? moment(moment(PedidosTR.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
-                                        },
-                                        onchange: (el) => {
-                                            PedidosTR.fechaDesde = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
-                                            PedidosTR.loader = true;
-                                            PedidosTR.pedidos = [];
-                                            PedidosTR.fetchPedidos();
-                                            m.route.set("/terapia-respiratoria/pedidos?idFiltro=" + PedidosTR.idFiltro + "&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta);
-                                        },
-                                        style: {
-                                            "border": "transparent"
-                                        }
-                                    })
-                                ),
-                                m("div.link-03", {
-                                        title: "Hasta"
-                                    },
-                                    m(".tx-10.pd-r-0", {
-                                        style: { "padding-top": "10px" }
-                                    }, 'Hasta:')
-                                ),
-                                m("div.link-03", {
-                                        style: { "cursor": "pointer" },
-                                        title: "Hasta"
-                                    },
-                                    m("input.tx-light.pd-4[type='date'][id='hasta']", {
-                                        oncreate: (el) => {
-                                            el.dom.value = (PedidosTR.idFiltro !== 1 ? moment(moment(PedidosTR.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
-                                        },
-                                        onchange: (el) => {
-                                            PedidosTR.fechaHasta = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
-                                            PedidosTR.loader = true;
-                                            PedidosTR.pedidos = [];
-                                            PedidosTR.fetchPedidos();
-                                            m.route.set("/terapia-respiratoria/pedidos?idFiltro=" + PedidosTR.idFiltro + "&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta);
-                                        },
-                                        style: {
-                                            "border": "transparent"
-                                        }
-                                    })
-                                )
-                            ]),
-                            m("div.dropdown.dropleft", [
-                                m("div.link-03.lh-0.mg-l-5[id='dropdownMenuButton'][data-toggle='dropdown'][aria-haspopup='true'][aria-expanded='false']", {
-                                        style: { "cursor": "pointer" },
-                                        title: "Filtrar"
-                                    },
-                                    m("i.fas.fa-filter.tx-18.pd-5")
-                                ),
-                                m(".dropdown-menu.tx-13[aria-labelledby='dropdownMenuButton']", [
-                                    m("h6.dropdown-header.tx-uppercase.tx-12.tx-bold.tx-inverse",
-                                        "FILTROS:"
-                                    ),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=1" }, [
-                                        "Pedidos de Hoy"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=2&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
-                                        "Pedidos entre Fechas"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=3&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
-                                        "Pedidos de Emergencia"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=4&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
-                                        "Pedidos de Hospitalización"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=5&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
-                                        "Pedidos de PB"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=6&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
-                                        "Pedidos de H1"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=7&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
-                                        "Pedidos de H2"
-                                    ]),
-                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=8&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
-                                        "Pedidos de C2"
-                                    ]),
-
-                                ])
-                            ])
-                        ])
-                    ]),
-
-                    m("div.row.animated.fadeInUp", [
-
-                        m("div.col-12", [
-
-                            m(".alert.alert-danger[role='alert']",
-                                "No existe información disponible."
-                            )
-
-
-                        ])
-                    ]),
-
+                    m(tablePedidosTR)
 
 
 
@@ -1003,6 +808,42 @@ const PedidosTR = {
 
                 ])
             ),
+            m("div.section-nav", [
+                m("label.nav-label",
+                    "RECEPCIÓN DE PEDIDOS:"
+                ),
+                m("div.mg-t-10.bg-white", {
+
+                },
+
+                    m("div.mg-t-10.bg-white",
+                        m("div.card-header.pd-t-20.pd-b-0.bd-b-0", [
+                            m("h6.lh-5.mg-b-5",
+                                "N° de Pedidos:"
+                            ),
+
+                        ]),
+                        m("div.card-body.pd-0", [
+                            m("div.pd-t-10.pd-b-0.pd-x-20.d-flex.align-items-baseline", [
+                                m("h1.tx-normal.tx-rubik.mg-b-0.mg-r-5",
+                                    PedidosTR.pedidos.length
+                                ),
+                                m("div.tx-18", [
+
+                                    m("divv.lh-0.tx-gray-300", 'Pedido(s)')
+                                ])
+
+                            ]),
+
+                        ])
+                    ),
+                    m("div.pd-20",
+                        m(Stopwatch)
+                    )
+                ),
+
+            ])
+
         ] : [
             m(sidebarTr, { oncreate: sidebarTr.setPage(18) }),
             m("div.content.content-components",

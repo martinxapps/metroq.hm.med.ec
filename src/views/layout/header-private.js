@@ -20,8 +20,6 @@ const MenuHeader = {
 
                     if (_data.modulesAccess[_v].length !== 0) {
 
-
-
                         if (_v == 'terapia-respiratoria') {
 
                             return [

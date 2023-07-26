@@ -1,5 +1,4 @@
 import Auth from '../../models/auth';
-import Notificaciones from '../../models/notificaciones';
 
 const vRol = {
 
@@ -35,8 +34,16 @@ const SidebarRight = {
         return [
             m("div.navbar-right", [
 
-                m(Notificaciones),
+                m('div.dropdown.dropdown-profile', [
+                    m("a.dropdown-link.tx-semibold[href='/salir'][title='Salir']",
+                        m("div.avatar.avatar-sm",
+                            m("i[data-feather='log-out']"),
+                        )
+                    )
+                ]),
+
                 m("div.dropdown.dropdown-profile", [
+
                     m("a.dropdown-link[href=''][data-toggle='dropdown'][data-display='static']",
                         m("div.avatar.avatar-sm",
                             m("i[data-feather='user']"),
