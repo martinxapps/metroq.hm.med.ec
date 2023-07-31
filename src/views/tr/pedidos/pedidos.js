@@ -333,20 +333,12 @@ const PedidosTR = {
 
         sidebarTr.page = "";
 
-        if (_data.attrs.fechaDesde == undefined || _data.attrs.fechaHasta == undefined) {
-            PedidosTR.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
-            PedidosTR.fechaHasta = moment().format('DD-MM-YYYY');
-            console.log(PedidosTR)
-        }
+
 
 
     },
     oncreate: (_data) => {
 
-        if (_data.attrs.fechaDesde == undefined || _data.attrs.fechaHasta == undefined) {
-            PedidosTR.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
-            PedidosTR.fechaHasta = moment().format('DD-MM-YYYY');
-        }
 
 
         Notificaciones.suscribirCanal('MetroPlus-Terapia-Respiratoria');
@@ -538,21 +530,26 @@ const PedidosTR = {
                                 m("div.pd-0.mg-l-auto", { "style": { "background-color": "rgb(168, 190, 214)" } },
                                     m("td.tx-10", {
                                         "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" },
-                                        onclick: () => {
-                                            // PedidosTR.enviarEstado(aData.CD_PRE_MED);
-                                            m.route.set("/terapia-respiratoria/pedido/", {
+                                    },
+
+                                        m(m.route.Link, {
+                                            class: "tx-dark",
+                                            href: "/terapia-respiratoria/pedido/",
+                                            target: "_blank",
+                                            params: {
                                                 numeroHistoriaClinica: aData.CD_PACIENTE,
                                                 numeroAtencion: aData.AT_MV,
                                                 numeroPedido: aData.CD_PRE_MED,
                                                 track: "view",
-                                            });
-                                        }
-                                    },
-                                        m(".tx-normal",
+                                            }
+                                        }, m(".tx-normal",
                                             m("i.fas.fa-file-alt.pd-1.mg-r-2"),
 
                                             "Ver Pedido"
-                                        )
+                                        ))
+
+
+
                                     ),
                                 )
                             ]),

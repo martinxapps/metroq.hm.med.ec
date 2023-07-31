@@ -2,7 +2,6 @@ import HeaderPrivate from '../../layout/header-private';
 import SidebarTR from '../sidebarTr';
 import App from '../../app';
 import m from 'mithril';
-import Pedidos from './pedidos';
 import CrearFormulario from './formularioTerapiaRespiratoria/crearFormulario';
 import cerrarGestionMuestra from '../../patologia/muestras/cerrarGestionMuestra';
 import ListadoFormulario from './formularioTerapiaRespiratoria/listadoFormulario';
@@ -454,7 +453,7 @@ const Formulario = {
         Formulario.error = "";
         m.request({
             method: "GET",
-            url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
+            url: "https://api.hospitalmetropolitano.org/t/v1/formulario-trn?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
 
             headers: {
                 "Authorization": localStorage.accessToken,
@@ -486,7 +485,7 @@ const Formulario = {
         ] : (Formulario.data.length !== 0) ? [
 
 
-            m(FOR005),// Aqui se llama el componente que necesito. Aqui debo trabajar para que se muestre el formulario que necesito.
+            m(FOR005), // Aqui se llama el componente que necesito. Aqui debo trabajar para que se muestre el formulario que necesito.
 
 
 
@@ -520,7 +519,7 @@ const Evoluciones = {
         Evoluciones.error = "";
         m.request({
             method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
+            url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente-trn",
             body: {
                 numeroHistoriaClinica: Pedido.data.CD_PACIENTE + '01'
             },
@@ -584,6 +583,7 @@ const Examenes = {
                     (_val.OBS_EXAMEN !== null ? m('.d-inline', 'Observaciones:') : ''),
                     (_val.OBS_EXAMEN !== null ? m('br') : ''),
                     (_val.OBS_EXAMEN !== null ? m('.d-inline', _val.OBS_EXAMEN) : ''),
+                    m('br'),
                 ]
             })
         }
@@ -743,24 +743,7 @@ const Pedido = {
                                                 title: "Cerrar",
                                                 onclick: () => {
 
-
-                                                    if (Pedidos.idFiltro !== undefined && Pedidos.idFiltro > 1) {
-
-                                                        m.route.set('/terapia-respiratoria/pedidos/', {
-                                                            idFiltro: Pedidos.idFiltro,
-                                                            fechaDesde: Pedidos.fechaDesde,
-                                                            fechaHasta: Pedidos.fechaHasta,
-                                                        });
-
-                                                    } else {
-
-                                                        m.route.set('/terapia-respiratoria/pedidos/', {
-                                                            idFiltro: 1,
-                                                        });
-
-                                                    }
-
-
+                                                    window.close();
 
 
                                                 }
@@ -1048,7 +1031,7 @@ const Pedido = {
                                                                         onclick: () => {
                                                                             if (
                                                                                 window.confirm(
-                                                                                    "¿Estas seguro de abrir un nuevo formulario?"
+                                                                                    "¿Estás seguro de abrir un nuevo formulario?"
                                                                                 )
                                                                             ) {
 
@@ -1059,8 +1042,7 @@ const Pedido = {
                                                                         }
                                                                     }, [
                                                                         m("i.fas.mg-r-5",)
-                                                                    ], "Nuevo Formulario"
-                                                                    ),
+                                                                    ], "Nuevo Formulario"),
                                                                     m("div#cerrar-gestion-muestras", {
                                                                         style: { 'width': '50%', 'float': 'right' }
                                                                     }),

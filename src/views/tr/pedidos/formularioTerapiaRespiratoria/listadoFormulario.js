@@ -46,37 +46,45 @@ const ListadoFormulario = {
                   "button",
                   {
                     //class: "btn btn-primary",
-                    class: formulario.ESTADO === "Cancelado" || formulario.ESTADO === "Finalizado" ? "btn btn-secondary" : "btn btn-primary",
+                    class:
+                      formulario.ESTADO === "Cancelado" ||
+                      formulario.ESTADO === "Finalizado"
+                        ? "btn btn-secondary"
+                        : "btn btn-primary",
                     type: "button",
-                    disabled: formulario.ESTADO === "Cancelado" || formulario.ESTADO === "Finalizado",
+                    /* disabled:
+                      formulario.ESTADO === "Cancelado" ||
+                      formulario.ESTADO === "Finalizado", */
                     onclick: function () {
                       formularioModelo.listadoUnitario = null;
                       if (
                         window.confirm(
-                          `¿Estas seguro que deseas ir al formulario ${formulario.ID}?`
+                          `¿Estás seguro que deseas ir al formulario que fue realizado por ${formulario.Usuario.toUpperCase()} el ${formulario.FECHAHOY}?`
                         )
-                      ){
+                      ) {
                         m.mount(document.querySelector("#gestion-muestras"), {
                           view: () => {
                             return m(VerUnFormulario, { id: formulario.ID });
                           },
                         }),
-                        m.mount(
-                          document.querySelector("#cerrar-gestion-muestras"),
-                          cerrarGestionMuestra
-                        );
+                          m.mount(
+                            document.querySelector("#cerrar-gestion-muestras"),
+                            cerrarGestionMuestra
+                          );
                         window.scrollTo({
                           top: 0,
-                          behavior: 'smooth' // Opcional: agrega suavidad a la animación del scroll
+                          behavior: "smooth", // Opcional: agrega suavidad a la animación del scroll
                         });
-                      } 
-                      
-                        
+                      }
+
                       /* console.log(formulario.ID);
                       m(VerUnFormulario, { id: formulario.ID }); */
                     },
                   },
-                  (formulario.ESTADO === "Cancelado" || formulario.ESTADO === "Finalizado" ? "Visualizar" : "Editar")
+                  formulario.ESTADO === "Cancelado" ||
+                    formulario.ESTADO === "Finalizado"
+                    ? "Visualizar"
+                    : "Editar"
                 )
               ),
               /* m(
@@ -106,7 +114,7 @@ const ListadoFormulario = {
                       };
                       if (
                         window.confirm(
-                          "Está seguro que deseas modificar el estado a cancelado?"
+                          "¿Estás seguro que deseas modificar el estado a cancelado?"
                         )
                       ) {
                         formularioModelo.modificarEstado(datos);
@@ -120,20 +128,27 @@ const ListadoFormulario = {
               ),
               m(
                 "td",
-                (formulario.ESTADO === "Finalizado" ? 
-            m(m.route.Link, {
+                formulario.ESTADO === "Finalizado"
+                  ? m(
+                      m.route.Link,
+                      {
+                        href:
+                          "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" +
+                          formulario.ID +
+                          "&output=pdf",
 
-              href: "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" + formulario.ID + "&output=pdf",
+                        class: "btn btn-primary",
 
-              class: "btn btn-primary",
-
-              target: "_blank",
-              type: "button",
-
-          }, "Imprimir")  : m("div", {"class":"alert alert-danger","role":"alert"}, 
-          "Solo podras imprimir el formulario cuando este finalizado",
-        )
-            )
+                        target: "_blank",
+                        type: "button",
+                      },
+                      "Imprimir"
+                    )
+                  : m(
+                      "div",
+                      { class: "alert alert-danger", role: "alert" },
+                      "Solo podras imprimir el formulario cuando este finalizado"
+                    )
               ),
               /* m(
                 "td",

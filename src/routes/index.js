@@ -662,8 +662,13 @@ const Routes = {
             }
 
             TRPedidos.idFiltro = _data.attrs.idFiltro;
-            TRPedidos.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
-            TRPedidos.fechaHasta = moment().format('DD-MM-YYYY');
+            if (_data.attrs.fechaDesde == undefined || _data.attrs.fechaHasta == undefined) {
+                TRPedidos.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
+                TRPedidos.fechaHasta = moment().format('DD-MM-YYYY');
+            } else {
+                TRPedidos.fechaDesde = _data.attrs.fechaDesde;
+                TRPedidos.fechaHasta = _data.attrs.fechaHasta;
+            }
             TRPedidos.loader = true;
             TRPedidos.pedidos = [];
             TRPedidos.fetchPedidos();
