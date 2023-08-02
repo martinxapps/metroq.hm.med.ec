@@ -26,7 +26,6 @@ const FOR005 = {
                     oncreate: (el) => {
                         el.dom.innerHTML = "Procesando " + Formulario.data.length + " formulario(s) encontrado(s)...";
                     },
-
                 }),
                 m("div.placeholder-paragraph", [
                     m("div.line"),
@@ -677,7 +676,9 @@ const NuevaTRoja = {
                 usuario: NuevaTRoja.data.usuario,
                 email: NuevaTRoja.data.email,
                 destino_final: NuevaTRoja.data.destino_final,
-                centro_costo: NuevaTRoja.data.centro_costo
+                centro_costo: NuevaTRoja.data.centro_costo,
+                inf_tec: NuevaTRoja.data.inf_tec,
+                act_fijo: NuevaTRoja.data.act_fijo
             },
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
@@ -955,7 +956,50 @@ const NuevaTRoja = {
 
 
                                                         ]),
+                                                        m("tr", [
 
+                                                            m("th.tx-semibold.tx-14[colspan='1']", {
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
+                                                                "N° de Informe Técnico:"
+                                                            ),
+                                                            m("td[colspan='9']", {
+                                                                style: { "background-color": "#eaeff5" }
+
+                                                            },
+                                                                m("input", {
+                                                                    "class": "form-control tx-semibold tx-14",
+                                                                    "type": "text",
+                                                                    "placeholder": "N° de Informe Técnico:",
+                                                                    oninput: (e) => {
+                                                                        NuevaTRoja.data.inf_tec = e.target.value;
+                                                                    }
+                                                                })
+
+                                                            ),
+
+
+
+                                                        ]),
+                                                        m("tr", [
+                                                            m("th.tx-semibold.tx-14[colspan='1']", {
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
+                                                                "N° de Activo Fijo:"
+                                                            ),
+                                                            m("td[colspan='9']", {
+                                                                style: { "background-color": "#eaeff5" }
+                                                            },
+                                                                m("input", {
+                                                                    "class": "form-control tx-semibold tx-14",
+                                                                    "type": "text",
+                                                                    "placeholder": "N° de Activo Fijo",
+                                                                    oninput: (e) => {
+                                                                        NuevaTRoja.data.act_fijo = e.target.value;
+                                                                    }
+                                                                })
+                                                            ),
+                                                        ]),
                                                         m("tr.bg-litecoin.op-9.tx-white", [
                                                             m("th[scope='col'][colspan='10']",
                                                                 "MOTIVO DE SOLICITUD:"

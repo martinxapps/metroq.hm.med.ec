@@ -9,7 +9,7 @@ const MenuSidebar = {
         if (_data.length !== 0) {
             return [
 
-                _data.modulesAccess.contabilidad.map(function(_v, _i, _contentData) {
+                _data.modulesAccess.contabilidad.map(function (_v, _i, _contentData) {
 
                     if (_v.idModulo == 30) {
                         return [

@@ -611,6 +611,54 @@ const StatusTR = {
 
                                                     ]),
 
+                                                    m("tr", [
+
+                                                        m("th.tx-semibold.tx-14[colspan='1']", {
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
+                                                            "N° de Informe Técnico:"
+                                                        ),
+                                                        m("td[colspan='9']", {
+                                                            style: { "background-color": "#eaeff5" }
+
+                                                        },
+                                                            m("input", {
+                                                                "class": "form-control tx-semibold tx-14",
+                                                                "type": "text",
+                                                                "disabled": "disabled",
+                                                                value: StatusTR.data.inf_tec
+
+                                                            })
+                                                        ),
+
+
+
+                                                    ]),
+
+                                                    m("tr", [
+
+                                                        m("th.tx-semibold.tx-14[colspan='1']", {
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
+                                                            "N° de Activo Fijo:"
+                                                        ),
+                                                        m("td[colspan='9']", {
+                                                            style: { "background-color": "#eaeff5" }
+
+                                                        },
+                                                            m("input", {
+                                                                "class": "form-control tx-semibold tx-14",
+                                                                "type": "text",
+                                                                "disabled": "disabled",
+                                                                value: StatusTR.data.act_fijo
+
+                                                            })
+                                                        ),
+
+
+
+                                                    ]),
+
                                                     m("tr.bg-litecoin.op-9.tx-white", [
                                                         m("th[scope='col'][colspan='10']",
                                                             "MOTIVO DE BAJA:"
