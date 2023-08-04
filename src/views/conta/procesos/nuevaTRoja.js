@@ -1,506 +1,131 @@
 import HeadPublic from '../../layout/header-public';
 import m from 'mithril';
 
-const FOR005 = {
-    secs: [],
-    nombres: "",
-    show: false,
+const Uploads = {
+    files: [],
+    detalle: [],
+    error: "",
+    showFor: "",
+    uploadService: (e) => {
+
+
+        let postData = new FormData($('#uploadForm')[0]);
+
+
+        fetch('https://api.hospitalmetropolitano.org/t/v1/procesos/tr/uploads?idTR=' + NuevaTRoja.id, {
+            method: "POST",
+            body: postData,
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log('data = ', data);
+            alert('Proceso realizado con éxito');
+            alert('Tarjeta Roja N°: HM-' + NuevaTRoja.id);
+            m.route.set('/contabilidad/proceso/tarjeta-roja/status/?tr=' + NuevaTRoja.id + '&track=view');
+        }).catch(function (err) {
+            console.error(err);
+        });
+
+    },
+
+    loadFile: (event) => {
+
+        Array.from(event.target.files).forEach((file) => {
+            Uploads.files.push(file);
+        })
+
+
+    },
+
     view: () => {
 
-        let evolucion_medica_texto = "";
-        let prescripciones_texto = "";
-        let urlFor = "";
-        let page = 0;
 
-        if (Formulario.num == 0) {
-            setTimeout(function () {
-                Formulario.num = Formulario.data.length;
-                Formulario.parseFetch();
-                m.redraw.sync();
-            }, 2000);
-        }
+        return [
+            m("div.mg-t-10.d-flex", {}, [
+                Uploads.files.length == 0 ? [
+                    m('p', 'No existe archivos.')
+                ] : Uploads.files.length > 0 ? [
+                    Uploads.files.map(function (_v, _i, _contentData) {
 
-        return FOR005.secs.length == 0 ? [
-            m("div.pd-10.wd-100p",
-                m("div.d-inline.tx-secondary.tx-12", {
-                    oncreate: (el) => {
-                        el.dom.innerHTML = "Procesando " + Formulario.data.length + " formulario(s) encontrado(s)...";
-                    },
-                }),
-                m("div.placeholder-paragraph", [
-                    m("div.line"),
-                    m("div.line")
-                ])
-            ),
-        ] : [
+                        return [
 
-            FOR005.secs.map(function (_v, _i, _contentData) {
-
-                if (_v.name == 'prescripciones_texto') {
-
-                    prescripciones_texto = _v.answer;
-
-                }
-
-                if (_v.name == 'evolucion_medica_texto') {
-
-                    evolucion_medica_texto = _v.answer;
-
-                }
-
-                if (_v.name == 'cd_documento_clinico') {
-
-                    urlFor = "http://172.16.253.18/mvpep/api/clinical-documents/" + _v.answer + ".pdf?company=1&department=75";
-
-                }
+                            m("div.col-6.col-sm-4.col-md-3.col-xl-3.mg-b-5.mg-t-5",
+                                m("div.card.card-file", [
+                                    m("div.dropdown-file", [
+                                        m("a.dropdown-link[href=''][data-toggle='dropdown']",
+                                            m("svg.feather.feather-more-vertical[xmlns='http://www.w3.org/2000/svg'][width='24'][height='24'][viewBox='0 0 24 24'][fill='none'][stroke='currentColor'][stroke-width='2'][stroke-linecap='round'][stroke-linejoin='round']", [
+                                                m("circle[cx='12'][cy='12'][r='1']"),
+                                                m("circle[cx='12'][cy='5'][r='1']"),
+                                                m("circle[cx='12'][cy='19'][r='1']")
+                                            ])
+                                        ),
+                                        m("div.dropdown-menu.dropdown-menu-right", [
 
 
-                if (_v.name == 'Logotipo_archivo') {
+                                            m("a.dropdown-item.download[href='" + _v.url + "'][target='_blank']", [
+                                                m("svg.feather.feather-download[xmlns='http://www.w3.org/2000/svg'][width='24'][height='24'][viewBox='0 0 24 24'][fill='none'][stroke='currentColor'][stroke-width='2'][stroke-linecap='round'][stroke-linejoin='round']", [
+                                                    m("path[d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4']"),
+                                                    m("polyline[points='7 10 12 15 17 10']"),
+                                                    m("line[x1='12'][y1='15'][x2='12'][y2='3']")
+                                                ]),
+                                                "Descargar"
+                                            ]),
 
-
-                    return [
-                        m("div.d-inline.tx-secondary.tx-12", {
-                            oncreate: (el) => {
-                                el.dom.innerHTML = Formulario.data.length + " formulario(s) encontrado(s).";
-                            },
-
-                        }),
-                        m("table.table.table-bordered.wd-100p", {
-                            "style": {
-                                "zoom": Formulario.zoom,
-                            }
-                        }, [
-                            m("thead", [
-                                m("tr",
-                                    m("th[colspan='12'][scope='col']", [
-                                        m("i.tx-light.fas.fa-file-alt.mg-r-2."),
-                                        m("div.p-0", " SNS - MSP / HCU-form.005 / 2008 "),
-
+                                        ])
+                                    ]),
+                                    m("div.card-file-thumb.tx-danger",
+                                        m("i.far.fa-file-pdf")
+                                    ),
+                                    m("div.card-body", [
+                                        m(".d-inline.tx-5",
+                                            _v.name
+                                        ),
 
                                     ])
-                                ),
-                                m("tr", [
-                                    m("th[colspan='10'][scope='col']",
-                                        m("div.m-0.p-0",
-                                            m("img", {
-                                                width: "100rem",
-                                                src: "data:image/png;base64," + _v.answer
-                                            })
-                                        )
-                                    ),
-                                    m("th.tx-right[colspan='2'][scope='col']",
-                                        m("a.tx-right.tx-semibold", {
-                                            href: urlFor,
-                                            target: "_blank"
-                                        },
-                                            m('i.fas.fa-print.mg-r-2'),
-                                            " Imprirmir  "
-
-                                        )
-
-                                    )
 
                                 ])
-                            ]),
-                            m("tbody", [
-                                m("tr", [
-                                    m("th[colspan='3'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.tx-bold.text-center.",
-                                            "ESTABLECIMIENTO"
-                                        )
-                                    ),
-                                    m("th[colspan='3'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.tx-bold.text-center.",
-                                            "NOMBRE"
-                                        )
-                                    ),
-                                    m("th[colspan='3'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.tx-bold.text-center.",
-                                            "APELLIDO"
-                                        )
-                                    ),
-                                    m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.tx-bold.text-center.",
-                                            "SEXO (M-F)"
-                                        )
-                                    ),
-                                    m("th[colspan='1][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.tx-bold.text-center.",
-                                            "NHCL."
-                                        )
-                                    ),
-                                    m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.tx-bold.text-center.",
-                                            "ADM."
-                                        )
-                                    )
-                                ]),
-                                m("tr", [
-                                    m("th.text-center[colspan='3'][scope='row']",
-                                        m("div.m-0.p-0.text-center",
-                                            "HOSPITAL METROPOLITANO"
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='3']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.nombres
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='3']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.apellidos_paciente
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='1']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.sexo
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='1']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.nhcl
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='1']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.numero_admision
-                                        )
-                                    )
-                                ]),
-                                m("tr", [
-                                    m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "EDAD"
-                                        )
-                                    ),
-                                    m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "IDENTIFICACION"
-                                        )
-                                    ),
-                                    m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "FECHA ADMISION"
-                                        )
-                                    ),
-                                    m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "FECHA ALTA"
-                                        )
-                                    ),
-                                    m("th[colspan='4'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "UBICACION"
-                                        )
-                                    ),
-                                    m("th[colspan='4'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "MEDICO TRATANTE"
-                                        )
-                                    )
-                                ]),
-                                m("tr", [
-                                    m("td.text-center[colspan='1'][scope='row']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.edad || FOR005.edad_paciente
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='1']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.identificacion
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='1']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.fecha_admision
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='1']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.fecha_admision
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='4']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.ubicacion
-                                        )
-                                    ),
-                                    m("td.text-center[colspan='4']",
-                                        m("div.m-0.p-0.text-center",
-                                            FOR005.medico_tratante
-                                        )
-                                    )
-                                ]),
-                                m("tr", [
-                                    m("th[colspan='6'][scope='row']", { "style": { "padding": "0", "background-color": "#eef9c8" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "1.- EVOLUCIÓN"
-                                        )
-                                    ),
-                                    m("th[colspan='5'][scope='row']", { "style": { "padding": "0", "background-color": "#eef9c8" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "2.- PRESCRIPCIONES"
-                                        )
-                                    ),
-                                    m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#eef9c8" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.", [
-                                            "FIRMAR AL PIE DE",
-                                            m("br"),
-                                            "CADA PRESCRIPCIÓN"
-                                        ]
-
-                                        )
-                                    ),
-
-                                ]),
-                                m("tr", [
-                                    m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.", [
-                                            "FECHA",
-                                            m("br"),
-                                            "día/mes/año"
-                                        ])
-                                    ),
-                                    m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "HORA"
-                                        )
-                                    ),
-                                    m("th[colspan='4'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.",
-                                            "NOTAS DE EVOLUCIÓN"
-                                        )
-                                    ),
-                                    m("th[colspan='4'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.", [
-                                            "FARMACOTERAPIA E INDICACIONES",
-                                            m("br"),
-                                            "(PARA ENFERMERÍA Y OTRO PERSONAL)"
-
-                                        ]
-
-                                        )
-                                    ),
-                                    m("th[colspan='2'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
-                                        m("div.m-0.p-0.tx-bold.text-center.", [
-                                            "ADMINISTR.",
-                                            m("br"),
-                                            "FÁRMACOS INSUMOS"
-
-                                        ]
-
-                                        )
-                                    ),
-
-                                ]),
-                                m("tr", [
-                                    m("td[colspan='6'][scope='row']", { "style": { "padding": "0", "width": "50%" } },
-                                        m("div.m-0.p-2.tx-bold.text-justify",
-                                            (evolucion_medica_texto !== null && evolucion_medica_texto.length !== 0) ? m.trust(evolucion_medica_texto.replace(/(\r\n|\r|\n)/g, "<br/>")) : ""
-
-
-                                        )
-                                    ),
-                                    m("td[colspan='6'][scope='row']", { "style": { "padding": "0", "width": "50%" } },
-                                        m("div.m-0.p-2.text-justify",
-                                            (prescripciones_texto !== null && prescripciones_texto.length !== 0) ? m.trust(prescripciones_texto.replace(/(\r\n|\r|\n)/g, "<br/>")) : ""
-
-                                        )
-                                    ),
-
-                                ]),
-
-                            ])
-                        ])
-                    ]
-
-                }
-
-
-            })
-
-        ]
+                            ),
 
 
 
-    }
+                        ]
 
+                    })
+
+
+                ] : []
+            ]),
+
+            m('form.mg-t-50', {
+                enctype: "multipart/form-data",
+                id: 'uploadForm',
+
+            }, [
+                m('div.custom-file.mg-b-5', [
+                    m("label.custom-file-label[for='uploadFiles']",
+                        " Subir Archivos "
+                    ),
+                    m("input.custom-file-input[autofocus][id='uploadFiles'][name='uploadFiles'][type='file'][multiple='true']", {
+                        onchange: (e) => {
+                            Uploads.loadFile(e);
+                        }
+                    }),
+
+                ])
+
+
+
+
+            ]),
+
+
+        ];
+
+
+
+    },
 };
 
-const Formulario = {
-    zoom: 0,
-    adm: 1,
-    nhc: 1,
-    num: 0,
-    data: [],
-    error: "",
-    parseDoc: (_data) => {
-
-        Object.keys(_data.data).map(function (_v, _i, _contentData) {
-            FOR005.secs.push(_data.data[_v])
-        })
-
-        return FOR005.secs.map(function (_v, _i, _contentData) {
-
-
-
-
-            if (_v.name == 'nombres') {
-
-
-
-                FOR005.nombres = _v.answer;
-
-            }
-
-
-            if (_v.name == 'apellidos_paciente') {
-
-
-
-                FOR005.apellidos_paciente = _v.answer;
-
-            }
-
-            if (_v.name == 'sexo de paciente') {
-
-                FOR005.sexo = _v.answer;
-
-            }
-
-            if (_v.name == 'nhcl') {
-
-                FOR005.nhcl = _v.answer;
-
-            }
-
-            if (_v.name == 'numero_admision') {
-
-                FOR005.numero_admision = _v.answer;
-
-            }
-
-            if (_v.name == 'edad') {
-
-                FOR005.edad = _v.answer;
-
-            }
-
-            if (_v.name == 'edad_paciente') {
-
-                FOR005.edad_paciente = _v.answer;
-
-            }
-
-            if (_v.name == 'identificacion_paciente') {
-
-                FOR005.identificacion = _v.answer;
-
-            }
-
-            if (_v.name == 'fecha_admision') {
-
-                FOR005.fecha_admision = _v.answer;
-
-            }
-
-            if (_v.name == 'ubicacion_atencion') {
-
-                FOR005.ubicacion = _v.answer;
-
-            }
-
-
-            if (_v.name == 'fecha_alta') {
-
-                FOR005.fecha_alta = (_v.answer == null) ? '' : _v.answer;
-
-            }
-
-            if (_v.name == 'medico_tratante') {
-
-                FOR005.medico_tratante = _v.answer;
-
-            }
-
-
-
-
-
-        })
-
-    },
-    parseFetch: () => {
-        FOR005.secs = [];
-
-        return Formulario.data.map(function (_v, _i, _contentData) {
-            Formulario.parseDoc(Formulario.data[_i])
-
-        })
-
-
-
-    },
-    fetch: () => {
-        Formulario.data = [];
-        Formulario.error = "";
-        m.request({
-            method: "GET",
-            url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
-
-            headers: {
-                "Authorization": localStorage.accessToken,
-            },
-        })
-            .then(function (result) {
-                if (result.length !== 0) {
-                    Formulario.data = result;
-                    Formulario.num = 0;
-
-                } else {
-                    Formulario.error = "El documento solicitado no esta disponible.";
-                }
-
-            })
-            .catch(function (e) {
-                setTimeout(function () { Formulario.fetch(); }, 5000);
-
-            })
-    },
-
-    view: () => {
-
-
-        return Formulario.error ? [
-            m(".alert.alert-danger[role='alert']",
-                Formulario.error
-            )
-        ] : (Formulario.data.length !== 0) ? [
-
-
-            m(FOR005)
-
-
-
-        ] : [
-            m("div.d-inline.tx-secondary.tx-12", {
-                oncreate: (el) => {
-                    el.dom.innerHTML = "Buscando información...";
-                },
-
-
-            }),
-            m("div.pd-10.wd-100p",
-                m("div.placeholder-paragraph", [
-                    m("div.line"),
-                    m("div.line")
-                ])
-            ),
-        ]
-
-
-    },
-}
 
 
 const DestinoFinal = {
@@ -641,6 +266,18 @@ const NuevaTRoja = {
             throw 'Todos los campos son obligatorios (serie).';
         }
 
+
+        if (NuevaTRoja.data.act_fijo == undefined || NuevaTRoja.data.act_fijo.length == 0) {
+            alert('Todos los campos son obligatorios (activo fijo).');
+            alert('Todos los campos son obligatorios (activo fijo).');
+        }
+
+
+        if (NuevaTRoja.data.inf_tec == undefined || NuevaTRoja.data.inf_tec.length == 0) {
+            alert('Todos los campos son obligatorios (informe técnico).');
+            alert('Todos los campos son obligatorios (informe técnico).');
+        }
+
         if (NuevaTRoja.data.sub_categoria == undefined || NuevaTRoja.data.sub_categoria.length == 0) {
             alert('Todos los campos son obligatorios (sub_categoria).');
             throw 'Todos los campos son obligatorios (sub_categoria).';
@@ -655,6 +292,11 @@ const NuevaTRoja = {
         if (NuevaTRoja.data.usuario == undefined || NuevaTRoja.data.usuario.length == 0) {
             alert('No existe firma de responsabilidad.');
             throw 'No existe firma de responsabilidad';
+        }
+
+        if (Uploads.files !== undefined && Uploads.files == 0) {
+            alert('Es necesario adjuntar la documentación requerida.');
+            throw 'Es necesario adjuntar la documentación requerida.';
         }
 
         NuevaTRoja.loader = true;
@@ -686,10 +328,10 @@ const NuevaTRoja = {
         })
             .then(function (result) {
                 if (result.status) {
-                    alert('Proceso realizado con éxito');
-                    alert('Tarjeta Roja N°: HM-' + result.idTR);
                     NuevaTRoja.id = result.idTR;
-                    m.route.set('/contabilidad/proceso/tarjeta-roja/status/?tr=' + NuevaTRoja.id + '&track=view');
+                    setTimeout(() => {
+                        Uploads.uploadService();
+                    }, 2000);
                 } else {
                     NuevaTRoja.error = result.message;
                 }
@@ -743,16 +385,30 @@ const NuevaTRoja = {
                         "Nueva Tarjeta Roja: "
                     ),
 
+
+
                     m("div.row.animated.fadeInUp", [
 
                         m("div.col-12", [
 
 
+                            (NuevaTRoja.loader ? [
 
-                            (!NuevaTRoja.loader ? [
+                                m("div.pd-t-10", [
+                                    m("div.placeholder-paragraph.wd-100p", [
+                                        m("div.line"),
+                                        m("div.line")
+                                    ])
+                                ])
+
+                            ] : [
+
+                            ]),
+
+                            (NuevaTRoja.activos.length !== 0 ? [
+
                                 m("div.table-content.col-12.pd-r-0.pd-l-0.pd-b-20.", {
-
-
+                                    class: (NuevaTRoja.loader ? 'd-none' : '')
                                 }, [
                                     m("div.bg-white.bd.pd-20.pd-lg-30.d-flex.flex-column.justify-content-end", [
 
@@ -1144,6 +800,7 @@ const NuevaTRoja = {
                                                                             onclick: (e) => {
                                                                                 NuevaTRoja.sendDataTR();
 
+
                                                                             }
                                                                         },
                                                                             "Enviar"
@@ -1248,7 +905,7 @@ const NuevaTRoja = {
                                                             },
                                                                 m(".tab-content.bd.bd-gray-300.bd-t-0[id='myTab']", [
                                                                     m(".tab-pane.fade[id='home'][role='tabpanel'][aria-labelledby='home-tab']", [
-                                                                        m('p.tx-semibold', 'Una vez generada su información podrá adjuntar archivos a esta solicitud.'),
+                                                                        m(Uploads),
                                                                     ]),
 
 
@@ -1273,13 +930,12 @@ const NuevaTRoja = {
                                 ])
 
                             ] : [
-                                m("div.pd-t-10", [
-                                    m("div.placeholder-paragraph.wd-100p", [
-                                        m("div.line"),
-                                        m("div.line")
-                                    ])
-                                ])
-                            ])
+
+                            ]),
+
+
+
+
 
 
                         ])
