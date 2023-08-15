@@ -57,8 +57,8 @@ const FOR005 = {
 
                 if (_v.name == 'cd_documento_clinico') {
 
-                    // TRN urlFor = "http://172.16.253.14:82/mvpep/api/clinical-documents/" + _v.answer + ".pdf?company=1&department=75";
-                    urlFor = "http://172.16.253.18/mvpep/api/clinical-documents/" + _v.answer + ".pdf?company=1&department=75";
+                    urlFor = "http://172.16.253.14:82/mvpep/api/clinical-documents/" + _v.answer + ".pdf?company=1&department=75";
+                    // urlFor = "http://172.16.253.18/mvpep/api/clinical-documents/" + _v.answer + ".pdf?company=1&department=75";
 
 
 
@@ -456,9 +456,8 @@ const Formulario = {
         Formulario.error = "";
         m.request({
                 method: "GET",
-                url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
-                // url: "https://api.hospitalmetropolitano.org/t/v1/formulario-trn?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
-
+                // url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
+                url: "https://api.hospitalmetropolitano.org/t/v1/formulario-trn?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
                 headers: {
                     "Authorization": localStorage.accessToken,
                 },
@@ -523,8 +522,8 @@ const Evoluciones = {
         Evoluciones.error = "";
         m.request({
                 method: "POST",
-                url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
-                // url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente-trn",
+                // url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
+                url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente-trn",
                 body: {
                     numeroHistoriaClinica: Pedido.data.CD_PACIENTE + '01'
                 },
@@ -633,8 +632,8 @@ const Pedido = {
         Pedido.loader = true;
         m.request({
                 method: "POST",
-                url: "https://api.hospitalmetropolitano.org/t/v1/status-pedido-tr",
-                // url: "https://api.hospitalmetropolitano.org/t/v1/trn/status-pedido-tr",
+                // url: "https://api.hospitalmetropolitano.org/t/v1/status-pedido-tr",
+                url: "https://api.hospitalmetropolitano.org/t/v1/trn/status-pedido-tr",
                 body: {
                     numeroPedido: Pedido.numeroPedido,
                 },

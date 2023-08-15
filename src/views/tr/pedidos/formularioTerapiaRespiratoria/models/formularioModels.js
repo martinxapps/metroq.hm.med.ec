@@ -16,8 +16,8 @@ let FormularioModels = {
         FormularioModels.loading = true;
         m.request({
                 method: "GET",
-                // url: `https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios/sv?PARAM=ESCALA_DOLOR&CD_ATENDIMENTO=${numeroDeAtendimiento}`,
-                url: `https://api.hospitalmetropolitano.org/t/v1/tr/formularios/sv?PARAM=ESCALA_DOLOR&CD_ATENDIMENTO=${numeroDeAtendimiento}`,
+                url: `https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios/sv?PARAM=ESCALA_DOLOR&CD_ATENDIMENTO=${numeroDeAtendimiento}`,
+                //url: `https://api.hospitalmetropolitano.org/t/v1/tr/formularios/sv?PARAM=ESCALA_DOLOR&CD_ATENDIMENTO=${numeroDeAtendimiento}`,
                 body: {},
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
@@ -53,8 +53,8 @@ let FormularioModels = {
         FormularioModels.idRespuesta = '';
         m.request({
                 method: "GET",
-                // url: "https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios/historial?numeroPedido=" + numeropedidomv,
-                url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios/historial?numeroPedido=" + numeropedidomv,
+                url: "https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios/historial?numeroPedido=" + numeropedidomv,
+                //url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios/historial?numeroPedido=" + numeropedidomv,
                 body: {},
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
@@ -80,8 +80,8 @@ let FormularioModels = {
         FormularioModels.loading = true;
         m.request({
                 method: "GET",
-                // url: "https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios-terapia?ID=" + id,
-                url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia?ID=" + id,
+                url: "https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios-terapia?ID=" + id,
+                //url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia?ID=" + id,
                 body: {},
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
@@ -105,8 +105,8 @@ let FormularioModels = {
         FormularioModels.loading = true;
         m.request({
                 method: 'POST',
-                // url: "https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios-terapia",
-                url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia",
+                url: "https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios-terapia",
+                //url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia",
                 body: formulario,
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
@@ -132,8 +132,8 @@ let FormularioModels = {
     modificarEstado: (formulario) => {
         m.request({
                 method: 'PUT',
-                // url: "https://api.hospitalmetropolitano.org/t/v1/trn/nuevo-status-pedido-tr",
-                url: "https://api.hospitalmetropolitano.org/t/v1/nuevo-status-pedido-tr",
+                url: "https://api.hospitalmetropolitano.org/t/v1/trn/nuevo-status-pedido-tr",
+                //url: "https://api.hospitalmetropolitano.org/t/v1/nuevo-status-pedido-tr",
                 body: formulario,
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
@@ -155,8 +155,8 @@ let FormularioModels = {
     actualizar: (formulario) => {
         m.request({
                 method: 'PUT',
-                // url: "https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios-terapia",
-                url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia",
+                url: "https://api.hospitalmetropolitano.org/t/v1/tr/trn/formularios-terapia",
+                // url: "https://api.hospitalmetropolitano.org/t/v1/tr/formularios-terapia",
                 body: formulario,
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",

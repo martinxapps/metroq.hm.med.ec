@@ -585,8 +585,8 @@ const PedidosTR = {
 
         m.request({
                 method: "GET",
-                url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/pedidos" + _queryString,
-                //url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/trn/pedidos" + _queryString,
+                // url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/pedidos" + _queryString,
+                url: "https://api.hospitalmetropolitano.org/t/v1/terapia-respiratoria/trn/pedidos" + _queryString,
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
                 },
