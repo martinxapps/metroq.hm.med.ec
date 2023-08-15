@@ -453,18 +453,8 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.FRACCIONIOXIGENOLITROS;
               },
               oninput: function (e) {
-                const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (
-                  isNaN(inputValue) ||
-                  inputValue < 0 ||
-                  inputValue > 100 ||
-                  inputValue.startsWith("0")
-                ) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                if (e.target.value > 100) {
+                  e.target.value = "";
                 }
               },
               onpaste: function (e) {
@@ -552,18 +542,8 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.ALTOFLUJOLITROSPORMINUTO;
               },
               oninput: function (e) {
-                const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (
-                  isNaN(inputValue) ||
-                  inputValue < 0 ||
-                  inputValue > 100 ||
-                  inputValue.startsWith("0")
-                ) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                if (e.target.value > 100) {
+                  e.target.value = "";
                 }
               },
               onpaste: function (e) {
@@ -652,18 +632,8 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.TIENDAFACIALLITROSPORMINUTO;
               },
               oninput: function (e) {
-                const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (
-                  isNaN(inputValue) ||
-                  inputValue < 0 ||
-                  inputValue > 100 ||
-                  inputValue.startsWith("0")
-                ) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                if (e.target.value > 100) {
+                  e.target.value = "";
                 }
               },
               onpaste: function (e) {
@@ -751,18 +721,8 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.TUBOENTLITROSPORMINUTO;
               },
               oninput: function (e) {
-                const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (
-                  isNaN(inputValue) ||
-                  inputValue < 0 ||
-                  inputValue > 100 ||
-                  inputValue.startsWith("0")
-                ) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                if (e.target.value > 100) {
+                  e.target.value = "";
                 }
               },
               onpaste: function (e) {
@@ -851,18 +811,8 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.CANULANASALLITROSPORMINUTO;
               },
               oninput: function (e) {
-                const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (
-                  isNaN(inputValue) ||
-                  inputValue < 0 ||
-                  inputValue > 100 ||
-                  inputValue.startsWith("0")
-                ) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                if (e.target.value > 100) {
+                  e.target.value = "";
                 }
               },
               onpaste: function (e) {
@@ -950,18 +900,8 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.MASCARILLALITROSPORMINUTO;
               },
               oninput: function (e) {
-                const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (
-                  isNaN(inputValue) ||
-                  inputValue < 0 ||
-                  inputValue > 100 ||
-                  inputValue.startsWith("0")
-                ) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                if (e.target.value > 100) {
+                  e.target.value = "";
                 }
               },
               onpaste: function (e) {
@@ -1050,18 +990,8 @@ const inputOxigenoTerapia = {
                   formularioModelo.listadoUnitario.HELIOXLITROSPORMINUTO;
               },
               oninput: function (e) {
-                const inputValue = e.target.value;
-                // Remover caracteres inválidos durante la escritura
-                e.target.value = e.target.value.replace(/[-+e]/g, "");
-                if (
-                  isNaN(inputValue) ||
-                  inputValue < 0 ||
-                  inputValue > 100 ||
-                  inputValue.startsWith("0")
-                ) {
-                  e.target.value = ""; // Valor inválido, se vacía el campo
-                } else {
-                  e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                if (e.target.value > 100) {
+                  e.target.value = "";
                 }
               },
               onpaste: function (e) {

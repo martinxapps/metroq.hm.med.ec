@@ -995,19 +995,8 @@ const CrearFormulario = {
                 id: "inputLitrosPorMinutoFraccion",
                 placeholder: "Ingrese un valor",
                 oninput: function (e) {
-                  const inputValue = e.target.value;
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
-                  // Verificar si está dentro del rango válido
-                  if (
-                    isNaN(inputValue) ||
-                    inputValue < 0 ||
-                    inputValue > 100 ||
-                    inputValue.startsWith("0")
-                  ) {
-                    e.target.value = ""; // Valor inválido, se vacía el campo
-                  } else {
-                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  if (e.target.value > 100) {
+                    e.target.value = "";
                   }
                 },
                 onpaste: function (e) {
@@ -1080,19 +1069,8 @@ const CrearFormulario = {
                 id: "inputLitroAltoFlujo",
                 placeholder: "Ingrese un valor",
                 oninput: function (e) {
-                  const inputValue = e.target.value;
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
-                  // Verificar si está dentro del rango válido
-                  if (
-                    isNaN(inputValue) ||
-                    inputValue < 0 ||
-                    inputValue > 100 ||
-                    inputValue.startsWith("0")
-                  ) {
-                    e.target.value = ""; // Valor inválido, se vacía el campo
-                  } else {
-                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  if (e.target.value > 100) {
+                    e.target.value = "";
                   }
                 },
                 onpaste: function (e) {
@@ -1166,19 +1144,8 @@ const CrearFormulario = {
                 id: "inputLitroPorMinutoTiendaFacial",
                 placeholder: "Ingrese un valor",
                 oninput: function (e) {
-                  const inputValue = e.target.value;
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
-                  // Verificar si está dentro del rango válido
-                  if (
-                    isNaN(inputValue) ||
-                    inputValue < 0 ||
-                    inputValue > 100 ||
-                    inputValue.startsWith("0")
-                  ) {
-                    e.target.value = ""; // Valor inválido, se vacía el campo
-                  } else {
-                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  if (e.target.value > 100) {
+                    e.target.value = "";
                   }
                 },
                 onpaste: function (e) {
@@ -1251,19 +1218,8 @@ const CrearFormulario = {
                 id: "inputLitroTuboEnT",
                 placeholder: "Ingrese un valor",
                 oninput: function (e) {
-                  const inputValue = e.target.value;
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
-                  // Verificar si está dentro del rango válido
-                  if (
-                    isNaN(inputValue) ||
-                    inputValue < 0 ||
-                    inputValue > 100 ||
-                    inputValue.startsWith("0")
-                  ) {
-                    e.target.value = ""; // Valor inválido, se vacía el campo
-                  } else {
-                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  if (e.target.value > 100) {
+                    e.target.value = "";
                   }
                 },
                 onpaste: function (e) {
@@ -1337,19 +1293,8 @@ const CrearFormulario = {
                 id: "inputLitroPorMinutoCanulaNasal",
                 placeholder: "Ingrese un valor",
                 oninput: function (e) {
-                  const inputValue = e.target.value;
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
-                  // Verificar si está dentro del rango válido
-                  if (
-                    isNaN(inputValue) ||
-                    inputValue < 0 ||
-                    inputValue > 100 ||
-                    inputValue.startsWith("0")
-                  ) {
-                    e.target.value = ""; // Valor inválido, se vacía el campo
-                  } else {
-                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  if (e.target.value > 100) {
+                    e.target.value = "";
                   }
                 },
                 onpaste: function (e) {
@@ -1422,19 +1367,8 @@ const CrearFormulario = {
                 id: "inputLitroMascarilla",
                 placeholder: "Ingrese un valor",
                 oninput: function (e) {
-                  const inputValue = e.target.value;
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
-                  // Verificar si está dentro del rango válido
-                  if (
-                    isNaN(inputValue) ||
-                    inputValue < 0 ||
-                    inputValue > 100 ||
-                    inputValue.startsWith("0")
-                  ) {
-                    e.target.value = ""; // Valor inválido, se vacía el campo
-                  } else {
-                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  if (e.target.value > 100) {
+                    e.target.value = "";
                   }
                 },
                 onpaste: function (e) {
@@ -1508,19 +1442,8 @@ const CrearFormulario = {
                 id: "inputLitroPorMinutoHeliox",
                 placeholder: "Ingrese un valor",
                 oninput: function (e) {
-                  const inputValue = e.target.value;
-                  // Remover caracteres inválidos durante la escritura
-                  e.target.value = e.target.value.replace(/[-+e]/g, "");
-                  // Verificar si está dentro del rango válido
-                  if (
-                    isNaN(inputValue) ||
-                    inputValue < 0 ||
-                    inputValue > 100 ||
-                    inputValue.startsWith("0")
-                  ) {
-                    e.target.value = ""; // Valor inválido, se vacía el campo
-                  } else {
-                    e.target.value = inputValue; // Valor válido, se mantiene en el campo
+                  if (e.target.value > 100) {
+                    e.target.value = "";
                   }
                 },
                 onpaste: function (e) {
