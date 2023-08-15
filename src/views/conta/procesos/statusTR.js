@@ -442,8 +442,6 @@ const StatusTR = {
                                             (StatusTR.data.status == -4 ? 'Rechazada' : ''),
                                             (StatusTR.data.status == -5 ? 'Rechazada' : ''),
                                             (StatusTR.data.status >= 5 ? 'Aprobada' : '')
-
-
                                         ]),
 
 
