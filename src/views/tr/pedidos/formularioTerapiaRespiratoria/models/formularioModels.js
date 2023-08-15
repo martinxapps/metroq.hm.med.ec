@@ -97,52 +97,6 @@ let FormularioModels = {
         })
     },
 
-    cargarExamenes: (numeropedidomv) => {
-        m.request({
-            method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/status-pedido-patologia",
-            body: {
-                numeroPedido: numeropedidomv,
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-                "Accept": "application/json",
-                "Authorization": localStorage.accessToken,
-            },
-        })
-        .then(function(result) {
-            if (result.status) {              
-                muestraModel.examenes = result.examenes;
-            } else {
-                muestraModel.error = result.message;
-            }
-        })
-        .catch(function(error) {
-            muestraModel.error = error;
-            alert(muestraModel.error);
-        })
-    },
-
-    generarSecuencial: function() {
-        m.request({
-            method: "GET",
-            url: "http://localhost:8000/api/v1/muestras/obtenersecuencial",
-            body: {},
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-                "Accept": "application/json",
-                "Authorization": localStorage.accessToken,
-            },
-        })
-        .then(function(result) {
-            muestraModel.secuencialMuestra = result.id + 1;
-        })
-        .catch(function(error) {
-            muestraModel.error = error;
-            alert(muestraModel.error);
-        })   
-    },
-
     guardar: (formulario) => {
         FormularioModels.loading = true;
         m.request({
@@ -212,45 +166,6 @@ let FormularioModels = {
             alert(FormularioModels.error);
         }) 
     },  
-
-    asociarExamen: (examen) => {
-        m.request({
-            method: 'POST',
-            url: "http://localhost:8000/api/v1/asociacionexamenes?nopedidomv=" + muestraModel.numeroPedido,
-            body:  examen,
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-                "Accept": "application/json",
-                "Authorization": localStorage.accessToken,
-            },
-        })
-        .then(function() {
-            muestraModel.cargarListado(muestraModel.numeroPedido);
-        })
-        .catch(function(error) {
-            muestraModel.error = "Se produjo error guardando la muestra: " + error.response.message;
-            alert(muestraModel.error);
-        }) 
-    },
-
-    eliminarExamenasociado: (idAsociacion) => {
-        m.request({
-            method: 'DELETE',
-            url: "http://localhost:8000/api/v1/asociacionexamenes/eliminarasociacion/" + idAsociacion + "?nopedidomv=" + muestraModel.numeroPedido,
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-                "Accept": "application/json",
-                "Authorization": localStorage.accessToken,
-            },
-        })
-        .then(function() {
-            muestraModel.cargarListado(muestraModel.numeroPedido);
-        })
-        .catch(function(error) {
-            muestraModel.error = "Se produjo error guardando la muestra: " + error.response.message;
-            alert(muestraModel.error);
-        }) 
-    },
 }
 
 export default FormularioModels;
