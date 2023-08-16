@@ -34,8 +34,8 @@ const inputMedicinas = {
                 el.dom.value = formularioModelo.listadoUnitario.SALBUTAMOLDOSIS;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               //disabled: true,
             }),
           ])
@@ -58,8 +58,8 @@ const inputMedicinas = {
                 el.dom.value = formularioModelo.listadoUnitario.HIPERSAL7DOSIS;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               //disabled: true,
             }),
           ])
@@ -82,8 +82,8 @@ const inputMedicinas = {
                 el.dom.value = formularioModelo.listadoUnitario.HIPERSAL35DOSIS;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               //disabled: true,
             }),
           ])
@@ -109,8 +109,8 @@ const inputMedicinas = {
                   formularioModelo.listadoUnitario.DEXAMETASONADOSIS;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               //disabled: true,
             }),
           ])
@@ -134,8 +134,8 @@ const inputMedicinas = {
                   formularioModelo.listadoUnitario.CLORHIDRATODEAMBROXOLDOSIS;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               //disabled: true,
             }),
           ])
@@ -159,8 +159,8 @@ const inputMedicinas = {
                   formularioModelo.listadoUnitario.SOLUCIONSALINADOSIS;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               //disabled: true,
             }),
           ])
@@ -186,8 +186,8 @@ const inputMedicinas = {
                   formularioModelo.listadoUnitario.BROMURODELPATROPIODOSIS;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               //disabled: true,
             }),
           ])
@@ -211,8 +211,8 @@ const inputMedicinas = {
                   formularioModelo.listadoUnitario.ADRENALINARACENICADOSIS;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               //disabled: true,
             }),
           ])
@@ -235,8 +235,8 @@ const inputMedicinas = {
                 el.dom.value = formularioModelo.listadoUnitario.NAcetilcisteina;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               //disabled: true,
             }),
           ])
@@ -260,8 +260,8 @@ const inputMedicinas = {
                 el.dom.value = formularioModelo.listadoUnitario.OTROSDOSIS;
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
               maxlength: "4000",
               //disabled: true,
             }),
@@ -320,8 +320,8 @@ const inputIncentivoRespiratorio = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -369,8 +369,8 @@ const inputIncentivoRespiratorio = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -428,8 +428,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -466,8 +466,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -517,8 +517,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -555,8 +555,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -607,8 +607,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -645,8 +645,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -696,8 +696,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -734,8 +734,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -786,8 +786,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -824,8 +824,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -875,8 +875,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -913,8 +913,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -965,8 +965,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -1003,8 +1003,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -1056,8 +1056,8 @@ const inputOxigenoTerapia = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         )
@@ -1112,8 +1112,8 @@ const inputMonitoreo = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -1163,8 +1163,8 @@ const inputMonitoreo = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -1217,8 +1217,8 @@ const inputMonitoreo = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -1268,8 +1268,8 @@ const inputMonitoreo = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -1322,8 +1322,8 @@ const inputMonitoreo = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -1373,8 +1373,8 @@ const inputMonitoreo = {
                 }
               },
               disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+                formularioModelo.listadoUnitario.ESTADO === "Finalizado",
             }),
           ])
         ),
@@ -1395,8 +1395,8 @@ const inputCriterio = {
         },
         maxlength: "4000",
         disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+          formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+          formularioModelo.listadoUnitario.ESTADO === "Finalizado",
       }),
     ];
   },
@@ -1653,7 +1653,6 @@ const VerUnFormulario = {
                     ]);
                   })
                 )
-
               ),
             ]),
 
@@ -1706,8 +1705,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -1737,8 +1738,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -1767,8 +1770,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -1810,8 +1815,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -1836,8 +1843,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -1862,8 +1871,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -1888,8 +1899,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -1915,8 +1928,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -1940,8 +1955,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -1976,8 +1993,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2008,8 +2027,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2040,8 +2061,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2072,8 +2095,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2104,8 +2129,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2164,8 +2191,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2193,8 +2222,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2238,8 +2269,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2268,8 +2301,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2298,8 +2333,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2328,8 +2365,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2358,8 +2397,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2399,8 +2440,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2429,8 +2472,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2458,8 +2503,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2498,8 +2545,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2528,8 +2577,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m("label", { class: "form-label", for: "inputTos" }, "Tos"),
                   ])
@@ -2555,8 +2606,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2586,8 +2639,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2616,8 +2671,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2646,8 +2703,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2679,8 +2738,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2709,8 +2770,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2740,8 +2803,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2770,8 +2835,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2800,8 +2867,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2830,8 +2899,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2862,8 +2933,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2892,8 +2965,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2921,8 +2996,10 @@ const VerUnFormulario = {
                           event.target.checked ? "true" : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2951,8 +3028,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -2981,8 +3060,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -3011,8 +3092,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -3043,8 +3126,10 @@ const VerUnFormulario = {
                           : "false";
                       },
                       disabled:
-                  formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-                  formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Cancelado" ||
+                        formularioModelo.listadoUnitario.ESTADO ===
+                          "Finalizado",
                     }),
                     m(
                       "label",
@@ -3443,21 +3528,29 @@ const VerUnFormulario = {
             m.trust("&nbsp;"),
             " ",
             m.trust("&nbsp;"),
-            (formularioModelo.listadoUnitario.ESTADO === "Finalizado" ? 
-            m(m.route.Link, {
-
-              href:
+            formularioModelo.listadoUnitario.ESTADO === "Finalizado"
+              ? m(
+                  m.route.Link,
+                  {
+                    // Entrenamiento
+                    /* href:
                           "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" +
                           formularioModelo.listadoUnitario.ID +
-                          "&output=pdf",
+                          "&output=pdf", */
+                    // Producción
+                    href:
+                      "http://172.16.2.60:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" +
+                      formularioModelo.listadoUnitario.ID +
+                      "&output=pdf",
 
-              class: "btn btn-primary",
+                    class: "btn btn-primary",
 
-              target: "_blank",
-              type: "button",
-
-          }, "Imprimir")  : null
-            )
+                    target: "_blank",
+                    type: "button",
+                  },
+                  "Imprimir"
+                )
+              : null,
           ])
         : m(loader),
     ];

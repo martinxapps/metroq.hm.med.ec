@@ -19,7 +19,7 @@ const FOR005 = {
         let page = 0;
 
         if (Formulario.num == 0) {
-            setTimeout(function() {
+            setTimeout(function () {
                 Formulario.num = Formulario.data.length;
                 Formulario.parseFetch();
                 m.redraw.sync();
@@ -41,7 +41,7 @@ const FOR005 = {
             ),
         ] : [
 
-            FOR005.secs.map(function(_v, _i, _contentData) {
+            FOR005.secs.map(function (_v, _i, _contentData) {
 
                 if (_v.name == 'prescripciones_texto') {
 
@@ -57,8 +57,8 @@ const FOR005 = {
 
                 if (_v.name == 'cd_documento_clinico') {
 
-                    urlFor = "http://172.16.253.14:82/mvpep/api/clinical-documents/" + _v.answer + ".pdf?company=1&department=75";
-                    // urlFor = "http://172.16.253.18/mvpep/api/clinical-documents/" + _v.answer + ".pdf?company=1&department=75";
+                    // urlFor = "http://172.16.253.14:82/mvpep/api/clinical-documents/" + _v.answer + ".pdf?company=1&department=75";
+                    urlFor = "http://172.16.253.18/mvpep/api/clinical-documents/" + _v.answer + ".pdf?company=1&department=75";
 
 
 
@@ -100,9 +100,9 @@ const FOR005 = {
                                     ),
                                     m("th.tx-right[colspan='2'][scope='col']",
                                         m("a.tx-right.tx-semibold", {
-                                                href: urlFor,
-                                                target: "_blank"
-                                            },
+                                            href: urlFor,
+                                            target: "_blank"
+                                        },
                                             m('i.fas.fa-print.mg-r-2'),
                                             " Imprirmir  "
 
@@ -254,10 +254,10 @@ const FOR005 = {
                                     ),
                                     m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#eef9c8" } },
                                         m("div.m-0.p-0.tx-bold.text-center.", [
-                                                "FIRMAR AL PIE DE",
-                                                m("br"),
-                                                "CADA PRESCRIPCIÓN"
-                                            ]
+                                            "FIRMAR AL PIE DE",
+                                            m("br"),
+                                            "CADA PRESCRIPCIÓN"
+                                        ]
 
                                         )
                                     ),
@@ -283,21 +283,21 @@ const FOR005 = {
                                     ),
                                     m("th[colspan='4'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
                                         m("div.m-0.p-0.tx-bold.text-center.", [
-                                                "FARMACOTERAPIA E INDICACIONES",
-                                                m("br"),
-                                                "(PARA ENFERMERÍA Y OTRO PERSONAL)"
+                                            "FARMACOTERAPIA E INDICACIONES",
+                                            m("br"),
+                                            "(PARA ENFERMERÍA Y OTRO PERSONAL)"
 
-                                            ]
+                                        ]
 
                                         )
                                     ),
                                     m("th[colspan='2'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
                                         m("div.m-0.p-0.tx-bold.text-center.", [
-                                                "ADMINISTR.",
-                                                m("br"),
-                                                "FÁRMACOS INSUMOS"
+                                            "ADMINISTR.",
+                                            m("br"),
+                                            "FÁRMACOS INSUMOS"
 
-                                            ]
+                                        ]
 
                                         )
                                     ),
@@ -346,11 +346,11 @@ const Formulario = {
     error: "",
     parseDoc: (_data) => {
 
-        Object.keys(_data.data).map(function(_v, _i, _contentData) {
+        Object.keys(_data.data).map(function (_v, _i, _contentData) {
             FOR005.secs.push(_data.data[_v])
         })
 
-        return FOR005.secs.map(function(_v, _i, _contentData) {
+        return FOR005.secs.map(function (_v, _i, _contentData) {
 
 
 
@@ -443,7 +443,7 @@ const Formulario = {
     parseFetch: () => {
         FOR005.secs = [];
 
-        return Formulario.data.map(function(_v, _i, _contentData) {
+        return Formulario.data.map(function (_v, _i, _contentData) {
             Formulario.parseDoc(Formulario.data[_i])
 
         })
@@ -455,14 +455,14 @@ const Formulario = {
         Formulario.data = [];
         Formulario.error = "";
         m.request({
-                method: "GET",
-                // url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
-                url: "https://api.hospitalmetropolitano.org/t/v1/formulario-trn?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
-                headers: {
-                    "Authorization": localStorage.accessToken,
-                },
-            })
-            .then(function(result) {
+            method: "GET",
+            url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
+            //url: "https://api.hospitalmetropolitano.org/t/v1/formulario-trn?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
+            headers: {
+                "Authorization": localStorage.accessToken,
+            },
+        })
+            .then(function (result) {
                 if (result.length !== 0) {
                     Formulario.data = result;
                     Formulario.num = 0;
@@ -472,8 +472,8 @@ const Formulario = {
                 }
 
             })
-            .catch(function(e) {
-                setTimeout(function() { Formulario.fetch(); }, 5000);
+            .catch(function (e) {
+                setTimeout(function () { Formulario.fetch(); }, 5000);
 
             })
     },
@@ -521,17 +521,17 @@ const Evoluciones = {
         Evoluciones.data = [];
         Evoluciones.error = "";
         m.request({
-                method: "POST",
-                // url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
-                url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente-trn",
-                body: {
-                    numeroHistoriaClinica: Pedido.data.CD_PACIENTE + '01'
-                },
-                headers: {
-                    "Authorization": localStorage.accessToken,
-                },
-            })
-            .then(function(result) {
+            method: "POST",
+            url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
+            //url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente-trn",
+            body: {
+                numeroHistoriaClinica: Pedido.data.CD_PACIENTE + '01'
+            },
+            headers: {
+                "Authorization": localStorage.accessToken,
+            },
+        })
+            .then(function (result) {
 
 
 
@@ -545,8 +545,8 @@ const Evoluciones = {
                 }
 
             })
-            .catch(function(e) {
-                setTimeout(function() { Evoluciones.fetch(); }, 5000);
+            .catch(function (e) {
+                setTimeout(function () { Evoluciones.fetch(); }, 5000);
 
             })
     },
@@ -580,7 +580,7 @@ const Examenes = {
     view: () => {
 
         if (Pedido.examenes.length !== 0) {
-            return Pedido.examenes.map(function(_val, _i, _contentData) {
+            return Pedido.examenes.map(function (_val, _i, _contentData) {
                 return [
                     m('.tx-14.tx-semibold.d-inline', _val.EXAMEN),
                     m('br'),
@@ -631,17 +631,17 @@ const Pedido = {
         Pedido.data = [];
         Pedido.loader = true;
         m.request({
-                method: "POST",
-                // url: "https://api.hospitalmetropolitano.org/t/v1/status-pedido-tr",
-                url: "https://api.hospitalmetropolitano.org/t/v1/trn/status-pedido-tr",
-                body: {
-                    numeroPedido: Pedido.numeroPedido,
-                },
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-            })
-            .then(function(result) {
+            method: "POST",
+            url: "https://api.hospitalmetropolitano.org/t/v1/status-pedido-tr",
+            //url: "https://api.hospitalmetropolitano.org/t/v1/trn/status-pedido-tr",
+            body: {
+                numeroPedido: Pedido.numeroPedido,
+            },
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(function (result) {
                 if (result.status) {
                     Pedido.loader = false;
                     Pedido.data = result.data;
@@ -652,7 +652,7 @@ const Pedido = {
                 }
 
             })
-            .catch(function(e) {
+            .catch(function (e) {
 
             })
 
@@ -694,29 +694,29 @@ const Pedido = {
                         m("div.col-12", [
 
                             m("div.table-loader.wd-100p", {
-                                    oncreate: (el) => {
-                                        if (Pedido.loader) {
-                                            el.dom.hidden = false;
-                                        } else {
-                                            el.dom.hidden = true;
+                                oncreate: (el) => {
+                                    if (Pedido.loader) {
+                                        el.dom.hidden = false;
+                                    } else {
+                                        el.dom.hidden = true;
 
-                                        }
-                                    },
-                                    onupdate: (el) => {
-                                        if (Pedido.loader) {
-                                            el.dom.hidden = false;
-                                        } else {
-                                            el.dom.hidden = true;
-
-                                        }
                                     }
+                                },
+                                onupdate: (el) => {
+                                    if (Pedido.loader) {
+                                        el.dom.hidden = false;
+                                    } else {
+                                        el.dom.hidden = true;
 
-                                }, [
-                                    m("div.placeholder-paragraph", [
-                                        m("div.line"),
-                                        m("div.line")
-                                    ])
-                                ]
+                                    }
+                                }
+
+                            }, [
+                                m("div.placeholder-paragraph", [
+                                    m("div.line"),
+                                    m("div.line")
+                                ])
+                            ]
 
 
                             ),
@@ -744,15 +744,15 @@ const Pedido = {
                                     m("h5.tx-right.tx-normal.tx-rubik.tx-color-03.mg-b-0",
                                         m("small.pd-2.tx-20",
                                             m("i.fas.fa-times-circle.pd-2", {
-                                                    "style": { "cursor": "pointer" },
-                                                    title: "Cerrar",
-                                                    onclick: () => {
+                                                "style": { "cursor": "pointer" },
+                                                title: "Cerrar",
+                                                onclick: () => {
 
-                                                        window.close();
+                                                    window.close();
 
 
-                                                    }
                                                 }
+                                            }
 
                                             )
 
@@ -793,37 +793,37 @@ const Pedido = {
                                             m("tbody", [
                                                 m("tr", [
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "N° de Pedido:"
                                                     ),
                                                     m("td", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.CD_PRE_MED
                                                     ),
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Fecha:"
                                                     ),
                                                     m("td[colspan='2']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.FECHA_PEDIDO + " " + Pedido.data.HORA_PEDIDO
 
                                                     ),
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Origen:"
                                                     ),
                                                     m("td[colspan='3']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.SECTOR
                                                     ),
 
@@ -831,26 +831,26 @@ const Pedido = {
 
                                                 m("tr", [
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Médico Solicitante:"
                                                     ),
                                                     m("td[colspan='4']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.MED_MV,
 
                                                     ),
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Especialidad:"
                                                     ),
                                                     m("td[colspan='3']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.ESPECIALIDAD
                                                     ),
 
@@ -870,86 +870,86 @@ const Pedido = {
                                             m("tbody", [
                                                 m("tr", [
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Apellidos y Nombres:"
                                                     ),
                                                     m("td[colspan='4']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.NM_PACIENTE
                                                     ),
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "EDAD:"
                                                     ),
                                                     m("td", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.EDAD
 
                                                     ),
 
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "NHC:"
                                                     ),
                                                     m("td[colspan='2']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.CD_PACIENTE
                                                     ),
 
                                                 ]),
                                                 m("tr", [
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "N° Atención:"
                                                     ),
                                                     m("td", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.AT_MV
                                                     ),
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Peso:"
                                                     ),
                                                     m("td", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.PESO
                                                     ),
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Altura:"
                                                     ),
                                                     m("td", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.ALTURA
                                                     ),
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Ubicación:"
                                                     ),
 
                                                     m("td[colspan='4']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         Pedido.data.SECTOR + " " + Pedido.data.UBICACION
                                                     ),
 
@@ -962,14 +962,14 @@ const Pedido = {
                                                 ]),
                                                 m("tr", [
                                                     m("th", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                        style: { "background-color": "#a8bed6" }
+                                                    },
                                                         "Exámenes:"
                                                     ),
                                                     m("td[colspan='8']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         m(Examenes)
                                                     ),
 
@@ -985,14 +985,14 @@ const Pedido = {
                                                 m("tr.d-print-none", [
 
                                                     m("td[colspan='9']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                        style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                    },
                                                         m("ul.nav.nav-tabs[id='myTab'][role='tablist']", [
                                                             m("li.nav-item",
                                                                 m("a.nav-link[id='home-tab'][data-toggle='tab'][href='#home'][role='tab'][aria-controls='home'][aria-selected='true']", {
-                                                                        style: { "color": "#476ba3" }
-                                                                    },
+                                                                    style: { "color": "#476ba3" }
+                                                                },
                                                                     m("i.fas.fa-file-alt.pd-1.mg-r-2"),
 
                                                                     " HOJA 005"
@@ -1000,8 +1000,8 @@ const Pedido = {
                                                             ),
                                                             m("li.nav-item",
                                                                 m("a.nav-link[id='home-muestra'][data-toggle='tab'][href='#muestra'][role='tab'][aria-controls='muestra']", {
-                                                                        style: { "color": "#476ba3" }
-                                                                    },
+                                                                    style: { "color": "#476ba3" }
+                                                                },
                                                                     m("i.fas.fa-file-alt.pd-1.mg-r-2"),
 
                                                                     "Registro Terapia Respiratoria"
@@ -1018,7 +1018,7 @@ const Pedido = {
 
                                                     m("td[colspan='9']", {
 
-                                                        },
+                                                    },
                                                         m(".tab-content.bd.bd-gray-300.bd-t-0[id='myTab']", [
                                                             m(".tab-pane.fade[id='home'][role='tabpanel'][aria-labelledby='home-tab']", [
                                                                 m(Evoluciones),
@@ -1046,7 +1046,7 @@ const Pedido = {
 
                                                                         }
                                                                     }, [
-                                                                        m("i.fas.mg-r-5", )
+                                                                        m("i.fas.mg-r-5",)
                                                                     ], "Nuevo Formulario"),
                                                                     m("div#cerrar-gestion-muestras", {
                                                                         style: { 'width': '50%', 'float': 'right' }

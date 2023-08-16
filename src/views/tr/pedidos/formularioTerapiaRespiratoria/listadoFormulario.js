@@ -59,7 +59,9 @@ const ListadoFormulario = {
                       formularioModelo.listadoUnitario = null;
                       if (
                         window.confirm(
-                          `¿Estás seguro que deseas ir al formulario que fue realizado por ${formulario.Usuario.toUpperCase()} el ${formulario.FECHAHOY}?`
+                          `¿Estás seguro que deseas ir al formulario que fue realizado por ${formulario.Usuario.toUpperCase()} el ${
+                            formulario.FECHAHOY
+                          }?`
                         )
                       ) {
                         m.mount(document.querySelector("#gestion-muestras"), {
@@ -132,8 +134,14 @@ const ListadoFormulario = {
                   ? m(
                       m.route.Link,
                       {
-                        href:
+                        // Entrenamiento
+                        /*  href:
                           "http://172.16.1.122:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" +
+                          formulario.ID +
+                          "&output=pdf", */
+                        // Producción
+                        href:
+                          "http://172.16.2.60:8080/jasperserver/flow.html?_flowId=viewReportFlow&_flowId=viewReportFlow&ParentFolderUri=%2Freports&reportUnit=%2Freports%2FTerapiaRespiratoria&standAlone=true&decorate=no&j_username=jasperadmin&j_password=jasperadmin&InformeId=" +
                           formulario.ID +
                           "&output=pdf",
 
