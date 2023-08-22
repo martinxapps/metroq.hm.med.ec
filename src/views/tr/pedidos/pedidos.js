@@ -126,7 +126,7 @@ const tablePedidosTR = {
     },
 
     view: () => {
-        return m("div.row.animated.fadeInUp", {}, [
+        return m("div.row.animated.fadeInUp", [
 
             m("div.col-12", [
 

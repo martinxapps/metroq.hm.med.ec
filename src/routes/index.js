@@ -73,6 +73,7 @@ import PedidosBcoSangre from '../views/bcosangre/pedidos/pedidos'
 import PedidoTF from '../views/tf/pedidos/pedido'
 import NotificacionesPorEnviarLab from '../views/laboratorio/notificaciones/porenviar'
 import BcoPedido from '../views/bcosangre/pedidos/pedido'
+import InicioFlebo from '../views/laboratorio/flebotomista/inicioFlebo'
 
 
 
@@ -320,6 +321,7 @@ const Routes = {
     }, //NotificacionesEnviadasLab
     '/laboratorio/notificaciones/pendientes': NotificacionesPendientesLab, //NotificacionesPendientesLab
     '/laboratorio/notificaciones/error': NotificacionesErroresLab, //NotificacionesErroresLab
+    '/laboratorio/flebotomista/inicio': InicioFlebo,
     '/laboratorio/flebotomista': {
         oninit: (_data) => {
             App.isAuth('laboratorio', 16);

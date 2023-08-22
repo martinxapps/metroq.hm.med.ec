@@ -30,7 +30,7 @@ const MenuLaboratorio = {
                                 "class": "list-item bg-white wd-100p",
                                 "style": { "cursor": "pointer" },
                                 onclick: () => {
-                                    m.route.set("/laboratorio/flebotomista")
+                                    m.route.set("/laboratorio/flebotomista/inicio")
                                 }
                             }, [
                                 m("div", { "class": "media" }, [
