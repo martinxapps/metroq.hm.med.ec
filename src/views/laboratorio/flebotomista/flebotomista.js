@@ -5,7 +5,7 @@ import m from 'mithril';
 function stopwatchModel() {
     return {
         interval: null,
-        seconds: 2,
+        seconds: 100,
         isPaused: false
     };
 }
@@ -19,8 +19,8 @@ const actions = {
         if (Flebotomista.searchField.length == 0) {
             model.seconds--;
             if (model.seconds == 0) {
-                model.seconds = 2;
-                Flebotomista.reloadData();
+                model.seconds = 100;
+                // Flebotomista.reloadData();
             }
             m.redraw();
         }
@@ -276,33 +276,36 @@ const tableFlebotomista = {
                             }
 
                             ),
-                            m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15",
-                                m("select.bg-primary.tx-white.tx-semibold.tx-15.form-select", {
+                            m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-20",
+                                m("div.tx-white.tx-semibold", {
                                     oncreate: (e) => {
-                                        Flebotomista.idToma = 'TOMA1';
+                                        if (localStorage.getItem("peerId") !== undefined) {
+                                            Flebotomista.idToma = localStorage.getItem("peerId");
+                                        }
+
                                     },
-                                    onchange: (e) => {
 
-                                        Flebotomista.idToma = e.target.value;
-
-                                    }
                                 }, [
-                                    m("option[value='TOMA1']",
-                                        "TOMA1"
-                                    ),
-                                    m("option[value='TOMA2']",
-                                        "TOMA2"
-                                    ),
-                                    m("option[value='TOMA3']",
-                                        "TOMA3"
-                                    ),
-                                    m("option[value='TOMA4']",
-                                        "TOMA4"
-                                    )
+                                    Flebotomista.idToma
                                 ])
-                            )
+                            ),
+
 
                         ),
+
+                        m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-20",
+                            m(
+                                "div.wd-60.tx-center", {
+                                class: "pd-10",
+                                onclick: () => {
+                                    m.route.set('/laboratorio/flebotomista/inicio');
+                                }
+
+                            },
+                                m("i", { class: "fas fa-home tx-30 tx-white" })
+                            ),
+                        ),
+
 
 
 
@@ -930,10 +933,7 @@ const Flebotomista = {
             .then(function (result) {
                 Flebotomista.loader = false;
                 Flebotomista.pedidos = result.data;
-                if (Flebotomista.pedidos.length == 0) {
-                    setTimeout(function () { Flebotomista.fetchPedidos(); }, 1800);
 
-                }
             })
             .catch(function (e) {
                 setTimeout(function () { Flebotomista.fetchPedidos(); }, 2000);

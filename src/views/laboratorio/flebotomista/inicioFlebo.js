@@ -38,251 +38,220 @@ class MenuFlebot {
             m(
                 "div.content.content-components",
                 m(
-                    "div.container",
-                    {
-                        style: { "max-width": "100%" },
-                    },
-                    [
-                        m("ol.breadcrumb.df-breadcrumbs.mg-b-10", [
-                            m(
-                                "li.breadcrumb-item",
-                                m(m.route.Link, { href: "/" }, ["MetroPlus"])
-                            ),
-                            m(
-                                "li.breadcrumb-item.active[aria-current='page']",
-                                "Laboratorio"
-                            ),
-                        ]),
-                        m("div.d-flex", [
-                            m(
-                                "div.flex-grow-1",
-                                m("h1.df-title.mg-t-20.mg-b-10", [
-                                    "Laboratorio: ",
-                                    m(
-                                        "span.tx-40.badge.bg-litecoin.pd-10.tx-white.mg-r-10",
-                                        InicioFlebo.idToma
-                                    ),
-                                    m("i", {
-                                        title: " Editar ",
-                                        class: "fas fa-edit tx-40 tx-light",
-                                        style: "cursor:pointer",
-                                        onclick: () => {
-                                            InicioFlebo.showConfigToma =
-                                                !InicioFlebo.showConfigToma;
-                                        },
-                                    }),
-                                ])
-                            ),
-
-                            m(
-                                "div.d-flex.mg-l-auto",
-
-                                m("div[id='reloj'].df-title.mg-t-20.mg-b-10", {
-                                    oncreate: () => {
-                                        return new Reloj("reloj");
-                                    },
-                                }),
+                    "div.container", {
+                    style: { "max-width": "100%" },
+                }, [
+                    m("ol.breadcrumb.df-breadcrumbs.mg-b-10", [
+                        m(
+                            "li.breadcrumb-item",
+                            m(m.route.Link, { href: "/laboratorio" }, ["MetroPlus"])
+                        ),
+                        m(
+                            "li.breadcrumb-item.active[aria-current='page']",
+                            "Laboratorio"
+                        ),
+                    ]),
+                    m("div.d-flex", [
+                        m(
+                            "div.flex-grow-1",
+                            m("h1.df-title.mg-t-20.mg-b-10", [
+                                "Laboratorio: ",
+                                m(
+                                    "span.tx-40.badge.bg-litecoin.pd-10.tx-white.mg-r-10",
+                                    InicioFlebo.idToma
+                                ),
                                 m("i", {
                                     title: " Editar ",
-                                    class: "fas fa-clock mg-l-4 mg-t-30 tx-32 tx-light",
-                                })
-                            ),
-                        ]),
+                                    class: "fas fa-edit tx-40 tx-light",
+                                    style: "cursor:pointer",
+                                    onclick: () => {
+                                        InicioFlebo.showConfigToma = !InicioFlebo.showConfigToma;
+                                    },
+                                }),
+                            ])
+                        ),
 
                         m(
-                            "div.mg-t-20.d.flex",
-                            {
-                                class:
-                                    InicioFlebo.showConfigToma == undefined ||
-                                        InicioFlebo.showConfigToma == false
-                                        ? "d-none"
-                                        : "",
+                            "div.d-flex.mg-l-auto",
+
+                            m("div[id='reloj'].df-title.mg-t-20.mg-b-10", {
+                                oncreate: () => {
+                                    return new Reloj("reloj");
+                                },
+                            }),
+                            m("i", {
+                                title: " Editar ",
+                                class: "fas fa-clock mg-l-4 mg-t-30 tx-32 tx-light",
+                            })
+                        ),
+                    ]),
+
+                    m(
+                        "div.mg-t-20.d.flex", {
+                        class: InicioFlebo.showConfigToma == undefined ||
+                            InicioFlebo.showConfigToma == false ?
+                            "d-none" : "",
+                    }, [
+                        m("fieldset.form-fieldset", [
+                            m("legend.pd-2", "MODIFICAR TOMA:"),
+                            m("div.tx-30", [
+                                m("div.custom-control.custom-radio", [
+                                    m(
+                                        "input.custom-control-input[type='radio'][id='customRadio1'][name='customRadio']", {
+                                        checked: InicioFlebo.idToma == "TOMA1" ? true : false,
+                                        onchange: (event) => {
+
+                                            InicioFlebo.idToma = "TOMA1";
+                                            localStorage.setItem("peerId", InicioFlebo.idToma);
+
+                                        },
+                                    }
+                                    ),
+                                    m(
+                                        "label.custom-control-label[for='customRadio1']",
+                                        "TOMA 1"
+                                    ),
+                                ]),
+                                m("div.custom-control.custom-radio", [
+                                    m(
+                                        "input.custom-control-input[type='radio'][id='customRadio2'][name='customRadio']", {
+                                        checked: InicioFlebo.idToma == "TOMA2" ? true : false,
+                                        onchange: (event) => {
+
+                                            InicioFlebo.idToma = "TOMA2";
+                                            localStorage.setItem("peerId", InicioFlebo.idToma);
+
+                                        },
+                                    }
+                                    ),
+                                    m(
+                                        "label.custom-control-label[for='customRadio2']",
+                                        "TOMA  2"
+                                    ),
+                                ]),
+                                m("div.custom-control.custom-radio", [
+                                    m(
+                                        "input.custom-control-input[type='radio'][id='customRadio3'][name='customRadio']", {
+                                        checked: InicioFlebo.idToma == "TOMA3" ? true : false,
+                                        onchange: (event) => {
+
+                                            InicioFlebo.idToma = "TOMA3";
+                                            localStorage.setItem("peerId", InicioFlebo.idToma);
+
+                                        },
+                                    }
+                                    ),
+                                    m(
+                                        "label.custom-control-label[for='customRadio3']",
+                                        "TOMA  3"
+                                    ),
+                                ]),
+                                m("div.custom-control.custom-radio", [
+                                    m(
+                                        "input.custom-control-input[type='radio'][id='customRadio4'][name='customRadio']", {
+                                        checked: InicioFlebo.idToma == "TOMA4" ? true : false,
+                                        onchange: (event) => {
+
+                                            InicioFlebo.idToma = "TOMA4";
+                                            localStorage.setItem("peerId", InicioFlebo.idToma);
+
+                                        },
+                                    }
+                                    ),
+                                    m(
+                                        "label.custom-control-label[for='customRadio4']",
+                                        "TOMA  4"
+                                    ),
+                                ]),
+                                m("div.custom-control.custom-radio", [
+                                    m(
+                                        "input.custom-control-input[type='radio'][id='customRadio5'][name='customRadio']", {
+                                        checked: InicioFlebo.idToma == "TOMA5" ? true : false,
+                                        onchange: (event) => {
+
+                                            InicioFlebo.idToma = "TOMA5";
+                                            localStorage.setItem("peerId", InicioFlebo.idToma);
+
+                                        },
+                                    }
+                                    ),
+                                    m(
+                                        "label.custom-control-label[for='customRadio5']",
+                                        "TOMA 5"
+                                    ),
+                                ]),
+                            ]),
+                        ]),
+                    ]
+                    ),
+
+                    m(
+                        "div.row.mg-t-20", {
+                        class: InicioFlebo.showConfigToma == undefined ||
+                            InicioFlebo.showConfigToma == false ?
+                            "" : "d-none",
+                    }, [
+                        m(
+                            "li", {
+                            class: "list-item bg-success wd-100p",
+                            style: { cursor: "pointer" },
+                            onclick: () => {
+                                m.route.set("/laboratorio/flebotomista");
                             },
-                            [
-                                m("fieldset.form-fieldset", [
-                                    m("legend.pd-2", "MODIFICAR TOMA:"),
-                                    m("div.tx-30", [
-                                        m("div.custom-control.custom-radio", [
-                                            m(
-                                                "input.custom-control-input[type='radio'][id='customRadio1'][name='customRadio']",
-                                                {
-                                                    checked:
-                                                        InicioFlebo.idToma == "TOMA1" ? true : false,
-                                                    onchange: (event) => {
+                        }, [
+                            m("div", { class: "media" }, [
+                                m(
+                                    "div.wd-60.tx-center", { class: "pd-10 bg-litecoin" },
+                                    m("i", { class: "fas fa-flask tx-30 tx-white" })
+                                ),
+                                m("div", { class: "media-body mg-l-15" }, [
+                                    m(
+                                        "p", { class: "tx-40 mg-b-0 tx-white" },
+                                        "Pendientes"
+                                    ),
+                                ]),
+                            ]),
+                        ]
+                        ),
+                        m(
+                            "li.d-none", {
+                            class: "list-item bg-white wd-100p",
 
-                                                        InicioFlebo.idToma = "TOMA1";
-                                                        localStorage.setItem("peerId", InicioFlebo.idToma);
+                        }, [
+                            m("div", { class: "media" }, [
+                                m(
+                                    "div.wd-60.tx-center", { class: "pd-10 bg-litecoin" },
+                                    m("i", { class: "fas fa-file-alt tx-30 tx-white" })
+                                ),
+                                m("div", { class: "media-body mg-l-15" }, [
+                                    m("p", { class: "tx-40 mg-b-0" }, "Gestionados"),
+                                ]),
+                            ]),
+                        ]
+                        ),
 
-                                                    },
-                                                }
-                                            ),
-                                            m(
-                                                "label.custom-control-label[for='customRadio1']",
-                                                "TOMA 1"
-                                            ),
-                                        ]),
-                                        m("div.custom-control.custom-radio", [
-                                            m(
-                                                "input.custom-control-input[type='radio'][id='customRadio2'][name='customRadio']",
-                                                {
-                                                    checked:
-                                                        InicioFlebo.idToma == "TOMA2" ? true : false,
-                                                    onchange: (event) => {
+                        m(
+                            "li", {
+                            class: "list-item bg-white wd-100p",
 
-                                                        InicioFlebo.idToma = "TOMA2";
-                                                        localStorage.setItem("peerId", InicioFlebo.idToma);
+                        }, [
+                            m("div", { class: "media" }, [
+                                m(
+                                    "div.wd-60.tx-center", { class: "pd-10 bg-litecoin" },
+                                    m("i", { class: "fas fa-user tx-30 tx-white" })
+                                ),
+                                m("div", { class: "media-body mg-l-15" }, [
+                                    m("p", { class: "tx-40 mg-b-0" }, [
+                                        "Usuario: mchang "
 
-                                                    },
-                                                }
-                                            ),
-                                            m(
-                                                "label.custom-control-label[for='customRadio2']",
-                                                "TOMA  2"
-                                            ),
-                                        ]),
-                                        m("div.custom-control.custom-radio", [
-                                            m(
-                                                "input.custom-control-input[type='radio'][id='customRadio3'][name='customRadio']",
-                                                {
-                                                    checked:
-                                                        InicioFlebo.idToma == "TOMA3" ? true : false,
-                                                    onchange: (event) => {
-
-                                                        InicioFlebo.idToma = "TOMA3";
-                                                        localStorage.setItem("peerId", InicioFlebo.idToma);
-
-                                                    },
-                                                }
-                                            ),
-                                            m(
-                                                "label.custom-control-label[for='customRadio3']",
-                                                "TOMA  3"
-                                            ),
-                                        ]),
-                                        m("div.custom-control.custom-radio", [
-                                            m(
-                                                "input.custom-control-input[type='radio'][id='customRadio4'][name='customRadio']",
-                                                {
-                                                    checked:
-                                                        InicioFlebo.idToma == "TOMA4" ? true : false,
-                                                    onchange: (event) => {
-
-                                                        InicioFlebo.idToma = "TOMA4";
-                                                        localStorage.setItem("peerId", InicioFlebo.idToma);
-
-                                                    },
-                                                }
-                                            ),
-                                            m(
-                                                "label.custom-control-label[for='customRadio4']",
-                                                "TOMA  4"
-                                            ),
-                                        ]),
-                                        m("div.custom-control.custom-radio", [
-                                            m(
-                                                "input.custom-control-input[type='radio'][id='customRadio5'][name='customRadio']",
-                                                {
-                                                    checked:
-                                                        InicioFlebo.idToma == "TOMA5" ? true : false,
-                                                    onchange: (event) => {
-
-                                                        InicioFlebo.idToma = "TOMA5";
-                                                        localStorage.setItem("peerId", InicioFlebo.idToma);
-
-                                                    },
-                                                }
-                                            ),
-                                            m(
-                                                "label.custom-control-label[for='customRadio5']",
-                                                "TOMA 5"
-                                            ),
-                                        ]),
                                     ]),
                                 ]),
-                            ]
-                        ),
-
-                        m(
-                            "div.row.mg-t-20",
-                            {
-                                class:
-                                    InicioFlebo.showConfigToma == undefined ||
-                                        InicioFlebo.showConfigToma == false
-                                        ? ""
-                                        : "d-none",
-                            },
-                            [
-                                m(
-                                    "li",
-                                    {
-                                        class: "list-item bg-success wd-100p",
-                                        style: { cursor: "pointer" },
-                                        onclick: () => {
-                                            m.route.set("/laboratorio/flebotomista");
-                                        },
-                                    },
-                                    [
-                                        m("div", { class: "media" }, [
-                                            m(
-                                                "div.wd-60.tx-center",
-                                                { class: "pd-10 bg-litecoin" },
-                                                m("i", { class: "fas fa-flask tx-30 tx-white" })
-                                            ),
-                                            m("div", { class: "media-body mg-l-15" }, [
-                                                m(
-                                                    "p",
-                                                    { class: "tx-40 mg-b-0 tx-white" },
-                                                    "0 Pendientes"
-                                                ),
-                                            ]),
-                                        ]),
-                                    ]
-                                ),
-                                m(
-                                    "li",
-                                    {
-                                        class: "list-item bg-white wd-100p",
-
-                                    },
-                                    [
-                                        m("div", { class: "media" }, [
-                                            m(
-                                                "div.wd-60.tx-center",
-                                                { class: "pd-10 bg-litecoin" },
-                                                m("i", { class: "fas fa-file-alt tx-30 tx-white" })
-                                            ),
-                                            m("div", { class: "media-body mg-l-15" }, [
-                                                m("p", { class: "tx-40 mg-b-0" }, "0 Gestionados"),
-                                            ]),
-                                        ]),
-                                    ]
-                                ),
-
-                                m(
-                                    "li",
-                                    {
-                                        class: "list-item bg-white wd-100p",
-
-                                    },
-                                    [
-                                        m("div", { class: "media" }, [
-                                            m(
-                                                "div.wd-60.tx-center",
-                                                { class: "pd-10 bg-litecoin" },
-                                                m("i", { class: "fas fa-user tx-30 tx-white" })
-                                            ),
-                                            m("div", { class: "media-body mg-l-15" }, [
-                                                m("p", { class: "tx-40 mg-b-0" }, [
-                                                    "Usuario: mchang "
-
-                                                ]),
-                                            ]),
-                                        ]),
-                                    ]
-                                ),
-                            ]
+                            ]),
+                        ]
                         ),
                     ]
+                    ),
+                ]
                 )
             ),
         ];
