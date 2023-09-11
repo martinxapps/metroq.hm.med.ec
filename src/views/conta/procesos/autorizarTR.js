@@ -338,30 +338,7 @@ const AuthTR = {
 
     },
     descargarInforme: () => {
-
-        AuthTR.loader = true;
-        m.request({
-                method: "POST",
-                url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr/informe",
-                body: {
-                    idTR: AuthTR.id,
-                },
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                },
-            })
-            .then(function(res) {
-                if (res.status) {
-
-                } else {
-                    alert(res.message);
-                }
-
-            })
-            .catch(function(e) {
-                alert(e);
-            })
-
+        window.open("https://api.hospitalmetropolitano.org/t/v1/procesos/tr/informe?idTR=" + AuthTR.id, '_blank');
     },
     view: (_data) => {
 
