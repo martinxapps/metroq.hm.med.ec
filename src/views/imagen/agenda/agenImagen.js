@@ -257,9 +257,17 @@ const BuscadorPacientes = {
                                         Cita.paciente = _i._aData.NM_PACIENTE;
                                         Cita.patientName = _i._aData.NM_PACIENTE;
                                         Cita.phoneNumber = '0998785402';
-                                        Cita.sexType = 'MALE';
-                                        Cita.dateBirth = '1993-08-01';
+                                        Cita.sexType = _i._aData.TP_SEXO;
+                                        Cita.dateBirth = moment(_i._aData.DT_NASCIMENTO, 'DD-MM-YYYY').format('DD/MM/YYYY');
                                         Cita.email = 'mchangcnt@gmail.com';
+
+                                        // Cita HTTP
+                                        Cita.pn_paciente = Cita.nhc;
+                                        Cita.pc_nm_paciente = Cita.patientName;
+                                        Cita.pc_telefono = Cita.phoneNumber;
+                                        Cita.pc_email = Cita.email;
+                                        Cita.pc_fecha_nacimiento = Cita.dateBirth;
+
 
                                         AgendaImagen.buscarPacientes = !AgendaImagen.buscarPacientes;
                                     }
@@ -437,6 +445,7 @@ const BuscadorMedicos = {
                                     onclick: () => {
                                         Cita.codMedico = _i._aData.CD_PRESTADOR;
                                         Cita.prestador = _i._aData.NM_PRESTADOR;
+                                        Cita.pn_prestador = _i._aData.CD_PRESTADOR;
                                         AgendaImagen.buscarMedicos = !AgendaImagen.buscarMedicos;
                                     }
                                 },
@@ -613,6 +622,7 @@ const BuscadorItems = {
                                     onclick: () => {
                                         Cita.codItem = _i._aData.CD_ITEM_AGENDAMENTO;
                                         Cita.estudio = _i._aData.DS_ITEM_AGENDAMENTO;
+                                        Cita.pn_item_agendamento = _i._aData.CD_ITEM_AGENDAMENTO;
                                         AgendaImagen.buscarItems = !AgendaImagen.buscarItems;
                                     }
                                 },
@@ -705,6 +715,7 @@ const AgendaImagen = {
     buscarPacientes: false,
     buscarMedicos: false,
     buscarItems: false,
+    sinDatos: false,
     oninit: (_data) => {
 
         AgendaImagen.loader = true;
@@ -798,16 +809,17 @@ const AgendaImagen = {
                 },
                 navLinks: true,
                 selectable: true,
+                defaultDate: "2023-04-01",
                 selectLongPressDelay: 100,
-                editable: true,
+                editable: false,
                 nowIndicator: true,
                 defaultView: 'listMonth',
                 minTime: '06:00:00',
                 maxTime: '21:00:00',
-                slotDuration: '00:15:00',
-                slotLabelInterval: 15,
+                slotDuration: '00:05:00',
+                slotLabelInterval: 5,
                 slotLabelFormat: 'HH:mma',
-                slotMinutes: 15,
+                slotMinutes: 5,
                 timeFormat: 'HH:mma',
                 views: {
                     agenda: {
@@ -975,6 +987,8 @@ const AgendaImagen = {
                 Cita.hashCita = startDate.format('YYYY-MM-DD HH:mm') + '.' + endDate.format('YYYY-MM-DD HH:mm')
                 Cita.start = startDate.format('dddd, DD-MM-YYYY HH:mm');
                 Cita.end = endDate.format('dddd, DD-MM-YYYY HH:mm');
+                Cita.pn_inicio = startDate.format('DD/MM/YYYY HH:mm');
+                Cita.pn_fin = endDate.format('DD/MM/YYYY HH:mm');
                 Cita.tipoCita = 1;
                 $('#modalCreateEvent').modal('show');
                 m.redraw();
@@ -992,6 +1006,8 @@ const AgendaImagen = {
                 e.preventDefault()
                 $('#modalCreateEvent').modal('show');
             });
+
+
 
         } catch (error) {
             location.reload();
@@ -1213,6 +1229,58 @@ const AgendaImagen = {
             });
 
     },
+    agendarCitaHttp: () => {
+
+        Cita.loader = true;
+
+        /*
+               availableServiceId: 0,
+                    covenantId: 2,
+                    covenantPlanId: 2,
+                    dateBirth: "1962-03-23",
+                    email: "mariobe7@hotmail.com",
+                    id: Cita.id,
+                    isFitting: true,
+                    markingTypeId: 0,
+                    patientId: Cita.nhc,
+                    patientName: Cita.paciente,
+                    phoneNumber: "0999721820",
+                    scheduleFormType: "PERSONALLY",
+                    schedulingItemId: 428,
+                    sexType: "MALE",
+                    specialityId: 66,
+                    statusScheduleType: "M"
+        */
+
+        m.request({
+            method: "POST",
+            url: "https://api.hospitalmetropolitano.org/v2/date/citas/call",
+            body: Cita,
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(function (res) {
+
+                Cita.loader = false;
+
+                console.log(res)
+
+                if (res.status) {
+
+                    AgendaImagen.agendarCita();
+
+                } else {
+                    alert(res.message);
+                }
+
+            })
+            .catch(function (e) {
+                alert(e);
+
+            });
+
+    },
     view: (_data) => {
 
         return AgendaImagen.loader ? [
@@ -1228,7 +1296,7 @@ const AgendaImagen = {
                         m("div.progress",
                             m(".progress-bar.bg-primary.progress-bar-striped.progress-bar-animated.wd-70p[role='progressbar'][aria-valuenow='75'][aria-valuemin='0'][aria-valuemax='100']")
                         ),
-                        "ApiDate Beta v1.0",
+                        "Agenda Centralizada MV v1.0",
 
 
                     ])
@@ -1268,57 +1336,88 @@ const AgendaImagen = {
                         m("div.calendar-inline", [
                             m("div[id='calendarInline']")
                         ]),
-                        m("div.pd-0[id='accordion']", [
-                            m("h6.bg-white",
-                                "Áreas/Salas"
-                            ),
-                            m("div", [
-                                m('div', [
+                        m("div.pd-t-0.pd-l-20.pd-r-20",
+                            [
+                                m("label.tx-uppercase.tx-sans.tx-10.tx-medium.tx-spacing-1.tx-color-03.mg-b-15",
+                                    "Filtro Calendarios: "
+                                ),
+                                m("div.schedule-group",
+                                    m("select.form-control.select2-limit[multiple='multiple']", {
+                                        oncreate: () => {
+                                            setTimeout(() => {
+                                                $('.select2-limit').select2({
+                                                    placeholder: 'Seleccione...',
+                                                    searchInputPlaceholder: 'Buscar'
 
-                                    m("nav.calendar-nav.pd-0", [
-                                        m("a.discover.show[href='']", [
-                                            m("span"),
-                                            "  Sala 1 "
-                                        ]),
-                                        m("a.meetup.show[href='']", [
-                                            m("span"),
-                                            " Sala 2"
-                                        ]),
+                                                });
+                                            }, 2000);
 
-                                    ])
-                                ])
+
+                                        }
+                                    },
+                                        [
+                                            m("option[label='Choose one']"),
+                                            m("option[value='Firefox']",
+                                                "Firefox"
+                                            ),
+                                            m("option[value='Chrome']",
+                                                "Chrome"
+                                            ),
+                                            m("option[value='Safari']",
+                                                "Safari"
+                                            ),
+                                            m("option[value='Opera']",
+                                                "Opera"
+                                            ),
+                                            m("option[value='Internet Explorer']",
+                                                "Internet Explorer"
+                                            )
+                                        ]
+                                    )
+
+                                )
                             ]
+                        ),
+                        m("div.pd-t-20.pd-l-20.pd-r-20",
+                            [
+                                m("label.tx-uppercase.tx-sans.tx-10.tx-medium.tx-spacing-1.tx-color-03.mg-b-15",
+                                    "Ultimos agendamientos:"
+                                ),
+                                m("div.schedule-group",
+                                    [
 
-                            ),
-                            m("h6.bg-white",
-                                "Médicos/Prestadores"
-                            ),
-                            m("div",
-                                "..."
-                            ),
-                            m("h6.bg-white",
-                                "Configuración"
-                            ),
-                            m("div",
-                                m('div', [
+                                        AgendaImagen.citasAgendadas.length > 0 ? [
 
-                                    m("nav.calendar-nav.pd-0", [
-                                        m("a.calendar.show[href='/imagen/agendamiento/configuracion'][target='_blank']", [
-                                            m("span"),
-                                            " Ir a Configuración "
-                                        ]),
+                                            AgendaImagen.citasAgendadas.map(function (_v, _i, _contentData) {
 
-                                    ])
-                                ])
-                            ),
-                            m("h6.bg-white",
-                                "ApiDate Beta v1.0"
-                            ),
-                            m("div",
-                                "Dirección de Sistemas"
-                            )
+                                                return [
 
-                        ]),
+                                                    m("a.schedule-item.bd-l.bd-2.bd-success[href='#']",
+                                                        [
+                                                            m("h6",
+                                                                "Start Dashboard Concept"
+                                                            ),
+                                                            m("span",
+                                                                "9:30am - 11:30am, Office Desk"
+                                                            )
+                                                        ]
+                                                    )
+
+
+
+                                                ]
+
+                                            })
+
+
+
+                                        ] : []
+
+
+                                    ]
+                                )
+                            ]
+                        )
                     ])
                 ]),
                 m("div.calendar-content", [
@@ -1341,7 +1440,7 @@ const AgendaImagen = {
                             ),
                             m("nav.nav.nav-modal-event", [
                                 m(".tx-14.d-inline.mg-0.tx-white",
-                                    "ApiDate Beta v1.0"
+                                    "Agenda Centralizada MV v1.0"
                                 )
 
                             ])
@@ -1619,9 +1718,17 @@ const AgendaImagen = {
 
                                     m("div.form-group",
                                         m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
-                                            "Historia Clínica Paciente:"
+                                            "Historia Clínica Paciente: ",
+                                            m('div.d-inline.tx.semibold.tx-danger', {
+                                                style: { "cursor": "pointer" },
+                                                onclick: () => {
+                                                    AgendaImagen.sinDatos = !AgendaImagen.sinDatos;
+                                                }
+                                            }, ' *Sin Historia Clínica ')
                                         ),
-                                        m("div.input-group", [
+                                        m("div.input-group", {
+                                            class: (AgendaImagen.sinDatos ? 'd-none' : '')
+                                        }, [
                                             m("input.form-control[type='text'][placeholder='Numero de Historia Clínica'][autofocus]", {
                                                 value: (Cita.paciente !== undefined ? Cita.nhc + ' - ' + Cita.paciente : ''),
                                                 oninput: (e) => {
@@ -1639,6 +1746,81 @@ const AgendaImagen = {
                                                     " Buscar Pacientes "
                                                 ])
                                             )
+                                        ]),
+                                        m("div.input-group", {
+                                            class: (AgendaImagen.sinDatos ? '' : 'd-none')
+                                        }, [
+                                            m('div.col-12.mg-b-10', [
+                                                m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
+                                                    "Apellidos y Nombres del Paciente:"
+                                                ),
+                                                m("input.form-control[type='text'][placeholder='Apellidos y Nombres del Paciente'][autofocus]", {
+                                                    value: (Cita.paciente !== undefined ? Cita.paciente : ''),
+                                                    oninput: (e) => {
+                                                        Cita.paciente = e.target.value;
+                                                        Cita.pn_paciente = Cita.paciente;
+                                                    },
+                                                }),
+
+                                            ])
+
+                                        ]),
+                                        m("div.input-group", {
+                                            class: (AgendaImagen.sinDatos ? '' : 'd-none')
+                                        }, [
+
+                                            m('div.col-12.mg-b-10', [
+                                                m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
+                                                    "Fecha de Nacimiento:"
+                                                ),
+                                                m("input.form-control[type='date'][placeholder='Fecha Nacimiento']", {
+                                                    oninput: (e) => {
+                                                        Cita.dateBirth = e.target.value;
+                                                        console.log(Cita.dateBirth)
+                                                    },
+                                                }),
+                                            ])
+
+
+                                        ]),
+                                        m("div.input-group", {
+                                            class: (AgendaImagen.sinDatos ? '' : 'd-none')
+                                        }, [
+
+                                            m('div.col-12.mg-b-10', [
+                                                m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
+                                                    "Sexo:"
+                                                ),
+                                                m('select.tx-semibold', {
+                                                    onchange: (e) => {
+                                                        Cita.sexType = e.target.value;
+                                                    },
+                                                    class: "custom-select"
+                                                }, m('option', 'Seleccione...'), ['M', 'F'].map(x =>
+                                                    m('option', x)
+                                                ))
+                                            ]),
+
+
+                                        ]),
+                                        m("div.input-group", {
+                                            class: (AgendaImagen.sinDatos ? '' : 'd-none')
+                                        }, [
+
+                                            m('div.col-12.mg-b-10', [
+                                                m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
+                                                    "Correo electrónico:"
+                                                ),
+                                                m("input.form-control[type='text'][placeholder='Correo electrónico'][autofocus]", {
+                                                    value: (Cita.pc_email !== undefined ? Cita.pc_email : ''),
+                                                    oninput: (e) => {
+                                                        Cita.email = e.target.value;
+                                                        Cita.pc_email = e.target.value;
+                                                    },
+                                                }),
+                                            ]),
+
+
                                         ])
                                     ),
 
@@ -1725,7 +1907,7 @@ const AgendaImagen = {
                             m("button.btn.btn-primary.mg-r-5", {
                                 onclick: () => {
 
-                                    AgendaImagen.agendarCita();
+                                    AgendaImagen.agendarCitaHttp();
                                 }
                             },
                                 "Agendar Cita"
@@ -2180,6 +2362,14 @@ const AgendaImagen = {
                                 m('br'),
                             ]),
                             m("p.event-desc.tx-gray-900.mg-b-40"),
+                            m("button.btn.btn-primary.mg-r-5", {
+                                onclick: () => {
+
+                                    AgendaImagen.cancelarCita();
+                                }
+                            },
+                                "Reagendar Cita"
+                            ),
                             m("button.btn.btn-danger.mg-r-5", {
                                 onclick: () => {
 
