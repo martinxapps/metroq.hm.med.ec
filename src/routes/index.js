@@ -74,6 +74,9 @@ import PedidoTF from '../views/tf/pedidos/pedido'
 import NotificacionesPorEnviarLab from '../views/laboratorio/notificaciones/porenviar'
 import BcoPedido from '../views/bcosangre/pedidos/pedido'
 import InicioFlebo from '../views/laboratorio/flebotomista/inicioFlebo'
+import ContratosAd from '../views/admisiones/contratos/contratos'
+import NuevoContrato from '../views/admisiones/contratos/nuevoCotnrato'
+import StatusContrato from '../views/admisiones/contratos/statusContrato'
 
 
 
@@ -590,6 +593,66 @@ const Routes = {
     }, //TRoja
     '/admisiones': Admisiones, //Admisiones
     '/admisiones/pre': PreAdmisiones, //PreAdmisiones
+    '/admisiones/contratos/nuevo': NuevoContrato, //PreAdmisiones
+    '/admisiones/contratos/status': StatusContrato, //PreAdmisiones
+
+    '/admisiones/contratos': {
+        oninit: (_data) => {
+            document.title = "Contratos Digitalizados | " + App.title;
+            if (_data.attrs.idFiltro == undefined && _data.attrs.fechaDesde == undefined) {
+                return m.route.set('/admisiones/contratos/', { idFiltro: 1 })
+            }
+            ContratosAd.idFiltro = _data.attrs.idFiltro;
+        },
+        onupdate: (_data) => {
+
+            if (_data.attrs.idFiltro !== ContratosAd.idFiltro && ContratosAd.idFiltro !== 1 && ContratosAd.fechaDesde !== undefined) {
+                ContratosAd.idFiltro = _data.attrs.idFiltro;
+                ContratosAd.fechaDesde = _data.attrs.fechaDesde;
+                ContratosAd.fechaHasta = _data.attrs.fechaHasta;
+                ContratosAd.loader = true;
+                ContratosAd.pedidos = [];
+                ContratosAd.fetch();
+            } else {
+
+                if (_data.attrs.idFiltro == 1) {
+
+                    moment.lang("es", {
+                        months: "Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre".split(
+                            "_"
+                        ),
+                        monthsShort: "Enero._Feb._Mar_Abr._May_Jun_Jul._Ago_Sept._Oct._Nov._Dec.".split(
+                            "_"
+                        ),
+                        weekdays: "Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado".split(
+                            "_"
+                        ),
+                        weekdaysShort: "Dom._Lun._Mar._Mier._Jue._Vier._Sab.".split("_"),
+                        weekdaysMin: "Do_Lu_Ma_Mi_Ju_Vi_Sa".split("_"),
+                    });
+
+                    ContratosAd.idFiltro = _data.attrs.idFiltro;
+                    ContratosAd.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
+                    ContratosAd.fechaHasta = moment().format('DD-MM-YYYY');
+                    if (ContratosAd.pedidos.length == 0) {
+                        ContratosAd.loader = true;
+                        ContratosAd.pedidos = [];
+                        ContratosAd.fetch();
+                    } else {
+                        ContratosAd.loader = false;
+                    }
+                }
+            }
+
+
+        },
+        view: (_data) => {
+            return [
+                m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("admisiones") }),
+                m(ContratosAd),
+            ];
+        },
+    },
     '/admisiones/etiquetas': {
         oninit: (_data) => {
             App.isAuth('admisiones', 7);
