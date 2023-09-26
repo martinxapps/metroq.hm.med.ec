@@ -297,8 +297,6 @@ const NuevoContrato = {
                         "Nuevo Contrato: "
                     ),
 
-
-
                     m("div.row.animated.fadeInUp", [
 
                         m("div.col-12", [

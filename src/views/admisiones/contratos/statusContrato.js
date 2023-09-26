@@ -409,7 +409,7 @@ const StatusContrato = {
 
                                                     m("tr.bg-litecoin.op-9.tx-white", [
                                                         m("th[scope='col'][colspan='10']",
-                                                            "DATOS SOLICITUD:"
+                                                            "DATOS:"
                                                         ),
 
                                                     ])
@@ -420,7 +420,7 @@ const StatusContrato = {
                                                         m("th.tx-semibold.tx-14[colspan='4']", {
                                                                 style: { "background-color": "#a8bed6", "width": "25%" }
                                                             },
-                                                            "Fecha de Solicitud:"
+                                                            "Fecha:"
                                                         ),
                                                         m("td[colspan='6']", {
                                                                 style: { "background-color": "#eaeff5" }
@@ -439,7 +439,7 @@ const StatusContrato = {
                                                         m("th.tx-semibold.tx-14[colspan='4']", {
                                                                 style: { "background-color": "#a8bed6" }
                                                             },
-                                                            "NHC:"
+                                                            "Historia Clínica:"
                                                         ),
                                                         m("td[colspan='6']", {
                                                                 style: { "background-color": "#eaeff5" }
@@ -460,7 +460,7 @@ const StatusContrato = {
                                                         m("th.tx-semibold.tx-14[colspan='4']", {
                                                                 style: { "background-color": "#a8bed6" }
                                                             },
-                                                            "Admision:"
+                                                            "Nro. de Admisión:"
                                                         ),
                                                         m("td[colspan='6']", {
                                                                 style: { "background-color": "#eaeff5" }
@@ -479,15 +479,7 @@ const StatusContrato = {
 
 
                                                 ]),
-                                                m("thead",
 
-                                                    m("tr.bg-litecoin.op-9.tx-white", [
-                                                        m("th[scope='col'][colspan='10']",
-                                                            "DATOS DEL EQUIPO:"
-                                                        ),
-
-                                                    ])
-                                                ),
                                                 m("tbody", [
 
 

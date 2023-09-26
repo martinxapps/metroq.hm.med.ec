@@ -354,7 +354,7 @@ const ContratosAd = {
                     title: "Fecha:",
                 },
                 {
-                    title: "Motivo de Baja:",
+                    title: "HC y Nro. de Admisión:",
                 },
                 {
                     title: "Usuario:",
@@ -387,7 +387,7 @@ const ContratosAd = {
                 },
                 {
                     mRender: function(data, type, full) {
-                        return full.motivo_baja;
+                        return ' Nhc:' + full.nhc + ' Adm:' + full.adm;
                     },
                     visible: true,
                     aTargets: [2],
@@ -406,7 +406,7 @@ const ContratosAd = {
                         return 'OPCIONES';
 
                     },
-                    visible: true,
+                    visible: false,
                     aTargets: [4],
                     orderable: false,
                 },
@@ -428,10 +428,10 @@ const ContratosAd = {
                     view: () => {
                         return [
                             m("td", {
-                                class: 'bg-danger'
+                                class: 'bg-primary'
                             }, [
 
-                                m("span.badge.badge-pill.badge-danger.wd-100p.mg-b-1",
+                                m("span.badge.badge-pill.badge-primary.wd-100p.mg-b-1",
                                     iDisplayIndexFull + 1
                                 )
 
@@ -442,37 +442,26 @@ const ContratosAd = {
                             ),
                             m("td", { "style": {} },
                                 m("span.tx-semibold.tx-dark.tx-15.wd-100p.mg-b-1",
-                                    aData.motivo_baja
+                                    aData.nhc + " Adm: " + aData.adm
                                 ),
                             ),
                             m("td", { "style": {} }, [
-                                    aData.usuario
 
+                                    m("span.tx-semibold.tx-dark.tx-15.wd-100p.mg-b-1",
+                                        aData.usuario
+                                    ),
                                 ]
 
                             ),
 
 
 
-                            (aData.status == 1 ? [
-                                m("td.tx-white.tx-semibold.tx-center", {
-                                        style: { "background-color": "#ffc107" }
-                                    },
-                                    "Pendiente"
-                                )
-                            ] : [
-                                m("td.tx-white.tx-semibold.tx-center", {
-                                        style: { "background-color": "#0d9448" }
-                                    },
-                                    "Gestionando"
-                                )
-                            ]),
 
 
                             m("td.tx-center", {
                                     onclick: () => {
-                                        m.route.set("/contabilidad/proceso/tarjeta-roja/id/", {
-                                            tr: aData.id.padStart(5, '0'),
+                                        m.route.set("/admisiones/contratos/status/", {
+                                            id: aData.id,
                                             track: "view",
                                         });
                                     },
@@ -520,7 +509,7 @@ const ContratosAd = {
 
         m.request({
                 method: "GET",
-                url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr" + _queryString,
+                url: "https://api.hospitalmetropolitano.org/t/v1/procesos/ad" + _queryString,
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
                 },
