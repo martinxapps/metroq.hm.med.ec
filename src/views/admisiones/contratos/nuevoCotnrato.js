@@ -294,7 +294,7 @@ const NuevoContrato = {
                 }, [
 
                     m("h1.df-title.mg-b-10",
-                        "Nueva Contrato: "
+                        "Nuevo Contrato: "
                     ),
 
 
@@ -342,7 +342,7 @@ const NuevoContrato = {
                                                     ),
                                                     m("tbody", [
                                                         m("tr", [
-                                                            m("th.tx-semibold.tx-14[colspan='1']", {
+                                                            m("th.tx-semibold.tx-14[colspan='1'][width='20%']", {
                                                                     style: { "background-color": "#a8bed6" }
                                                                 },
                                                                 "Historia Clínica:"
@@ -352,7 +352,8 @@ const NuevoContrato = {
                                                                 },
                                                                 m("input", {
                                                                     "class": "form-control tx-semibold tx-14",
-                                                                    "type": "text",
+                                                                    "type": "number",
+                                                                    "placeholder": "Historia Clínica",
                                                                     oninput: (e) => {
                                                                         NuevoContrato.data.nhc = e.target.value;
                                                                     }
@@ -360,10 +361,10 @@ const NuevoContrato = {
                                                             )
                                                         ]),
                                                         m("tr", [
-                                                            m("th.tx-semibold.tx-14[colspan='1']", {
+                                                            m("th.tx-semibold.tx-14[colspan='1'][width='20%']", {
                                                                     style: { "background-color": "#a8bed6" }
                                                                 },
-                                                                "Número de Admisión:"
+                                                                "Nro. de Admisión:"
                                                             ),
                                                             m("td[colspan='9']", {
                                                                     style: { "background-color": "#eaeff5" }
@@ -371,7 +372,9 @@ const NuevoContrato = {
                                                                 },
                                                                 m("input", {
                                                                     "class": "form-control tx-semibold tx-14",
-                                                                    "type": "text",
+                                                                    "type": "number",
+                                                                    "placeholder": "Nro. de Admisión",
+
                                                                     oninput: (e) => {
                                                                         NuevoContrato.data.adm = e.target.value;
                                                                     }
@@ -391,6 +394,7 @@ const NuevoContrato = {
                                                                 m("input", {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "text",
+                                                                    "placeholder": "Paciente",
                                                                     oninput: (e) => {
                                                                         NuevoContrato.data.pte = e.target.value;
                                                                     }
@@ -402,35 +406,7 @@ const NuevoContrato = {
 
 
 
-                                                        m("tr", [
 
-                                                            m("th.tx-semibold.tx-14[colspan='4']", {
-                                                                    style: { "background-color": "#a8bed6" }
-                                                                },
-                                                                "Subir Contrato:"
-                                                            ),
-                                                            m("td[colspan='6']", {
-                                                                    style: { "background-color": "#eaeff5" }
-                                                                },
-                                                                m("div.input-group.mg-t-5",
-                                                                    m("button.btn.btn-primary.btn-xs.btn-block.tx-semibold[type='button']", {
-                                                                            onclick: (e) => {
-                                                                                NuevoContrato.sendContrato();
-
-
-                                                                            }
-                                                                        },
-                                                                        "Subir Contrato"
-                                                                    )
-                                                                )
-
-
-
-
-
-                                                            ),
-
-                                                        ]),
                                                         // INCLUIR AREA DE DEST Y DESTINO FINAL.
                                                         m("tr.d-print-none.bg-litecoin.op-9.tx-white.", [
                                                             m("th[scope='col'][colspan='10']",
@@ -478,6 +454,31 @@ const NuevoContrato = {
 
                                                         ]),
                                                         m("tr.d-print-none", [
+
+                                                        ]),
+                                                        m("tr", [
+
+
+                                                            m("td[colspan='10']", {
+                                                                    style: { "background-color": "#eaeff5" }
+                                                                },
+                                                                m("div.input-group.mg-t-5",
+                                                                    m("button.btn.btn-primary.btn-xs.btn-block.tx-semibold[type='button']", {
+                                                                            onclick: (e) => {
+                                                                                NuevoContrato.sendContrato();
+
+
+                                                                            }
+                                                                        },
+                                                                        "Subir Contrato"
+                                                                    )
+                                                                )
+
+
+
+
+
+                                                            ),
 
                                                         ]),
 

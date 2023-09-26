@@ -599,7 +599,7 @@ const Routes = {
     '/admisiones/contratos': {
         oninit: (_data) => {
             document.title = "Contratos Digitalizados | " + App.title;
-            if (_data.attrs.idFiltro == undefined && _data.attrs.fechaDesde == undefined) {
+            if (_data.attrs.idFiltro == undefined) {
                 return m.route.set('/admisiones/contratos/', { idFiltro: 1 })
             }
             ContratosAd.idFiltro = _data.attrs.idFiltro;
