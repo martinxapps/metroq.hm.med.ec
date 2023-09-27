@@ -476,6 +476,27 @@ const StatusContrato = {
 
 
                                                     ]),
+                                                    m("tr", [
+
+                                                        m("th.tx-semibold.tx-14[colspan='4']", {
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
+                                                            "Paciente:"
+                                                        ),
+                                                        m("td[colspan='6']", {
+                                                                style: { "background-color": "#eaeff5" }
+
+                                                            },
+                                                            m("input", {
+                                                                "class": "form-control tx-semibold tx-14",
+                                                                "type": "text",
+                                                                "disabled": "disabled",
+                                                                value: StatusContrato.data.adm
+                                                            })
+                                                        )
+
+
+                                                    ]),
 
 
                                                 ]),

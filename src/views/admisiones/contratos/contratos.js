@@ -453,11 +453,6 @@ const ContratosAd = {
                                 ]
 
                             ),
-
-
-
-
-
                             m("td.tx-center", {
                                     onclick: () => {
                                         m.route.set("/admisiones/contratos/status/", {
@@ -468,12 +463,7 @@ const ContratosAd = {
                                     "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" }
                                 },
                                 " Ver Detalle "
-
                             )
-
-
-
-
                         ];
                     },
                 });
