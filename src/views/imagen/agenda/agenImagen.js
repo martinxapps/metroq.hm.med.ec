@@ -1029,6 +1029,9 @@ const AgendaImagen = {
         m.request({
             method: "GET",
             url: "https://api.hospitalmetropolitano.org/v2/date/citas/agendadas",
+            params: {
+                id: AgendaImagen.idFiltro
+            },
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
@@ -1048,6 +1051,9 @@ const AgendaImagen = {
         m.request({
             method: "GET",
             url: "https://api.hospitalmetropolitano.org/v2/date/citas/agendadas",
+            params: {
+                id: AgendaImagen.idFiltro
+            },
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             },
@@ -1349,29 +1355,47 @@ const AgendaImagen = {
                                                     placeholder: 'Seleccione...',
                                                     searchInputPlaceholder: 'Buscar'
 
+                                                }).on("change", function (e) {
+
+                                                    AgendaImagen.idFiltro = '';
+
+                                                    let tree = $(this).val();
+                                                    // Using the each() method
+                                                    $.each(tree, function (index, value) {
+                                                        AgendaImagen.idFiltro += value + ",";
+                                                    });
+
+                                                    AgendaImagen.idFiltro = AgendaImagen.idFiltro.substring(0, AgendaImagen.idFiltro.length - 1);
+
+                                                    if (tree.length > 0) {
+                                                        m.route.set("/imagen/agendamiento/", {
+                                                            id: encodeURIComponent(AgendaImagen.idFiltro)
+                                                        })
+                                                    } else {
+                                                        m.route.set("/imagen/agendamiento")
+                                                    }
+
+                                                    AgendaImagen.reloadFetchAgendaImagen();
+
+                                                    console.log(AgendaImagen.idFiltro)
+
+
                                                 });
                                             }, 2000);
 
 
                                         }
+
                                     },
                                         [
-                                            m("option[label='Choose one']"),
-                                            m("option[value='Firefox']",
-                                                "Firefox"
+                                            m("option[label='Seleccione...']"),
+                                            m("option[value='s1']",
+                                                "Sala 1"
                                             ),
-                                            m("option[value='Chrome']",
-                                                "Chrome"
+                                            m("option[value='d1']",
+                                                "Dr. Jayson Abarca"
                                             ),
-                                            m("option[value='Safari']",
-                                                "Safari"
-                                            ),
-                                            m("option[value='Opera']",
-                                                "Opera"
-                                            ),
-                                            m("option[value='Internet Explorer']",
-                                                "Internet Explorer"
-                                            )
+
                                         ]
                                     )
 
@@ -1672,6 +1696,7 @@ const AgendaImagen = {
 
                                         ])
                                     ),
+
                                     m("div.form-group", [
 
                                         m("div.row.row-xs", [
@@ -1697,22 +1722,35 @@ const AgendaImagen = {
 
 
                                     ]),
+
                                     m("div.form-group",
                                         m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
-                                            "Ubicación:"
+                                            "Estudio:"
                                         ),
                                         m("div.input-group", [
-
-                                            m('select.tx-semibold', {
-                                                onchange: (e) => {
-                                                    Cita.ubicacion = e.target.value;
+                                            m("input.form-control[type='text'][placeholder='Items/Estudio']", {
+                                                value: (Cita.codItem !== undefined ? Cita.codItem + ' - ' + Cita.estudio : ''),
+                                                oninput: (e) => {
+                                                    e.preventDefault();
                                                 },
-                                                class: "custom-select"
-                                            }, m('option', 'Seleccione...'), ['SALA 1', 'SALA 2'].map(x =>
-                                                m('option', x)
-                                            ))
+                                                disabled: (Cita.codItem !== undefined ? 'disabled' : '')
 
-                                        ])
+                                            }),
+                                            m("div.input-group-append",
+                                                m("button.btn.btn-primary[type='button']", {
+                                                    onclick: (e) => {
+                                                        AgendaImagen.buscarItems = !AgendaImagen.buscarItems;
+                                                    }
+                                                }, [
+                                                    m("i.fas.fa-search.mg-r-2"),
+                                                    " Buscar Estudios"
+
+                                                ]
+
+                                                )
+                                            )
+                                        ]),
+
                                     ),
 
 
@@ -1821,6 +1859,24 @@ const AgendaImagen = {
                                             ]),
 
 
+                                        ]),
+                                        m("div.input-group", {
+                                            class: (AgendaImagen.sinDatos ? '' : 'd-none')
+                                        }, [
+
+                                            m('div.col-12.mg-b-10', [
+                                                m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
+                                                    "Celular:"
+                                                ),
+                                                m("input.form-control[type='text'][placeholder='Correo electrónico'][autofocus]", {
+                                                    value: (Cita.pc_telefono !== undefined ? Cita.pc_telefono : ''),
+                                                    oninput: (e) => {
+                                                        Cita.pc_telefono = e.target.value;
+                                                    },
+                                                }),
+                                            ]),
+
+
                                         ])
                                     ),
 
@@ -1851,35 +1907,7 @@ const AgendaImagen = {
                                         ]),
 
                                     ),
-                                    m("div.form-group",
-                                        m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
-                                            "Estudio:"
-                                        ),
-                                        m("div.input-group", [
-                                            m("input.form-control[type='text'][placeholder='Items/Estudio']", {
-                                                value: (Cita.codItem !== undefined ? Cita.codItem + ' - ' + Cita.estudio : ''),
-                                                oninput: (e) => {
-                                                    e.preventDefault();
-                                                },
-                                                disabled: (Cita.codItem !== undefined ? 'disabled' : '')
 
-                                            }),
-                                            m("div.input-group-append",
-                                                m("button.btn.btn-primary[type='button']", {
-                                                    onclick: (e) => {
-                                                        AgendaImagen.buscarItems = !AgendaImagen.buscarItems;
-                                                    }
-                                                }, [
-                                                    m("i.fas.fa-search.mg-r-2"),
-                                                    " Buscar Estudios"
-
-                                                ]
-
-                                                )
-                                            )
-                                        ]),
-
-                                    ),
 
 
                                     m("div.form-group",
@@ -1907,7 +1935,7 @@ const AgendaImagen = {
                             m("button.btn.btn-primary.mg-r-5", {
                                 onclick: () => {
 
-                                    AgendaImagen.agendarCitaHttp();
+                                    AgendaImagen.agendarCita();
                                 }
                             },
                                 "Agendar Cita"
@@ -2188,21 +2216,7 @@ const AgendaImagen = {
 
 
                                     ]),
-                                    m("div.form-group",
-                                        m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
-                                            "Ubicación:"
-                                        ),
-                                        m("div.input-group", [
 
-                                            m('select.tx-semibold', {
-                                                value: Cita.ubicacion,
-                                                class: "custom-select"
-                                            }, m('option', 'Seleccione...'), ['SALA 1', 'SALA 2'].map(x =>
-                                                m('option', x)
-                                            ))
-
-                                        ])
-                                    ),
 
 
                                     m("div.form-group",
