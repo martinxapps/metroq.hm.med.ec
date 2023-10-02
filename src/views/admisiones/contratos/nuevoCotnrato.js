@@ -1,3 +1,5 @@
+import Auth from '../../../models/auth';
+import Encrypt from '../../../models/encrypt';
 import HeadPublic from '../../layout/header-public';
 import m from 'mithril';
 
@@ -197,6 +199,32 @@ const NuevoContrato = {
         NuevoContrato.fetch();
 
     },
+
+    fetchPaciente: (_nhc) => {
+
+        NuevoContrato.data.pte = 'Procesando...';
+
+        m.request({
+                method: "POST",
+                url: "https://api.hospitalmetropolitano.org/t/v1/buscar-paciente",
+                body: {
+                    pte: _nhc,
+                    tipoBusqueda: 'nhc'
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(res) {
+                if (res.status) {
+                    NuevoContrato.data.pte = res.data[0].APELLIDOS + ' ' + res.data[0].NOMBRES
+                }
+            })
+            .catch(function(e) {
+                alert(e)
+            })
+
+    },
     fetch: () => {
         NuevoContrato.activos = [];
         NuevoContrato.loader = true;
@@ -226,13 +254,19 @@ const NuevoContrato = {
 
         NuevoContrato.loader = true;
 
+        let _user = Encrypt.getDataUser();
+        Auth.user = _user.user;
+
         m.request({
                 method: "POST",
                 url: "https://api.hospitalmetropolitano.org/t/v1/procesos/ad/nuevo-contrato",
                 body: {
                     fecha: moment().format('DD-MM-YYYY'),
                     nhc: NuevoContrato.data.nhc,
-                    adm: NuevoContrato.data.nhc,
+                    adm: NuevoContrato.data.adm,
+                    pte: NuevoContrato.data.pte,
+                    user: (Auth.user.user !== undefined ? Auth.user.user.toLowerCase() : "")
+
                 },
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
@@ -352,9 +386,15 @@ const NuevoContrato = {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "number",
                                                                     "placeholder": "Historia Clínica",
+                                                                    onkeypress: (e) => {
+                                                                        if (e.keyCode == 13) {
+                                                                            NuevoContrato.fetchPaciente(NuevoContrato.data.nhc);
+                                                                        }
+                                                                    },
                                                                     oninput: (e) => {
                                                                         NuevoContrato.data.nhc = e.target.value;
                                                                     }
+
                                                                 })
                                                             )
                                                         ]),
@@ -372,7 +412,11 @@ const NuevoContrato = {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "number",
                                                                     "placeholder": "Nro. de Admisión",
-
+                                                                    onkeypress: (e) => {
+                                                                        if (e.keyCode == 13) {
+                                                                            NuevoContrato.fetchPaciente(NuevoContrato.data.nhc);
+                                                                        }
+                                                                    },
                                                                     oninput: (e) => {
                                                                         NuevoContrato.data.adm = e.target.value;
                                                                     }
@@ -393,9 +437,9 @@ const NuevoContrato = {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "text",
                                                                     "placeholder": "Paciente",
-                                                                    oninput: (e) => {
-                                                                        NuevoContrato.data.pte = e.target.value;
-                                                                    }
+                                                                    'disabled': 'disabled',
+                                                                    value: (NuevoContrato.data !== undefined && NuevoContrato.data.pte !== undefined ? NuevoContrato.data.pte : '')
+
                                                                 })
                                                             )
 

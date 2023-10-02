@@ -491,7 +491,7 @@ const StatusContrato = {
                                                                 "class": "form-control tx-semibold tx-14",
                                                                 "type": "text",
                                                                 "disabled": "disabled",
-                                                                value: StatusContrato.data.adm
+                                                                value: StatusContrato.data.pte
                                                             })
                                                         )
 

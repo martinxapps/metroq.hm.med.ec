@@ -1069,7 +1069,7 @@ const Routes = {
         view: (_data) => {
             return [
                 m(HeaderCalendar, { oncreate: HeaderCalendar.setPage("imagen") }),
-                m(AgendaImagen),
+                m(AgendaImagen, { idFiltro: _data.attrs.idFiltro }),
             ];
         },
     }, // AgendaImagen
