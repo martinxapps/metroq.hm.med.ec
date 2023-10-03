@@ -630,6 +630,7 @@ const BuscadorItems = {
                         view: function () {
                             return [
                                 m("button.btn.btn-sm.btn-block.btn-primary[type='button']", {
+
                                     onclick: () => {
 
                                         let fecha1 = moment(Cita.pn_inicio, 'DD/MM/YYYY HH:mm');
@@ -951,7 +952,8 @@ const AgendaImagen = {
                     Cita.codMedico = calEvent.codMedico;
                     Cita.codItem = calEvent.codItem;
                     Cita.estudio = calEvent.estudio;
-                    Cita.comentarios = calEvent.description;
+                    Cita.comentarios = calEvent.comentarios;
+                    Cita.idCalendar = calEvent.idCalendar;
                     Cita.ubicacion = calEvent.ubicacion;
                     Cita.tipoCita = 1;
                     Cita.hashCita = calEvent.hashCita;
@@ -975,9 +977,11 @@ const AgendaImagen = {
                     Cita.codMedico = calEvent.codMedico;
                     Cita.codItem = calEvent.codItem;
                     Cita.estudio = calEvent.estudio;
-                    Cita.comentarios = calEvent.description;
+                    Cita.comentarios = calEvent.comentarios;
                     Cita.ubicacion = calEvent.ubicacion;
                     Cita.tipoCita = calEvent.tipoCita;
+                    Cita.idCalendar = calEvent.idCalendar;
+
 
 
                     let modal = $('#modalUpdateEvent');
@@ -1023,6 +1027,8 @@ const AgendaImagen = {
                 Cita.estudio = calEvent.estudio;
                 Cita.prestador = calEvent.prestador;
                 Cita.editable = calEvent.editable;
+                Cita.comentarios = calEvent.comentarios;
+
 
 
                 console.log(calEvent)
@@ -1183,6 +1189,40 @@ const AgendaImagen = {
             });
 
     },
+
+    trackCancelReAgendar: () => {
+
+        Cita.loader = true;
+
+        m.request({
+            method: "POST",
+            url: "https://api.hospitalmetropolitano.org/v2/date/citas/reagendar/cancel",
+            body: Cita,
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(function (res) {
+
+                Cita.loader = false;
+
+
+                if (res.status) {
+
+                    AgendaImagen.reloadFetchAgendaImagen();
+                    alert('El reagendamiento se canceló.');
+
+                } else {
+                    alert(res.message);
+                }
+
+            })
+            .catch(function (e) {
+                alert(e);
+
+            });
+
+    },
     reAgendarCita: () => {
 
         Cita.loader = true;
@@ -1223,7 +1263,7 @@ const AgendaImagen = {
                 if (res.status) {
 
                     alert(res.message);
-                    $('#modalCalendarEvent').modal('hide');
+                    $('#modalUpdateEvent').modal('hide');
                     AgendaImagen.reloadFetchAgendaImagen();
                     resetObj(Cita);
 
@@ -2570,7 +2610,16 @@ const AgendaImagen = {
                                 },
                                     "Reagendar Cita"
                                 ),
-                            ] : []),
+                            ] : [
+                                m("button.btn.btn-primary.mg-r-5[data-dismiss='modal']", {
+                                    onclick: () => {
+                                        console.log(Cita)
+                                        AgendaImagen.trackCancelReAgendar();
+                                    }
+                                },
+                                    "Cancelar Reagendamiento"
+                                ),
+                            ]),
 
                             m("button.btn.btn-danger.mg-r-5", {
                                 onclick: () => {
