@@ -725,6 +725,7 @@ const Cita = {};
 const AgendaImagen = {
     citasDisponibles: [],
     citasAgendadas: [],
+    citasMedicos: [],
     showBitacora: "",
     showPedido: "",
     fechaDesde: "",
@@ -742,14 +743,22 @@ const AgendaImagen = {
     reagendar: false,
     oninit: (_data) => {
 
-        if (_data.attrs.idFiltro !== undefined) {
-            AgendaImagen.idFiltro = decodeURIComponent(_data.attrs.idFiltro);
-        }
-
         AgendaImagen.loader = true;
         AgendaImagen.citasDisponibles = [];
         AgendaImagen.citasAgendadas = [];
-        setTimeout(function () { AgendaImagen.fetchAgendaImagen(); }, 1500);
+        AgendaImagen.citasMedicos = [];
+
+        if (_data.attrs.idFiltro !== undefined) {
+            AgendaImagen.idFiltro = decodeURIComponent(_data.attrs.idFiltro);
+            setTimeout(function () { AgendaImagen.fetchAgendaImagen(); }, 1500);
+        }
+
+
+
+
+
+
+
 
 
 
@@ -1006,12 +1015,15 @@ const AgendaImagen = {
             calendar.on('eventClick', function (calEvent, jsEvent, view) {
 
                 Cita.id = calEvent.id;
+                Cita.hashCita = calEvent.id;
+                Cita.idCalendar = calEvent.idCalendar;
                 Cita.start = calEvent.start;
                 Cita.end = calEvent.end;
                 Cita.paciente = calEvent.title;
                 Cita.estudio = calEvent.estudio;
                 Cita.prestador = calEvent.prestador;
                 Cita.editable = calEvent.editable;
+
 
                 console.log(calEvent)
                 let modal = $('#modalCalendarEvent');
@@ -1078,6 +1090,8 @@ const AgendaImagen = {
     },
     reloadFetchAgendaImagen: () => {
 
+        $('#calendar').fullCalendar('removeEvents');
+
         m.request({
             method: "GET",
             url: "https://api.hospitalmetropolitano.org/v2/date/citas/agendadas",
@@ -1090,11 +1104,17 @@ const AgendaImagen = {
         })
             .then(function (res) {
                 AgendaImagen.loader = false;
-                AgendaImagen.citasAgendadas = res.citasAgendadas;
-                AgendaImagen.citasMedicos = res.citasMedicos;
 
-                $('#calendar').fullCalendar('removeEvents');
-                $('#calendar').fullCalendar('addEventSource', AgendaImagen.citasAgendadas, AgendaImagen.citasMedicos);
+                if (AgendaImagen.idFiltro.search('s1') != -1) {
+                    AgendaImagen.citasAgendadas = res.citasAgendadas;
+                    $('#calendar').fullCalendar('addEventSource', AgendaImagen.citasAgendadas);
+                }
+
+                if (AgendaImagen.idFiltro.search('d1') != -1) {
+                    AgendaImagen.citasMedicos = res.citasMedicos;
+                    $('#calendar').fullCalendar('addEventSource', AgendaImagen.citasMedicos);
+                }
+
                 $('#calendar').fullCalendar('rerenderEvents');
             })
             .catch(function (e) { });
@@ -1114,8 +1134,14 @@ const AgendaImagen = {
             .then(function (res) {
                 AgendaImagen.loader = false;
 
-                AgendaImagen.citasAgendadas = res.citasAgendadas;
-                AgendaImagen.citasMedicos = res.citasMedicos;
+                if (AgendaImagen.idFiltro.search('s1') != -1) {
+                    AgendaImagen.citasAgendadas = res.citasAgendadas;
+                }
+
+                if (AgendaImagen.idFiltro.search('d1') != -1) {
+                    AgendaImagen.citasMedicos = res.citasMedicos;
+                }
+
                 setTimeout(function () { AgendaImagen.setCalendar(); }, 80);
                 setTimeout(function () { AgendaImagen.setSidebar(); }, 160);
             })
@@ -1197,7 +1223,7 @@ const AgendaImagen = {
                 if (res.status) {
 
                     alert(res.message);
-                    $('#modalCreateEvent').modal('hide');
+                    $('#modalCalendarEvent').modal('hide');
                     AgendaImagen.reloadFetchAgendaImagen();
                     resetObj(Cita);
 
@@ -1252,7 +1278,7 @@ const AgendaImagen = {
                 if (res.status) {
 
                     alert(res.message);
-                    $('#modalCreateEvent').modal('hide');
+                    $('#modalCalendarEvent').modal('hide');
                     AgendaImagen.reloadFetchAgendaImagen();
                     resetObj(Cita);
 
@@ -1271,6 +1297,10 @@ const AgendaImagen = {
 
         Cita.loader = true;
         Cita.idFiltro = AgendaImagen.idFiltro;
+
+        Cita.codMedico = 1173;
+        Cita.prestador = "ABARCA RUIZ JAYSOOM WILLEEM";
+        Cita.pn_prestador = 1173;
 
         /*
                availableServiceId: 0,
@@ -1816,7 +1846,7 @@ const AgendaImagen = {
                                 m("div", {
                                     class: (AgendaImagen.buscarPacientes || AgendaImagen.buscarMedicos || AgendaImagen.buscarItems ? 'd-none' : '')
                                 }, [
-                                    m("div.form-group",
+                                    m("div.form-group.d-none",
                                         m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
                                             "Tipo:"
                                         ),
@@ -2034,7 +2064,7 @@ const AgendaImagen = {
                                     ),
 
 
-                                    m("div.form-group",
+                                    m("div.form-group.d-none",
                                         m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
                                             "Médico:"
                                         ),
@@ -2306,7 +2336,7 @@ const AgendaImagen = {
                                 m("div", {
                                     class: (AgendaImagen.buscarPacientes || AgendaImagen.buscarMedicos || AgendaImagen.buscarItems ? 'd-none' : '')
                                 }, [
-                                    m("div.form-group",
+                                    m("div.form-group.d-none",
                                         m("label.tx-semibold.tx-uppercase.tx-sans.tx-11.tx-medium.tx-spacing-1",
                                             "Tipo:"
                                         ),
