@@ -633,19 +633,20 @@ const BuscadorItems = {
 
                                     onclick: () => {
 
-                                        let fecha1 = moment(Cita.pn_inicio, 'DD/MM/YYYY HH:mm');
-                                        let fecha2 = moment(Cita.pn_fin, 'DD/MM/YYYY HH:mm');
-                                        let _duracion = moment(_i._aData.DURACION, 'HH:mm').minutes();
-                                        let _minutes = fecha2.diff(fecha1, 'minutes');
 
-                                        if (_minutes < _duracion) {
-                                            alert('Cita elegida tiene una duración de: ' + _minutes + ' minutos. Seleccione el intervalo de tiempo necesario para el estudio.');
-                                        } else {
-                                            Cita.codItem = _i._aData.CD_ITEM_AGENDAMENTO;
-                                            Cita.estudio = _i._aData.DS_ITEM_AGENDAMENTO;
-                                            Cita.pn_item_agendamento = _i._aData.CD_ITEM_AGENDAMENTO;
-                                            AgendaImagen.buscarItems = !AgendaImagen.buscarItems;
-                                        }
+                                        let fecha1 = moment(Cita.pn_inicio, 'DD/MM/YYYY HH:mm');
+                                        let _duracion = moment(_i._aData.DURACION, 'HH:mm').minutes();
+                                        let _suma = fecha1.add(_duracion, 'minutes');
+
+                                        Cita.end = moment(_suma).format('dddd, DD-MM-YYYY HH:mm');
+                                        Cita.pn_fin = moment(_suma).format('YYYY-MM-DD HH:mm');
+                                        Cita.hashCita = moment(Cita.pn_inicio, 'DD/MM/YYYY HH:mm').format('YYYY-MM-DD HH:mm') + '.' + moment(_suma).format('YYYY-MM-DD HH:mm');
+
+
+                                        Cita.codItem = _i._aData.CD_ITEM_AGENDAMENTO;
+                                        Cita.estudio = _i._aData.DS_ITEM_AGENDAMENTO;
+                                        Cita.pn_item_agendamento = _i._aData.CD_ITEM_AGENDAMENTO;
+                                        AgendaImagen.buscarItems = !AgendaImagen.buscarItems;
 
 
                                     }
@@ -720,7 +721,6 @@ const BuscadorItems = {
     }
 }
 
-
 const Cita = {};
 
 const AgendaImagen = {
@@ -753,6 +753,8 @@ const AgendaImagen = {
             AgendaImagen.idFiltro = decodeURIComponent(_data.attrs.idFiltro);
             setTimeout(function () { AgendaImagen.fetchAgendaImagen(); }, 1500);
         }
+
+
 
 
 
@@ -964,6 +966,8 @@ const AgendaImagen = {
                     modal.find('.modal-header').css('backgroundColor', (calEvent.source.borderColor) ? calEvent.source.borderColor : calEvent.borderColor);
                     m.redraw();
 
+                    AgendaImagen.validarReagendamiento();
+
                 },
                 eventResize: function (calEvent) {
 
@@ -988,6 +992,9 @@ const AgendaImagen = {
                     modal.modal('show');
                     modal.find('.modal-header').css('backgroundColor', (calEvent.source.borderColor) ? calEvent.source.borderColor : calEvent.borderColor);
                     m.redraw();
+
+                    AgendaImagen.validarReagendamiento();
+
                 }
             });
 
@@ -1223,7 +1230,40 @@ const AgendaImagen = {
             });
 
     },
+    validarReagendamiento: () => {
+
+        let _track = true;
+        let _timeInicio = '';
+        let _timeFin = '';
+
+
+        AgendaImagen.citasAgendadas.events.map((_val, _index) => {
+            if (moment(_val.start).format('DD-MM-YYYY HH:mm') == moment(Cita.start, 'dddd, DD-MM-YYYY HH:mm').format('DD-MM-YYYY HH:mm')) {
+                _track = false;
+                _timeInicio = moment(_val.start).format('DD-MM-YYYY HH:mm');
+                _timeFin = moment(_val.end).format('DD-MM-YYYY HH:mm');
+
+            }
+
+            if (moment(_val.end).format('DD-MM-YYYY HH:mm') == moment(Cita.end, 'dddd, DD-MM-YYYY HH:mm').format('DD-MM-YYYY HH:mm')) {
+                _track = false;
+                _timeInicio = moment(_val.start).format('DD-MM-YYYY HH:mm');
+                _timeFin = moment(_val.end).format('DD-MM-YYYY HH:mm');
+            }
+        })
+
+        if (_track) {
+            AgendaImagen.reAgendarCita();
+        } else {
+            alert('No se puede reagendar. Ya existe una cita agendada desde: ' + _timeInicio + ' hasta: ' + _timeFin);
+        }
+
+    },
     reAgendarCita: () => {
+
+
+
+
 
         Cita.loader = true;
 
@@ -1341,6 +1381,8 @@ const AgendaImagen = {
         Cita.codMedico = 1173;
         Cita.prestador = "ABARCA RUIZ JAYSOOM WILLEEM";
         Cita.pn_prestador = 1173;
+
+        console.log(99, Cita)
 
         /*
                availableServiceId: 0,
@@ -2550,7 +2592,10 @@ const AgendaImagen = {
                         m("div.modal-footer", [
                             m("button.btn.btn-primary.mg-r-5", {
                                 onclick: () => {
-                                    AgendaImagen.reAgendarCita();
+
+                                    console.log(22, Cita)
+                                    AgendaImagen.validarReagendamiento();
+
                                 }
                             },
                                 "Reagendar Cita"
