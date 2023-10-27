@@ -249,6 +249,7 @@ const tablePedidos = {
                                     m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/pedidos/?idFiltro=1" }, [
                                         "Pedidos de Hoy"
                                     ]),
+
                                     m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/pedidos/?idFiltro=2&fechaDesde=" + Pedidos.fechaDesde + "&fechaHasta=" + Pedidos.fechaHasta }, [
                                         "Pedidos entre Fechas"
                                     ]),
@@ -260,6 +261,9 @@ const tablePedidos = {
                                     ]),
                                     m(m.route.Link, { class: 'dropdown-item d-none', href: "/laboratorio/pedidos/?idFiltro=5&fechaDesde=" + Pedidos.fechaDesde + "&fechaHasta=" + Pedidos.fechaHasta }, [
                                         "Pedidos de Hospitalización"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item', href: "/laboratorio/pedidos/?idFiltro=6&fechaDesde=" + Pedidos.fechaDesde + "&fechaHasta=" + Pedidos.fechaHasta }, [
+                                        "Tomas Pendientes"
                                     ]),
 
                                 ])

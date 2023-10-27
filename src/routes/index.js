@@ -374,7 +374,7 @@ const Routes = {
         },
 
     }, // LaboratorioPedidos
-    '/laboratorio/flebotomista/pedido/': {
+    '/laboratorio/flebotomista/pedido': {
         onmatch: (_data) => {
             if (_data.numeroPedido !== undefined && _data.idTimeRecord !== undefined) {
                 return PedidoFlebotomista

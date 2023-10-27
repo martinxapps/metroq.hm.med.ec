@@ -148,6 +148,10 @@ const tablePedidosIngresados = {
                                         el.dom.innerHTML = 'Pedidos de C. Externa ';
                                     }
 
+                                    if (PedidosIngresados.idFiltro == 6) {
+                                        el.dom.innerHTML = 'Muestras Pendientes';
+                                    }
+
                                 },
                                 onupdate: (el) => {
                                     if (PedidosIngresados.idFiltro == 1) {
@@ -163,6 +167,10 @@ const tablePedidosIngresados = {
 
                                     if (PedidosIngresados.idFiltro == 4) {
                                         el.dom.innerHTML = 'Pedidos de C. Externa ';
+                                    }
+
+                                    if (PedidosIngresados.idFiltro == 6) {
+                                        el.dom.innerHTML = 'Muestras Pendientes';
                                     }
                                 }
                             }
@@ -289,6 +297,17 @@ const tablePedidosIngresados = {
                                         }
                                     }, [
                                         "Pedidos de C. Externa"
+                                    ]),
+
+                                    m(m.route.Link, {
+                                        class: 'dropdown-item',
+                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=6&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
+                                        onclick: () => {
+                                            PedidosIngresados.loader = true;
+                                            PedidosIngresados.pedidos = [];
+                                        }
+                                    }, [
+                                        "Muestras Pendientes"
                                     ]),
 
                                 ])
