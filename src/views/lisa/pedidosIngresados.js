@@ -115,7 +115,11 @@ function Stopwatch() {
 
 const tablePedidosIngresados = {
     oncreate: () => {
-        PedidosIngresados.loadPedidosIngresados();
+        if (PedidosIngresados.idFiltro == 7) {
+            PedidosIngresados.loadPedidosReportes();
+        } else {
+            PedidosIngresados.loadPedidosIngresados();
+        }
         if (PedidosIngresados.searchField.length !== 0) {
             var table = $('#table-pedidosIngresados').DataTable();
             table.search(PedidosIngresados.searchField).draw();
@@ -152,6 +156,11 @@ const tablePedidosIngresados = {
                                         el.dom.innerHTML = 'Muestras Pendientes';
                                     }
 
+                                    if (PedidosIngresados.idFiltro == 7) {
+                                        el.dom.innerHTML = 'Reportes';
+                                    }
+
+
                                 },
                                 onupdate: (el) => {
                                     if (PedidosIngresados.idFiltro == 1) {
@@ -171,6 +180,10 @@ const tablePedidosIngresados = {
 
                                     if (PedidosIngresados.idFiltro == 6) {
                                         el.dom.innerHTML = 'Muestras Pendientes';
+                                    }
+
+                                    if (PedidosIngresados.idFiltro == 7) {
+                                        el.dom.innerHTML = 'Reportes';
                                     }
                                 }
                             }
@@ -204,7 +217,10 @@ const tablePedidosIngresados = {
                                         onchange: (el) => {
                                             PedidosIngresados.fechaDesde = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
                                             m.route.set("/laboratorio/lisa/pedidos/ingresados/?idFiltro=" + PedidosIngresados.idFiltro + "&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
-                                            window.location.reload();
+                                            setTimeout(() => {
+                                                window.location.reload();
+                                            }, 1000);
+
 
                                         },
                                         style: {
@@ -234,7 +250,9 @@ const tablePedidosIngresados = {
                                         onchange: (el) => {
                                             PedidosIngresados.fechaHasta = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
                                             m.route.set("/laboratorio/lisa/pedidos/ingresados/?idFiltro=" + PedidosIngresados.idFiltro + "&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
-                                            window.location.reload();
+                                            setTimeout(() => {
+                                                window.location.reload();
+                                            }, 1000);
 
                                         },
                                         style: {
@@ -309,6 +327,18 @@ const tablePedidosIngresados = {
                                     }, [
                                         "Muestras Pendientes"
                                     ]),
+
+                                    m(m.route.Link, {
+                                        class: 'dropdown-item',
+                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=7&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
+                                        onclick: () => {
+                                            PedidosIngresados.loader = true;
+                                            PedidosIngresados.pedidos = [];
+                                        }
+                                    }, [
+                                        "Reportes"
+                                    ]),
+
 
                                 ])
                             ])
@@ -619,12 +649,284 @@ const PedidosIngresados = {
 
         return table;
     },
+
+    loadPedidosReportes: () => {
+
+        $.fn.dataTable.ext.errMode = "none";
+        let table = $("#table-pedidosIngresados").DataTable({
+            data: PedidosIngresados.pedidos,
+            dom: 'lT<"html5buttons"B>gtip',
+            responsive: true,
+            buttons: [{
+                extend: "excel",
+                className: "btn btn-default btn-xs",
+                text: "Descargar en Excel",
+                titleAttr: "Descargar en Excel",
+            },
+            {
+                extend: "pdf",
+                className: "btn btn-default btn-xs",
+                text: "Descargar en PDF",
+                titleAttr: "Descargar en PDF",
+            }
+            ],
+            language: {
+                searchPlaceholder: "Buscar...",
+                sSearch: "",
+                lengthMenu: "Mostrar _MENU_ registros por página",
+                sProcessing: "Procesando...",
+                sZeroRecords: "Todavía no tienes resultados disponibles.",
+                sEmptyTable: "Ningún dato disponible en esta tabla",
+                sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+                sInfoPostFix: "",
+                sUrl: "",
+                sInfoThousands: ",",
+                sLoadingRecords: "Cargando...",
+                oPaginate: {
+                    sFirst: "Primero",
+                    sLast: "Último",
+                    sNext: "Siguiente",
+                    sPrevious: "Anterior",
+                },
+                oAria: {
+                    sSortAscending: ": Activar para ordenar la columna de manera ascendente",
+                    sSortDescending: ": Activar para ordenar la columna de manera descendente",
+                },
+            },
+            cache: false,
+            order: [
+                [2, "Desc"]
+            ],
+            destroy: true,
+            columns: [{
+                title: "N°:",
+            },
+            {
+                title: "Toma de Muestra MV: ",
+            },
+            {
+                title: "SC:",
+            },
+            {
+                title: "Paciente:",
+            },
+            {
+                title: "Fecha Recepciòn LISA:",
+            },
+            {
+                title: "Usario:",
+            },
+
+
+            ],
+            aoColumnDefs: [{
+                mRender: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                },
+                visible: true,
+                aTargets: [0],
+                orderable: false,
+            },
+            {
+                mRender: function (data, type, full) {
+                    return full.fechaPedido;
+                },
+                visible: true,
+                aTargets: [1],
+                orderable: true,
+
+            },
+            {
+                mRender: function (data, type, full) {
+                    return full.codigoPedido;
+                },
+                visible: true,
+                aTargets: [2],
+                orderable: true,
+            },
+            {
+                mRender: function (data, type, full) {
+                    return full.paciente;
+                },
+                visible: true,
+                aTargets: [3],
+                orderable: false,
+            }, {
+                mRender: function (data, type, full) {
+                    return full.dataRecepcion.dataRecepcion.fechaRecep + ":00";
+
+                },
+                visible: true,
+                aTargets: [4],
+                orderable: false,
+            },
+            {
+                mRender: function (data, type, full) {
+                    return 'FLEBOT1';
+
+                },
+                visible: true,
+                aTargets: [5],
+                orderable: false,
+            },
+
+
+            ],
+            fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+                /*m.mount(nRow, {
+                    view: () => {
+                        return [
+                            m("td", {
+                                class: (aData.tipoPedido == 'R' ? 'bg-primary' : 'bg-danger')
+                            }, [
+
+                                (aData.tipoPedido == 'R' ? m("span.badge.badge-pill.badge-primary.wd-100p.mg-b-1",
+                                    'R'
+                                ) : m("span.badge.badge-pill.badge-danger.wd-100p.mg-b-1",
+                                    'U'
+                                ))
+
+
+                            ]),
+                            m("td", { "style": {} },
+                                aData.fechaPedido
+                            ),
+                            m("td", { "style": {} },
+                                m("span.tx-semibold.tx-dark.tx-15.wd-100p.mg-b-1",
+                                    aData.codigoPedido
+                                ),
+                            ),
+                            m("td", { "style": {} }, [
+                                m('.d-inline.mg-r-5', {
+                                    class: (aData.sector == 'EMERGENCIA' ? "tx-danger" : "tx-primary")
+                                }, aData.sector),
+                                m('br'),
+                                aData.paciente,
+                            ]
+
+                            ),
+                            m("td", { "style": {} },
+                                aData.descPrestadorSolicitante
+
+                            ),
+                            (aData.tipoOperacion == 'I' ?
+                                m("td.tx-white.tx-semibold.tx-center", {
+                                    title: (aData.enviadoInfinity == 0 ? " Retenido " : " Enviado "),
+
+                                    style: { "background-color": (aData.enviadoInfinity == 0 ? "#fd7e14" : "#00cccc") }
+                                },
+                                    (aData.enviadoInfinity == 0 ? "Retenido" : "Enviado")
+                                ) : m("td.tx-white.tx-semibold.bg-danger.tx-center", {
+                                    title: (aData.enviadoInfinity == 0 ? " Cancelado " : " Cancelado Enviado "),
+                                },
+                                    (aData.enviadoInfinity == 0 ? "Cancelado" : "Cancelado Enviado")
+                                )),
+
+                            (aData.tipoOperacion == 'I' ? [m("td.tx-white.tx-semibold.tx-center", {
+                                title: 'Status Toma de Muestras',
+                                style: { "background-color": (aData.muestrasProcesadas == 0 ? "#ffc107" : "#0d9448") }
+                            },
+                                (aData.muestrasProcesadas == 0 ? "Muestras Pendientes" : "Muestras Completo")
+                            ),] : [""]),
+                            (aData.tipoOperacion == 'E' || aData.tipoOperacion == 'A' ? [m("td.tx-center", {
+
+                                onclick: () => {
+                                    if (confirm("Esta Ud. seguro de generar este envío.") == true) {
+                                        PedidosIngresados.reproesarMensajeXML(Number(aData.codigoPedido), aData.idTimeRecord);
+                                    }
+                                },
+                                title: (aData.enviadoInfinity == 0 ? " Enviar " : " Reenviar "),
+                                style: { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" }
+                            },
+                                m('i.fas.fa-file-upload.mg-r-5'),
+                                (aData.enviadoInfinity == 0 ? " Enviar " : " Reenviar ")
+
+                            )] : [""]),
+
+                            m("td.tx-center", {
+                                "style": { "background-color": "rgb(168, 190, 214)", "cursor": "pointer" }
+                            }, [
+
+                                m(m.route.Link, {
+                                    class: "tx-dark pd-2",
+                                    href: "/laboratorio/lisa/pedido/",
+                                    target: "_blank",
+                                    params: {
+                                        numeroHistoriaClinica: aData.numeroHistoriaClinica,
+                                        numeroAtencion: aData.at_mv,
+                                        numeroPedido: aData.codigoPedido,
+                                        idTimeRecord: aData.idTimeRecord,
+                                        track: "view",
+                                    }
+                                }, "Ver Pedido")
+
+
+                            ])
+
+
+
+
+
+                        ];
+                    },
+                });
+                */
+            },
+            drawCallback: function (settings) {
+
+                PedidosIngresados.loader = false;
+                PedidosIngresados.pProcesados = 0;
+                PedidosIngresados.pPendientes = 0;
+                PedidosIngresados.pIngreados = 0;
+                PedidosIngresados.pCancelados = 0;
+
+
+                settings.aoData.map(function (_v, _i) {
+
+                    if (_v._aData.tipoOperacion == 'I') {
+                        PedidosIngresados.pIngreados++;
+                        if (_v._aData.muestrasProcesadas == 0) {
+                            PedidosIngresados.pPendientes++;
+                        }
+                        if (_v._aData.muestrasProcesadas == 1) {
+                            PedidosIngresados.pProcesados++;
+                        }
+                    }
+
+                    if (_v._aData.tipoOperacion == 'E' || _v._aData.tipoOperacion == 'A') {
+                        PedidosIngresados.pCancelados++;
+                    }
+
+                })
+
+            },
+        });
+
+        $('.dataTables_length select').select2({
+            minimumResultsForSearch: Infinity
+        });
+
+        $('#searchField').keyup(function (e) {
+
+            table.search($('#searchField').val()).draw();
+        });
+
+        return table;
+    },
+
     fetchPedidosIngresados: () => {
 
         let _queryString = '';
 
         if (PedidosIngresados.idFiltro == 1) {
             _queryString = '?type=ingresadas&idFiltro=' + PedidosIngresados.idFiltro;
+        } else if (PedidosIngresados.idFiltro == 6) {
+            _queryString = '?type=pendienteMuestras&idFiltro=' + PedidosIngresados.idFiltro + '&fechaDesde=' + PedidosIngresados.fechaDesde + '&fechaHasta=' + PedidosIngresados.fechaHasta;
+        } else if (PedidosIngresados.idFiltro == 7) {
+            _queryString = '?type=reportes&idFiltro=' + PedidosIngresados.idFiltro + '&fechaDesde=' + PedidosIngresados.fechaDesde + '&fechaHasta=' + PedidosIngresados.fechaHasta;
         } else {
             _queryString = '?type=ingresadas&idFiltro=' + PedidosIngresados.idFiltro + '&fechaDesde=' + PedidosIngresados.fechaDesde + '&fechaHasta=' + PedidosIngresados.fechaHasta;
         }
@@ -646,6 +948,7 @@ const PedidosIngresados = {
 
 
     },
+
     reproesarMensajeXML: (codigoPedido, idTimeRecord) => {
 
         PedidosIngresados.loader = true;
@@ -678,6 +981,7 @@ const PedidosIngresados = {
 
 
     },
+
     reloadData: () => {
         var table = $('#table-pedidosIngresados').DataTable();
         table.clear();
