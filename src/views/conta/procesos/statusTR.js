@@ -13,13 +13,13 @@ const Uploads = {
         fetch('https://api.hospitalmetropolitano.org/t/v1/procesos/tr/uploads?idTR=' + StatusTR.id, {
             method: "POST",
             body: postData,
-        }).then(function (response) {
+        }).then(function(response) {
             return response.json();
-        }).then(function (data) {
+        }).then(function(data) {
             console.log('data = ', data);
             alert('Proceso realizado con éxito.')
 
-        }).catch(function (err) {
+        }).catch(function(err) {
             console.error(err);
         });
 
@@ -41,7 +41,7 @@ const Uploads = {
                 Uploads.files.length == 0 ? [
                     m('p', 'No existe archivos.')
                 ] : Uploads.files.length > 0 ? [
-                    Uploads.files.map(function (_v, _i, _contentData) {
+                    Uploads.files.map(function(_v, _i, _contentData) {
 
                         return [
 
@@ -170,28 +170,28 @@ const Observaciones = {
             destroy: true,
             columns: false,
             aoColumnDefs: [{
-                mRender: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
+                    mRender: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    },
+                    visible: false,
+                    aTargets: [0],
+                    orderable: true,
+                }, {
+                    mRender: function(data, type, row, meta) {
+                        return "";
+                    },
+                    visible: true,
+                    width: "100%",
+                    aTargets: [1],
+                    orderable: false,
                 },
-                visible: false,
-                aTargets: [0],
-                orderable: true,
-            }, {
-                mRender: function (data, type, row, meta) {
-                    return "";
-                },
-                visible: true,
-                width: "100%",
-                aTargets: [1],
-                orderable: false,
-            },
 
             ],
-            fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) { },
-            drawCallback: function (settings) {
-                settings.aoData.map(function (_v, _i) {
+            fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {},
+            drawCallback: function(settings) {
+                settings.aoData.map(function(_v, _i) {
                     m.mount(_v.anCells[1], {
-                        view: function () {
+                        view: function() {
                             return m("div.demo-static-toast",
                                 m(".toast[role='alert'][aria-live='assertive'][aria-atomic='true']", {
                                     "style": { "max-width": "none" }
@@ -273,28 +273,28 @@ const StatusTR = {
         StatusTR.activos = [];
         StatusTR.loader = true;
         m.request({
-            method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr/id",
-            body: {
-                idTR: StatusTR.id,
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
+                method: "POST",
+                url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr/id",
+                body: {
+                    idTR: StatusTR.id,
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
                 if (result.status) {
                     StatusTR.loader = false;
                     StatusTR.data = result.data;
                     if (StatusTR.data.files !== false) {
                         Uploads.files = StatusTR.data.files;
                     }
-                    setTimeout(function () { Observaciones.fetch(); }, 100);
+                    setTimeout(function() { Observaciones.fetch(); }, 100);
                 } else {
                     StatusTR.error = result.message;
                 }
             })
-            .catch(function (e) {
+            .catch(function(e) {
                 StatusTR.fetch();
             })
 
@@ -310,7 +310,7 @@ const StatusTR = {
                 ),
                 m("div.mg-t-10.mg-b-10.bg-white", {
 
-                },
+                    },
 
                     m('a', {
                         href: '/contabilidad/proceso/tarjeta-roja/consultar'
@@ -402,9 +402,9 @@ const StatusTR = {
 
             ]),
             m("div.content.content-components", {
-                style: { "margin-left": "0px" }
+                    style: { "margin-left": "0px" }
 
-            },
+                },
                 m("div.container.mg-l-0.mg-r-0", {
                     style: { "max-width": "100%" }
                 }, [
@@ -435,13 +435,11 @@ const StatusTR = {
                                         ], [
                                             (StatusTR.data.status == 1 ? 'Ingresada' : ''),
                                             (StatusTR.data.status == 2 ? 'Autorizado' : ''),
-                                            (StatusTR.data.status == -2 ? 'Rechazada' : ''),
                                             (StatusTR.data.status == 3 ? 'En Revisón Técnica' : ''),
-                                            (StatusTR.data.status == -3 ? 'Rechazada' : ''),
                                             (StatusTR.data.status == 4 ? 'En Revisón Contable' : ''),
-                                            (StatusTR.data.status == -4 ? 'Rechazada' : ''),
-                                            (StatusTR.data.status == -5 ? 'Rechazada' : ''),
-                                            (StatusTR.data.status >= 5 ? 'Aprobada' : '')
+                                            (StatusTR.data.status >= 5 ? 'Aprobada' : ''),
+                                            (StatusTR.data.status < 0 ? 'Rechazada' : ''),
+
                                         ]),
 
 
@@ -461,13 +459,13 @@ const StatusTR = {
                                                     m("tr", [
 
                                                         m("th.tx-semibold.tx-14[colspan='4']", {
-                                                            style: { "background-color": "#a8bed6", "width": "25%" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6", "width": "25%" }
+                                                            },
                                                             "Fecha de Solicitud:"
                                                         ),
                                                         m("td[colspan='6']", {
-                                                            style: { "background-color": "#eaeff5" }
-                                                        },
+                                                                style: { "background-color": "#eaeff5" }
+                                                            },
 
                                                             m("input.disabled", { value: StatusTR.data.fecha, "class": "form-control tx-semibold tx-15 tx-danger", "type": "text", "disabled": "disabled" })
 
@@ -480,14 +478,14 @@ const StatusTR = {
                                                     m("tr", [
 
                                                         m("th.tx-semibold.tx-14[colspan='4']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Categoría:"
                                                         ),
                                                         m("td[colspan='6']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                                style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                            },
                                                             m("input", {
                                                                 "class": "form-control tx-semibold tx-14",
                                                                 "type": "text",
@@ -501,14 +499,14 @@ const StatusTR = {
                                                     m("tr", [
 
                                                         m("th.tx-semibold.tx-14[colspan='4']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Sub. Categoría:"
                                                         ),
                                                         m("td[colspan='6']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                                style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                            },
                                                             m("input", {
                                                                 "class": "form-control tx-semibold tx-14",
                                                                 "type": "text",
@@ -534,13 +532,13 @@ const StatusTR = {
                                                 m("tbody", [
                                                     m("tr", [
                                                         m("th.tx-semibold.tx-14[colspan='1']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Nombre:"
                                                         ),
                                                         m("td[colspan='9']", {
-                                                            style: { "background-color": "#eaeff5" }
-                                                        },
+                                                                style: { "background-color": "#eaeff5" }
+                                                            },
                                                             m("input", {
                                                                 "class": "form-control tx-semibold tx-14",
                                                                 "type": "text",
@@ -550,14 +548,14 @@ const StatusTR = {
                                                     ]),
                                                     m("tr", [
                                                         m("th.tx-semibold.tx-14[colspan='1']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Marca:"
                                                         ),
                                                         m("td[colspan='9']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                                style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                            },
                                                             m("input", {
                                                                 "class": "form-control tx-semibold tx-14",
                                                                 "type": "text",
@@ -568,13 +566,13 @@ const StatusTR = {
                                                     ]),
                                                     m("tr", [
                                                         m("th.tx-semibold.tx-14[colspan='1']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Modelo:"
                                                         ),
                                                         m("td[colspan='9']", {
-                                                            style: { "background-color": "#eaeff5" }
-                                                        },
+                                                                style: { "background-color": "#eaeff5" }
+                                                            },
                                                             m("input", {
                                                                 "class": "form-control tx-semibold tx-14",
                                                                 "type": "text",
@@ -589,14 +587,14 @@ const StatusTR = {
                                                     m("tr", [
 
                                                         m("th.tx-semibold.tx-14[colspan='1']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Serie:"
                                                         ),
                                                         m("td[colspan='9']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                                style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                            },
                                                             m("input", {
                                                                 "class": "form-control tx-semibold tx-14",
                                                                 "type": "text",
@@ -612,14 +610,14 @@ const StatusTR = {
                                                     m("tr", [
 
                                                         m("th.tx-semibold.tx-14[colspan='1']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "N° de Informe Técnico:"
                                                         ),
                                                         m("td[colspan='9']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                                style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                            },
                                                             m("input", {
                                                                 "class": "form-control tx-semibold tx-14",
                                                                 "type": "text",
@@ -636,14 +634,14 @@ const StatusTR = {
                                                     m("tr", [
 
                                                         m("th.tx-semibold.tx-14[colspan='1']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "N° de Activo Fijo:"
                                                         ),
                                                         m("td[colspan='9']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                                style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                            },
                                                             m("input", {
                                                                 "class": "form-control tx-semibold tx-14",
                                                                 "type": "text",
@@ -664,8 +662,8 @@ const StatusTR = {
                                                     ]),
                                                     m("tr", [
                                                         m("th.tx-semibold.tx-14[colspan='3']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Motivo de Baja:"
                                                         ),
                                                         m("td[colspan='7']", {
@@ -691,8 +689,8 @@ const StatusTR = {
                                                     ]),
                                                     m("tr", [
                                                         m("th.tx-semibold.tx-14[colspan='3']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Acción Sugerida:"
                                                         ),
                                                         m("td[colspan='7']", {
@@ -719,14 +717,14 @@ const StatusTR = {
 
                                                     m("tr", [
                                                         m("th.tx-semibold.tx-14[colspan='3']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Destino Final:"
                                                         ),
                                                         m("td[colspan='7']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                                style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                            },
 
                                                             m("input", {
                                                                 "class": "form-control tx-semibold tx-14",
@@ -742,18 +740,18 @@ const StatusTR = {
                                                     m("tr", [
 
                                                         m("th.tx-semibold.tx-14[colspan='4']", {
-                                                            style: { "background-color": "#a8bed6" }
-                                                        },
+                                                                style: { "background-color": "#a8bed6" }
+                                                            },
                                                             "Responsable:"
                                                         ),
                                                         m("td[colspan='6']", {
-                                                            style: { "background-color": "#eaeff5" }
-                                                        },
+                                                                style: { "background-color": "#eaeff5" }
+                                                            },
 
                                                             m("textarea[rows='3']", {
-                                                                "class": "form-control tx-semibold tx-14",
-                                                                "disabled": "disabled",
-                                                            },
+                                                                    "class": "form-control tx-semibold tx-14",
+                                                                    "disabled": "disabled",
+                                                                },
                                                                 StatusTR.data.usuario
                                                             )
 
@@ -775,14 +773,14 @@ const StatusTR = {
                                                     m("tr.d-print-none", [
 
                                                         m("td[colspan='10']", {
-                                                            style: { "background-color": "#eaeff5" }
+                                                                style: { "background-color": "#eaeff5" }
 
-                                                        },
+                                                            },
                                                             m("ul.nav.nav-tabs[id='myTab'][role='tablist']", [
                                                                 m("li.nav-item",
                                                                     m("a.nav-link[id='home-tab'][data-toggle='tab'][href='#home'][role='tab'][aria-controls='home'][aria-selected='true']", {
-                                                                        style: { "color": "#476ba3" }
-                                                                    },
+                                                                            style: { "color": "#476ba3" }
+                                                                        },
                                                                         m("i.fas.fa-file-alt.pd-1.mg-r-2"),
 
                                                                         " Adjuntos ",
@@ -793,8 +791,8 @@ const StatusTR = {
                                                                 ),
                                                                 m("li.nav-item", {},
                                                                     m("a.nav-link[id='home-auth1'][data-toggle='tab'][href='#auth1'][role='tab'][aria-controls='auth1']", {
-                                                                        style: { "color": "#476ba3" }
-                                                                    },
+                                                                            style: { "color": "#476ba3" }
+                                                                        },
                                                                         m("i.fas.fa-edit.pd-1.mg-r-2"),
 
                                                                         " Observaciones ",
@@ -814,7 +812,7 @@ const StatusTR = {
 
                                                         m("td[colspan='9']", {
 
-                                                        },
+                                                            },
                                                             m(".tab-content.bd.bd-gray-300.bd-t-0[id='myTab']", [
                                                                 m(".tab-pane.fade[id='home'][role='tabpanel'][aria-labelledby='home-tab']", [
                                                                     m(Uploads)

@@ -399,13 +399,11 @@ const AuthTR = {
                                         ], [
                                             (AuthTR.data.status == 1 ? 'Ingresada' : ''),
                                             (AuthTR.data.status == 2 ? 'Autorizado' : ''),
-                                            (AuthTR.data.status == -2 ? 'Rechazada' : ''),
                                             (AuthTR.data.status == 3 ? 'En Revisión Técnica' : ''),
-                                            (AuthTR.data.status == -3 ? 'Rechazada' : ''),
                                             (AuthTR.data.status == 4 ? 'En Revisión Contable' : ''),
-                                            (AuthTR.data.status == -4 ? 'Rechazada' : ''),
-                                            (AuthTR.data.status == -5 ? 'Rechazada' : ''),
-                                            (AuthTR.data.status >= 5 ? 'Aprobada' : '')
+                                            (AuthTR.data.status >= 5 ? 'Aprobada' : ''),
+                                            (AuthTR.data.status < 0 ? 'Rechazada' : ''),
+
 
 
                                         ]),
@@ -887,13 +885,10 @@ const AuthTR = {
                                                                             'Status: ',
                                                                             (AuthTR.data.status == 1 ? 'Ingresada' : ''),
                                                                             (AuthTR.data.status == 2 ? 'Autorizado' : ''),
-                                                                            (AuthTR.data.status == -2 ? 'Rechazada' : ''),
                                                                             (AuthTR.data.status == 3 ? 'En Revisión Técnica' : ''),
-                                                                            (AuthTR.data.status == -3 ? 'Rechazada' : ''),
                                                                             (AuthTR.data.status == 4 ? 'En Revisión Contable' : ''),
-                                                                            (AuthTR.data.status == -4 ? 'Rechazada' : ''),
-                                                                            (AuthTR.data.status == -5 ? 'Rechazada' : ''),
-                                                                            (AuthTR.data.status >= 5 ? 'Aprobada' : '')
+                                                                            (AuthTR.data.status >= 5 ? 'Aprobada' : ''),
+                                                                            (AuthTR.data.status < 0 ? 'Rechazada' : ''),
                                                                         ),
                                                                         m("textarea.form-control.mg-t-5[rows='5'][placeholder='Observaciones']", {
                                                                             oninput: function(e) { Observaciones.observaciones = e.target.value; },
@@ -932,13 +927,10 @@ const AuthTR = {
                                                                             'Status: ',
                                                                             (AuthTR.data.status == 1 ? 'Ingresada' : ''),
                                                                             (AuthTR.data.status == 2 ? 'Autorizado' : ''),
-                                                                            (AuthTR.data.status == -2 ? 'Rechazada' : ''),
                                                                             (AuthTR.data.status == 3 ? 'En Revisión Técnica' : ''),
-                                                                            (AuthTR.data.status == -3 ? 'Rechazada' : ''),
                                                                             (AuthTR.data.status == 4 ? 'En Revisión Contable' : ''),
-                                                                            (AuthTR.data.status == -4 ? 'Rechazada' : ''),
-                                                                            (AuthTR.data.status == -5 ? 'Rechazada' : ''),
-                                                                            (AuthTR.data.status >= 5 ? 'Aprobada' : '')
+                                                                            (AuthTR.data.status >= 5 ? 'Aprobada' : ''),
+                                                                            (AuthTR.data.status < 0 ? 'Rechazada' : ''),
                                                                         ),
                                                                         m("textarea.form-control.mg-t-5[rows='5'][placeholder='Observaciones']", {
                                                                             oninput: function(e) { Observaciones.observaciones = e.target.value; },
@@ -975,13 +967,10 @@ const AuthTR = {
                                                                             'Status: ',
                                                                             (AuthTR.data.status == 1 ? 'Ingresada' : ''),
                                                                             (AuthTR.data.status == 2 ? 'Autorizado' : ''),
-                                                                            (AuthTR.data.status == -2 ? 'Rechazada' : ''),
                                                                             (AuthTR.data.status == 3 ? 'En Revisión Técnica' : ''),
-                                                                            (AuthTR.data.status == -3 ? 'Rechazada' : ''),
                                                                             (AuthTR.data.status == 4 ? 'En Revisión Contable' : ''),
-                                                                            (AuthTR.data.status == -4 ? 'Rechazada' : ''),
-                                                                            (AuthTR.data.status == -5 ? 'Rechazada' : ''),
-                                                                            (AuthTR.data.status >= 5 ? 'Aprobada' : '')
+                                                                            (AuthTR.data.status >= 5 ? 'Aprobada' : ''),
+                                                                            (AuthTR.data.status < 0 ? 'Rechazada' : ''),
                                                                         ),
                                                                         m("textarea.form-control.mg-t-5[rows='5'][placeholder='Observaciones']", {
                                                                             oninput: function(e) { Observaciones.observaciones = e.target.value; },
@@ -1003,7 +992,7 @@ const AuthTR = {
                                                                                     AuthTR.status = -4;
                                                                                     AuthTR.updateStatus();
                                                                                 },
-                                                                            }, [], "Rechazado"),
+                                                                            }, [], "Rechazar"),
 
 
                                                                         ]),
@@ -1018,13 +1007,11 @@ const AuthTR = {
                                                                             'Status: ',
                                                                             (AuthTR.data.status == 1 ? 'Ingresada' : ''),
                                                                             (AuthTR.data.status == 2 ? 'Autorizado' : ''),
-                                                                            (AuthTR.data.status == -2 ? 'Rechazada' : ''),
                                                                             (AuthTR.data.status == 3 ? 'En Revisión Técnica' : ''),
-                                                                            (AuthTR.data.status == -3 ? 'Rechazada' : ''),
                                                                             (AuthTR.data.status == 4 ? 'En Revisión Contable' : ''),
-                                                                            (AuthTR.data.status == -4 ? 'Rechazada' : ''),
-                                                                            (AuthTR.data.status == -5 ? 'Rechazada' : ''),
-                                                                            (AuthTR.data.status >= 5 ? 'Aprobada' : '')
+                                                                            (AuthTR.data.status >= 5 ? 'Aprobada' : ''),
+                                                                            (AuthTR.data.status < 0 ? 'Rechazada' : ''),
+
                                                                         ),
                                                                         m("textarea.form-control.mg-t-5[rows='5'][placeholder='Observaciones']", {
                                                                             oninput: function(e) { Observaciones.observaciones = e.target.value; },
@@ -1046,7 +1033,7 @@ const AuthTR = {
                                                                                     AuthTR.status = -5;
                                                                                     AuthTR.updateStatus();
                                                                                 },
-                                                                            }, [], "Rechazado"),
+                                                                            }, [], "Rechazar"),
 
 
                                                                         ]),
