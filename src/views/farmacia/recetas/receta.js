@@ -300,8 +300,10 @@ const RecetaFarmacia = {
                 method: "POST",
                 url: "https://api.hospitalmetropolitano.org/t/v1/check-receta",
                 body: {
+                    numeroAtencion: RecetaFarmacia.numeroAtencion,
                     numeroReceta: RecetaFarmacia.numeroReceta,
-                    status: RecetaFarmacia.despacho
+                    status: RecetaFarmacia.despacho,
+                    obs: Observaciones.observaciones
                 },
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
@@ -314,7 +316,6 @@ const RecetaFarmacia = {
 
             })
     },
-
     view: (_data) => {
 
         return [

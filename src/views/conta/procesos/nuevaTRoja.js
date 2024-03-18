@@ -15,14 +15,14 @@ const Uploads = {
         fetch('https://api.hospitalmetropolitano.org/t/v1/procesos/tr/uploads?idTR=' + NuevaTRoja.id, {
             method: "POST",
             body: postData,
-        }).then(function (response) {
+        }).then(function(response) {
             return response.json();
-        }).then(function (data) {
+        }).then(function(data) {
             console.log('data = ', data);
             alert('Proceso realizado con éxito');
             alert('Tarjeta Roja N°: HM-' + NuevaTRoja.id);
             m.route.set('/contabilidad/proceso/tarjeta-roja/status/?tr=' + NuevaTRoja.id + '&track=view');
-        }).catch(function (err) {
+        }).catch(function(err) {
             console.error(err);
         });
 
@@ -45,7 +45,7 @@ const Uploads = {
                 Uploads.files.length == 0 ? [
                     m('p', 'No existe archivos.')
                 ] : Uploads.files.length > 0 ? [
-                    Uploads.files.map(function (_v, _i, _contentData) {
+                    Uploads.files.map(function(_v, _i, _contentData) {
 
                         return [
 
@@ -207,13 +207,13 @@ const NuevaTRoja = {
         NuevaTRoja.activos = [];
         NuevaTRoja.loader = true;
         m.request({
-            method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr",
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
+                method: "POST",
+                url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
                 if (result.status) {
                     NuevaTRoja.loader = false;
                     NuevaTRoja.activos = result.data;
@@ -222,7 +222,7 @@ const NuevaTRoja = {
                 }
 
             })
-            .catch(function (e) {
+            .catch(function(e) {
                 NuevaTRoja.fetch();
             })
 
@@ -302,31 +302,31 @@ const NuevaTRoja = {
         NuevaTRoja.loader = true;
 
         m.request({
-            method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr/nueva",
-            body: {
-                fecha: moment().format('DD-MM-YYYY'),
-                accion_sugerida: NuevaTRoja.data.accion_sugerida,
-                categoria: NuevaTRoja.data.categoria,
-                area: NuevaTRoja.data.area,
-                marca: NuevaTRoja.data.marca,
-                modelo: NuevaTRoja.data.modelo,
-                motivo_baja: NuevaTRoja.data.motivo_baja,
-                nombre: NuevaTRoja.data.nombre,
-                serie: NuevaTRoja.data.serie,
-                sub_categoria: NuevaTRoja.data.sub_categoria,
-                usuario: NuevaTRoja.data.usuario,
-                email: NuevaTRoja.data.email,
-                destino_final: NuevaTRoja.data.destino_final,
-                centro_costo: NuevaTRoja.data.centro_costo,
-                inf_tec: NuevaTRoja.data.inf_tec,
-                act_fijo: NuevaTRoja.data.act_fijo
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
+                method: "POST",
+                url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr/nueva",
+                body: {
+                    fecha: moment().format('DD-MM-YYYY'),
+                    accion_sugerida: NuevaTRoja.data.accion_sugerida,
+                    categoria: NuevaTRoja.data.categoria,
+                    area: NuevaTRoja.data.area,
+                    marca: NuevaTRoja.data.marca,
+                    modelo: NuevaTRoja.data.modelo,
+                    motivo_baja: NuevaTRoja.data.motivo_baja,
+                    nombre: NuevaTRoja.data.nombre,
+                    serie: NuevaTRoja.data.serie,
+                    sub_categoria: NuevaTRoja.data.sub_categoria,
+                    usuario: NuevaTRoja.data.usuario,
+                    email: NuevaTRoja.data.email,
+                    destino_final: NuevaTRoja.data.destino_final,
+                    centro_costo: NuevaTRoja.data.centro_costo,
+                    inf_tec: NuevaTRoja.data.inf_tec,
+                    act_fijo: NuevaTRoja.data.act_fijo
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
                 if (result.status) {
                     NuevaTRoja.id = result.idTR;
                     setTimeout(() => {
@@ -336,7 +336,7 @@ const NuevaTRoja = {
                     NuevaTRoja.error = result.message;
                 }
             })
-            .catch(function (e) {
+            .catch(function(e) {
                 NuevaTRoja.fetch();
             })
 
@@ -346,17 +346,17 @@ const NuevaTRoja = {
         NuevaTRoja.loaderFirma = true;
 
         m.request({
-            method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr/login-user",
-            body: {
-                user: NuevaTRoja.user,
-                pass: NuevaTRoja.pass,
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
+                method: "POST",
+                url: "https://api.hospitalmetropolitano.org/t/v1/procesos/tr/login-user",
+                body: {
+                    user: NuevaTRoja.user,
+                    pass: NuevaTRoja.pass,
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
                 NuevaTRoja.loaderFirma = false;
 
                 if (result.status && result.data.length !== 0) {
@@ -368,7 +368,7 @@ const NuevaTRoja = {
                     alert(result.message);
                 }
             })
-            .catch(function (e) {
+            .catch(function(e) {
                 NuevaTRoja.firmarTR();
             })
     },
@@ -437,13 +437,13 @@ const NuevaTRoja = {
                                                         m("tr", [
 
                                                             m("th.tx-semibold.tx-14[colspan='4'][width='20%']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Fecha de Solicitud:"
                                                             ),
                                                             m("td[colspan='6']", {
-                                                                style: { "background-color": "#eaeff5" }
-                                                            },
+                                                                    style: { "background-color": "#eaeff5" }
+                                                                },
 
                                                                 m("input", { value: moment().format("dddd, DD-MM-Y"), "class": "form-control tx-semibold tx-15 tx-danger", "type": "text", "disabled": "disabled" })
 
@@ -455,14 +455,14 @@ const NuevaTRoja = {
                                                         m("tr", [
 
                                                             m("th.tx-semibold.tx-14[colspan='4']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Categoría:"
                                                             ),
                                                             m("td[colspan='6']", {
-                                                                style: { "background-color": "#eaeff5" }
+                                                                    style: { "background-color": "#eaeff5" }
 
-                                                            },
+                                                                },
                                                                 m('select.tx-semibold', {
                                                                     onchange: (e) => {
                                                                         NuevaTRoja.data.categoria = e.target.options[e.target.options.selectedIndex].value;
@@ -482,14 +482,14 @@ const NuevaTRoja = {
                                                         m("tr", [
 
                                                             m("th.tx-semibold.tx-14[colspan='4']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Sub. Categoría:"
                                                             ),
                                                             m("td[colspan='6']", {
-                                                                style: { "background-color": "#eaeff5" }
+                                                                    style: { "background-color": "#eaeff5" }
 
-                                                            },
+                                                                },
                                                                 m('select.tx-semibold', {
                                                                     onchange: (e) => {
                                                                         NuevaTRoja.data.id_sub_categoria = e.target.options[e.target.options.selectedIndex].id;
@@ -498,15 +498,15 @@ const NuevaTRoja = {
                                                                     },
                                                                     class: "custom-select"
                                                                 }, m('option', 'Seleccione...'), NuevaTRoja.activos.subActivos.map(x =>
-                                                                (x.cod_class == NuevaTRoja.data.id_categoria ? [
-                                                                    m('option', {
-                                                                        'value': x.class,
-                                                                        'id': x.cod_class,
-                                                                        'data-area': x.area
-                                                                    },
-                                                                        x.class
-                                                                    )
-                                                                ] : [])
+                                                                    (x.cod_class == NuevaTRoja.data.id_categoria ? [
+                                                                        m('option', {
+                                                                                'value': x.class,
+                                                                                'id': x.cod_class,
+                                                                                'data-area': x.area
+                                                                            },
+                                                                            x.class
+                                                                        )
+                                                                    ] : [])
                                                                 ))
                                                             )
 
@@ -527,13 +527,13 @@ const NuevaTRoja = {
                                                     m("tbody", [
                                                         m("tr", [
                                                             m("th.tx-semibold.tx-14[colspan='1']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Nombre:"
                                                             ),
                                                             m("td[colspan='9']", {
-                                                                style: { "background-color": "#eaeff5" }
-                                                            },
+                                                                    style: { "background-color": "#eaeff5" }
+                                                                },
                                                                 m("input", {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "text",
@@ -546,14 +546,14 @@ const NuevaTRoja = {
                                                         ]),
                                                         m("tr", [
                                                             m("th.tx-semibold.tx-14[colspan='1']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Marca:"
                                                             ),
                                                             m("td[colspan='9']", {
-                                                                style: { "background-color": "#eaeff5" }
+                                                                    style: { "background-color": "#eaeff5" }
 
-                                                            },
+                                                                },
                                                                 m("input", {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "text",
@@ -567,13 +567,13 @@ const NuevaTRoja = {
                                                         ]),
                                                         m("tr", [
                                                             m("th.tx-semibold.tx-14[colspan='1']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Modelo:"
                                                             ),
                                                             m("td[colspan='9']", {
-                                                                style: { "background-color": "#eaeff5" }
-                                                            },
+                                                                    style: { "background-color": "#eaeff5" }
+                                                                },
                                                                 m("input", {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "text",
@@ -590,14 +590,14 @@ const NuevaTRoja = {
                                                         m("tr", [
 
                                                             m("th.tx-semibold.tx-14[colspan='1']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Serie:"
                                                             ),
                                                             m("td[colspan='9']", {
-                                                                style: { "background-color": "#eaeff5" }
+                                                                    style: { "background-color": "#eaeff5" }
 
-                                                            },
+                                                                },
                                                                 m("input", {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "text",
@@ -615,14 +615,14 @@ const NuevaTRoja = {
                                                         m("tr", [
 
                                                             m("th.tx-semibold.tx-14[colspan='1']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "N° de Informe Técnico:"
                                                             ),
                                                             m("td[colspan='9']", {
-                                                                style: { "background-color": "#eaeff5" }
+                                                                    style: { "background-color": "#eaeff5" }
 
-                                                            },
+                                                                },
                                                                 m("input", {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "text",
@@ -639,13 +639,13 @@ const NuevaTRoja = {
                                                         ]),
                                                         m("tr", [
                                                             m("th.tx-semibold.tx-14[colspan='1']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "N° de Activo Fijo:"
                                                             ),
                                                             m("td[colspan='9']", {
-                                                                style: { "background-color": "#eaeff5" }
-                                                            },
+                                                                    style: { "background-color": "#eaeff5" }
+                                                                },
                                                                 m("input", {
                                                                     "class": "form-control tx-semibold tx-14",
                                                                     "type": "text",
@@ -663,8 +663,8 @@ const NuevaTRoja = {
                                                         ]),
                                                         m("tr", [
                                                             m("th.tx-semibold.tx-14[colspan='3']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Motivo de Solicitud:"
                                                             ),
                                                             m("td[colspan='7']", {
@@ -703,8 +703,8 @@ const NuevaTRoja = {
                                                         ]),
                                                         m("tr", [
                                                             m("th.tx-semibold.tx-14[colspan='3']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Acción Sugerida:"
                                                             ),
                                                             m("td[colspan='7']", {
@@ -717,9 +717,9 @@ const NuevaTRoja = {
                                                                     },
                                                                     class: "custom-select"
                                                                 }, m('option', 'Seleccione...'), NuevaTRoja.activos.motivos.map(x =>
-                                                                (x.motivo_baja == NuevaTRoja.data.id_motivo_baja ? [m('option', {
-                                                                    value: x.accion_sugerida
-                                                                }, x.accion_sugerida.replace('_', ' '))] : [])
+                                                                    (x.motivo_baja == NuevaTRoja.data.id_motivo_baja ? [m('option', {
+                                                                        value: x.accion_sugerida
+                                                                    }, x.accion_sugerida.replace('_', ' '))] : [])
                                                                 ))
                                                             ]),
 
@@ -733,40 +733,40 @@ const NuevaTRoja = {
                                                         ]),
                                                         m("tr", [
                                                             m("th.tx-semibold.tx-14[colspan='3']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Observación:"
                                                             ),
                                                             m("td[colspan='7']", {
-                                                                style: { "background-color": "#eaeff5" }
+                                                                    style: { "background-color": "#eaeff5" }
 
-                                                            },
+                                                                },
                                                                 m('div.tx-justify', {}, NuevaTRoja.activos.motivos.map(x =>
-                                                                (x.motivo_baja == NuevaTRoja.data.id_motivo_baja && x.accion_sugerida == NuevaTRoja.data.accion_sugerida ? [
-                                                                    m('p.tx-15.tx-semibold.tx-danger', x.obs)
-                                                                ] : [])
+                                                                    (x.motivo_baja == NuevaTRoja.data.id_motivo_baja && x.accion_sugerida == NuevaTRoja.data.accion_sugerida ? [
+                                                                        m('p.tx-15.tx-semibold.tx-danger', x.obs)
+                                                                    ] : [])
                                                                 ))
                                                             ),
                                                         ]),
 
                                                         m("tr", [
                                                             m("th.tx-semibold.tx-14[colspan='3']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Destino Final:"
                                                             ),
                                                             m("td[colspan='7']", {
-                                                                style: { "background-color": "#eaeff5" }
+                                                                    style: { "background-color": "#eaeff5" }
 
-                                                            },
+                                                                },
 
                                                                 m('div', {}, NuevaTRoja.activos.motivos.map(x =>
-                                                                (x.motivo_baja == NuevaTRoja.data.id_motivo_baja && x.accion_sugerida == NuevaTRoja.data.accion_sugerida ? [
+                                                                    (x.motivo_baja == NuevaTRoja.data.id_motivo_baja && x.accion_sugerida == NuevaTRoja.data.accion_sugerida ? [
 
-                                                                    m(DestinoFinal, { destino_final: x.destino_final })
-                                                                ] : [
+                                                                        m(DestinoFinal, { destino_final: x.destino_final })
+                                                                    ] : [
 
-                                                                ])
+                                                                    ])
                                                                 ))
 
                                                             ),
@@ -776,33 +776,33 @@ const NuevaTRoja = {
                                                         m("tr", [
 
                                                             m("th.tx-semibold.tx-14[colspan='4']", {
-                                                                style: { "background-color": "#a8bed6" }
-                                                            },
+                                                                    style: { "background-color": "#a8bed6" }
+                                                                },
                                                                 "Responsable:"
                                                             ),
                                                             m("td[colspan='6']", {
-                                                                style: { "background-color": "#eaeff5" }
-                                                            },
+                                                                    style: { "background-color": "#eaeff5" }
+                                                                },
                                                                 m('p.mg-b-0', '*Ingrese Usuario y Contraseña de Directorio Activo (AD), THConmigo etc.'),
                                                                 (NuevaTRoja.data.usuario !== undefined ? [
                                                                     m("div.input-group", [
 
                                                                         m("textarea[rows='3']", {
-                                                                            "class": "form-control tx-semibold tx-14",
-                                                                            "disabled": "disabled",
-                                                                        },
+                                                                                "class": "form-control tx-semibold tx-14",
+                                                                                "disabled": "disabled",
+                                                                            },
                                                                             NuevaTRoja.data.usuario
                                                                         ),
 
                                                                     ]),
                                                                     m("div.input-group.mg-t-5",
                                                                         m("button.btn.btn-primary.btn-block.tx-semibold[type='button']", {
-                                                                            onclick: (e) => {
-                                                                                NuevaTRoja.sendDataTR();
+                                                                                onclick: (e) => {
+                                                                                    NuevaTRoja.sendDataTR();
 
 
-                                                                            }
-                                                                        },
+                                                                                }
+                                                                            },
                                                                             "Enviar"
                                                                         )
                                                                     )
@@ -832,14 +832,14 @@ const NuevaTRoja = {
                                                                                 }),
                                                                                 m("div.input-group.mg-t-5",
                                                                                     m("button.btn.btn-primary.btn-block[type='button']", {
-                                                                                        onclick: (e) => {
-                                                                                            if (NuevaTRoja.user.length !== 0 && NuevaTRoja.pass.length !== 0) {
-                                                                                                NuevaTRoja.firmarTR();
-                                                                                            } else {
-                                                                                                alert('Usuario y Contraseña son obligatorios.');
+                                                                                            onclick: (e) => {
+                                                                                                if (NuevaTRoja.user.length !== 0 && NuevaTRoja.pass.length !== 0) {
+                                                                                                    NuevaTRoja.firmarTR();
+                                                                                                } else {
+                                                                                                    alert('Usuario y Contraseña son obligatorios.');
+                                                                                                }
                                                                                             }
-                                                                                        }
-                                                                                    },
+                                                                                        },
                                                                                         "Validar"
                                                                                     )
                                                                                 )
@@ -847,10 +847,10 @@ const NuevaTRoja = {
 
                                                                         ] : [
                                                                             m("button.btn.btn-xs.btn-block.btn-outline-light[type='button']", {
-                                                                                onclick: (e) => {
-                                                                                    NuevaTRoja.autorizado = true;
-                                                                                }
-                                                                            },
+                                                                                    onclick: (e) => {
+                                                                                        NuevaTRoja.autorizado = true;
+                                                                                    }
+                                                                                },
                                                                                 m("i.fas.fa-edit.pd-1.mg-r-2"),
                                                                                 "Firma de Responsabilidad"
                                                                             ),
@@ -878,14 +878,14 @@ const NuevaTRoja = {
                                                         m("tr.d-print-none", [
 
                                                             m("td[colspan='10']", {
-                                                                style: { "background-color": "#eaeff5" }
+                                                                    style: { "background-color": "#eaeff5" }
 
-                                                            },
+                                                                },
                                                                 m("ul.nav.nav-tabs[id='myTab'][role='tablist']", [
                                                                     m("li.nav-item",
                                                                         m("a.nav-link[id='home-tab'][data-toggle='tab'][href='#home'][role='tab'][aria-controls='home'][aria-selected='true']", {
-                                                                            style: { "color": "#476ba3" }
-                                                                        },
+                                                                                style: { "color": "#476ba3" }
+                                                                            },
                                                                             m("i.fas.fa-file-alt.pd-1.mg-r-2"),
 
                                                                             " Adjuntos "
@@ -902,7 +902,7 @@ const NuevaTRoja = {
 
                                                             m("td[colspan='9']", {
 
-                                                            },
+                                                                },
                                                                 m(".tab-content.bd.bd-gray-300.bd-t-0[id='myTab']", [
                                                                     m(".tab-pane.fade[id='home'][role='tabpanel'][aria-labelledby='home-tab']", [
                                                                         m(Uploads),
@@ -951,7 +951,7 @@ const NuevaTRoja = {
                 ),
                 m("div.mg-t-10.mg-b-10.bg-white", {
 
-                },
+                    },
 
                     m('a', {
                         href: '/contabilidad/proceso/tarjeta-roja/consultar'
