@@ -236,7 +236,8 @@ const Medicamentos = {
 const RecetaFarmacia = {
     data: [],
     medicamentos: [],
-    despacho: false,
+    despachoParcial: false,
+    despachoTotal: false,
     error: '',
     numeroReceta: '',
     numeroAtencion: '',
@@ -302,7 +303,7 @@ const RecetaFarmacia = {
                 body: {
                     numeroAtencion: RecetaFarmacia.numeroAtencion,
                     numeroReceta: RecetaFarmacia.numeroReceta,
-                    status: RecetaFarmacia.despacho,
+                    status: (RecetaFarmacia.despachoTotal == true ? 'TOTAL' : (RecetaFarmacia.despachoParcial == true ? 'PARCIAL' : '')),
                     obs: Observaciones.observaciones
                 },
                 headers: {
@@ -628,24 +629,28 @@ const RecetaFarmacia = {
                                                                     ),
                                                                     m("tr", [
 
-                                                                        m("td.tx-18.tx-medium.text-left",
-                                                                            "¿Confirmar despacho?:"
+                                                                        m("td.tx-18.tx-medium.text-left", [
+                                                                                "¿Confirmar despacho parcial?:",
+                                                                                m('br'),
+                                                                                "¿Confirmar despacho total?:",
+                                                                            ]
+
                                                                         ),
 
                                                                         m("td.tx-16.tx-normal",
                                                                             m("div.custom-control.custom-checkbox.tx-16", [
-                                                                                m("input.custom-control-input.tx-16[type='checkbox'][id='check_despacho']", {
-                                                                                    checked: RecetaFarmacia.despacho,
+                                                                                m("input.custom-control-input.tx-16[type='checkbox'][id='check_despacho_parcial']", {
+                                                                                    checked: RecetaFarmacia.despachoParcial,
                                                                                     onclick: function(e) {
                                                                                         e.preventDefault();
                                                                                         let p = this.checked;
                                                                                         if (p) {
                                                                                             this.checked = true;
-                                                                                            RecetaFarmacia.despacho = true;
+                                                                                            RecetaFarmacia.despachoParcial = true;
                                                                                             RecetaFarmacia.checkDespacho();
                                                                                         } else {
                                                                                             this.checked = false;
-                                                                                            RecetaFarmacia.despacho = false;
+                                                                                            RecetaFarmacia.despachoParcial = false;
                                                                                             RecetaFarmacia.checkDespacho();
                                                                                         }
 
@@ -654,8 +659,34 @@ const RecetaFarmacia = {
 
 
                                                                                 }),
-                                                                                m("label.custom-control-label.tx-16[for='check_despacho']",
-                                                                                    (RecetaFarmacia.despacho ? ["SI a las: " + RecetaFarmacia.data.FECHA_DESPACHO] : ["SI"])
+                                                                                m("label.custom-control-label.tx-16[for='check_despacho_parcial']",
+                                                                                    (RecetaFarmacia.despachoParcial ? ["SI a las: " + RecetaFarmacia.data.FECHA_DESPACHO] : ["SI"])
+
+                                                                                )
+                                                                            ]),
+                                                                            m("div.custom-control.custom-checkbox.tx-16", [
+                                                                                m("input.custom-control-input.tx-16[type='checkbox'][id='check_despacho_total']", {
+                                                                                    checked: RecetaFarmacia.despachoTotal,
+                                                                                    onclick: function(e) {
+                                                                                        e.preventDefault();
+                                                                                        let p = this.checked;
+                                                                                        if (p) {
+                                                                                            this.checked = true;
+                                                                                            RecetaFarmacia.despachoTotal = true;
+                                                                                            RecetaFarmacia.checkDespacho();
+                                                                                        } else {
+                                                                                            this.checked = false;
+                                                                                            RecetaFarmacia.despachoTotal = false;
+                                                                                            RecetaFarmacia.checkDespacho();
+                                                                                        }
+
+                                                                                    },
+
+
+
+                                                                                }),
+                                                                                m("label.custom-control-label.tx-16[for='check_despacho_total']",
+                                                                                    (RecetaFarmacia.despachoTotal ? ["SI a las: " + RecetaFarmacia.data.FECHA_DESPACHO] : ["SI"])
 
                                                                                 )
                                                                             ])
