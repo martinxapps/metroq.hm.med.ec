@@ -4,6 +4,7 @@ import {
   cargarHoraActual,
   cargarFechaActual,
   containsInvalidChars,
+  detectDevice,
 } from "./logic/formulario";
 import Encrypt from "../../../../models/encrypt";
 
@@ -3317,6 +3318,7 @@ const VerUnFormulario = {
                     CRITERIO: vnode.dom["textareaCriterio"].value,
                     ESTADO: "Activo", //"1",
                     ID: formularioModelo.listadoUnitario.ID,
+                    DISPOSITIVO: detectDevice(),
                   };
                   if (
                     window.confirm(
@@ -3505,6 +3507,7 @@ const VerUnFormulario = {
                     CRITERIO: vnode.dom["textareaCriterio"].value,
                     ESTADO: "Finalizado", //"1",
                     ID: formularioModelo.listadoUnitario.ID,
+                    DISPOSITIVO: detectDevice(),
                   };
                   if (
                     window.confirm(

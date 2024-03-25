@@ -10,6 +10,7 @@ import {
   change,
   siAlgunaEsVerdadero,
   containsInvalidChars,
+  detectDevice,
 } from "./logic/formulario";
 
 let formularioModelo = FormularioModels;
@@ -2477,6 +2478,7 @@ const CrearFormulario = {
               CRITERIO: vnode.dom["textareaCriterio"].value,
               ESTADO: "Activo", //"1",
               ID: "sec_TerapiaRespiratoria.nextval",
+              DISPOSITIVO: detectDevice(),
               //ID: 300,
             };
             if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
