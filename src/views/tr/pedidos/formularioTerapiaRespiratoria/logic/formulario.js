@@ -58,3 +58,11 @@ return newObject;
 export const siAlgunaEsVerdadero = (objeto) => Object.values(objeto).some(Boolean);
 
 export const  containsInvalidChars = (text) => /[-+e]/.test(text);
+export function detectDevice() {
+  var userAgent = navigator.userAgent;
+  if (userAgent.match(/Android/i) || userAgent.match(/iPad|iPhone|iPod/i)) {
+    return "Tablet";
+  } else {
+    return "Computador";
+  }
+}
