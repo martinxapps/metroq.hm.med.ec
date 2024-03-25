@@ -16,7 +16,7 @@ const FOR005 = {
         let page = 0;
 
         if (Formulario.num == 0) {
-            setTimeout(function () {
+            setTimeout(function() {
                 Formulario.num = Formulario.data.length;
                 Formulario.parseFetch();
                 m.redraw.sync();
@@ -38,7 +38,7 @@ const FOR005 = {
             ),
         ] : [
 
-            FOR005.secs.map(function (_v, _i, _contentData) {
+            FOR005.secs.map(function(_v, _i, _contentData) {
 
                 if (_v.name == 'prescripciones_texto') {
 
@@ -94,9 +94,9 @@ const FOR005 = {
                                     ),
                                     m("th.tx-right[colspan='2'][scope='col']",
                                         m("a.tx-right.tx-semibold", {
-                                            href: urlFor,
-                                            target: "_blank"
-                                        },
+                                                href: urlFor,
+                                                target: "_blank"
+                                            },
                                             m('i.fas.fa-print.mg-r-2'),
                                             " Imprirmir  "
 
@@ -248,10 +248,10 @@ const FOR005 = {
                                     ),
                                     m("th[colspan='1'][scope='row']", { "style": { "padding": "0", "background-color": "#eef9c8" } },
                                         m("div.m-0.p-0.tx-bold.text-center.", [
-                                            "FIRMAR AL PIE DE",
-                                            m("br"),
-                                            "CADA PRESCRIPCIÓN"
-                                        ]
+                                                "FIRMAR AL PIE DE",
+                                                m("br"),
+                                                "CADA PRESCRIPCIÓN"
+                                            ]
 
                                         )
                                     ),
@@ -277,21 +277,21 @@ const FOR005 = {
                                     ),
                                     m("th[colspan='4'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
                                         m("div.m-0.p-0.tx-bold.text-center.", [
-                                            "FARMACOTERAPIA E INDICACIONES",
-                                            m("br"),
-                                            "(PARA ENFERMERÍA Y OTRO PERSONAL)"
+                                                "FARMACOTERAPIA E INDICACIONES",
+                                                m("br"),
+                                                "(PARA ENFERMERÍA Y OTRO PERSONAL)"
 
-                                        ]
+                                            ]
 
                                         )
                                     ),
                                     m("th[colspan='2'][scope='row']", { "style": { "padding": "0", "background-color": "#edfbf5" } },
                                         m("div.m-0.p-0.tx-bold.text-center.", [
-                                            "ADMINISTR.",
-                                            m("br"),
-                                            "FÁRMACOS INSUMOS"
+                                                "ADMINISTR.",
+                                                m("br"),
+                                                "FÁRMACOS INSUMOS"
 
-                                        ]
+                                            ]
 
                                         )
                                     ),
@@ -340,11 +340,11 @@ const Formulario = {
     error: "",
     parseDoc: (_data) => {
 
-        Object.keys(_data.data).map(function (_v, _i, _contentData) {
+        Object.keys(_data.data).map(function(_v, _i, _contentData) {
             FOR005.secs.push(_data.data[_v])
         })
 
-        return FOR005.secs.map(function (_v, _i, _contentData) {
+        return FOR005.secs.map(function(_v, _i, _contentData) {
 
 
 
@@ -437,7 +437,7 @@ const Formulario = {
     parseFetch: () => {
         FOR005.secs = [];
 
-        return Formulario.data.map(function (_v, _i, _contentData) {
+        return Formulario.data.map(function(_v, _i, _contentData) {
             Formulario.parseDoc(Formulario.data[_i])
 
         })
@@ -449,14 +449,14 @@ const Formulario = {
         Formulario.data = [];
         Formulario.error = "";
         m.request({
-            method: "GET",
-            url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
+                method: "GET",
+                url: "https://api.hospitalmetropolitano.org/t/v1/formulario?nhcl=" + Formulario.nhc + "&adm=" + Formulario.adm,
 
-            headers: {
-                "Authorization": localStorage.accessToken,
-            },
-        })
-            .then(function (result) {
+                headers: {
+                    "Authorization": localStorage.accessToken,
+                },
+            })
+            .then(function(result) {
                 if (result.length !== 0) {
                     Formulario.data = result;
                     Formulario.num = 0;
@@ -467,8 +467,8 @@ const Formulario = {
                 }
 
             })
-            .catch(function (e) {
-                setTimeout(function () { Formulario.fetch(); }, 5000);
+            .catch(function(e) {
+                setTimeout(function() { Formulario.fetch(); }, 5000);
 
             })
     },
@@ -512,16 +512,16 @@ const Evoluciones = {
         Evoluciones.data = [];
         Evoluciones.error = "";
         m.request({
-            method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
-            body: {
-                numeroHistoriaClinica: PedidoLISA.data.PedidoExameLab.paciente.codigoPaciente + '01'
-            },
-            headers: {
-                "Authorization": localStorage.accessToken,
-            },
-        })
-            .then(function (result) {
+                method: "POST",
+                url: "https://api.hospitalmetropolitano.org/t/v1/ev-paciente",
+                body: {
+                    numeroHistoriaClinica: PedidoLISA.data.PedidoExameLab.paciente.codigoPaciente + '01'
+                },
+                headers: {
+                    "Authorization": localStorage.accessToken,
+                },
+            })
+            .then(function(result) {
                 if (result.status) {
                     Evoluciones.data = result.data;
                     Formulario.adm = Evoluciones.data[0].ADM;
@@ -531,8 +531,8 @@ const Evoluciones = {
                     Evoluciones.error = result.message;
                 }
             })
-            .catch(function (e) {
-                setTimeout(function () { Evoluciones.fetch(); }, 5000);
+            .catch(function(e) {
+                setTimeout(function() { Evoluciones.fetch(); }, 5000);
 
             })
     },
@@ -563,19 +563,19 @@ const Examenes = {
     fetch: () => {
 
         m.request({
-            method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/itemslab/" + PedidoLISA.numeroPedido,
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (res) {
+                method: "POST",
+                url: "https://api.hospitalmetropolitano.org/t/v1/itemslab/" + PedidoLISA.numeroPedido,
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(res) {
 
                 Examenes.data = res.examenes;
                 Examenes.medico = res.medico;
 
             })
-            .catch(function (e) {
+            .catch(function(e) {
 
             })
 
@@ -591,7 +591,7 @@ const Examenes = {
                 PedidoLISA.examenes.Exame = [PedidoLISA.examenes.Exame];
             }
 
-            return PedidoLISA.examenes.Exame.map(function (_val, _i, _contentData) {
+            return PedidoLISA.examenes.Exame.map(function(_val, _i, _contentData) {
 
                 console.log(Examenes.data[_val.codigoExame]);
 
@@ -657,17 +657,17 @@ const StatusPedido = {
         StatusPedido.documento = [];
 
         m.request({
-            method: "POST",
-            url: "https://lisa.hospitalmetropolitano.org/v1/status-pedido-lisa",
-            body: {
-                numeroPedido: PedidoLISA.numeroPedido,
-                idTimeRecord: PedidoLISA.idTimeRecord
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
+                method: "POST",
+                url: "https://lisa.hospitalmetropolitano.org/v1/status-pedido-lisa",
+                body: {
+                    numeroPedido: PedidoLISA.numeroPedido,
+                    idTimeRecord: PedidoLISA.idTimeRecord
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
                 if (result.status) {
                     PedidoLISA.loader = false;
                     PedidoLISA.data = result.data.pedido;
@@ -682,7 +682,7 @@ const StatusPedido = {
                     PedidoLISA.error = result.message;
                 }
             })
-            .catch(function (e) {
+            .catch(function(e) {
 
             })
 
@@ -762,21 +762,21 @@ const Observaciones = {
 
             columns: false,
             aoColumnDefs: [{
-                mRender: function (data, type, row, meta) {
-                    return "";
+                    mRender: function(data, type, row, meta) {
+                        return "";
+                    },
+                    visible: true,
+                    width: "100%",
+                    aTargets: [0],
+                    orderable: false,
                 },
-                visible: true,
-                width: "100%",
-                aTargets: [0],
-                orderable: false,
-            },
 
             ],
-            fnRowCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) { },
-            drawCallback: function (settings) {
-                settings.aoData.map(function (_v, _i) {
+            fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {},
+            drawCallback: function(settings) {
+                settings.aoData.map(function(_v, _i) {
                     m.mount(_v.anCells[0], {
-                        view: function () {
+                        view: function() {
                             if (_v._aData.title == 'Nuevo Mensaje') {
                                 return m("div.demo-static-toast",
                                     m(".toast[role='alert'][aria-live='assertive'][aria-atomic='true']", {
@@ -833,28 +833,28 @@ const Observaciones = {
     },
     fetch: () => {
         m.request({
-            method: "GET",
-            url: "https://api.hospitalmetropolitano.org/t/v1/notificaciones-pedido/" + PedidoLISA.numeroPedido,
-        })
-            .then(function (result) {
+                method: "GET",
+                url: "https://api.hospitalmetropolitano.org/t/v1/notificaciones-pedido/" + PedidoLISA.numeroPedido,
+            })
+            .then(function(result) {
                 Observaciones.data = result.data;
                 Observaciones.loadObservaciones();
 
             })
-            .catch(function (e) { })
+            .catch(function(e) {})
     },
     sendNotiLab: () => {
         m.request({
-            method: "POST",
-            url: "https://api.hospitalmetropolitano.org/t/v1/noti-eme/" + PedidoLISA.numeroPedido,
-            body: {
-                message: Observaciones.observaciones
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
+                method: "POST",
+                url: "https://api.hospitalmetropolitano.org/t/v1/noti-eme/" + PedidoLISA.numeroPedido,
+                body: {
+                    message: Observaciones.observaciones
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
                 if (result.status) {
                     Observaciones.observaciones = "";
                     Observaciones.fetch();
@@ -862,7 +862,7 @@ const Observaciones = {
 
                 }
             })
-            .catch(function (e) {
+            .catch(function(e) {
                 EditarPedido.error = e.message;
             })
 
@@ -877,7 +877,7 @@ const TomaMuestras = {
     seleccionarTodos: (status) => {
         TomaMuestras.checkedAll = status;
         var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
-        return StatusPedido.data.map(function (_val, _i, _contentData) {
+        return StatusPedido.data.map(function(_val, _i, _contentData) {
             if (status) {
                 StatusPedido.data[_i]['STATUS_TOMA'] = "1";
                 StatusPedido.data[_i]['FECHA_TOMA'] = _fechaToma;
@@ -948,21 +948,21 @@ const TomaMuestras = {
     udpateStatusTomaMuestra: () => {
         StatusPedido.documento.dataTomaMuestra.insumosToma = Insumos;
         m.request({
-            method: "POST",
-            url: "https://lisa.hospitalmetropolitano.org/v1/up-status-pedido-lab",
-            body: {
-                documento: JSON.stringify(StatusPedido.documento),
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
+                method: "POST",
+                url: "https://lisa.hospitalmetropolitano.org/v1/up-status-pedido-lab",
+                body: {
+                    documento: JSON.stringify(StatusPedido.documento),
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
                 StatusPedido.documento = result.data;
                 StatusPedido.data = result.data.dataTomaMuestra.examenesToma;
 
             })
-            .catch(function (e) { })
+            .catch(function(e) {})
     },
 
     view: () => {
@@ -985,11 +985,11 @@ const TomaMuestras = {
 
                     (TomaMuestras.disabledToma ? [m("p.mg-5.tx-right", [
                         m("button.btn.btn-xs.btn-outline-secondary[type='button']", {
-                            onclick: () => {
-                                TomaMuestras.disabledToma = false;
-                                TomaMuestras.disabledInsumos = false;
-                            }
-                        },
+                                onclick: () => {
+                                    TomaMuestras.disabledToma = false;
+                                    TomaMuestras.disabledInsumos = false;
+                                }
+                            },
                             m("i.fas.fa-edit.mg-r-5"),
                             " EDITAR"
 
@@ -1028,7 +1028,7 @@ const TomaMuestras = {
                                             m("div.custom-control.custom-checkbox", [
                                                 m("input.custom-control-input[type='checkbox'][id='selectTomaTodos']", {
                                                     checked: TomaMuestras.checkedAll,
-                                                    onclick: function (e) {
+                                                    onclick: function(e) {
                                                         TomaMuestras.seleccionarTodos(this.checked);
                                                     }
                                                 }),
@@ -1037,10 +1037,10 @@ const TomaMuestras = {
                                                 )
                                             ])
                                         ),
-                                        m("td.tx-medium.text-right",),
+                                        m("td.tx-medium.text-right", ),
                                     ]),
 
-                                    StatusPedido.data.map(function (_val, _i, _contentData) {
+                                    StatusPedido.data.map(function(_val, _i, _contentData) {
 
                                         return [
                                             m("tr", [
@@ -1053,10 +1053,10 @@ const TomaMuestras = {
                                                     m("div.custom-control.custom-checkbox.tx-16", [
                                                         m("input.custom-control-input.tx-16[type='checkbox'][id='" + _val.CD_EXA_LAB + "']", {
                                                             checked: StatusPedido.data[_i]['customCheked'],
-                                                            onupdate: function (e) {
+                                                            onupdate: function(e) {
                                                                 this.checked = StatusPedido.data[_i]['customCheked'];
                                                             },
-                                                            onclick: function (e) {
+                                                            onclick: function(e) {
 
                                                                 e.preventDefault();
                                                                 var p = this.checked;
@@ -1183,25 +1183,25 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
+                                                        onclick: () => {
 
 
-                                                        Insumos.tuboLila++;
+                                                            Insumos.tuboLila++;
+                                                        },
+
                                                     },
-
-                                                },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.tuboLila--;
-                                                        if (Insumos.tuboLila < 0) {
-                                                            Insumos.tuboLila = 0;
-                                                        }
+                                                        onclick: () => {
+                                                            Insumos.tuboLila--;
+                                                            if (Insumos.tuboLila < 0) {
+                                                                Insumos.tuboLila = 0;
+                                                            }
+
+                                                        },
 
                                                     },
-
-                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1274,23 +1274,23 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.tuboRojo++;
-                                                    },
+                                                        onclick: () => {
+                                                            Insumos.tuboRojo++;
+                                                        },
 
-                                                },
+                                                    },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.tuboRojo--;
-                                                        if (Insumos.tuboRojo < 0) {
-                                                            Insumos.tuboRojo = 0;
-                                                        }
+                                                        onclick: () => {
+                                                            Insumos.tuboRojo--;
+                                                            if (Insumos.tuboRojo < 0) {
+                                                                Insumos.tuboRojo = 0;
+                                                            }
+
+                                                        },
 
                                                     },
-
-                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1362,20 +1362,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.tuboCeleste++;
-                                                    },
+                                                        onclick: () => {
+                                                            Insumos.tuboCeleste++;
+                                                        },
 
-                                                },
+                                                    },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.tuboCeleste--;
+                                                        onclick: () => {
+                                                            Insumos.tuboCeleste--;
+
+                                                        },
 
                                                     },
-
-                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1447,20 +1447,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.tuboNegro++;
-                                                    },
+                                                        onclick: () => {
+                                                            Insumos.tuboNegro++;
+                                                        },
 
-                                                },
+                                                    },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.tuboNegro--;
+                                                        onclick: () => {
+                                                            Insumos.tuboNegro--;
+
+                                                        },
 
                                                     },
-
-                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1533,20 +1533,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.tuboVerde++;
-                                                    },
+                                                        onclick: () => {
+                                                            Insumos.tuboVerde++;
+                                                        },
 
-                                                },
+                                                    },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.tuboVerde--;
+                                                        onclick: () => {
+                                                            Insumos.tuboVerde--;
+
+                                                        },
 
                                                     },
-
-                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1618,20 +1618,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.gsav++;
-                                                    },
+                                                        onclick: () => {
+                                                            Insumos.gsav++;
+                                                        },
 
-                                                },
+                                                    },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.gsav--;
+                                                        onclick: () => {
+                                                            Insumos.gsav--;
+
+                                                        },
 
                                                     },
-
-                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1703,20 +1703,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.hemocultivo++;
-                                                    },
+                                                        onclick: () => {
+                                                            Insumos.hemocultivo++;
+                                                        },
 
-                                                },
+                                                    },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.hemocultivo--;
+                                                        onclick: () => {
+                                                            Insumos.hemocultivo--;
+
+                                                        },
 
                                                     },
-
-                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1788,20 +1788,20 @@ const TomaMuestras = {
                                                     })
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.qtb++;
-                                                    },
+                                                        onclick: () => {
+                                                            Insumos.qtb++;
+                                                        },
 
-                                                },
+                                                    },
                                                     m("i.fas.fa-plus-circle.tx-22.tx-success")
                                                 ),
                                                 m("button.btn.btn[type='button']", {
-                                                    onclick: () => {
-                                                        Insumos.qtb--;
+                                                        onclick: () => {
+                                                            Insumos.qtb--;
+
+                                                        },
 
                                                     },
-
-                                                },
                                                     m("i.fas.fa-minus-circle.tx-22.tx-danger")
                                                 ),
 
@@ -1817,19 +1817,19 @@ const TomaMuestras = {
                         ),
                         ((!TomaMuestras.disabledToma) ? [m("div.pd-10", [
                             m("button.btn.btn-xs.btn-primary.btn-block.tx-semibold[type='button']", {
-                                disabled: TomaMuestras.disabledToma,
-                                onclick: () => {
+                                    disabled: TomaMuestras.disabledToma,
+                                    onclick: () => {
 
-                                    TomaMuestras.validarUpdateMuestras();
-                                    var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
-                                    StatusPedido.documento.dataTomaMuestra.usuarioToma = "flebot1";
-                                    StatusPedido.documento.dataTomaMuestra.fechaToma = _fechaToma;
-                                    TomaMuestras.disabledToma = true;
-                                    TomaMuestras.udpateStatusTomaMuestra();
+                                        TomaMuestras.validarUpdateMuestras();
+                                        var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
+                                        StatusPedido.documento.dataTomaMuestra.usuarioToma = "flebot1";
+                                        StatusPedido.documento.dataTomaMuestra.fechaToma = _fechaToma;
+                                        TomaMuestras.disabledToma = true;
+                                        TomaMuestras.udpateStatusTomaMuestra();
 
 
-                                }
-                            },
+                                    }
+                                },
                                 "Guardar Registro"
                             )
                         ])] : [m("p.mg-5.", [
@@ -1875,7 +1875,7 @@ const ControlLISA = {
 
         var existe = false;
 
-        ControlLISA.examenes.map(function (_val, _i, _contentData) {
+        ControlLISA.examenes.map(function(_val, _i, _contentData) {
             if (ControlLISA.examenes[_i]['codigoExame'] == exa.CD_EXA_LAB) {
                 existe = true;
             }
@@ -1883,7 +1883,7 @@ const ControlLISA = {
 
         if (!existe) {
 
-            PedidoLISA.examenes.Exame.map(function (_val, _i, _contentData) {
+            PedidoLISA.examenes.Exame.map(function(_val, _i, _contentData) {
                 if (PedidoLISA.examenes.Exame[_i]['codigoExame'] == exa.CD_EXA_LAB) {
                     ControlLISA.examenes.push(PedidoLISA.examenes.Exame[_i]);
                 }
@@ -1902,7 +1902,7 @@ const ControlLISA = {
         var existe = false;
         var _ni = null;
 
-        ControlLISA.examenes.map(function (_val, _i, _contentData) {
+        ControlLISA.examenes.map(function(_val, _i, _contentData) {
             if (ControlLISA.examenes[_i]['codigoExame'] == exa.CD_EXA_LAB) {
                 existe = true;
                 _ni = _i;
@@ -1954,49 +1954,49 @@ const ControlLISA = {
     sendNuevoPedido: (xmlRes, sc, itr) => {
 
         m.request({
-            method: "POST",
-            url: "https://lisa.hospitalmetropolitano.org/v1/pedidos/send-nuevo-pedido",
-            body: {
-                data: xmlRes,
-                sc: sc,
-                idTimeRecord: itr,
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
-                setTimeout(function () {
+                method: "POST",
+                url: "https://lisa.hospitalmetropolitano.org/v1/pedidos/send-nuevo-pedido",
+                body: {
+                    data: xmlRes,
+                    sc: sc,
+                    idTimeRecord: itr,
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
+                setTimeout(function() {
                     alert('Proceso realizado con éxito.');
                     window.location.reload();
                 }, 2000);
                 console.log('result', result);
             })
-            .catch(function (e) {
+            .catch(function(e) {
 
             });
     },
     sendXML: (xmlRes, sc, itr) => {
         console.log('xmlRes', xmlRes);
         m.request({
-            method: "POST",
-            url: "https://lisa.hospitalmetropolitano.org/v1/pedidos/send-pedido",
-            body: {
-                data: xmlRes,
-                sc: sc,
-                idTimeRecord: itr,
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
-                setTimeout(function () {
+                method: "POST",
+                url: "https://lisa.hospitalmetropolitano.org/v1/pedidos/send-pedido",
+                body: {
+                    data: xmlRes,
+                    sc: sc,
+                    idTimeRecord: itr,
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
+                setTimeout(function() {
                     alert('Proceso realizado con éxito.');
                     window.location.reload();
                 }, 2000);
             })
-            .catch(function (e) {
+            .catch(function(e) {
 
             });
     },
@@ -2014,17 +2014,17 @@ const ControlLISA = {
         RecepMuestras.disabledToma = false;
 
         m.request({
-            method: "GET",
-            url: "https://lisa.hospitalmetropolitano.org/v1/logs-envio-pedido-lisa?numeroPedido=" + PedidoLISA.numeroPedido,
+                method: "GET",
+                url: "https://lisa.hospitalmetropolitano.org/v1/logs-envio-pedido-lisa?numeroPedido=" + PedidoLISA.numeroPedido,
 
-            headers: {
-                "Authorization": localStorage.accessToken,
-            },
-        })
-            .then(function (result) {
+                headers: {
+                    "Authorization": localStorage.accessToken,
+                },
+            })
+            .then(function(result) {
 
                 // Validar control logs para registro
-                result.data.map(function (_val, _i, _contentData) {
+                result.data.map(function(_val, _i, _contentData) {
 
                     if (_val.PedidoExameLab.listaExame.Exame !== undefined) {
                         ControlLISA.logsEnvio.push(_val);
@@ -2040,7 +2040,7 @@ const ControlLISA = {
 
 
             })
-            .catch(function (e) {
+            .catch(function(e) {
 
             })
 
@@ -2051,7 +2051,7 @@ const ControlLISA = {
 
         if (ControlLISA.logsEnvio.length !== 0) {
 
-            return ControlLISA.logsEnvio.map(function (_val, _i, _contentData) {
+            return ControlLISA.logsEnvio.map(function(_val, _i, _contentData) {
 
                 return [
                     m("tr", {
@@ -2064,7 +2064,7 @@ const ControlLISA = {
                         m("td.tx-16.tx-normal.text-left",
                             (_val.PedidoExameLab.listaExame.Exame !== undefined && _val.PedidoExameLab.listaExame.Exame.length !== undefined ? [
                                 (_val.PedidoExameLab.codigoPedido > 88000000 ? [
-                                    _val.PedidoExameLab.listaExame.Exame.map(function (_v, _p, _contentData) {
+                                    _val.PedidoExameLab.listaExame.Exame.map(function(_v, _p, _contentData) {
                                         RecepMuestras.examenNuevoPedido(_v, _val.PedidoExameLab, _val.Cabecalho);
                                         return [
                                             m(".d-inline", _v.descExame),
@@ -2072,7 +2072,7 @@ const ControlLISA = {
                                         ]
                                     })
                                 ] : [
-                                    _val.PedidoExameLab.listaExame.Exame.map(function (_v, _p, _contentData) {
+                                    _val.PedidoExameLab.listaExame.Exame.map(function(_v, _p, _contentData) {
                                         return [
                                             m(".d-inline", _v.descExame),
                                             m("br")
@@ -2108,10 +2108,10 @@ const ControlLISA = {
                         m("td.tx-16.tx-normal.d-none", [
                             (_val.PedidoExameLab.codigoPedido > 88000000 ? [
                                 m("button.btn.btn-xs.btn-block.wd-50p.btn-danger.d-none", {
-                                    onclick: () => {
+                                        onclick: () => {
 
-                                    }
-                                },
+                                        }
+                                    },
                                     " Eliminar "
                                 ),
 
@@ -2146,23 +2146,14 @@ const ControlLISA = {
 
 };
 
-const RecepMuestras = {
+const RecepFacturacion = {
     checkedAll: false,
     disabledToma: false,
     disabledInsumos: false,
-    impresora: "",
-    examenNuevoPedido: (examen, pedido, xml) => {
-        return StatusPedido.dataMuestras.map(function (_val, _i, _contentData) {
-            if (examen.codigoExame === _val.CD_EXA_LAB) {
-                StatusPedido.dataMuestras[_i]['NM_EXA_LAB'] = "";
-                StatusPedido.dataMuestras[_i]['NM_EXA_LAB'] = "*" + examen.descExame + " (" + pedido.codigoPedido + ")";
-            }
-        })
-    },
     seleccionarTodos: (status) => {
-        RecepMuestras.checkedAll = status;
+        RecepFacturacion.checkedAll = status;
         var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
-        return StatusPedido.dataMuestras.map(function (_val, _i, _contentData) {
+        return StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
             if (status) {
                 StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "1";
                 StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = _fechaToma;
@@ -2208,21 +2199,257 @@ const RecepMuestras = {
 
         StatusPedido.documento.dataRecepcion.insumosRecep = Insumos;
         m.request({
-            method: "POST",
-            url: "https://lisa.hospitalmetropolitano.org/v1/up-status-pedido-lab",
-            body: {
-                documento: JSON.stringify(StatusPedido.documento),
-            },
-            headers: {
-                "Content-Type": "application/json; charset=utf-8",
-            },
-        })
-            .then(function (result) {
+                method: "POST",
+                url: "https://lisa.hospitalmetropolitano.org/v1/up-status-pedido-lab",
+                body: {
+                    documento: JSON.stringify(StatusPedido.documento),
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
                 StatusPedido.documento = result.data;
                 StatusPedido.dataMuestras = result.data.dataRecepcion.examenesRecep;
 
             })
-            .catch(function (e) { })
+            .catch(function(e) {})
+    },
+
+    view: () => {
+
+
+
+
+        if (StatusPedido.error) {
+            return [
+                m("p.mg-0",
+                    StatusPedido.error
+                )
+            ]
+        } else if (StatusPedido.dataMuestras.length !== 0) {
+            return [
+                m("div.bg-white.bd.d-flex.flex-column.justify-content-end", [
+                    m(".", [
+                        m('.', {
+                            "style": { "pointer-events": (RecepFacturacion.disabledToma ? "none" : "auto") }
+                        }, [
+                            m("div.table-responsive.mg-b-10.mg-t-10",
+                                m("table.table.table-dashboard.table-hover.mg-b-0", [
+                                    m("thead",
+
+                                        m("tr", [
+                                            m("th.text-left",
+                                                "EXAMEN(ES)"
+                                            ),
+                                            m("th[colspan='2']",
+                                                "CONFIRMACIÓN PARA FACTURACIÓN"
+                                            ),
+
+                                        ])
+                                    ),
+                                    m("tbody", [
+                                        m("tr", [
+                                            m("td[colspan='2'].tx-normal",
+                                                m("div.custom-control.custom-checkbox", [
+                                                    m("input.custom-control-input[type='checkbox'][id='rf_selectTomaTodos']", {
+                                                        checked: RecepFacturacion.checkedAll,
+                                                        onclick: function(e) {
+                                                            RecepFacturacion.seleccionarTodos(this.checked);
+                                                        }
+                                                    }),
+                                                    m("label.custom-control-label[for='rf_selectTomaTodos']",
+                                                        'Seleccionar Todos'
+                                                    )
+                                                ])
+                                            ),
+
+                                        ]),
+
+                                        StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
+
+                                            return [
+                                                m("tr", [
+
+                                                    m("td.tx-18.tx-medium.text-left",
+                                                        _val.NM_EXA_LAB
+                                                    ),
+
+                                                    m("td.tx-16.tx-normal",
+                                                        m("div.custom-control.custom-checkbox.tx-16", [
+                                                            m("input.custom-control-input.tx-16[type='checkbox'][id='r_" + _val.CD_EXA_LAB + "']", {
+                                                                checked: StatusPedido.dataMuestras[_i]['customCheked'],
+                                                                onupdate: function(e) {
+                                                                    this.checked = StatusPedido.dataMuestras[_i]['customCheked'];
+                                                                },
+                                                                onclick: function(e) {
+
+                                                                    e.preventDefault();
+                                                                    var p = this.checked;
+                                                                    if (p) {
+                                                                        StatusPedido.dataMuestras[_i]['customCheked'] = !StatusPedido.dataMuestras[_i]['customCheked'];
+                                                                        StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "1";
+                                                                        StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = moment().format('DD-MM-YYYY HH:mm');
+                                                                        ControlLISA.agregarExamen(StatusPedido.dataMuestras[_i])
+                                                                    } else {
+                                                                        if (StatusPedido.dataMuestras[_i]['NM_EXA_LAB'].includes("(88")) {
+                                                                            alert("No es posible esta acción. Ya existe un pedido generado.");
+                                                                            throw "No es posible esta acción. Ya existe un pedido generado.";
+                                                                        } else {
+                                                                            if (ControlLISA.nuevoPedido) {
+                                                                                alert("No es posible generar un Nuevo Pedido de este exámen.");
+                                                                                throw "No es posible generar un Nuevo Pedido de este exámen.";
+                                                                            } else {
+                                                                                StatusPedido.dataMuestras[_i]['customCheked'] = !StatusPedido.dataMuestras[_i]['customCheked'];
+                                                                                RecepMuestras.checkedAll = false;
+                                                                                StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "";
+                                                                                StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = "";
+                                                                                ControlLISA.eliminarExamen(StatusPedido.dataMuestras[_i])
+                                                                            }
+
+
+                                                                        }
+
+
+
+                                                                    }
+
+                                                                },
+
+
+
+                                                            }),
+                                                            m("label.custom-control-label.tx-16[for='r_" + _val.CD_EXA_LAB + "']",
+                                                                (StatusPedido.dataMuestras[_i]['STATUS_RECEP'].length !== 0) ? StatusPedido.dataMuestras[_i]['FECHA_RECEP'] : StatusPedido.dataMuestras[_i]['STATUS_RECEP'],
+
+                                                            )
+                                                        ])
+                                                    ),
+
+
+
+
+
+                                                ]),
+                                            ]
+                                        }),
+
+                                    ]),
+                                ])
+                            ),
+                            m("div.pd-10", [
+                                m("button.btn.btn-xs.btn-success.btn-block.tx-semibold[type='button']", {
+                                        disabled: RecepFacturacion.disabledToma,
+                                        onclick: () => {
+                                            RecepFacturacion.validarUpdateMuestras();
+                                            var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
+                                            StatusPedido.documento.dataRecepcion.usuarioRecep = "flebot1";
+                                            StatusPedido.documento.dataRecepcion.fechaRecep = _fechaToma;
+                                            RecepFacturacion.disabledToma = true;
+                                            RecepFacturacion.udpateStatusTomaMuestra();
+                                        }
+                                    },
+                                    "Guardar y Facturar"
+                                )
+                            ])
+                        ]),
+                    ]),
+
+                ])
+            ]
+        } else {
+            return [
+                m("div.pd-t-10", [
+                    m("div.placeholder-paragraph.wd-100p", [
+                        m("div.line"),
+                        m("div.line")
+                    ])
+                ])
+
+            ]
+        }
+
+    }
+
+};
+
+const RecepMuestras = {
+    checkedAll: false,
+    disabledToma: false,
+    disabledInsumos: false,
+    impresora: "",
+    examenNuevoPedido: (examen, pedido, xml) => {
+        return StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
+            if (examen.codigoExame === _val.CD_EXA_LAB) {
+                StatusPedido.dataMuestras[_i]['NM_EXA_LAB'] = "";
+                StatusPedido.dataMuestras[_i]['NM_EXA_LAB'] = "*" + examen.descExame + " (" + pedido.codigoPedido + ")";
+            }
+        })
+    },
+    seleccionarTodos: (status) => {
+        RecepMuestras.checkedAll = status;
+        var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
+        return StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
+            if (status) {
+                StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "1";
+                StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = _fechaToma;
+                StatusPedido.dataMuestras[_i]['customCheked'] = true;
+                ControlLISA.agregarExamen(StatusPedido.dataMuestras[_i]);
+            } else {
+                StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "";
+                StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = "";
+                StatusPedido.dataMuestras[_i]['customCheked'] = false;
+                ControlLISA.eliminarExamen(StatusPedido.dataMuestras[_i]);
+
+            }
+        })
+    },
+    validarUpdateMuestras: () => {
+
+
+        var _t = 0;
+
+        for (var i = 0; i < StatusPedido.dataMuestras.length; i++) {
+
+            if (StatusPedido.dataMuestras[i]['STATUS_RECEP'].length !== 0) {
+                _t++;
+            }
+
+        }
+
+        // Set State
+
+        if (_t == 0) {
+            alert("El regisro de Toma de (Muestra) e Insumos en necesario.");
+            throw "El regisro de Toma de (Muestra) e Insumos en necesario.";
+        }
+
+
+        ControlLISA.generarXML();
+
+
+    },
+    udpateStatusTomaMuestra: () => {
+
+
+
+        StatusPedido.documento.dataRecepcion.insumosRecep = Insumos;
+        m.request({
+                method: "POST",
+                url: "https://lisa.hospitalmetropolitano.org/v1/up-status-pedido-lab",
+                body: {
+                    documento: JSON.stringify(StatusPedido.documento),
+                },
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            })
+            .then(function(result) {
+                StatusPedido.documento = result.data;
+                StatusPedido.dataMuestras = result.data.dataRecepcion.examenesRecep;
+
+            })
+            .catch(function(e) {})
     },
 
     view: () => {
@@ -2242,36 +2469,36 @@ const RecepMuestras = {
 
                     m("p.mg-5.tx-right", [
                         m("button.btn.btn-xs.btn-success.mg-r-5[type='button']", {
-                            class: RecepMuestras.disabledToma ? "" : "d-none",
-                            onclick: () => {
-                                RecepMuestras.disabledToma = false;
-                            }
-                        },
+                                class: RecepMuestras.disabledToma ? "" : "d-none",
+                                onclick: () => {
+                                    RecepMuestras.disabledToma = false;
+                                }
+                            },
                             m("i.fas.fa-edit.mg-r-5"),
                             " EDITAR "
                         ),
                         m("button.btn.btn-xs.btn-primary.mg-r-5[type='button']", {
-                            onclick: () => {
-                                if (confirm("Esta seguro de generar un nuevo pedido 88.000.000.") == true) {
-                                    RecepMuestras.disabledToma = false;
-                                    ControlLISA.setNuevoPedido();
-                                }
+                                onclick: () => {
+                                    if (confirm("Esta seguro de generar un nuevo pedido 88.000.000.") == true) {
+                                        RecepMuestras.disabledToma = false;
+                                        ControlLISA.setNuevoPedido();
+                                    }
 
-                            }
-                        },
+                                }
+                            },
                             m("i.fas.fa-file-alt.mg-r-5"),
                             " NUEVO PEDIDO "
                         ),
                         m("button.btn.btn-xs.btn-warning[type='button']", {
-                            onclick: () => {
-                                if (ControlLISA.showLogs.length == 0) {
-                                    ControlLISA.showLogs = "d-none";
-                                } else {
-                                    ControlLISA.showLogs = "";
-                                }
+                                onclick: () => {
+                                    if (ControlLISA.showLogs.length == 0) {
+                                        ControlLISA.showLogs = "d-none";
+                                    } else {
+                                        ControlLISA.showLogs = "";
+                                    }
 
-                            }
-                        },
+                                }
+                            },
                             " VER HISTORIAL DE ENVÍO "
                         )
 
@@ -2292,18 +2519,18 @@ const RecepMuestras = {
                                     m("thead",
                                         m("tr", [
                                             m("th[colspan='2'].text-dark.text-left.tx-semibold", {
-                                                oncreate: (el) => {
-                                                    el.dom.innerHTML = "Recepcion de Muestras";
-                                                },
-                                                onupdate: (el) => {
-                                                    if (ControlLISA.nuevoPedido) {
-                                                        el.dom.innerHTML = "Nuevo Pedido LISA:";
-                                                    } else {
+                                                    oncreate: (el) => {
                                                         el.dom.innerHTML = "Recepcion de Muestras";
+                                                    },
+                                                    onupdate: (el) => {
+                                                        if (ControlLISA.nuevoPedido) {
+                                                            el.dom.innerHTML = "Nuevo Pedido LISA:";
+                                                        } else {
+                                                            el.dom.innerHTML = "Recepcion de Muestras";
 
+                                                        }
                                                     }
-                                                }
-                                            },
+                                                },
 
                                             ),
 
@@ -2326,7 +2553,7 @@ const RecepMuestras = {
                                                 m("div.custom-control.custom-checkbox", [
                                                     m("input.custom-control-input[type='checkbox'][id='r_selectTomaTodos']", {
                                                         checked: RecepMuestras.checkedAll,
-                                                        onclick: function (e) {
+                                                        onclick: function(e) {
                                                             RecepMuestras.seleccionarTodos(this.checked);
                                                         }
                                                     }),
@@ -2338,7 +2565,7 @@ const RecepMuestras = {
 
                                         ]),
 
-                                        StatusPedido.dataMuestras.map(function (_val, _i, _contentData) {
+                                        StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
 
                                             return [
                                                 m("tr", [
@@ -2351,10 +2578,10 @@ const RecepMuestras = {
                                                         m("div.custom-control.custom-checkbox.tx-16", [
                                                             m("input.custom-control-input.tx-16[type='checkbox'][id='r_" + _val.CD_EXA_LAB + "']", {
                                                                 checked: StatusPedido.dataMuestras[_i]['customCheked'],
-                                                                onupdate: function (e) {
+                                                                onupdate: function(e) {
                                                                     this.checked = StatusPedido.dataMuestras[_i]['customCheked'];
                                                                 },
-                                                                onclick: function (e) {
+                                                                onclick: function(e) {
 
                                                                     e.preventDefault();
                                                                     var p = this.checked;
@@ -2420,7 +2647,7 @@ const RecepMuestras = {
 
                                             m("th[colspan='2'].text-primary.text-right.bg-light.tx-semibold", {
 
-                                            },
+                                                },
                                                 "IMPRESIÓN ETIQUETAS:"
                                             ),
 
@@ -2447,18 +2674,18 @@ const RecepMuestras = {
                             ),
                             m("div.pd-10", [
                                 m("button.btn.btn-xs.btn-primary.btn-block.tx-semibold[type='button']", {
-                                    disabled: RecepMuestras.disabledToma,
-                                    onclick: () => {
+                                        disabled: RecepMuestras.disabledToma,
+                                        onclick: () => {
 
-                                        RecepMuestras.validarUpdateMuestras();
-                                        var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
-                                        StatusPedido.documento.dataRecepcion.usuarioRecep = "flebot1";
-                                        StatusPedido.documento.dataRecepcion.fechaRecep = _fechaToma;
-                                        RecepMuestras.disabledToma = true;
-                                        RecepMuestras.udpateStatusTomaMuestra();
+                                            RecepMuestras.validarUpdateMuestras();
+                                            var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
+                                            StatusPedido.documento.dataRecepcion.usuarioRecep = "flebot1";
+                                            StatusPedido.documento.dataRecepcion.fechaRecep = _fechaToma;
+                                            RecepMuestras.disabledToma = true;
+                                            RecepMuestras.udpateStatusTomaMuestra();
 
-                                    }
-                                },
+                                        }
+                                    },
                                     (ControlLISA.nuevoPedido ? "Nuevo Pedido LISA" : "Guardar y Enviar")
                                 )
                             ])
@@ -2473,7 +2700,7 @@ const RecepMuestras = {
                                         m("tr", [
                                             m("th[colspan='2'].text-primary.text-left", {
 
-                                            },
+                                                },
                                                 "Historial de Envios LISA:"
                                             ),
 
@@ -2599,11 +2826,11 @@ const PedidoLISA = {
                         m("div.col-12", [
 
                             m("div.table-loader.wd-100p", [
-                                m("div.placeholder-paragraph", [
-                                    m("div.line"),
-                                    m("div.line")
-                                ])
-                            ]
+                                    m("div.placeholder-paragraph", [
+                                        m("div.line"),
+                                        m("div.line")
+                                    ])
+                                ]
 
 
                             ),
@@ -2622,8 +2849,8 @@ const PedidoLISA = {
             m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("laboratorio") }),
             m(SidebarLab, { oncreate: SidebarLab.setPage(21) }),
             m("div.content.content-components", {
-                style: { "margin-right": "0px" }
-            },
+                    style: { "margin-right": "0px" }
+                },
                 m("div.container.mg-l-0.mg-r-0", {
                     style: { "max-width": "100%" }
                 }, [
@@ -2654,29 +2881,29 @@ const PedidoLISA = {
                         m("div.col-12", [
 
                             m("div.table-loader.wd-100p", {
-                                oncreate: (el) => {
-                                    if (PedidoLISA.loader) {
-                                        el.dom.hidden = false;
-                                    } else {
-                                        el.dom.hidden = true;
+                                    oncreate: (el) => {
+                                        if (PedidoLISA.loader) {
+                                            el.dom.hidden = false;
+                                        } else {
+                                            el.dom.hidden = true;
 
+                                        }
+                                    },
+                                    onupdate: (el) => {
+                                        if (PedidoLISA.loader) {
+                                            el.dom.hidden = false;
+                                        } else {
+                                            el.dom.hidden = true;
+
+                                        }
                                     }
-                                },
-                                onupdate: (el) => {
-                                    if (PedidoLISA.loader) {
-                                        el.dom.hidden = false;
-                                    } else {
-                                        el.dom.hidden = true;
 
-                                    }
-                                }
-
-                            }, [
-                                m("div.placeholder-paragraph", [
-                                    m("div.line"),
-                                    m("div.line")
-                                ])
-                            ]
+                                }, [
+                                    m("div.placeholder-paragraph", [
+                                        m("div.line"),
+                                        m("div.line")
+                                    ])
+                                ]
 
 
                             ),
@@ -2704,16 +2931,16 @@ const PedidoLISA = {
                                     m("h5.tx-right.tx-normal.tx-rubik.tx-color-03.mg-b-0",
                                         m("small.pd-2.tx-20",
                                             m("i.fas.fa-times-circle.pd-2", {
-                                                "style": { "cursor": "pointer" },
-                                                title: "Cerrar",
-                                                onclick: () => {
+                                                    "style": { "cursor": "pointer" },
+                                                    title: "Cerrar",
+                                                    onclick: () => {
 
-                                                    window.close();
+                                                        window.close();
 
 
 
+                                                    }
                                                 }
-                                            }
 
                                             )
 
@@ -2753,41 +2980,41 @@ const PedidoLISA = {
                                             m("tbody", [
                                                 m("tr", [
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "N° de Pedido:"
                                                     ),
                                                     m("td", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         PedidoLISA.data.PedidoExameLab.codigoPedido
                                                     ),
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "Fecha Pedido:",
                                                         m('br'),
                                                         m('.d-inline.tx-danger', "Fecha Toma de Muestra:"),
                                                     ),
                                                     m("td[colspan='3']", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         PedidoLISA.data.PedidoExameLab.dataExame,
                                                         m('br'),
                                                         PedidoLISA.data.PedidoExameLab.dataColetaPedido
 
                                                     ),
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "Origen:"
                                                     ),
                                                     m("td[colspan='3']", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         PedidoLISA.data.PedidoExameLab.descSetorSolicitante
                                                     ),
 
@@ -2795,26 +3022,26 @@ const PedidoLISA = {
 
                                                 m("tr", [
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "Médico Solicitante:"
                                                     ),
                                                     m("td[colspan='4']", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         PedidoLISA.data.PedidoExameLab.descPrestadorSolicitante,
 
                                                     ),
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "Médico Tratante:"
                                                     ),
                                                     m("td[colspan='4']", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         (Examenes.medico !== null && Examenes.medico !== false ? [m("div.d-inline.tx-semibold.tx-danger", Examenes.medico.PRESTADOR)] : PedidoLISA.data.PedidoExameLab.descPrestadorSolicitante)
 
                                                     ),
@@ -2835,86 +3062,86 @@ const PedidoLISA = {
                                             m("tbody", [
                                                 m("tr", [
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "Apellidos y Nombres:"
                                                     ),
                                                     m("td[colspan='5']", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         PedidoLISA.data.PedidoExameLab.paciente.nome
                                                     ),
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "Edad:"
                                                     ),
                                                     m("td", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         PedidoLISA.data.PedidoExameLab.paciente.anios +
                                                         " Año(s)"
 
                                                     ),
 
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "NHC:"
                                                     ),
                                                     m("td", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         PedidoLISA.data.PedidoExameLab.paciente.codigoPaciente
                                                     ),
 
                                                 ]),
                                                 m("tr", [
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "N° Atención:"
                                                     ),
                                                     m("td", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         PedidoLISA.data.PedidoExameLab.atendimento.codigoAtendimento
                                                     ),
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "Sexo:"
                                                     ),
                                                     m("td", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         (PedidoLISA.data.PedidoExameLab.paciente.sexo == "F" ? "Femenino" : "Masculino")
                                                     ),
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "F. de Nac.:"
                                                     ),
                                                     m("td", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         PedidoLISA.data.PedidoExameLab.paciente.dataNascimento
                                                     ),
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "Dg:"
                                                     ),
                                                     m("td[colspan='3']", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         (PedidoLISA.data.PedidoExameLab.diagnostico.codigoDiagnostico.length == undefined ? '' : 'CIE: ' + PedidoLISA.data.PedidoExameLab.diagnostico.codigoDiagnostico) + (PedidoLISA.data.PedidoExameLab.diagnostico.dsDiagostico.length == undefined ? '' : " - " + PedidoLISA.data.PedidoExameLab.diagnostico.dsDiagostico)
                                                     ),
                                                 ]),
@@ -2926,14 +3153,14 @@ const PedidoLISA = {
                                                 ]),
                                                 m("tr", [
                                                     m("th", {
-                                                        style: { "background-color": "#a8bed6" }
-                                                    },
+                                                            style: { "background-color": "#a8bed6" }
+                                                        },
                                                         "Exámenes:"
                                                     ),
                                                     m("td[colspan='9']", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         m(Examenes)
                                                     ),
 
@@ -2949,16 +3176,16 @@ const PedidoLISA = {
                                                 m("tr.d-print-none", [
 
                                                     m("td[colspan='10']", {
-                                                        style: { "background-color": "#eaeff5" }
+                                                            style: { "background-color": "#eaeff5" }
 
-                                                    },
+                                                        },
                                                         m("ul.nav.nav-tabs[id='myTab'][role='tablist']", {
                                                             style: { "pointer-events": (Examenes.data !== null ? "auto" : "none") }
                                                         }, [
                                                             m("li.nav-item",
                                                                 m("a.nav-link[id='home-tab'][data-toggle='tab'][href='#home'][role='tab'][aria-controls='home'][aria-selected='true']", {
-                                                                    style: { "color": "#476ba3" }
-                                                                },
+                                                                        style: { "color": "#476ba3" }
+                                                                    },
                                                                     m("i.fas.fa-file-alt.pd-1.mg-r-2"),
 
                                                                     " HOJA 005"
@@ -2966,8 +3193,8 @@ const PedidoLISA = {
                                                             ),
                                                             m("li.nav-item",
                                                                 m("a.nav-link[id='home-muestra'][data-toggle='tab'][href='#muestra'][role='tab'][aria-controls='muestra']", {
-                                                                    style: { "color": "#476ba3" }
-                                                                },
+                                                                        style: { "color": "#476ba3" }
+                                                                    },
                                                                     m("i.fas.fa-edit.pd-1.mg-r-2"),
 
                                                                     " TOMA DE MUESTRA "
@@ -2975,17 +3202,26 @@ const PedidoLISA = {
                                                             ),
                                                             m("li.nav-item",
                                                                 m("a.nav-link[id='home-recep'][data-toggle='tab'][href='#recep'][role='tab'][aria-controls='recep']", {
-                                                                    style: { "color": "#476ba3" }
-                                                                },
+                                                                        style: { "color": "#476ba3" }
+                                                                    },
                                                                     m("i.fas.fa-inbox.pd-1.mg-r-2"),
 
                                                                     " RECEP. DE MUESTRA "
                                                                 )
                                                             ),
                                                             m("li.nav-item",
+                                                                m("a.nav-link[id='home-facturar'][data-toggle='tab'][href='#facturar'][role='tab'][aria-controls='facturar']", {
+                                                                        style: { "color": "#476ba3" }
+                                                                    },
+                                                                    m("i.fas.fa-inbox.pd-1.mg-r-2"),
+
+                                                                    " FACTURACIÓN "
+                                                                )
+                                                            ),
+                                                            m("li.nav-item",
                                                                 m("a.nav-link[id='home-comment'][data-toggle='tab'][href='#comment'][role='tab'][aria-controls='comment']", {
-                                                                    style: { "color": "#476ba3" }
-                                                                },
+                                                                        style: { "color": "#476ba3" }
+                                                                    },
                                                                     m("i.fas.fa-inbox.pd-1.mg-r-2"),
 
                                                                     " COMENTARIOS "
@@ -3019,13 +3255,13 @@ const PedidoLISA = {
                                                                         "Observaciones",
                                                                     ),
                                                                     m("textarea.form-control.mg-t-5[rows='5'][placeholder='Observaciones']", {
-                                                                        oninput: function (e) { Observaciones.observaciones = e.target.value; },
+                                                                        oninput: function(e) { Observaciones.observaciones = e.target.value; },
                                                                         value: Observaciones.observaciones,
                                                                     }),
                                                                     m("div.mg-0.mg-t-5.text-right", [
 
                                                                         m("button.btn.btn-xs.btn-primary.mg-l-2.tx-semibold[type='button']", {
-                                                                            onclick: function () {
+                                                                            onclick: function() {
                                                                                 if (Observaciones.observaciones.length !== 0) {
                                                                                     Observaciones.sendNotiLab();
                                                                                 } else {
@@ -3033,7 +3269,7 @@ const PedidoLISA = {
                                                                                 }
                                                                             },
                                                                         }, [
-                                                                            m("i.fas.fa-paper-plane.mg-r-5",)
+                                                                            m("i.fas.fa-paper-plane.mg-r-5", )
                                                                         ], "Guardar"),
 
 
