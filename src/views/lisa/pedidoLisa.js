@@ -3210,15 +3210,6 @@ const PedidoLISA = {
                                                                 )
                                                             ),
                                                             m("li.nav-item",
-                                                                m("a.nav-link[id='home-facturar'][data-toggle='tab'][href='#facturar'][role='tab'][aria-controls='facturar']", {
-                                                                        style: { "color": "#476ba3" }
-                                                                    },
-                                                                    m("i.fas.fa-inbox.pd-1.mg-r-2"),
-
-                                                                    " FACTURACIÓN "
-                                                                )
-                                                            ),
-                                                            m("li.nav-item",
                                                                 m("a.nav-link[id='home-comment'][data-toggle='tab'][href='#comment'][role='tab'][aria-controls='comment']", {
                                                                         style: { "color": "#476ba3" }
                                                                     },
