@@ -651,6 +651,7 @@ const StatusPedido = {
     data: [],
     dataLisa: [],
     dataMuestras: [],
+    dataFactMuestras: [],
     fetch: () => {
         StatusPedido.error = "";
         StatusPedido.data = [];
@@ -675,6 +676,7 @@ const StatusPedido = {
                     StatusPedido.documento = result.data;
                     StatusPedido.data = result.data.dataTomaMuestra.examenesToma;
                     StatusPedido.dataMuestras = result.data.dataRecepcion.examenesRecep;
+                    StatusPedido.dataFactMuestras = result.data.dataFacturacion.examenesFact;
                     RecepMuestras.impresora = PedidoLISA.data.PedidoExameLab.atendimento.nomeMaquina;
                     Evoluciones.fetch();
                     Observaciones.fetch();
@@ -2147,60 +2149,102 @@ const ControlLISA = {
 };
 
 const RecepFacturacion = {
+    dataMuestras: [],
     checkedAll: false,
-    disabledToma: false,
-    disabledInsumos: false,
+    disabledFact: false,
+    agregarExamen: (exa) => {
+
+        let existe = false;
+
+        StatusPedido.dataFactMuestras.map(function(_val, _i, _contentData) {
+            if (StatusPedido.dataFactMuestras[_i]['CD_EXA_LAB'] == exa.CD_EXA_LAB) {
+                existe = true;
+            }
+        })
+
+        if (!existe) {
+            RecepFacturacion.dataMuestras.push(exa);
+        }
+
+        console.log(RecepFacturacion.dataMuestras);
+    },
+    eliminarExamen: (exa) => {
+
+        let existe = false;
+        let _ni = null;
+
+        RecepFacturacion.dataMuestras.map(function(_val, _i, _contentData) {
+            if (RecepFacturacion.dataMuestras[_i]['CD_EXA_LAB'] == exa.CD_EXA_LAB) {
+                existe = true;
+                _ni = _i;
+            }
+        })
+
+
+        if (existe) {
+            RecepFacturacion.dataMuestras.splice(_ni, 1);
+            console.log(RecepFacturacion.dataMuestras);
+        }
+
+    },
+
     seleccionarTodos: (status) => {
         RecepFacturacion.checkedAll = status;
         var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
-        return StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
+        return StatusPedido.dataFactMuestras.map(function(_val, _i, _contentData) {
             if (status) {
-                StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "1";
-                StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = _fechaToma;
-                StatusPedido.dataMuestras[_i]['customCheked'] = true;
-                ControlLISA.agregarExamen(StatusPedido.dataMuestras[_i]);
+                StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] = "1";
+                StatusPedido.dataFactMuestras[_i]['FECHA_FACT'] = _fechaToma;
+                StatusPedido.dataFactMuestras[_i]['customCheked'] = true;
+                RecepFacturacion.agregarExamen(StatusPedido.dataFactMuestras[_i]);
             } else {
-                StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "";
-                StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = "";
-                StatusPedido.dataMuestras[_i]['customCheked'] = false;
-                ControlLISA.eliminarExamen(StatusPedido.dataMuestras[_i]);
+                StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] = "";
+                StatusPedido.dataFactMuestras[_i]['FECHA_FACT'] = "";
+                StatusPedido.dataFactMuestras[_i]['customCheked'] = false;
+                RecepFacturacion.eliminarExamen(StatusPedido.dataFactMuestras[_i]);
 
             }
         })
     },
-    validarUpdateMuestras: () => {
 
+    validarStatusFact: () => {
+        let _t = 0;
 
-        var _t = 0;
-
-        for (var i = 0; i < StatusPedido.dataMuestras.length; i++) {
-
-            if (StatusPedido.dataMuestras[i]['STATUS_RECEP'].length !== 0) {
+        for (var i = 0; i < StatusPedido.dataFactMuestras.length; i++) {
+            if (StatusPedido.dataFactMuestras[i]['STATUS_FACT'] != '1') {
                 _t++;
             }
+        }
+        // Set State
+        if (_t > 0) {
+            RecepFacturacion.disabledFact = false;
+        } else {
+            RecepFacturacion.disabledFact = true;
+        }
+    },
 
+    validarUpdateMuestras: () => {
+
+        let _t = 0;
+
+        for (var i = 0; i < StatusPedido.dataFactMuestras.length; i++) {
+            if (StatusPedido.dataFactMuestras[i]['STATUS_FACT'].length !== 0) {
+                _t++;
+            }
         }
 
         // Set State
-
         if (_t == 0) {
-            alert("El regisro de Toma de (Muestra) e Insumos en necesario.");
-            throw "El regisro de Toma de (Muestra) e Insumos en necesario.";
+            alert("El regisro de Facturación es necesario.");
+            throw "El regisro de Facturación es necesario.";
         }
 
-
-        ControlLISA.generarXML();
-
-
     },
-    udpateStatusTomaMuestra: () => {
+    udpateStatusFact: () => {
 
-
-
-        StatusPedido.documento.dataRecepcion.insumosRecep = Insumos;
-        m.request({
+        return m.request({
                 method: "POST",
-                url: "https://lisa.hospitalmetropolitano.org/v1/up-status-pedido-lab",
+                url: "https://lisa.hospitalmetropolitano.org/v1/up-status-pedido-fact-lab",
                 body: {
                     documento: JSON.stringify(StatusPedido.documento),
                 },
@@ -2210,13 +2254,18 @@ const RecepFacturacion = {
             })
             .then(function(result) {
                 StatusPedido.documento = result.data;
-                StatusPedido.dataMuestras = result.data.dataRecepcion.examenesRecep;
-
+                StatusPedido.dataFactMuestras = result.data.dataFactMuestras.examenesFact;
             })
             .catch(function(e) {})
+
+
     },
 
     view: () => {
+
+    },
+
+    _view: () => {
 
 
 
@@ -2227,12 +2276,18 @@ const RecepFacturacion = {
                     StatusPedido.error
                 )
             ]
-        } else if (StatusPedido.dataMuestras.length !== 0) {
+        } else if (StatusPedido.dataFactMuestras.length !== 0) {
             return [
                 m("div.bg-white.bd.d-flex.flex-column.justify-content-end", [
-                    m(".", [
+                    m(".", {
+                        oncreate: () => {
+                            setTimeout(() => {
+                                RecepFacturacion.validarStatusFact();
+                            }, 100);
+                        }
+                    }, [
                         m('.', {
-                            "style": { "pointer-events": (RecepFacturacion.disabledToma ? "none" : "auto") }
+                            "style": { "pointer-events": (RecepFacturacion.disabledFact ? "none" : "auto") }
                         }, [
                             m("div.table-responsive.mg-b-10.mg-t-10",
                                 m("table.table.table-dashboard.table-hover.mg-b-0", [
@@ -2249,7 +2304,9 @@ const RecepFacturacion = {
                                         ])
                                     ),
                                     m("tbody", [
-                                        m("tr", [
+                                        m("tr", {
+                                            "style": { "pointer-events": (RecepFacturacion.disabledFact ? "none" : "auto") }
+                                        }, [
                                             m("td[colspan='2'].tx-normal",
                                                 m("div.custom-control.custom-checkbox", [
                                                     m("input.custom-control-input[type='checkbox'][id='rf_selectTomaTodos']", {
@@ -2266,7 +2323,7 @@ const RecepFacturacion = {
 
                                         ]),
 
-                                        StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
+                                        StatusPedido.dataFactMuestras.map(function(_val, _i, _contentData) {
 
                                             return [
                                                 m("tr", [
@@ -2278,40 +2335,19 @@ const RecepFacturacion = {
                                                     m("td.tx-16.tx-normal",
                                                         m("div.custom-control.custom-checkbox.tx-16", [
                                                             m("input.custom-control-input.tx-16[type='checkbox'][id='r_" + _val.CD_EXA_LAB + "']", {
-                                                                checked: StatusPedido.dataMuestras[_i]['customCheked'],
+                                                                checked: StatusPedido.dataFactMuestras[_i]['customCheked'],
                                                                 onupdate: function(e) {
-                                                                    this.checked = StatusPedido.dataMuestras[_i]['customCheked'];
+                                                                    this.checked = StatusPedido.dataFactMuestras[_i]['customCheked'];
                                                                 },
                                                                 onclick: function(e) {
 
                                                                     e.preventDefault();
                                                                     var p = this.checked;
                                                                     if (p) {
-                                                                        StatusPedido.dataMuestras[_i]['customCheked'] = !StatusPedido.dataMuestras[_i]['customCheked'];
-                                                                        StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "1";
-                                                                        StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = moment().format('DD-MM-YYYY HH:mm');
-                                                                        ControlLISA.agregarExamen(StatusPedido.dataMuestras[_i])
-                                                                    } else {
-                                                                        if (StatusPedido.dataMuestras[_i]['NM_EXA_LAB'].includes("(88")) {
-                                                                            alert("No es posible esta acción. Ya existe un pedido generado.");
-                                                                            throw "No es posible esta acción. Ya existe un pedido generado.";
-                                                                        } else {
-                                                                            if (ControlLISA.nuevoPedido) {
-                                                                                alert("No es posible generar un Nuevo Pedido de este exámen.");
-                                                                                throw "No es posible generar un Nuevo Pedido de este exámen.";
-                                                                            } else {
-                                                                                StatusPedido.dataMuestras[_i]['customCheked'] = !StatusPedido.dataMuestras[_i]['customCheked'];
-                                                                                RecepMuestras.checkedAll = false;
-                                                                                StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "";
-                                                                                StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = "";
-                                                                                ControlLISA.eliminarExamen(StatusPedido.dataMuestras[_i])
-                                                                            }
-
-
-                                                                        }
-
-
-
+                                                                        StatusPedido.dataFactMuestras[_i]['customCheked'] = !StatusPedido.dataFactMuestras[_i]['customCheked'];
+                                                                        StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] = "1";
+                                                                        StatusPedido.dataFactMuestras[_i]['FECHA_FACT'] = moment().format('DD-MM-YYYY HH:mm');
+                                                                        RecepFacturacion.agregarExamen(StatusPedido.dataMuestras[_i])
                                                                     }
 
                                                                 },
@@ -2320,7 +2356,7 @@ const RecepFacturacion = {
 
                                                             }),
                                                             m("label.custom-control-label.tx-16[for='r_" + _val.CD_EXA_LAB + "']",
-                                                                (StatusPedido.dataMuestras[_i]['STATUS_RECEP'].length !== 0) ? StatusPedido.dataMuestras[_i]['FECHA_RECEP'] : StatusPedido.dataMuestras[_i]['STATUS_RECEP'],
+                                                                (StatusPedido.dataFactMuestras[_i]['STATUS_FACT'].length !== 0) ? StatusPedido.dataFactMuestras[_i]['FECHA_FACT'] : StatusPedido.dataFactMuestras[_i]['STATUS_FACT'],
 
                                                             )
                                                         ])
@@ -2339,14 +2375,14 @@ const RecepFacturacion = {
                             ),
                             m("div.pd-10", [
                                 m("button.btn.btn-xs.btn-success.btn-block.tx-semibold[type='button']", {
-                                        disabled: RecepFacturacion.disabledToma,
+                                        disabled: RecepFacturacion.disabledFact,
                                         onclick: () => {
                                             RecepFacturacion.validarUpdateMuestras();
-                                            var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
-                                            StatusPedido.documento.dataRecepcion.usuarioRecep = "flebot1";
-                                            StatusPedido.documento.dataRecepcion.fechaRecep = _fechaToma;
-                                            RecepFacturacion.disabledToma = true;
-                                            RecepFacturacion.udpateStatusTomaMuestra();
+                                            let _fechaToma = moment().format('DD-MM-YYYY HH:mm');
+                                            StatusPedido.documento.dataFacturacion.usuarioFact = "flebot1";
+                                            StatusPedido.documento.dataFacturacion.fechaFact = _fechaToma;
+                                            RecepFacturacion.disabledFact = true;
+                                            RecepFacturacion.udpateStatusFact();
                                         }
                                     },
                                     "Guardar y Facturar"
@@ -2374,6 +2410,7 @@ const RecepFacturacion = {
 };
 
 const RecepMuestras = {
+
     checkedAll: false,
     disabledToma: false,
     disabledInsumos: false,
@@ -2395,6 +2432,12 @@ const RecepMuestras = {
                 StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = _fechaToma;
                 StatusPedido.dataMuestras[_i]['customCheked'] = true;
                 ControlLISA.agregarExamen(StatusPedido.dataMuestras[_i]);
+                // Para Facturación
+                if (StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] == "") {
+                    StatusPedido.dataFactMuestras[_i]['customCheked'] = true;
+                    StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] = "1";
+                    StatusPedido.dataFactMuestras[_i]['FECHA_FACT'] = moment().format('DD-MM-YYYY HH:mm');
+                }
             } else {
                 StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "";
                 StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = "";
@@ -2589,7 +2632,13 @@ const RecepMuestras = {
                                                                         StatusPedido.dataMuestras[_i]['customCheked'] = !StatusPedido.dataMuestras[_i]['customCheked'];
                                                                         StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "1";
                                                                         StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = moment().format('DD-MM-YYYY HH:mm');
-                                                                        ControlLISA.agregarExamen(StatusPedido.dataMuestras[_i])
+                                                                        ControlLISA.agregarExamen(StatusPedido.dataMuestras[_i]);
+                                                                        // Para Facturación
+                                                                        if (StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] == "") {
+                                                                            StatusPedido.dataFactMuestras[_i]['customCheked'] = !StatusPedido.dataFactMuestras[_i]['customCheked'];
+                                                                            StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] = "1";
+                                                                            StatusPedido.dataFactMuestras[_i]['FECHA_FACT'] = moment().format('DD-MM-YYYY HH:mm');
+                                                                        }
                                                                     } else {
                                                                         if (StatusPedido.dataMuestras[_i]['NM_EXA_LAB'].includes("(88")) {
                                                                             alert("No es posible esta acción. Ya existe un pedido generado.");
@@ -2683,6 +2732,7 @@ const RecepMuestras = {
                                             StatusPedido.documento.dataRecepcion.fechaRecep = _fechaToma;
                                             RecepMuestras.disabledToma = true;
                                             RecepMuestras.udpateStatusTomaMuestra();
+                                            RecepFacturacion.udpateStatusFact();
 
                                         }
                                     },
@@ -3209,6 +3259,15 @@ const PedidoLISA = {
                                                                     " RECEP. DE MUESTRA "
                                                                 )
                                                             ),
+                                                            m("li.nav-item.d-none",
+                                                                m("a.nav-link[id='home-facturar'][data-toggle='tab'][href='#facturar'][role='tab'][aria-controls='facturar']", {
+                                                                        style: { "color": "#476ba3" }
+                                                                    },
+                                                                    m("i.fas.fa-inbox.pd-1.mg-r-2"),
+
+                                                                    " FACTURACIÓN "
+                                                                )
+                                                            ),
                                                             m("li.nav-item",
                                                                 m("a.nav-link[id='home-comment'][data-toggle='tab'][href='#comment'][role='tab'][aria-controls='comment']", {
                                                                         style: { "color": "#476ba3" }
@@ -3239,6 +3298,9 @@ const PedidoLISA = {
 
                                                             m(".tab-pane.fade[id='recep'][role='tabpanel'][aria-labelledby='home-recep']", [
                                                                 m(RecepMuestras)
+                                                            ]),
+                                                            m(".tab-pane.fade.d-none[id='facturar'][role='tabpanel'][aria-labelledby='home-facturar']", [
+                                                                m(RecepFacturacion)
                                                             ]),
                                                             m(".tab-pane.fade[id='comment'][role='tabpanel'][aria-labelledby='home-comment']", [
                                                                 m("p.mg-5", [
