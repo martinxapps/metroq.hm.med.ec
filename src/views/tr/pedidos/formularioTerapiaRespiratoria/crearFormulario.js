@@ -1757,7 +1757,7 @@ const CrearFormulario = {
                   if (
                     isNaN(inputValue) ||
                     inputValue < 0 ||
-                    inputValue > 60 ||
+                    inputValue > 70 ||
                     inputValue.startsWith("0")
                   ) {
                     e.target.value = ""; // Valor inválido, se vacía el campo
@@ -1800,7 +1800,7 @@ const CrearFormulario = {
                   if (
                     isNaN(inputValue) ||
                     inputValue < 0 ||
-                    inputValue > 60 ||
+                    inputValue > 70 ||
                     inputValue.startsWith("0")
                   ) {
                     e.target.value = ""; // Valor inválido, se vacía el campo
