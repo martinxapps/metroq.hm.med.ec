@@ -1,6 +1,6 @@
-import HeaderPrivate from '../layout/header-private';
-import SidebarLab from '../laboratorio/sidebarLab';
-import App from '../app';
+import HeaderPrivate from '../../layout/header-private';
+import SidebarLab from '../../bcosangre/sidebarBcosangre';
+import App from '../../app';
 import m from 'mithril';
 
 
@@ -2520,18 +2520,7 @@ const RecepMuestras = {
                             m("i.fas.fa-edit.mg-r-5"),
                             " EDITAR "
                         ),
-                        m("button.btn.btn-xs.btn-primary.mg-r-5[type='button']", {
-                                onclick: () => {
-                                    if (confirm("Esta seguro de generar un nuevo pedido 88.000.000.") == true) {
-                                        RecepMuestras.disabledToma = false;
-                                        ControlLISA.setNuevoPedido();
-                                    }
 
-                                }
-                            },
-                            m("i.fas.fa-file-alt.mg-r-5"),
-                            " NUEVO PEDIDO "
-                        ),
                         m("button.btn.btn-xs.btn-warning[type='button']", {
                                 onclick: () => {
                                     if (ControlLISA.showLogs.length == 0) {
@@ -2610,6 +2599,8 @@ const RecepMuestras = {
 
                                         StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
 
+                                            console.log(454545, _val);
+
                                             return [
                                                 m("tr", [
 
@@ -2620,17 +2611,17 @@ const RecepMuestras = {
                                                     m("td.tx-16.tx-normal",
                                                         m("div.custom-control.custom-checkbox.tx-16", [
                                                             m("input.custom-control-input.tx-16[type='checkbox'][id='r_" + _val.CD_EXA_LAB + "']", {
-                                                                checked: StatusPedido.dataMuestras[_i]['customCheked'],
-                                                                onupdate: function(e) {
-                                                                    this.checked = StatusPedido.dataMuestras[_i]['customCheked'];
-                                                                },
                                                                 oncreate: (el) => {
                                                                     // Ajuste perfil banco de sangre 17-07-2024
                                                                     if (_val.CD_EXA_LAB == '542' || _val.CD_EXA_LAB == '543' || _val.CD_EXA_LAB == '544' || _val.CD_EXA_LAB == '545') {
-                                                                        el.dom.parentElement.innerHTML = 'Banco de Sangre';
-                                                                    } else {
                                                                         // el.dom.parentElement.innerHTML = '';
+                                                                    } else {
+                                                                        el.dom.parentElement.innerHTML = 'Laboratorio';
                                                                     }
+                                                                },
+                                                                checked: StatusPedido.dataMuestras[_i]['customCheked'],
+                                                                onupdate: function(e) {
+                                                                    this.checked = StatusPedido.dataMuestras[_i]['customCheked'];
                                                                 },
                                                                 onclick: function(e) {
 
@@ -2714,12 +2705,24 @@ const RecepMuestras = {
 
                                             m("th.text-right[colspan='2']",
                                                 m("select.custom-select.wd-30p.tx-semibold", {
+                                                    oncreate: (el) => {
+                                                        setTimeout(() => {
+                                                            el.dom.value = 'BANCO1';
+                                                        }, 300);
+                                                        RecepMuestras.impresora = 'BANCO1';
+                                                    },
+                                                    onupdate: (el) => {
+                                                        setTimeout(() => {
+                                                            el.dom.value = 'BANCO1';
+                                                        }, 300);
+                                                        RecepMuestras.impresora = 'BANCO1';
+                                                    },
                                                     onchange: (e) => {
                                                         RecepMuestras.impresora = e.target.value;
                                                     },
                                                     disabled: (Object.keys(ControlLISA.logsEnvio).length !== 0 && !ControlLISA.nuevoPedido ? "disabled" : ""),
                                                     value: RecepMuestras.impresora
-                                                }, ['CAJA1', 'CAJA2', 'CAJA3', 'CAJA4', 'CAJA5', 'CAJA6', 'URGENCIAS', 'METROLAB'].map(x =>
+                                                }, ['BANCO1'].map(x =>
                                                     m('option', x)
                                                 ))
                                             ),

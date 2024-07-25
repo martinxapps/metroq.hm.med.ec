@@ -1,6 +1,5 @@
-import SidebarLab from '../laboratorio/sidebarLab';
-import Notificaciones from '../../models/notificaciones';
-
+import SidebarLab from '../../bcosangre/sidebarBcosangre';
+import Notificaciones from '../../../models/notificaciones';
 import m from 'mithril';
 
 function stopwatchModel() {
@@ -139,59 +138,26 @@ const tablePedidosIngresados = {
                             "LISA:",
                             m("span.badge.badge-primary.tx-semibold.pd-l-10.pd-r-10.mg-l-5.tx-15", {
                                     oncreate: (el) => {
-                                        if (PedidosIngresados.idFiltro == 1) {
-                                            el.dom.innerHTML = 'Pedidos de Hoy';
-                                        }
-                                        if (PedidosIngresados.idFiltro == 2) {
-                                            el.dom.innerHTML = 'Pedidos de Emergencia';
-                                        }
-                                        if (PedidosIngresados.idFiltro == 3) {
-                                            el.dom.innerHTML = 'Pedidos de Hospitalización ';
-                                        }
-                                        if (PedidosIngresados.idFiltro == 4) {
-                                            el.dom.innerHTML = 'Pedidos de C. Externa ';
-                                        }
+
 
                                         if (PedidosIngresados.idFiltro == 6) {
-                                            el.dom.innerHTML = 'Muestras Pendientes';
+                                            el.dom.innerHTML = 'Pedidos de Hoy';
                                         }
 
-                                        if (PedidosIngresados.idFiltro == 7) {
-                                            el.dom.innerHTML = 'Reportes';
-                                        }
-
-                                        if (PedidosIngresados.idFiltro == 8) {
-                                            el.dom.innerHTML = 'Pedidos de Bco. de Sangre';
+                                        if (PedidosIngresados.idFiltro == 5) {
+                                            el.dom.innerHTML = 'Pedidos de Bco. de Sangre por Fechas';
                                         }
 
 
                                     },
                                     onupdate: (el) => {
-                                        if (PedidosIngresados.idFiltro == 1) {
-                                            el.dom.innerHTML = 'Pedidos de Hoy';
-                                        }
-                                        if (PedidosIngresados.idFiltro == 2) {
-                                            el.dom.innerHTML = 'Pedidos de Emergencia';
-                                        }
-
-                                        if (PedidosIngresados.idFiltro == 3) {
-                                            el.dom.innerHTML = 'Pedidos de Hospitalización ';
-                                        }
-
-                                        if (PedidosIngresados.idFiltro == 4) {
-                                            el.dom.innerHTML = 'Pedidos de C. Externa ';
-                                        }
 
                                         if (PedidosIngresados.idFiltro == 6) {
-                                            el.dom.innerHTML = 'Muestras Pendientes';
+                                            el.dom.innerHTML = 'Pedidos de Hoy';
                                         }
 
-                                        if (PedidosIngresados.idFiltro == 7) {
-                                            el.dom.innerHTML = 'Reportes';
-                                        }
-
-                                        if (PedidosIngresados.idFiltro == 8) {
-                                            el.dom.innerHTML = 'Pedidos de Bco. de Sangre';
+                                        if (PedidosIngresados.idFiltro == 5) {
+                                            el.dom.innerHTML = 'Pedidos de Bco. de Sangre por Fechas';
                                         }
 
                                     }
@@ -202,7 +168,7 @@ const tablePedidosIngresados = {
                         ),
                         m("div.d-flex.tx-14", [
                             m('.', {
-                                class: (PedidosIngresados.idFiltro == 1 ? 'd-none' : 'd-flex')
+                                class: (PedidosIngresados.idFiltro == 6 ? 'd-none' : 'd-flex')
                             }, [
                                 m("div.link-03", {
                                         title: "Desde"
@@ -217,15 +183,16 @@ const tablePedidosIngresados = {
                                     },
                                     m("input.tx-light.pd-4[type='date'][id='desde']", {
                                         oncreate: (el) => {
-                                            if (PedidosIngresados.idFiltro == 1) {
+                                            if (PedidosIngresados.idFiltro == 6) {
                                                 PedidosIngresados.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
                                                 PedidosIngresados.fechaHasta = moment().format('DD-MM-YYYY');
                                             }
-                                            el.dom.value = (PedidosIngresados.idFiltro !== 1 ? moment(moment(PedidosIngresados.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                            el.dom.value = (PedidosIngresados.idFiltro !== 6 ? moment(moment(PedidosIngresados.fechaDesde, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
                                         },
                                         onchange: (el) => {
                                             PedidosIngresados.fechaDesde = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
-                                            m.route.set("/laboratorio/lisa/pedidos/ingresados/?idFiltro=" + PedidosIngresados.idFiltro + "&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
+                                            m.route.set("/bco-sangre/lisa/pedidos/ingresados/?idFiltro=" + PedidosIngresados.idFiltro + "&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
+
                                             setTimeout(() => {
                                                 window.location.reload();
                                             }, 1000);
@@ -250,15 +217,15 @@ const tablePedidosIngresados = {
                                     },
                                     m("input.tx-light.pd-4[type='date'][id='hasta']", {
                                         oncreate: (el) => {
-                                            if (PedidosIngresados.idFiltro == 1) {
+                                            if (PedidosIngresados.idFiltro == 6) {
                                                 PedidosIngresados.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
                                                 PedidosIngresados.fechaHasta = moment().format('DD-MM-YYYY');
                                             }
-                                            el.dom.value = (PedidosIngresados.idFiltro !== 1 ? moment(moment(PedidosIngresados.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
+                                            el.dom.value = (PedidosIngresados.idFiltro !== 6 ? moment(moment(PedidosIngresados.fechaHasta, 'DD-MM-YYYY')).format('YYYY-MM-DD') : '');
                                         },
                                         onchange: (el) => {
                                             PedidosIngresados.fechaHasta = moment(moment(el.target.value, 'YYYY-MM-DD')).format('DD-MM-YYYY');
-                                            m.route.set("/laboratorio/lisa/pedidos/ingresados/?idFiltro=" + PedidosIngresados.idFiltro + "&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
+                                            m.route.set("/bco-sangre/lisa/pedidos/ingresados/?idFiltro=" + PedidosIngresados.idFiltro + "&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta);
                                             setTimeout(() => {
                                                 window.location.reload();
                                             }, 1000);
@@ -283,7 +250,7 @@ const tablePedidosIngresados = {
                                     ),
                                     m(m.route.Link, {
                                         class: 'dropdown-item',
-                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=1",
+                                        href: "/bco-sangre/lisa/pedidos/ingresados/?idFiltro=6",
                                         onclick: () => {
                                             PedidosIngresados.loader = true;
                                             PedidosIngresados.pedidos = [];
@@ -294,69 +261,17 @@ const tablePedidosIngresados = {
                                     ]),
                                     m(m.route.Link, {
                                         class: 'dropdown-item',
-                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=2&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
+                                        href: "/bco-sangre/lisa/pedidos/ingresados/?idFiltro=5&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
                                         onclick: () => {
                                             PedidosIngresados.loader = true;
                                             PedidosIngresados.pedidos = [];
 
                                         }
                                     }, [
-                                        "Pedidos de Emergencia"
-                                    ]),
-                                    m(m.route.Link, {
-                                        class: 'dropdown-item',
-                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=3&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
-                                        onclick: () => {
-                                            PedidosIngresados.loader = true;
-                                            PedidosIngresados.pedidos = [];
-
-                                        }
-                                    }, [
-                                        "Pedidos de Hospitalización"
-                                    ]),
-                                    m(m.route.Link, {
-                                        class: 'dropdown-item',
-                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=4&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
-                                        onclick: () => {
-                                            PedidosIngresados.loader = true;
-                                            PedidosIngresados.pedidos = [];
-
-                                        }
-                                    }, [
-                                        "Pedidos de C. Externa"
-                                    ]),
-                                    m(m.route.Link, {
-                                        class: 'dropdown-item',
-                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=4&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
-                                        onclick: () => {
-                                            PedidosIngresados.loader = true;
-                                            PedidosIngresados.pedidos = [];
-
-                                        }
-                                    }, [
-                                        "Pedidos de Bco. de Sangre"
+                                        "Pedidos de Bco. de Sangre por Fechas"
                                     ]),
 
-                                    m(m.route.Link, {
-                                        class: 'dropdown-item',
-                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=6&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
-                                        onclick: () => {
-                                            PedidosIngresados.loader = true;
-                                            PedidosIngresados.pedidos = [];
-                                        }
-                                    }, [
-                                        "Muestras Pendientes"
-                                    ]),
-                                    m(m.route.Link, {
-                                        class: 'dropdown-item',
-                                        href: "/laboratorio/lisa/pedidos/ingresados/?idFiltro=7&fechaDesde=" + PedidosIngresados.fechaDesde + "&fechaHasta=" + PedidosIngresados.fechaHasta,
-                                        onclick: () => {
-                                            PedidosIngresados.loader = true;
-                                            PedidosIngresados.pedidos = [];
-                                        }
-                                    }, [
-                                        "Reportes"
-                                    ]),
+
 
 
                                 ])
@@ -364,7 +279,7 @@ const tablePedidosIngresados = {
                         ])
                     ]),
                     m("div.col-sm-12.filemgr-content-header", {
-                        class: (PedidosIngresados.idFiltro == 1 ? "mg-t-35" : "mg-t-40")
+                        class: (PedidosIngresados.idFiltro == 6 ? "mg-t-35" : "mg-t-40")
                     }, [
                         m("i[data-feather='search']"),
                         m("div.search-form",
@@ -605,7 +520,7 @@ const PedidosIngresados = {
 
                                 m(m.route.Link, {
                                     class: "tx-dark pd-2",
-                                    href: "/laboratorio/lisa/pedido/",
+                                    href: "/bco-sangre/lisa/pedido/",
                                     target: "_blank",
                                     params: {
                                         numeroHistoriaClinica: aData.numeroHistoriaClinica,
@@ -940,12 +855,8 @@ const PedidosIngresados = {
 
         let _queryString = '';
 
-        if (PedidosIngresados.idFiltro == 1) {
+        if (PedidosIngresados.idFiltro == 6) {
             _queryString = '?type=ingresadas&idFiltro=' + PedidosIngresados.idFiltro;
-        } else if (PedidosIngresados.idFiltro == 6) {
-            _queryString = '?type=pendienteMuestras&idFiltro=' + PedidosIngresados.idFiltro + '&fechaDesde=' + PedidosIngresados.fechaDesde + '&fechaHasta=' + PedidosIngresados.fechaHasta;
-        } else if (PedidosIngresados.idFiltro == 7) {
-            _queryString = '?type=reportes&idFiltro=' + PedidosIngresados.idFiltro + '&fechaDesde=' + PedidosIngresados.fechaDesde + '&fechaHasta=' + PedidosIngresados.fechaHasta;
         } else {
             _queryString = '?type=ingresadas&idFiltro=' + PedidosIngresados.idFiltro + '&fechaDesde=' + PedidosIngresados.fechaDesde + '&fechaHasta=' + PedidosIngresados.fechaHasta;
         }
@@ -1022,8 +933,8 @@ const PedidosIngresados = {
                             ])
                         ),
                         m("li.breadcrumb-item",
-                            m(m.route.Link, { href: "/laboratorio" }, [
-                                " Laboratorio "
+                            m(m.route.Link, { href: "/bco-sangre" }, [
+                                " Bco. de Sangre "
                             ])
 
                         ),
@@ -1074,8 +985,8 @@ const PedidosIngresados = {
                             ])
                         ),
                         m("li.breadcrumb-item",
-                            m(m.route.Link, { href: "/laboratorio" }, [
-                                " Laboratorio "
+                            m(m.route.Link, { href: "/bco-sangre" }, [
+                                " Bnaco de Sangre "
                             ])
 
                         ),
@@ -1112,8 +1023,8 @@ const PedidosIngresados = {
                             ])
                         ),
                         m("li.breadcrumb-item",
-                            m(m.route.Link, { href: "/laboratorio" }, [
-                                " Laboratorio "
+                            m(m.route.Link, { href: "/bco-sangre" }, [
+                                " Banco de Sangre "
                             ])
 
                         ),
@@ -1238,8 +1149,8 @@ const PedidosIngresados = {
                             ])
                         ),
                         m("li.breadcrumb-item",
-                            m(m.route.Link, { href: "/laboratorio" }, [
-                                " Laboratorio "
+                            m(m.route.Link, { href: "/bco-sangre" }, [
+                                " Banco de Sangre "
                             ])
 
                         ),
@@ -1283,8 +1194,8 @@ const PedidosIngresados = {
                             ])
                         ),
                         m("li.breadcrumb-item",
-                            m(m.route.Link, { href: "/laboratorio" }, [
-                                " Laboratorio "
+                            m(m.route.Link, { href: "/bco-sangre" }, [
+                                " Banco de Sangre "
                             ])
 
                         ),

@@ -67,10 +67,12 @@ const SidebarBcoSangre = {
 
                             m("nav.nav", [
 
-                                m(MenuSidebar)
+                                m(MenuSidebar),
+
 
                             ])
                         ]),
+
 
                     ])
                 )

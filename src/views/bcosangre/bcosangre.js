@@ -49,12 +49,27 @@ const MenuBcoSangre = {
 
                             ])
                         ] : []),
-
-
-
-
-
-
+                        (App.isShow('laboratorio', 21) ? [m("li", {
+                            "class": "list-item bg-white wd-100p",
+                            "style": { "cursor": "pointer" },
+                            onclick: () => {
+                                m.route.set("/bco-sangre/lisa/pedidos/ingresados")
+                            }
+                        }, [
+                            m("div", { "class": "media" }, [
+                                m("div.wd-60.tx-center", { "class": "pd-10 bg-litecoin" },
+                                    m("i", { "class": "fas fa-sitemap tx-30 tx-white" })
+                                ),
+                                m("div", { "class": "media-body mg-l-15" }, [
+                                    m("p", { "class": "tx-18 mg-b-0" },
+                                        "LISA",
+                                    ),
+                                    m("p", { "class": "mg-b-0 tx-11 tx-color-03 tx-medium tx-spacing-1 tx-sans" },
+                                        "Ir a LISA v1.0",
+                                    )
+                                ])
+                            ]),
+                        ])] : []),
                     ]),
 
                 ])

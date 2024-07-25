@@ -9,6 +9,8 @@ import SubscribirCanal from '../models/subscribirCanal'
 import FiltrosLab from '../views/laboratorio/notificaciones/filtros'
 import NotificacionesEnviadasLab from '../views/laboratorio/notificaciones/enviadas'
 import LaboratorioPedidos from '../views/laboratorio/flebotomista/flebotomista'
+import LisaPedidosIngresadosBcoSangre from '../views/bcosangre/lisa/pedidosIngresados'
+import LisaPedidoIngresadosBcoSangre from '../views/bcosangre/lisa/pedidoLisa'
 import LisaPedidosIngresados from '../views/lisa/pedidosIngresados'
 import LisaPedido from '../views/lisa/pedidoLisa'
 import LaboratorioFormularios from '../views/laboratorio/formularios/formularios'
@@ -595,7 +597,6 @@ const Routes = {
     '/admisiones/pre': PreAdmisiones, //PreAdmisiones
     '/admisiones/contratos/nuevo': NuevoContrato, //PreAdmisiones
     '/admisiones/contratos/status': StatusContrato, //PreAdmisiones
-
     '/admisiones/contratos': {
         oninit: (_data) => {
             document.title = "Contratos Digitalizados | " + App.title;
@@ -835,6 +836,77 @@ const Routes = {
             }
         }
     }, // NeuroPedido
+    '/bco-sangre/lisa/pedidos/ingresados': {
+        oninit: (_data) => {
+
+            App.isAuth('laboratorio', 16);
+            document.title = "Recepción de Pedidos | " + App.title;
+
+            if (_data.attrs.idFiltro == undefined && (_data.attrs.fechaDesde == undefined || _data.attrs.fechaHasta == undefined)) {
+                return m.route.set('/bco-sangre/lisa/pedidos/ingresados/', { idFiltro: 6 })
+            }
+
+            LisaPedidosIngresadosBcoSangre.idFiltro = _data.attrs.idFiltro;
+
+            if (LisaPedidosIngresadosBcoSangre.idFiltro === 6 && LisaPedidosIngresadosBcoSangre.pedidos.length == 0) {
+                LisaPedidosIngresadosBcoSangre.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
+                LisaPedidosIngresadosBcoSangre.fechaHasta = moment().format('DD-MM-YYYY');
+                LisaPedidosIngresadosBcoSangre.loader = true;
+                LisaPedidosIngresadosBcoSangre.pedidos = [];
+                LisaPedidosIngresadosBcoSangre.fetchPedidosIngresados();
+            }
+
+            if (LisaPedidosIngresadosBcoSangre.idFiltro !== 6 && LisaPedidosIngresadosBcoSangre.pedidos.length == 0) {
+                LisaPedidosIngresadosBcoSangre.fechaDesde = _data.attrs.fechaDesde;
+                LisaPedidosIngresadosBcoSangre.fechaHasta = _data.attrs.fechaHasta;
+                LisaPedidosIngresadosBcoSangre.loader = true;
+                LisaPedidosIngresadosBcoSangre.pedidos = [];
+                LisaPedidosIngresadosBcoSangre.fetchPedidosIngresados();
+            }
+
+        },
+        onremove: (_data) => {
+            LisaPedidosIngresadosBcoSangre.loader = true;
+            LisaPedidosIngresadosBcoSangre.pedidos = [];
+        },
+        onupdate: (_data) => {
+
+            LisaPedidosIngresadosBcoSangre.idFiltro = _data.attrs.idFiltro;
+
+            if (LisaPedidosIngresadosBcoSangre.idFiltro === 6 && LisaPedidosIngresadosBcoSangre.pedidos.length == 0) {
+                LisaPedidosIngresadosBcoSangre.fechaDesde = moment().subtract(1, 'days').format('DD-MM-YYYY');
+                LisaPedidosIngresadosBcoSangre.fechaHasta = moment().format('DD-MM-YYYY');
+                LisaPedidosIngresadosBcoSangre.loader = true;
+                LisaPedidosIngresadosBcoSangre.pedidos = [];
+                LisaPedidosIngresadosBcoSangre.fetchPedidosIngresados();
+            }
+
+            if (LisaPedidosIngresadosBcoSangre.idFiltro !== 6 && LisaPedidosIngresadosBcoSangre.pedidos.length == 0) {
+                LisaPedidosIngresadosBcoSangre.fechaDesde = _data.attrs.fechaDesde;
+                LisaPedidosIngresadosBcoSangre.fechaHasta = _data.attrs.fechaHasta;
+                LisaPedidosIngresadosBcoSangre.loader = true;
+                LisaPedidosIngresadosBcoSangre.pedidos = [];
+                LisaPedidosIngresadosBcoSangre.fetchPedidosIngresados();
+            }
+
+        },
+        view: (_data) => {
+            return [
+                m(HeaderPrivate, { oncreate: HeaderPrivate.setPage("laboratorio") }),
+                m(LisaPedidosIngresadosBcoSangre),
+            ];
+        },
+
+    },
+    '/bco-sangre/lisa/pedido/': {
+        onmatch: (_data) => {
+            if (_data.numeroPedido !== undefined && _data.idTimeRecord !== undefined) {
+                return LisaPedidoIngresadosBcoSangre;
+            } else {
+                return m.route.SKIP;
+            }
+        }
+    }, //LisaPedido
     '/neurofisiologia': Neuro, //Neuro
     '/neurofisiologia/pedidos': {
         oninit: (_data) => {
