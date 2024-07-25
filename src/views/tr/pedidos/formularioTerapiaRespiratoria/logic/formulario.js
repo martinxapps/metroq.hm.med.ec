@@ -40,19 +40,21 @@ export const cargarHoraActual =  () => {
 }
 
 export const change = (prescripcionAntes) => {
-const newObject = {
-  PRESCRIPCIONANTES: prescripcionAntes,
-  DATOS: [],
-};
-Object.entries(prescripcionAntes).forEach(([nombre, seleccionado]) => {
-  if (seleccionado === true) {
-    newObject.DATOS.push({
-      nombre,
-      seleccionado,
-    });
-  }
-});
-return newObject;
+  const newObject = {
+    PRESCRIPCIONANTES: prescripcionAntes,
+    DATOS: [],
+  };
+  Object.entries(prescripcionAntes).forEach(([nombre, data]) => {
+    const { checked, cd_itpre_med } = data;
+    if (checked === true) {
+      newObject.DATOS.push({
+        nombre,
+        seleccionado: checked,
+        cd_itpre_med: Number(cd_itpre_med),
+      });
+    }
+  });
+  return newObject;
 };
 
 export const siAlgunaEsVerdadero = (objeto) => Object.values(objeto).some(Boolean);

@@ -307,14 +307,11 @@ const CrearFormulario = {
         m(
           "div",
           {},
-          Pedido.examenes.forEach(({ EXAMEN, FRECUENCIA }) => {
-            if (!CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`]) {
-              CrearFormulario.valoresCheckBox[
-                `${EXAMEN} ${FRECUENCIA}`
-              ] = false;
+          Pedido.examenes.forEach(({ EXAMEN, FRECUENCIA, IT_PRE_MED }) => {
+            const id = `${EXAMEN} ${FRECUENCIA}`;
+            if (!CrearFormulario.valoresCheckBox[id]) {
+              CrearFormulario.valoresCheckBox[id] = { checked: false, cd_itpre_med: Number(IT_PRE_MED) };
             }
-            //const valorInicial = CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`] || false;
-            //CrearFormulario.valoresCheckBox[`${EXAMEN} ${FRECUENCIA}`] = false;
           }),
           Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
             const id = `${EXAMEN} ${FRECUENCIA}`;
@@ -322,23 +319,19 @@ const CrearFormulario = {
               m("input", {
                 type: "checkbox",
                 class: "form-check-input",
-                id: `${EXAMEN} ${FRECUENCIA}`,
-                value: `${EXAMEN} ${FRECUENCIA}`,
-                checked: CrearFormulario.valoresCheckBox[id],
+                id: id,
+                value: id,
+                checked: CrearFormulario.valoresCheckBox[id].checked,
                 onclick: function (e) {
                   const valor = e.target.checked;
-                  console.log("valor", valor);
-
-                  CrearFormulario.valoresCheckBox[id] = valor;
-
-                  console.log(CrearFormulario.valoresCheckBox);
+                  CrearFormulario.valoresCheckBox[id].checked = valor;
                 },
               }),
               m(
                 "label",
                 {
                   class: "form-check-label ml-2",
-                  for: `${EXAMEN} ${FRECUENCIA}`,
+                  for: id,
                 },
                 `${EXAMEN} - ${FRECUENCIA}`
               ),
