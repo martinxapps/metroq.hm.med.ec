@@ -113,6 +113,7 @@ const ListadoFormulario = {
                       const datos = {
                         ID: formulario.ID,
                         ESTADO: "Cancelado",
+                        NUMEROATENCION: Pedido.numeroAtencion
                       };
                       if (
                         window.confirm(
