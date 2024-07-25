@@ -1640,13 +1640,12 @@ const VerUnFormulario = {
                 m(
                   "ul",
                   Object.entries(
-                    formularioModelo.listadoUnitario.PRESCRIPCION
-                      .PRESCRIPCIONANTES
-                  ).map(function ([option, checked]) {
+                    formularioModelo.listadoUnitario.PRESCRIPCION.PRESCRIPCIONANTES
+                  ).map(function ([option, data]) {
                     return m("li", [
                       m("label", [
                         m("input[type=checkbox]", {
-                          checked: checked,
+                          checked: data.checked, // Utilizamos el valor 'checked' del objeto
                           disabled: true,
                         }),
                         m("span", option),
