@@ -2427,24 +2427,30 @@ const RecepMuestras = {
         RecepMuestras.checkedAll = status;
         var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
         return StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
-            if (status) {
-                StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "1";
-                StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = _fechaToma;
-                StatusPedido.dataMuestras[_i]['customCheked'] = true;
-                ControlLISA.agregarExamen(StatusPedido.dataMuestras[_i]);
-                // Para Facturación
-                if (StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] == "") {
-                    StatusPedido.dataFactMuestras[_i]['customCheked'] = true;
-                    StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] = "1";
-                    StatusPedido.dataFactMuestras[_i]['FECHA_FACT'] = moment().format('DD-MM-YYYY HH:mm');
-                }
-            } else {
-                StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "";
-                StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = "";
-                StatusPedido.dataMuestras[_i]['customCheked'] = false;
-                ControlLISA.eliminarExamen(StatusPedido.dataMuestras[_i]);
 
+            if (StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == '542' || StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == '543' || StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == '544' || StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == '545') {
+                if (status) {
+                    StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "1";
+                    StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = _fechaToma;
+                    StatusPedido.dataMuestras[_i]['customCheked'] = true;
+                    ControlLISA.agregarExamen(StatusPedido.dataMuestras[_i]);
+                    // Para Facturación
+                    if (StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] == "") {
+                        StatusPedido.dataFactMuestras[_i]['customCheked'] = true;
+                        StatusPedido.dataFactMuestras[_i]['STATUS_FACT'] = "1";
+                        StatusPedido.dataFactMuestras[_i]['FECHA_FACT'] = moment().format('DD-MM-YYYY HH:mm');
+                    }
+                } else {
+                    StatusPedido.dataMuestras[_i]['STATUS_RECEP'] = "";
+                    StatusPedido.dataMuestras[_i]['FECHA_RECEP'] = "";
+                    StatusPedido.dataMuestras[_i]['customCheked'] = false;
+                    ControlLISA.eliminarExamen(StatusPedido.dataMuestras[_i]);
+
+                }
             }
+
+
+
         })
     },
     validarUpdateMuestras: () => {
@@ -2599,7 +2605,6 @@ const RecepMuestras = {
 
                                         StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
 
-                                            console.log(454545, _val);
 
                                             return [
                                                 m("tr", [
