@@ -2428,7 +2428,7 @@ const RecepMuestras = {
         RecepMuestras.checkedAll = status;
         var _fechaToma = moment().format('DD-MM-YYYY HH:mm');
         return StatusPedido.dataMuestras.map(function(_val, _i, _contentData) {
-            if (StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == '542' || StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == '543' || StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == '544' || StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == '545') {
+            if (StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == "542" || StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == "543" || StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == "544" || StatusPedido.dataMuestras[_i]['CD_EXA_LAB'] == "545") {
 
             } else {
                 if (status) {
