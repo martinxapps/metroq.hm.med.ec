@@ -2,6 +2,10 @@ import HeaderPrivate from '../../layout/header-private';
 import SidebarTF from '../sidebarTf';
 import App from '../../app';
 import m from 'mithril';
+/* import cerrarGestionMuestra from '../../patologia/muestras/cerrarGestionMuestra';
+import CrearFormulario from '../../tr/pedidos/formularioTerapiaRespiratoria/crearFormulario';
+import ListadoFormulario from '../../tr/pedidos/formularioTerapiaRespiratoria/listadoFormulario'; */
+import PantallaRegistro from '../views/pantallaRegistro';
 
 const FOR005 = {
     secs: [],
@@ -985,6 +989,15 @@ const PedidoTF = {
                                                                     " HOJA 005"
                                                                 )
                                                             ),
+                                                            m("li.nav-item",
+                                                                m("a.nav-link[id='home-terapia-fisica'][data-toggle='tab'][href='#terapiaFisica'][role='tab'][aria-controls='home'][aria-selected='true']", {
+                                                                        style: { "color": "#476ba3" }
+                                                                    },
+                                                                    m("i.fas.fa-file-alt.pd-1.mg-r-2"),
+
+                                                                    " Registro Terapia Física"
+                                                                )
+                                                            ),
 
 
                                                         ]),
@@ -1000,6 +1013,38 @@ const PedidoTF = {
                                                         m(".tab-content.bd.bd-gray-300.bd-t-0[id='myTab']", [
                                                             m(".tab-pane.fade[id='home'][role='tabpanel'][aria-labelledby='home-tab']", [
                                                                 m(Evoluciones),
+                                                            ]),
+
+                                                            m(".tab-pane.fade[id='terapiaFisica'][role='tabpanel'][aria-labelledby='recepcionmuestra-tab']", [
+                                                                /* m("div.mg-0.mg-t-10.mg-b-10.text-left", [
+                                                                    m("button#btnnuevamuestra.btn.btn-xs.btn-primary.mg-l-2.tx-semibold[type='button']", {
+                                                                        onclick: () => {
+                                                                            if (
+                                                                                window.confirm(
+                                                                                    "¿Estás seguro de abrir un nuevo formulario?"
+                                                                                )
+                                                                            ) {
+
+                                                                                m.mount(document.querySelector("#gestion-muestras"), CrearFormulario);
+                                                                                m.mount(document.querySelector("#cerrar-gestion-muestras"), cerrarGestionMuestra);
+                                                                            }
+
+                                                                        }
+                                                                    }, [
+                                                                        m("i.fas.mg-r-5",)
+                                                                    ], "Nuevo Formulario"),
+                                                                    m("div#cerrar-gestion-muestras", {
+                                                                        style: { 'width': '50%', 'float': 'right' }
+                                                                    }),
+                                                                ]), */
+                                                                m("div#gestion-muestras"),
+                                                                m(PantallaRegistro),
+                                                                // m(listadoMuestras, { 
+                                                                //     "numeroPedido": PedidoPatologia.numeroPedido,
+                                                                //     "numeroAtencion": PedidoPatologia.numeroAtencion,
+                                                                //     "numeroHistoriaClinica": PedidoPatologia.numeroHistoriaClinica,
+                                                                //     "medico": PedidoPatologia.medico
+                                                                // }),
                                                             ]),
 
                                                         ])
