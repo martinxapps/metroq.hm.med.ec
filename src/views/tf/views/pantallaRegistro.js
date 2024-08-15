@@ -1,20 +1,24 @@
 import m from "mithril";
+import PedidoTF from "../pedidos/pedido";
+import Encrypt from "../../../models/encrypt";
 
 const PantallaRegistro = {
   data: [], // Aquí guardaremos los datos
   loading: true, // Estado de carga
   error: false, // Estado de error
+  usuarioConectado: "", // Usuario conectado
 
   oninit: (vnode) => {
-    PantallaRegistro.loadData();
+    PantallaRegistro.loadData(PedidoTF.numeroAtencion);
+    PantallaRegistro.usuarioConectado = Encrypt.getDataUser();
   },
 
-  loadData: () => {
+  loadData: (attention) => {
     PantallaRegistro.loading = true;
     PantallaRegistro.error = false; // Reiniciar el estado de error antes de la solicitud
     m.request({
       method: "GET",
-      url: "http://localhost:5118/api/PhysicalTherapySession/165454",
+      url: `http://localhost:5118/api/PhysicalTherapySession/${attention}`,
     })
       .then((result) => {
         if (result.status) {
@@ -40,7 +44,7 @@ const PantallaRegistro = {
     const requestData = {
       cdItpreMed: item.cdItpreMed,
       dhMedicacao: item.dhMedicacao,
-      nmUsuario: "DBAMV",
+      nmUsuario: PantallaRegistro.usuarioConectado.user.user.toUpperCase(),
     };
 
     m.request({
@@ -54,7 +58,7 @@ const PantallaRegistro = {
       .then((response) => {
         console.log("POST successful:", response);
         // Volver a cargar los datos después de que el POST sea exitoso
-        PantallaRegistro.loadData();
+        PantallaRegistro.loadData(PedidoTF.numeroAtencion);
       })
       .catch((error) => {
         console.error("POST failed:", error);
@@ -81,41 +85,37 @@ const PantallaRegistro = {
             m(
               "thead",
               m("tr", [
-                m("th", { scope: "col" }, "cdPreMed"),
-                m("th", { scope: "col" }, "cdItpreMed"),
-                m("th", { scope: "col" }, "cdAtendimento"),
-                m("th", { scope: "col" }, "dhMedicacao"),
-                m("th", { scope: "col" }, "dsTipPresc"),
-                m("th", { scope: "col" }, "dhChecagem"),
+                m("th", { scope: "col" }, "Prescripción"),
+                m("th", { scope: "col" }, "Hora Solicitada"),
+                m("th", { scope: "col" }, "Hora Chequeo"),
+                m("th", { scope: "col" }, "Usuario de Chequeo"),
               ])
             ),
             m(
               "tbody",
               PantallaRegistro.data.map((item) =>
                 m("tr", [
-                  m("th", { scope: "row" }, item.cdPreMed),
-                  m("td", item.cdItpreMed),
-                  m("td", item.cdAtendimento),
-                  m("td", new Date(item.dhMedicacao).toLocaleString("es-ES", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    second: "2-digit",
-                  })),
                   m("td", item.dsTipPresc),
+                  m(
+                    "td",
+                    new Date(item.dhMedicacao).toLocaleString("es-ES", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })
+                  ),
                   m(
                     "td",
                     item.dhChecagem
                       ? new Date(item.dhChecagem).toLocaleString("es-ES", {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        second: "2-digit",
-                      }) // Mostrar el valor de dhChecagem si no es null
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }) // Mostrar el valor de dhChecagem si no es null
                       : m(
                           "button",
                           {
@@ -128,6 +128,7 @@ const PantallaRegistro = {
                           "Check"
                         )
                   ),
+                  m("td", item.nmUsuario),
                 ])
               )
             ),
