@@ -7,6 +7,8 @@ const PantallaRegistro = {
   loading: true, // Estado de carga
   error: false, // Estado de error
   usuarioConectado: "", // Usuario conectado
+  selectedItem: null, // Estado para almacenar el ítem seleccionado
+  showModal: false, // Estado para controlar la visibilidad del modal
 
   oninit: (vnode) => {
     PantallaRegistro.loadData(PedidoTF.numeroAtencion);
@@ -39,33 +41,45 @@ const PantallaRegistro = {
   },
 
   handleCheck: (item) => {
-    PantallaRegistro.loading = true;
-    PantallaRegistro.error = false; // Reiniciar el estado de error antes de la solicitud
-    const requestData = {
-      cdItpreMed: item.cdItpreMed,
-      dhMedicacao: item.dhMedicacao,
-      nmUsuario: PantallaRegistro.usuarioConectado.user.user.toUpperCase(),
-    };
+    PantallaRegistro.selectedItem = item;
+    PantallaRegistro.showModal = true; // Mostrar el modal
+  },
 
-    m.request({
-      method: "POST",
-      url: "http://localhost:5118/api/HritpreConsInsertRequest",
-      body: requestData,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        console.log("POST successful:", response);
-        // Volver a cargar los datos después de que el POST sea exitoso
-        PantallaRegistro.loadData(PedidoTF.numeroAtencion);
+  confirmCheck: () => {
+    if (PantallaRegistro.selectedItem) {
+      PantallaRegistro.loading = true;
+      PantallaRegistro.error = false;
+      PantallaRegistro.showModal = false; // Ocultar el modal
+
+      const requestData = {
+        cdItpreMed: PantallaRegistro.selectedItem.cdItpreMed,
+        dhMedicacao: PantallaRegistro.selectedItem.dhMedicacao,
+        nmUsuario: PantallaRegistro.usuarioConectado.user.user.toUpperCase(),
+      };
+
+      m.request({
+        method: "POST",
+        url: "http://localhost:5118/api/HritpreConsInsertRequest",
+        body: requestData,
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => {
-        console.error("POST failed:", error);
-        PantallaRegistro.error = true; // Marcar el error en caso de fallo
-        PantallaRegistro.loading = false; // Terminar el loading si falla
-        m.redraw(); // Redibujar la vista
-      });
+        .then((response) => {
+          console.log("POST successful:", response);
+          PantallaRegistro.loadData(PedidoTF.numeroAtencion);
+        })
+        .catch((error) => {
+          console.error("POST failed:", error);
+          PantallaRegistro.error = true; // Marcar el error en caso de fallo
+          PantallaRegistro.loading = false; // Terminar el loading si falla
+          m.redraw(); // Redibujar la vista
+        });
+    }
+  },
+
+  closeModal: () => {
+    PantallaRegistro.showModal = false;
   },
 
   view: (vnode) => {
@@ -115,7 +129,7 @@ const PantallaRegistro = {
                           year: "numeric",
                           hour: "2-digit",
                           minute: "2-digit",
-                        }) // Mostrar el valor de dhChecagem si no es null
+                        })
                       : m(
                           "button",
                           {
@@ -133,6 +147,73 @@ const PantallaRegistro = {
               )
             ),
           ]),
+
+      // Modal de confirmación
+      PantallaRegistro.showModal &&
+        m(
+          "div",
+          {
+            class: "modal show",
+            style: { display: "block", backgroundColor: "rgba(0,0,0,0.5)" },
+            role: "dialog",
+          },
+          m(
+            "div",
+            { class: "modal-dialog modal-dialog-centered", role: "document" },
+            m("div", { class: "modal-content" }, [
+              m("div", { class: "modal-header" }, [
+                m("h5", { class: "modal-title" }, "Confirmación"),
+                m(
+                  "button",
+                  {
+                    class: "close",
+                    type: "button",
+                    onclick: PantallaRegistro.closeModal,
+                  },
+                  m("span", { "aria-hidden": "true" }, m.trust("&times;"))
+                ),
+              ]),
+              m("div", { class: "modal-body" }, [
+                `¿Está seguro de que desea confirmar la prescripción `,
+                m("strong", PantallaRegistro.selectedItem.dsTipPresc),
+                ` a la hora `,
+                m(
+                  "strong",
+                  new Date(
+                    PantallaRegistro.selectedItem.dhMedicacao
+                  ).toLocaleString("es-ES", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                ),
+                `?`,
+              ]),
+              m("div", { class: "modal-footer" }, [
+                m(
+                  "button",
+                  {
+                    class: "btn btn-secondary",
+                    type: "button",
+                    onclick: PantallaRegistro.closeModal,
+                  },
+                  "Cancelar"
+                ),
+                m(
+                  "button",
+                  {
+                    class: "btn btn-primary",
+                    type: "button",
+                    onclick: PantallaRegistro.confirmCheck,
+                  },
+                  "Confirmar"
+                ),
+              ]),
+            ])
+          )
+        ),
     ];
   },
 };
