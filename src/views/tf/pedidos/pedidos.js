@@ -198,7 +198,7 @@ const tablePedidosTF = {
                                             PedidosTF.loader = true;
                                             PedidosTF.pedidos = [];
                                             PedidosTF.fetchPedidos();
-                                            m.route.set("/terapia-respiratoria/pedidos?idFiltro=" + PedidosTF.idFiltro + "&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta);
+                                            m.route.set("/terapia-fisica/pedidos?idFiltro=" + PedidosTF.idFiltro + "&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta);
                                         },
                                         style: {
                                             "border": "transparent"
@@ -225,7 +225,7 @@ const tablePedidosTF = {
                                             PedidosTF.loader = true;
                                             PedidosTF.pedidos = [];
                                             PedidosTF.fetchPedidos();
-                                            m.route.set("/terapia-respiratoria/pedidos?idFiltro=" + PedidosTF.idFiltro + "&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta);
+                                            m.route.set("/terapia-fisica/pedidos?idFiltro=" + PedidosTF.idFiltro + "&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta);
                                         },
                                         style: {
                                             "border": "transparent"
@@ -244,19 +244,19 @@ const tablePedidosTF = {
                                     m("h6.dropdown-header.tx-uppercase.tx-12.tx-bold.tx-inverse",
                                         "FILTROS:"
                                     ),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=1" }, [
+                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-fisica/pedidos/?idFiltro=1" }, [
                                         "Pedidos de Hoy"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-respiratoria/pedidos/?idFiltro=2&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta }, [
+                                    m(m.route.Link, { class: 'dropdown-item', href: "/terapia-fisica/pedidos/?idFiltro=2&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta }, [
                                         "Pedidos entre Fechas"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-respiratoria/pedidos/?idFiltro=3&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta }, [
+                                    m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-fisica/pedidos/?idFiltro=3&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta }, [
                                         "Pedidos de Emergencia"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-respiratoria/pedidos/?idFiltro=4&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta }, [
+                                    m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-fisica/pedidos/?idFiltro=4&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta }, [
                                         "Pedidos de C. Externa"
                                     ]),
-                                    m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-respiratoria/pedidos/?idFiltro=5&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta }, [
+                                    m(m.route.Link, { class: 'dropdown-item d-none', href: "/terapia-fisica/pedidos/?idFiltro=5&fechaDesde=" + PedidosTF.fechaDesde + "&fechaHasta=" + PedidosTF.fechaHasta }, [
                                         "Pedidos de Hospitalización"
                                     ]),
 
