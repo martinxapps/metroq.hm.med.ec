@@ -4,12 +4,16 @@ const ModalNoAdministration = {
       justification,
       observation,
       showError,
+      justifications,
+      justificationLoading,
       onConfirm,
       onCancel,
       onJustificationChange,
       onObservationChange,
     },
   }) => {
+    const maxObservationLength = 100; // Longitud máxima de la observación
+
     return m(
       "div",
       {
@@ -34,24 +38,61 @@ const ModalNoAdministration = {
             ),
           ]),
           m("div", { class: "modal-body" }, [
+            justificationLoading
+              ? m(
+                  "div.pd-10.wd-100p",
+                  m("div.placeholder-paragraph", [m("div.line"), m("div.line")])
+                )
+              : justifications.length === 0 // Si no se pudieron cargar los datos
+              ? m(
+                  "div",
+                  { class: "alert alert-danger", role: "alert" },
+                  "Ocurrió un error, intenta de nuevo"
+                )
+              : m("div.form-group", [
+                  m("label", "Justificación (requerida)"),
+                  m(
+                    "select.form-control",
+                    {
+                      onchange: (e) => onJustificationChange(e.target.value),
+                      value: justification, // Asignamos el valor del idChecagem
+                    },
+                    [
+                      m(
+                        "option",
+                        { value: "" },
+                        "Seleccione una justificación"
+                      ),
+                      ...justifications.map((justificationItem) =>
+                        m(
+                          "option",
+                          { value: justificationItem.idChecagem },
+                          justificationItem.description
+                        )
+                      ),
+                    ]
+                  ),
+                  showError &&
+                    !justification &&
+                    m("div.text-danger", "La justificación es requerida."), // Mensaje de error en rojo
+                ]),
             m("div.form-group", [
-              m("label", "Justificación (requerida)"),
+              m("label", "Observación (opcional, máximo 100 caracteres)"),
               m("input.form-control", {
                 type: "text",
-                value: justification,
-                oninput: (e) => onJustificationChange(e.target.value),
-              }),
-              showError &&
-                !justification &&
-                m("div.text-danger", "La justificación es requerida."),
-            ]),
-            m("div.form-group", [
-              m("label", "Observación (opcional)"),
-              m("input.form-control", {
-                type: "text",
+                maxlength: maxObservationLength, // Restringimos el número de caracteres a 100
                 value: observation,
-                oninput: (e) => onObservationChange(e.target.value),
+                oninput: (e) => {
+                  if (e.target.value.length <= maxObservationLength) {
+                    onObservationChange(e.target.value);
+                  }
+                },
               }),
+              observation.length > maxObservationLength &&
+                m(
+                  "div.text-danger",
+                  `La observación no puede exceder ${maxObservationLength} caracteres.`
+                ),
             ]),
           ]),
           m("div", { class: "modal-footer" }, [

@@ -7,16 +7,18 @@ import ApiService from "../services/ApiService";
 import ModalNoAdministration from "../components/ModalNoConfirmation";
 
 const PantallaRegistro = {
-  data: [], // Aquí guardaremos los datos
-  loading: true, // Estado de carga
-  error: false, // Estado de error
-  usuarioConectado: "", // Usuario conectado
-  selectedItem: null, // Estado para almacenar el ítem seleccionado
-  showModal: false, // Estado para controlar la visibilidad del modal
-  showNoAdminModal: false, // Nuevo estado para controlar el modal de No Administrar
+  data: [],
+  loading: true,
+  error: false,
+  usuarioConectado: "",
+  selectedItem: null,
+  showModal: false, // Para el primer modal (chequear)
+  showNoAdminModal: false, // Para el segundo modal (No Administrar)
   justification: "",
   observation: "",
   showError: false,
+  justifications: [], // Estado para las justificaciones cargadas desde el API
+  justificationLoading: true, // Estado de carga mientras se obtienen las justificaciones
 
   oninit: () => {
     PantallaRegistro.usuarioConectado = Encrypt.getDataUser();
@@ -45,8 +47,7 @@ const PantallaRegistro = {
 
   handleCheck: (item) => {
     PantallaRegistro.selectedItem = item;
-    PantallaRegistro.showModal = true;
-    PantallaRegistro.showError = false;
+    PantallaRegistro.showModal = true; // Mostrar el primer modal
   },
 
   confirmCheck: () => {
@@ -63,11 +64,11 @@ const PantallaRegistro = {
       cdJustificativaCheacagem: null,
     };
 
-    console.log("Request Data: ", requestData);
-
     ApiService.postHritpreConsInsertRequest(requestData)
       .then(() => {
         PantallaRegistro.loadData(PedidoTF.numeroAtencion);
+        PantallaRegistro.observation = "";
+        PantallaRegistro.justification = "";
       })
       .catch(() => {
         PantallaRegistro.error = true;
@@ -79,10 +80,27 @@ const PantallaRegistro = {
   handleNoAdministration: () => {
     PantallaRegistro.showModal = false; // Cerrar el modal principal
     PantallaRegistro.showNoAdminModal = true; // Abrir el modal de No Administrar
+    PantallaRegistro.justificationLoading = true;
+
+    // Cargar las justificaciones solo cuando se abre el modal de "No administrar"
+    ApiService.getJustificationForNoAdministered()
+      .then((result) => {
+        if (result.status) {
+          PantallaRegistro.justifications = result.data;
+        } else {
+          PantallaRegistro.error = true;
+        }
+      })
+      .catch(() => {
+        PantallaRegistro.error = true;
+      })
+      .finally(() => {
+        PantallaRegistro.justificationLoading = false;
+        m.redraw();
+      });
   },
 
   confirmNoAdministration: () => {
-    // Validar la justificación
     if (!PantallaRegistro.justification) {
       PantallaRegistro.showError = true;
       return;
@@ -96,26 +114,32 @@ const PantallaRegistro = {
       dhMedicacao: PantallaRegistro.selectedItem.dhMedicacao,
       nmUsuario: PantallaRegistro.usuarioConectado.user.user.toUpperCase(),
       snSuspenso: "S",
-      dsJustificativa: PantallaRegistro.observation, 
-      cdJustificativaCheacagem: 21, //PantallaRegistro.justification,
+      dsJustificativa: PantallaRegistro.observation,
+      cdJustificativaCheacagem: parseInt(PantallaRegistro.justification),
     };
 
-    console.log("Request Data: ", requestData);
+    //console.log("Request Data: ", requestData);
 
     ApiService.postHritpreConsInsertRequest(requestData)
       .then(() => {
         PantallaRegistro.loadData(PedidoTF.numeroAtencion);
+        PantallaRegistro.observation = "";
+        PantallaRegistro.justification = "";
       })
       .catch(() => {
         PantallaRegistro.error = true;
-        PantallaRegistro.loading = false;
       })
-      .finally(() => m.redraw());
+      .finally(() => {
+        PantallaRegistro.loading = false;
+        m.redraw();
+      });
   },
 
   closeModal: () => {
-    PantallaRegistro.showModal = false;
-    PantallaRegistro.showNoAdminModal = false;
+    PantallaRegistro.showModal = false; // Cerrar el modal de confirmación
+    PantallaRegistro.showNoAdminModal = false; // Cerrar el modal de no administrar
+    PantallaRegistro.observation = ""; // Limpiar la observación
+    PantallaRegistro.justification = ""; // Limpiar la justificación
   },
 
   view: () => {
@@ -135,6 +159,7 @@ const PantallaRegistro = {
             data: PantallaRegistro.data,
             handleCheck: PantallaRegistro.handleCheck,
           }),
+      // Primer modal (confirmación de check)
       PantallaRegistro.showModal &&
         m(ModalConfirmation, {
           item: PantallaRegistro.selectedItem,
@@ -142,11 +167,14 @@ const PantallaRegistro = {
           onCancel: PantallaRegistro.closeModal,
           onNoAdministration: PantallaRegistro.handleNoAdministration,
         }),
+      // Segundo modal (justificación de no administrar)
       PantallaRegistro.showNoAdminModal &&
         m(ModalNoAdministration, {
           justification: PantallaRegistro.justification,
           observation: PantallaRegistro.observation,
           showError: PantallaRegistro.showError,
+          justifications: PantallaRegistro.justifications,
+          justificationLoading: PantallaRegistro.justificationLoading,
           onConfirm: PantallaRegistro.confirmNoAdministration,
           onCancel: PantallaRegistro.closeModal,
           onJustificationChange: (value) =>
