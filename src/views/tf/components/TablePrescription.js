@@ -11,6 +11,9 @@ const TablePrescription = {
           m("th", { scope: "col" }, "Hora Solicitada"),
           m("th", { scope: "col" }, "Hora Chequeo"),
           m("th", { scope: "col" }, "Usuario de Chequeo"),
+          m("th", { scope: "col" }, "Tipo de Administración"),
+          m("th", { scope: "col" }, "Justificación"),
+          m("th", { scope: "col" }, "Observación"),
         ])
       ),
       m(
@@ -41,6 +44,10 @@ const TablePrescription = {
                 : m(BotonCheck, { onClick: () => handleCheck(item) })
             ),
             m("td", item.nmUsuario),
+            /* Si snSupenso es S es administrado, Si es N No adminstrado. Caso contrario poner lo que viene en snSuspenso */
+            m("td", item.snSuspenso === "S" ? "No Administrado" : item.snSuspenso === "N" ? "Administrado" : item.snSuspenso),
+            m("td", item.justificacion),
+            m("td", item.observacion),
           ])
         )
       ),

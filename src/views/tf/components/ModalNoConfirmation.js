@@ -1,7 +1,15 @@
-import m from "mithril";
-
-const ModalConfirmation = {
-  view: ({ attrs: { item, onConfirm, onCancel, onNoAdministration } }) => {
+const ModalNoAdministration = {
+  view: ({
+    attrs: {
+      justification,
+      observation,
+      showError,
+      onConfirm,
+      onCancel,
+      onJustificationChange,
+      onObservationChange,
+    },
+  }) => {
     return m(
       "div",
       {
@@ -14,7 +22,7 @@ const ModalConfirmation = {
         { class: "modal-dialog modal-dialog-centered", role: "document" },
         m("div", { class: "modal-content" }, [
           m("div", { class: "modal-header" }, [
-            m("h5", { class: "modal-title" }, "Confirmación"),
+            m("h5", { class: "modal-title" }, "No Administrar"),
             m(
               "button",
               {
@@ -26,20 +34,25 @@ const ModalConfirmation = {
             ),
           ]),
           m("div", { class: "modal-body" }, [
-            `¿Está seguro de que desea confirmar la prescripción `,
-            m("strong", item.dsTipPresc),
-            ` del `,
-            m(
-              "strong",
-              new Date(item.dhMedicacao).toLocaleString("es-ES", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-              })
-            ),
-            `?`,
+            m("div.form-group", [
+              m("label", "Justificación (requerida)"),
+              m("input.form-control", {
+                type: "text",
+                value: justification,
+                oninput: (e) => onJustificationChange(e.target.value),
+              }),
+              showError &&
+                !justification &&
+                m("div.text-danger", "La justificación es requerida."),
+            ]),
+            m("div.form-group", [
+              m("label", "Observación (opcional)"),
+              m("input.form-control", {
+                type: "text",
+                value: observation,
+                oninput: (e) => onObservationChange(e.target.value),
+              }),
+            ]),
           ]),
           m("div", { class: "modal-footer" }, [
             m(
@@ -60,15 +73,6 @@ const ModalConfirmation = {
               },
               "Confirmar"
             ),
-            m(
-              "button",
-              {
-                class: "btn btn-primary",
-                type: "button",
-                onclick: onNoAdministration,
-              },
-              "No Administrar"
-            ),
           ]),
         ])
       )
@@ -76,4 +80,4 @@ const ModalConfirmation = {
   },
 };
 
-export default ModalConfirmation;
+export default ModalNoAdministration;
