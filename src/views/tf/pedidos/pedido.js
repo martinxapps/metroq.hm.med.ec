@@ -583,6 +583,7 @@ const Examenes = {
                     (_val.OBS_EXAMEN !== null ? m('.d-inline.tx-danger', 'Observaciones:') : ''),
                     (_val.OBS_EXAMEN !== null ? m('br') : ''),
                     (_val.OBS_EXAMEN !== null ? m('.d-inline', _val.OBS_EXAMEN) : ''),
+                    m('br'),
                 ]
             })
         }
@@ -803,7 +804,7 @@ const PedidoTF = {
                                                             style: { "background-color": "#eaeff5" }
 
                                                         },
-                                                        PedidoTF.data.FECHA_PedidoTF + " " + PedidoTF.data.HORA_PedidoTF
+                                                        PedidoTF.data.FECHA_PEDIDO + " " + PedidoTF.data.HORA_PEDIDO
 
                                                     ),
                                                     m("th", {
