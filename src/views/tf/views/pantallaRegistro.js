@@ -22,13 +22,13 @@ const PantallaRegistro = {
 
   oninit: () => {
     PantallaRegistro.usuarioConectado = Encrypt.getDataUser();
-    PantallaRegistro.loadData(PedidoTF.numeroAtencion);
+    PantallaRegistro.loadData(PedidoTF.numeroPedido);
   },
 
-  loadData: (attention) => {
+  loadData: (cdPreMed) => {
     PantallaRegistro.loading = true;
     PantallaRegistro.error = false;
-    ApiService.getPhysicalTherapySessions(attention)
+    ApiService.getPhysicalTherapySessions(cdPreMed)
       .then((result) => {
         if (result.status) {
           PantallaRegistro.data = result.data;
@@ -66,7 +66,7 @@ const PantallaRegistro = {
 
     ApiService.postHritpreConsInsertRequest(requestData)
       .then(() => {
-        PantallaRegistro.loadData(PedidoTF.numeroAtencion);
+        PantallaRegistro.loadData(PedidoTF.numeroPedido);
         PantallaRegistro.observation = "";
         PantallaRegistro.justification = "";
       })
@@ -122,7 +122,7 @@ const PantallaRegistro = {
 
     ApiService.postHritpreConsInsertRequest(requestData)
       .then(() => {
-        PantallaRegistro.loadData(PedidoTF.numeroAtencion);
+        PantallaRegistro.loadData(PedidoTF.numeroPedido);
         PantallaRegistro.observation = "";
         PantallaRegistro.justification = "";
       })

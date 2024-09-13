@@ -4,10 +4,10 @@ const ApiService = {
   //baseUrl: "http://localhost:5118/api", // Localhost
   baseUrl: "https://metropluscsharp.hospitalmetropolitano.org/api", // Producción
 
-  getPhysicalTherapySessions(attentionId) {
+  getPhysicalTherapySessions(cdPreMed) {
     return m.request({
       method: "GET",
-      url: `${this.baseUrl}/PhysicalTherapySession/${attentionId}`,
+      url: `${this.baseUrl}/PhysicalTherapySession/${cdPreMed}`,
     });
   },
 
