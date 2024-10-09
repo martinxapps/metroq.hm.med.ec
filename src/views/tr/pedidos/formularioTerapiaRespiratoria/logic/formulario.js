@@ -57,7 +57,7 @@ export const change = (prescripcionAntes) => {
   return newObject;
 };
 
-export const siAlgunaEsVerdadero = (objeto) => Object.values(objeto).some(Boolean);
+export const siAlgunaEsVerdadero = (objeto) => Object.values(objeto).some(item => item.checked === true);
 
 export const  containsInvalidChars = (text) => /[-+e]/.test(text);
 export function detectDevice() {
