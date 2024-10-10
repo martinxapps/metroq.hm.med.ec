@@ -8,6 +8,7 @@ import {
   detectDevice,
 } from "./logic/formulario";
 import Encrypt from "../../../../models/encrypt";
+import { formatDateTime, validateSeconds, validateDateTime }  from "./logic/dateTime";
 
 let formularioModelo = FormularioModels;
 let idFormulario = null;
@@ -1403,8 +1404,115 @@ const inputCriterio = {
     ];
   },
 };
+
+const inputFechaYHoraRegistro = {
+  view: (vnode) => {
+    return [
+      // Input de fecha y hora del registro
+      m("div", { class: "form-group" }, [
+        m(
+          "label",
+          { for: "inputFechaHoraRegistro" },
+          "Fecha y Hora del Registro"
+        ),
+        m("input", {
+          class: "form-control",
+          type: "text",
+          id: "inputFechaHoraRegistro",
+          placeholder: "dd/mm/yyyy hh:mm:ss",
+          maxlength: "19",
+          //value: formularioModelo.listadoUnitario.FECHAREGISTRO,
+          oncreate: (el) => {
+            el.dom.value = formularioModelo.listadoUnitario.FECHAREGISTRO;
+          },
+          disabled:
+          formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+          formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+          oninput: function (e) {
+            let value = e.target.value.replace(/\D/g, ""); // Elimina cualquier carácter no numérico
+            let formattedValue = formatDateTime(value); // Formatear la fecha y hora
+            let isValid = true;
+            let errorMessage = "";
+
+            // Validar si el campo está vacío
+            if (!formattedValue) {
+              isValid = false;
+              errorMessage = "Este campo es obligatorio";
+            } else {
+              // Extraer partes de la fecha
+              const day = formattedValue.substring(0, 2);
+              const month = formattedValue.substring(3, 5) - 1; // Mes en base 0
+              const year = formattedValue.substring(6, 10);
+              const hours = formattedValue.substring(11, 13);
+              const minutes = formattedValue.substring(14, 16);
+              const seconds = formattedValue.substring(17, 19);
+
+              // Validar los segundos
+              if (!validateSeconds(seconds)) {
+                isValid = false;
+                errorMessage =
+                  "Los segundos son obligatorios en el formato hh:mm:ss";
+              } else {
+                const enteredDate = new Date(
+                  year,
+                  month,
+                  day,
+                  hours,
+                  minutes,
+                  seconds
+                );
+                const now = new Date(); // Fecha y hora actual
+
+                // Validar si la fecha ingresada es mayor que la fecha del pedido
+                const pedidoDateParts =
+                  formularioModelo.listadoUnitario.FECHAMV.split("-");
+                const pedidoDate = new Date(
+                  pedidoDateParts[2],
+                  pedidoDateParts[1] - 1,
+                  pedidoDateParts[0]
+                ); // Formato dd-mm-yyyy
+
+                // Obtener el mensaje de error, si existe
+                errorMessage = validateDateTime(
+                  enteredDate,
+                  pedidoDate,
+                  now,
+                  day,
+                  month,
+                  year
+                );
+
+                if (errorMessage) {
+                  isValid = false;
+                }
+              }
+            }
+
+            // Actualizar el valor del formulario y el estado de validación
+            e.target.value = formattedValue;
+            VerUnFormulario.date = formattedValue;
+            VerUnFormulario.isValidDate = isValid;
+            VerUnFormulario.errorMessage = errorMessage;
+          },
+        }),
+        !VerUnFormulario.isValidDate &&
+          m("div", { style: { color: "red" } }, VerUnFormulario.errorMessage),
+      ]),
+    ];
+  },
+};
+
 const VerUnFormulario = {
   usuarioMoficado: "",
+
+  validarFechaHoraRegistro: () => {
+    // Si la fecha no es válida o tiene un error, no permitimos continuar
+    if (!VerUnFormulario.isValidDate) {
+      alert(VerUnFormulario.errorMessage || "Error en la fecha y hora del registro");
+      return false; // Impedir guardar el formulario
+    }
+    return true; // Continuar si es válido
+  },
   oninit: (vnode) => {
     if (vnode.attrs.id !== undefined) {
       idFormulario = vnode.attrs.id;
@@ -3149,6 +3257,9 @@ const VerUnFormulario = {
               ),
               m(inputCriterio),
             ],
+            [
+              m(inputFechaYHoraRegistro),
+            ],
             " ",
             m("br"),
             m(
@@ -3319,6 +3430,7 @@ const VerUnFormulario = {
                     ESTADO: "Activo", //"1",
                     ID: formularioModelo.listadoUnitario.ID,
                     DISPOSITIVO: detectDevice(),
+                    FECHAREGISTRO: `to_date('${vnode.dom["inputFechaHoraRegistro"].value}', 'dd/mm/yyyy hh24:mi:ss')`,
                   };
                   if (
                     window.confirm(
@@ -3508,6 +3620,7 @@ const VerUnFormulario = {
                     ESTADO: "Finalizado", //"1",
                     ID: formularioModelo.listadoUnitario.ID,
                     DISPOSITIVO: detectDevice(),
+                    FECHAREGISTRO: `to_date('${vnode.dom["inputFechaHoraRegistro"].value}', 'dd/mm/yyyy hh24:mi:ss')`,
                   };
                   if (
                     window.confirm(
