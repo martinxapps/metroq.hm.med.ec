@@ -14,6 +14,7 @@ import {
   getDate,
 } from "./logic/formulario";
 
+import { formatDateTime, validateSeconds, validateDateTime }  from "./logic/dateTime";
 let formularioModelo = FormularioModels;
 
 //Selected
@@ -83,6 +84,14 @@ const CrearFormulario = {
     CrearFormulario.valoresCheckBox[examen] = valor;
   },
 
+  validarFechaHoraRegistro: () => {
+    // Si la fecha no es válida o tiene un error, no permitimos continuar
+    if (!CrearFormulario.isValidDate) {
+      alert(CrearFormulario.errorMessage || "Error en la fecha y hora del registro");
+      return false; // Impedir guardar el formulario
+    }
+    return true; // Continuar si es válido
+  },
   oninit: () => {
     //muestraModelo.generarSecuencial();
     formularioModelo.cargarEscalaDelDolor(Pedido.data.AT_MV);
@@ -2330,83 +2339,51 @@ const CrearFormulario = {
           value: CrearFormulario.date,
           oninput: function (e) {
             let value = e.target.value.replace(/\D/g, ''); // Elimina cualquier carácter no numérico
-            let formattedValue = '';
+            let formattedValue = formatDateTime(value); // Formatear la fecha y hora
             let isValid = true;
             let errorMessage = '';
-      
-            // Formatear fecha y hora en el formato: dd/mm/yyyy hh:mm:ss
-            if (value.length > 0) {
-              formattedValue += value.substring(0, 2); // Día
-              if (value.length >= 3) {
-                formattedValue += '/' + value.substring(2, 4); // Mes
-              }
-              if (value.length >= 5) {
-                formattedValue += '/' + value.substring(4, 8); // Año
-              }
-              if (value.length >= 9) {
-                formattedValue += ' ' + value.substring(8, 10); // Hora
-              }
-              if (value.length >= 11) {
-                formattedValue += ':' + value.substring(10, 12); // Minutos
-              }
-              if (value.length >= 13) {
-                formattedValue += ':' + value.substring(12, 14); // Segundos
-              }
-            }
-      
+
             // Validar si el campo está vacío
             if (!formattedValue) {
               isValid = false;
               errorMessage = 'Este campo es obligatorio';
             } else {
-              // Comparar la fecha y hora ingresada con la fecha del pedido
+              // Extraer partes de la fecha
               const day = formattedValue.substring(0, 2);
               const month = formattedValue.substring(3, 5) - 1; // Mes en base 0
               const year = formattedValue.substring(6, 10);
               const hours = formattedValue.substring(11, 13);
               const minutes = formattedValue.substring(14, 16);
               const seconds = formattedValue.substring(17, 19);
-      
-              // Verificar si los segundos están presentes
-              if (!seconds || seconds.length !== 2) {
+
+              // Validar los segundos
+              if (!validateSeconds(seconds)) {
                 isValid = false;
                 errorMessage = 'Los segundos son obligatorios en el formato hh:mm:ss';
               } else {
                 const enteredDate = new Date(year, month, day, hours, minutes, seconds);
-      
+                const now = new Date(); // Fecha y hora actual
+
                 // Validar si la fecha ingresada es mayor que la fecha del pedido
                 const pedidoDateParts = Pedido.data.FECHA_PEDIDO.split('-');
                 const pedidoDate = new Date(pedidoDateParts[2], pedidoDateParts[1] - 1, pedidoDateParts[0]); // Formato dd-mm-yyyy
-                if (enteredDate < pedidoDate) {
-                  isValid = false;
-                  errorMessage = 'La fecha y hora no pueden ser menores a la fecha del pedido';
-                }
+
+                // Obtener el mensaje de error, si existe
+                errorMessage = validateDateTime(enteredDate, pedidoDate, now, day, month, year);
                 
-                // Si la fecha ingresada es válida, comparar con la fecha y hora actual
-                else {
-                  const now = new Date(); // Fecha y hora actual
-      
-                  // Validar si la fecha es válida
-                  if (enteredDate.getDate() != day || enteredDate.getMonth() != month || enteredDate.getFullYear() != year) {
-                    isValid = false;
-                    errorMessage = 'La fecha ingresada no es válida';
-                  }
-                  // Validar si la hora es mayor a la actual
-                  else if (enteredDate > now) {
-                    isValid = false;
-                    errorMessage = 'La fecha y hora no pueden ser mayores a la actual';
-                  }
+                if (errorMessage) {
+                  isValid = false;
                 }
               }
             }
-      
+
+            // Actualizar el valor del formulario y el estado de validación
             e.target.value = formattedValue;
-            CrearFormulario.date = formattedValue; // Actualiza el valor del formulario
-            CrearFormulario.isValidDate = isValid; // Guardar si la fecha es válida
-            CrearFormulario.errorMessage = errorMessage; // Guardar el mensaje de error si es necesario
+            CrearFormulario.date = formattedValue;
+            CrearFormulario.isValidDate = isValid;
+            CrearFormulario.errorMessage = errorMessage;
           }
         }),
-        // Mostrar mensaje de error en rojo si la fecha no es válida
         !CrearFormulario.isValidDate && m("div", { style: { color: "red" } }, CrearFormulario.errorMessage)
       ]),
       m("br"),
@@ -2571,6 +2548,12 @@ const CrearFormulario = {
               //ID: 300,
             };
             if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
+              // Validar fecha y hora antes de guardar
+              if (!CrearFormulario.validarFechaHoraRegistro()) {
+                // Si la validación de fecha y hora falla, no permitimos continuar
+                return;
+              }
+            
               if (confirm("¿Estás seguro quieres guardar este formulario?")) {
                 // Lógica de eliminación del elemento aquí
                 console.log(formulario);
