@@ -2377,9 +2377,9 @@ const CrearFormulario = {
                 // Validar si la fecha ingresada es mayor que la fecha del pedido
                 const pedidoDateParts = Pedido.data.FECHA_PEDIDO.split('-');
                 const pedidoDate = new Date(pedidoDateParts[2], pedidoDateParts[1] - 1, pedidoDateParts[0]); // Formato dd-mm-yyyy
-                if (enteredDate > pedidoDate) {
+                if (enteredDate < pedidoDate) {
                   isValid = false;
-                  errorMessage = 'La fecha y hora no pueden ser mayores a la fecha del pedido';
+                  errorMessage = 'La fecha y hora no pueden ser menores a la fecha del pedido';
                 }
                 
                 // Si la fecha ingresada es válida, comparar con la fecha y hora actual
@@ -2567,10 +2567,10 @@ const CrearFormulario = {
               ESTADO: "Activo", //"1",
               ID: "sec_TerapiaRespiratoria.nextval",
               DISPOSITIVO: detectDevice(),
-              FECHAREGISTRO: vnode.dom["inputFechaHoraRegistro"].value,
+              FECHAREGISTRO: `to_date('${vnode.dom["inputFechaHoraRegistro"].value}', 'dd/mm/yyyy hh24:mi:ss')`,
               //ID: 300,
             };
-            /* if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
+            if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
               if (confirm("¿Estás seguro quieres guardar este formulario?")) {
                 // Lógica de eliminación del elemento aquí
                 console.log(formulario);
@@ -2586,15 +2586,7 @@ const CrearFormulario = {
               }
             } else {
               alert("Debe escoger al menos una prescripción");
-            } */
-           //console.log(CrearFormulario.date)
-           //console.log(Pedido.data);
-
-           console.log(formulario);
-           console.log(Pedido.data.FECHA_PEDIDO.split('-'));
-            //alert("Guardar");
-            //alert("Guardar");
-            //terapiaRespiratoriaController.guardar(formulario);
+            }
           },
         },
         "Guardar"
