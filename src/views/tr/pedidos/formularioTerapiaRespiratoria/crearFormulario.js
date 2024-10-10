@@ -2331,6 +2331,8 @@ const CrearFormulario = {
           oninput: function (e) {
             let value = e.target.value.replace(/\D/g, ''); // Elimina cualquier carácter no numérico
             let formattedValue = '';
+            let isValid = true;
+            let errorMessage = '';
       
             // Formatear fecha y hora en el formato: dd/mm/yyyy hh:mm:ss
             if (value.length > 0) {
@@ -2352,10 +2354,60 @@ const CrearFormulario = {
               }
             }
       
+            // Validar si el campo está vacío
+            if (!formattedValue) {
+              isValid = false;
+              errorMessage = 'Este campo es obligatorio';
+            } else {
+              // Comparar la fecha y hora ingresada con la fecha del pedido
+              const day = formattedValue.substring(0, 2);
+              const month = formattedValue.substring(3, 5) - 1; // Mes en base 0
+              const year = formattedValue.substring(6, 10);
+              const hours = formattedValue.substring(11, 13);
+              const minutes = formattedValue.substring(14, 16);
+              const seconds = formattedValue.substring(17, 19);
+      
+              // Verificar si los segundos están presentes
+              if (!seconds || seconds.length !== 2) {
+                isValid = false;
+                errorMessage = 'Los segundos son obligatorios en el formato hh:mm:ss';
+              } else {
+                const enteredDate = new Date(year, month, day, hours, minutes, seconds);
+      
+                // Validar si la fecha ingresada es mayor que la fecha del pedido
+                const pedidoDateParts = Pedido.data.FECHA_PEDIDO.split('-');
+                const pedidoDate = new Date(pedidoDateParts[2], pedidoDateParts[1] - 1, pedidoDateParts[0]); // Formato dd-mm-yyyy
+                if (enteredDate > pedidoDate) {
+                  isValid = false;
+                  errorMessage = 'La fecha y hora no pueden ser mayores a la fecha del pedido';
+                }
+                
+                // Si la fecha ingresada es válida, comparar con la fecha y hora actual
+                else {
+                  const now = new Date(); // Fecha y hora actual
+      
+                  // Validar si la fecha es válida
+                  if (enteredDate.getDate() != day || enteredDate.getMonth() != month || enteredDate.getFullYear() != year) {
+                    isValid = false;
+                    errorMessage = 'La fecha ingresada no es válida';
+                  }
+                  // Validar si la hora es mayor a la actual
+                  else if (enteredDate > now) {
+                    isValid = false;
+                    errorMessage = 'La fecha y hora no pueden ser mayores a la actual';
+                  }
+                }
+              }
+            }
+      
             e.target.value = formattedValue;
             CrearFormulario.date = formattedValue; // Actualiza el valor del formulario
+            CrearFormulario.isValidDate = isValid; // Guardar si la fecha es válida
+            CrearFormulario.errorMessage = errorMessage; // Guardar el mensaje de error si es necesario
           }
-        })
+        }),
+        // Mostrar mensaje de error en rojo si la fecha no es válida
+        !CrearFormulario.isValidDate && m("div", { style: { color: "red" } }, CrearFormulario.errorMessage)
       ]),
       m("br"),
       m(
@@ -2515,6 +2567,7 @@ const CrearFormulario = {
               ESTADO: "Activo", //"1",
               ID: "sec_TerapiaRespiratoria.nextval",
               DISPOSITIVO: detectDevice(),
+              FECHAREGISTRO: vnode.dom["inputFechaHoraRegistro"].value,
               //ID: 300,
             };
             /* if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
@@ -2534,8 +2587,11 @@ const CrearFormulario = {
             } else {
               alert("Debe escoger al menos una prescripción");
             } */
-           console.log(CrearFormulario.date)
+           //console.log(CrearFormulario.date)
+           //console.log(Pedido.data);
 
+           console.log(formulario);
+           console.log(Pedido.data.FECHA_PEDIDO.split('-'));
             //alert("Guardar");
             //alert("Guardar");
             //terapiaRespiratoriaController.guardar(formulario);
