@@ -11,6 +11,7 @@ import {
   siAlgunaEsVerdadero,
   containsInvalidChars,
   detectDevice,
+  getDate,
 } from "./logic/formulario";
 
 let formularioModelo = FormularioModels;
@@ -71,9 +72,12 @@ let isAbolidoSelected = false;
 let isSonidoDeLaVozSelected = false;
 let isEdemaSelected = false;
 
+
 const CrearFormulario = {
   usuarioConectado: "",
   valoresCheckBox: {},
+
+  date: getDate(),
 
   actualizarValorCheckbox: (examen, valor) => {
     CrearFormulario.valoresCheckBox[examen] = valor;
@@ -2314,6 +2318,45 @@ const CrearFormulario = {
           maxlength: "4000",
         }),
       ],
+      // Input de fecha y hora del registro
+      m("div", { class: "form-group" }, [
+        m("label", { for: "inputFechaHoraRegistro" }, "Fecha y Hora del Registro"),
+        m("input", {
+          class: "form-control",
+          type: "text",
+          id: "inputFechaHoraRegistro",
+          placeholder: "dd/mm/yyyy hh:mm:ss",
+          maxlength: "19",
+          value: CrearFormulario.date,
+          oninput: function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Elimina cualquier carácter no numérico
+            let formattedValue = '';
+      
+            // Formatear fecha y hora en el formato: dd/mm/yyyy hh:mm:ss
+            if (value.length > 0) {
+              formattedValue += value.substring(0, 2); // Día
+              if (value.length >= 3) {
+                formattedValue += '/' + value.substring(2, 4); // Mes
+              }
+              if (value.length >= 5) {
+                formattedValue += '/' + value.substring(4, 8); // Año
+              }
+              if (value.length >= 9) {
+                formattedValue += ' ' + value.substring(8, 10); // Hora
+              }
+              if (value.length >= 11) {
+                formattedValue += ':' + value.substring(10, 12); // Minutos
+              }
+              if (value.length >= 13) {
+                formattedValue += ':' + value.substring(12, 14); // Segundos
+              }
+            }
+      
+            e.target.value = formattedValue;
+            CrearFormulario.date = formattedValue; // Actualiza el valor del formulario
+          }
+        })
+      ]),
       m("br"),
       m(
         "button",
@@ -2474,7 +2517,7 @@ const CrearFormulario = {
               DISPOSITIVO: detectDevice(),
               //ID: 300,
             };
-            if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
+            /* if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
               if (confirm("¿Estás seguro quieres guardar este formulario?")) {
                 // Lógica de eliminación del elemento aquí
                 console.log(formulario);
@@ -2490,7 +2533,8 @@ const CrearFormulario = {
               }
             } else {
               alert("Debe escoger al menos una prescripción");
-            }
+            } */
+           console.log(CrearFormulario.date)
 
             //alert("Guardar");
             //alert("Guardar");
