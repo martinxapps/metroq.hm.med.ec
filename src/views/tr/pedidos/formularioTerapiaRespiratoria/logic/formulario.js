@@ -70,14 +70,11 @@ export function detectDevice() {
 }
 export const getDate = () => {
   const date = new Date();
-  const [day, month, year, hours, minutes, seconds] = [
+  const [day, month, year] = [
     date.getDate(),
     date.getMonth() + 1, // Los meses en JavaScript son de 0-11
     date.getFullYear(),
-    date.getHours(),
-    date.getMinutes(),
-    date.getSeconds(),
   ].map(unit => String(unit).padStart(2, '0'));
 
-  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  return `${day}/${month}/${year} `;
 };
