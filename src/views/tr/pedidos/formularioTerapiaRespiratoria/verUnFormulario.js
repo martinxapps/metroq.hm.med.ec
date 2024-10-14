@@ -3432,6 +3432,10 @@ const VerUnFormulario = {
                     DISPOSITIVO: detectDevice(),
                     FECHAREGISTRO: `to_date('${vnode.dom["inputFechaHoraRegistro"].value}', 'dd/mm/yyyy hh24:mi:ss')`,
                   };
+                  if (!VerUnFormulario.validarFechaHoraRegistro()) {
+                    // Si la validación de fecha y hora falla, no permitimos continuar
+                    return;
+                  }
                   if (
                     window.confirm(
                       "¿Estás seguro que deseas actualizar el formulario?"
@@ -3622,6 +3626,10 @@ const VerUnFormulario = {
                     DISPOSITIVO: detectDevice(),
                     FECHAREGISTRO: `to_date('${vnode.dom["inputFechaHoraRegistro"].value}', 'dd/mm/yyyy hh24:mi:ss')`,
                   };
+                  if (!VerUnFormulario.validarFechaHoraRegistro()) {
+                    // Si la validación de fecha y hora falla, no permitimos continuar
+                    return;
+                  }
                   if (
                     window.confirm(
                       "¿Estás seguro que deseas finalizar el formulario?"
