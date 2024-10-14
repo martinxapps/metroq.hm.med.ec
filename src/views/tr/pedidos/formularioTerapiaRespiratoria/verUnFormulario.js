@@ -3430,7 +3430,7 @@ const VerUnFormulario = {
                     ESTADO: "Activo", //"1",
                     ID: formularioModelo.listadoUnitario.ID,
                     DISPOSITIVO: detectDevice(),
-                    FECHAREGISTRO: `to_date('${vnode.dom["inputFechaHoraRegistro"].value}', 'dd/mm/yyyy hh24:mi:ss')`,
+                    FECHAREGISTRO: vnode.dom["inputFechaHoraRegistro"].value
                   };
                   if (!VerUnFormulario.validarFechaHoraRegistro()) {
                     // Si la validación de fecha y hora falla, no permitimos continuar
@@ -3624,7 +3624,7 @@ const VerUnFormulario = {
                     ESTADO: "Finalizado", //"1",
                     ID: formularioModelo.listadoUnitario.ID,
                     DISPOSITIVO: detectDevice(),
-                    FECHAREGISTRO: `to_date('${vnode.dom["inputFechaHoraRegistro"].value}', 'dd/mm/yyyy hh24:mi:ss')`,
+                    FECHAREGISTRO: vnode.dom["inputFechaHoraRegistro"].value
                   };
                   if (!VerUnFormulario.validarFechaHoraRegistro()) {
                     // Si la validación de fecha y hora falla, no permitimos continuar
