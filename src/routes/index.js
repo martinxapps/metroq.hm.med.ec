@@ -1,4 +1,4 @@
-// Pages here
+// Pages here Metroplus v1
 import App from '../views/app'
 import RedirMV from '../views/redir'
 import Salir from '../views/salir'
