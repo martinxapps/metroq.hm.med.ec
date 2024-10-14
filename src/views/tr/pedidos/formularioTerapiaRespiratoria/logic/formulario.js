@@ -57,7 +57,7 @@ export const change = (prescripcionAntes) => {
   return newObject;
 };
 
-export const siAlgunaEsVerdadero = (objeto) => Object.values(objeto).some(Boolean);
+export const siAlgunaEsVerdadero = (objeto) => Object.values(objeto).some(item => item.checked === true);
 
 export const  containsInvalidChars = (text) => /[-+e]/.test(text);
 export function detectDevice() {
@@ -68,3 +68,13 @@ export function detectDevice() {
     return "Computador";
   }
 }
+export const getDate = () => {
+  const date = new Date();
+  const [day, month, year] = [
+    date.getDate(),
+    date.getMonth() + 1, // Los meses en JavaScript son de 0-11
+    date.getFullYear(),
+  ].map(unit => String(unit).padStart(2, '0'));
+
+  return `${day}/${month}/${year} `;
+};

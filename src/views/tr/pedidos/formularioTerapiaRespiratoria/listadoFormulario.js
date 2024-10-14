@@ -38,7 +38,7 @@ const ListadoFormulario = {
             return m("tr", [
               m("td", { scope: "row" }, formulario.ID),
               m("td", { scope: "row" }, formulario.Usuario.toUpperCase()),
-              m("td", formulario.FECHAHOY),
+              m("td", formulario.FECHAREGISTRO),
               m("td", formulario.ESTADO),
               m(
                 "td",

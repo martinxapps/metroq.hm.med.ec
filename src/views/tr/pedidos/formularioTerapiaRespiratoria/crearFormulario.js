@@ -11,8 +11,10 @@ import {
   siAlgunaEsVerdadero,
   containsInvalidChars,
   detectDevice,
+  getDate,
 } from "./logic/formulario";
 
+import { formatDateTime, validateSeconds, validateDateTime }  from "./logic/dateTime";
 let formularioModelo = FormularioModels;
 
 //Selected
@@ -71,14 +73,25 @@ let isAbolidoSelected = false;
 let isSonidoDeLaVozSelected = false;
 let isEdemaSelected = false;
 
+
 const CrearFormulario = {
   usuarioConectado: "",
   valoresCheckBox: {},
+
+  date: getDate(),
 
   actualizarValorCheckbox: (examen, valor) => {
     CrearFormulario.valoresCheckBox[examen] = valor;
   },
 
+  validarFechaHoraRegistro: () => {
+    // Si la fecha no es válida o tiene un error, no permitimos continuar
+    if (!CrearFormulario.isValidDate) {
+      alert(CrearFormulario.errorMessage || "Error en la fecha y hora del registro");
+      return false; // Impedir guardar el formulario
+    }
+    return true; // Continuar si es válido
+  },
   oninit: () => {
     //muestraModelo.generarSecuencial();
     formularioModelo.cargarEscalaDelDolor(Pedido.data.AT_MV);
@@ -2314,6 +2327,65 @@ const CrearFormulario = {
           maxlength: "4000",
         }),
       ],
+      // Input de fecha y hora del registro
+      m("div", { class: "form-group" }, [
+        m("label", { for: "inputFechaHoraRegistro" }, "Fecha y Hora del Registro"),
+        m("input", {
+          class: "form-control",
+          type: "text",
+          id: "inputFechaHoraRegistro",
+          placeholder: "dd/mm/yyyy hh:mm:ss",
+          maxlength: "19",
+          value: CrearFormulario.date,
+          oninput: function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Elimina cualquier carácter no numérico
+            let formattedValue = formatDateTime(value); // Formatear la fecha y hora
+            let isValid = true;
+            let errorMessage = '';
+
+            // Validar si el campo está vacío
+            if (!formattedValue) {
+              isValid = false;
+              errorMessage = 'Este campo es obligatorio';
+            } else {
+              // Extraer partes de la fecha
+              const day = formattedValue.substring(0, 2);
+              const month = formattedValue.substring(3, 5) - 1; // Mes en base 0
+              const year = formattedValue.substring(6, 10);
+              const hours = formattedValue.substring(11, 13);
+              const minutes = formattedValue.substring(14, 16);
+              const seconds = formattedValue.substring(17, 19);
+
+              // Validar los segundos
+              if (!validateSeconds(seconds)) {
+                isValid = false;
+                errorMessage = 'Los segundos son obligatorios en el formato hh:mm:ss';
+              } else {
+                const enteredDate = new Date(year, month, day, hours, minutes, seconds);
+                const now = new Date(); // Fecha y hora actual
+
+                // Validar si la fecha ingresada es mayor que la fecha del pedido
+                const pedidoDateParts = Pedido.data.FECHA_PEDIDO.split('-');
+                const pedidoDate = new Date(pedidoDateParts[2], pedidoDateParts[1] - 1, pedidoDateParts[0]); // Formato dd-mm-yyyy
+
+                // Obtener el mensaje de error, si existe
+                errorMessage = validateDateTime(enteredDate, pedidoDate, now, day, month, year);
+                
+                if (errorMessage) {
+                  isValid = false;
+                }
+              }
+            }
+
+            // Actualizar el valor del formulario y el estado de validación
+            e.target.value = formattedValue;
+            CrearFormulario.date = formattedValue;
+            CrearFormulario.isValidDate = isValid;
+            CrearFormulario.errorMessage = errorMessage;
+          }
+        }),
+        !CrearFormulario.isValidDate && m("div", { style: { color: "red" } }, CrearFormulario.errorMessage)
+      ]),
       m("br"),
       m(
         "button",
@@ -2472,9 +2544,16 @@ const CrearFormulario = {
               ESTADO: "Activo", //"1",
               ID: "sec_TerapiaRespiratoria.nextval",
               DISPOSITIVO: detectDevice(),
+              FECHAREGISTRO: vnode.dom["inputFechaHoraRegistro"].value,
               //ID: 300,
             };
             if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
+              // Validar fecha y hora antes de guardar
+              if (!CrearFormulario.validarFechaHoraRegistro()) {
+                // Si la validación de fecha y hora falla, no permitimos continuar
+                return;
+              }
+            
               if (confirm("¿Estás seguro quieres guardar este formulario?")) {
                 // Lógica de eliminación del elemento aquí
                 console.log(formulario);
@@ -2491,10 +2570,6 @@ const CrearFormulario = {
             } else {
               alert("Debe escoger al menos una prescripción");
             }
-
-            //alert("Guardar");
-            //alert("Guardar");
-            //terapiaRespiratoriaController.guardar(formulario);
           },
         },
         "Guardar"
