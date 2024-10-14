@@ -2544,7 +2544,7 @@ const CrearFormulario = {
               ESTADO: "Activo", //"1",
               ID: "sec_TerapiaRespiratoria.nextval",
               DISPOSITIVO: detectDevice(),
-              FECHAREGISTRO: `to_date('${vnode.dom["inputFechaHoraRegistro"].value}', 'dd/mm/yyyy hh24:mi:ss')`,
+              FECHAREGISTRO: vnode.dom["inputFechaHoraRegistro"].value,
               //ID: 300,
             };
             if (siAlgunaEsVerdadero(CrearFormulario.valoresCheckBox)) {
