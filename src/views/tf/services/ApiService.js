@@ -2,7 +2,7 @@ import m from "mithril";
 
 const ApiService = {
   //baseUrl: "http://localhost:5118/api", // Localhost
-  baseUrl: "https://metropluscsharp.hospitalmetropolitano.org/api", // Producción
+  baseUrl: "https://metroplusapp.hospitalmetropolitano.org/api", // Producción
 
   getPhysicalTherapySessions(cdPreMed) {
     return m.request({
