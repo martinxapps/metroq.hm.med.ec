@@ -320,14 +320,14 @@ const CrearFormulario = {
         m(
           "div",
           {},
-          Pedido.examenes.forEach(({ EXAMEN, FRECUENCIA, IT_PRE_MED }) => {
-            const id = `${EXAMEN} ${FRECUENCIA}`;
+          Pedido.examenes.forEach(({ EXAMEN, FRECUENCIA, IT_PRE_MED, COMPONENTE }) => {
+            const id = `${EXAMEN}${COMPONENTE || ""} - ${FRECUENCIA}`;
             if (!CrearFormulario.valoresCheckBox[id]) {
               CrearFormulario.valoresCheckBox[id] = { checked: false, cd_itpre_med: Number(IT_PRE_MED) };
             }
           }),
-          Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA }) {
-            const id = `${EXAMEN} ${FRECUENCIA}`;
+          Pedido.examenes.map(function ({ EXAMEN, FRECUENCIA, COMPONENTE }) {
+            const id = `${EXAMEN}${COMPONENTE || ""} - ${FRECUENCIA}`;
             return m("div", { class: "form-check" }, [
               m("input", {
                 type: "checkbox",
@@ -346,7 +346,7 @@ const CrearFormulario = {
                   class: "form-check-label ml-2",
                   for: id,
                 },
-                `${EXAMEN} - ${FRECUENCIA}`
+                `${EXAMEN}${COMPONENTE || ""} - ${FRECUENCIA}`
               ),
             ]);
           })
