@@ -1421,78 +1421,32 @@ const inputFechaYHoraRegistro = {
           id: "inputFechaHoraRegistro",
           placeholder: "dd/mm/yyyy hh:mm:ss",
           maxlength: "19",
-          //value: formularioModelo.listadoUnitario.FECHAREGISTRO,
           oncreate: (el) => {
-            el.dom.value = formularioModelo.listadoUnitario.FECHAREGISTRO;
+            const initialValue = formularioModelo.listadoUnitario.FECHAREGISTRO;
+            el.dom.value = initialValue;
+
+            // Valida el valor inicial
+            if (initialValue) {
+              const isValid = validateAndSetState(initialValue);
+              VerUnFormulario.isValidDate = isValid;
+              VerUnFormulario.errorMessage = isValid
+                ? ""
+                : "Error en la fecha y hora del registro inicial";
+            } else {
+              VerUnFormulario.isValidDate = false;
+              VerUnFormulario.errorMessage = "Este campo es obligatorio";
+            }
           },
           disabled:
-          formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
-          formularioModelo.listadoUnitario.ESTADO === "Finalizado",
+            formularioModelo.listadoUnitario.ESTADO === "Cancelado" ||
+            formularioModelo.listadoUnitario.ESTADO === "Finalizado",
           oninput: function (e) {
-            let value = e.target.value.replace(/\D/g, ""); // Elimina cualquier carácter no numérico
-            let formattedValue = formatDateTime(value); // Formatear la fecha y hora
-            let isValid = true;
-            let errorMessage = "";
-
-            // Validar si el campo está vacío
-            if (!formattedValue) {
-              isValid = false;
-              errorMessage = "Este campo es obligatorio";
-            } else {
-              // Extraer partes de la fecha
-              const day = formattedValue.substring(0, 2);
-              const month = formattedValue.substring(3, 5) - 1; // Mes en base 0
-              const year = formattedValue.substring(6, 10);
-              const hours = formattedValue.substring(11, 13);
-              const minutes = formattedValue.substring(14, 16);
-              const seconds = formattedValue.substring(17, 19);
-
-              // Validar los segundos
-              if (!validateSeconds(seconds)) {
-                isValid = false;
-                errorMessage =
-                  "Los segundos son obligatorios en el formato hh:mm:ss";
-              } else {
-                const enteredDate = new Date(
-                  year,
-                  month,
-                  day,
-                  hours,
-                  minutes,
-                  seconds
-                );
-                const now = new Date(); // Fecha y hora actual
-
-                // Validar si la fecha ingresada es mayor que la fecha del pedido
-                const pedidoDateParts =
-                  formularioModelo.listadoUnitario.FECHAMV.split("-");
-                const pedidoDate = new Date(
-                  pedidoDateParts[2],
-                  pedidoDateParts[1] - 1,
-                  pedidoDateParts[0]
-                ); // Formato dd-mm-yyyy
-
-                // Obtener el mensaje de error, si existe
-                errorMessage = validateDateTime(
-                  enteredDate,
-                  pedidoDate,
-                  now,
-                  day,
-                  month,
-                  year
-                );
-
-                if (errorMessage) {
-                  isValid = false;
-                }
-              }
-            }
-
-            // Actualizar el valor del formulario y el estado de validación
+            const value = e.target.value.replace(/\D/g, ""); // Elimina caracteres no numéricos
+            const formattedValue = formatDateTime(value); // Formatear la fecha y hora
             e.target.value = formattedValue;
-            VerUnFormulario.date = formattedValue;
-            VerUnFormulario.isValidDate = isValid;
-            VerUnFormulario.errorMessage = errorMessage;
+
+            // Actualiza el estado de validación
+            validateAndSetState(formattedValue);
           },
         }),
         !VerUnFormulario.isValidDate &&
@@ -1501,6 +1455,60 @@ const inputFechaYHoraRegistro = {
     ];
   },
 };
+
+// Función de validación genérica
+function validateAndSetState(value) {
+  let isValid = true;
+  let errorMessage = "";
+
+  if (!value) {
+    isValid = false;
+    errorMessage = "Este campo es obligatorio";
+  } else {
+    // Validación detallada
+    const day = value.substring(0, 2);
+    const month = value.substring(3, 5) - 1; // Mes en base 0
+    const year = value.substring(6, 10);
+    const hours = value.substring(11, 13);
+    const minutes = value.substring(14, 16);
+    const seconds = value.substring(17, 19);
+
+    if (!validateSeconds(seconds)) {
+      isValid = false;
+      errorMessage = "Los segundos son obligatorios en el formato hh:mm:ss";
+    } else {
+      const enteredDate = new Date(year, month, day, hours, minutes, seconds);
+      const now = new Date();
+
+      const pedidoDateParts =
+        formularioModelo.listadoUnitario.FECHAMV.split("-");
+      const pedidoDate = new Date(
+        pedidoDateParts[2],
+        pedidoDateParts[1] - 1,
+        pedidoDateParts[0]
+      );
+
+      errorMessage = validateDateTime(
+        enteredDate,
+        pedidoDate,
+        now,
+        day,
+        month,
+        year
+      );
+
+      if (errorMessage) {
+        isValid = false;
+      }
+    }
+  }
+
+  // Actualizar el estado global
+  VerUnFormulario.isValidDate = isValid;
+  VerUnFormulario.errorMessage = errorMessage;
+
+  return isValid;
+}
 
 const VerUnFormulario = {
   usuarioMoficado: "",
