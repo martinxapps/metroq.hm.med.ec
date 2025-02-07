@@ -162,6 +162,9 @@ const tablePedidosTR = {
                                     if (PedidosTR.idFiltro == 8) {
                                         el.dom.innerHTML = 'Pedidos de C2';
                                     }
+                                    if (PedidosTR.idFiltro == 9) {
+                                        el.dom.innerHTML = 'UCI';
+                                    }
                                 },
                                 onupdate: (el) => {
                                     if (PedidosTR.idFiltro == 1) {
@@ -187,6 +190,9 @@ const tablePedidosTR = {
                                     }
                                     if (PedidosTR.idFiltro == 8) {
                                         el.dom.innerHTML = 'Pedidos de C2';
+                                    }
+                                    if (PedidosTR.idFiltro == 9) {
+                                        el.dom.innerHTML = 'UCI';
                                     }
                                 }
                             }
@@ -288,6 +294,9 @@ const tablePedidosTR = {
                                     ]),
                                     m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=8&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
                                         "Pedidos de C2"
+                                    ]),
+                                    m(m.route.Link, { class: 'dropdown-item ', href: "/terapia-respiratoria/pedidos/?idFiltro=9&fechaDesde=" + PedidosTR.fechaDesde + "&fechaHasta=" + PedidosTR.fechaHasta }, [
+                                        "UCI"
                                     ]),
 
                                 ])
